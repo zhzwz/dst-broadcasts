@@ -1,5 +1,6 @@
 #!/bin/sh
-# 打包模组到指定目录，并生成 preview/preview.png
+# 打包模组到指定目录。
+# ModUploader 会上传目录内全部文件，因此单独打出一份干净包，避免把无关内容传上工坊。
 # 用法: ./preview.sh [目标目录]
 # 默认目标目录: broadcasts-<version>
 
@@ -7,9 +8,6 @@ set -eu
 
 ROOT="$(CDPATH= cd -- "$(dirname "$0")" && pwd)"
 MODINFO="$ROOT/modinfo.lua"
-SVG="$ROOT/wilson.svg"
-PREVIEW_DIR="$ROOT/preview"
-PREVIEW_PNG="$PREVIEW_DIR/preview.png"
 
 if [ ! -f "$MODINFO" ]; then
   echo "找不到 $MODINFO" >&2
@@ -51,10 +49,8 @@ find "$out_dir" -name '*.zip' -delete
 echo "packed ${out_dir#"$ROOT"/}/"
 find "$out_dir" -type f | sed "s|^$out_dir/|  |" | sort
 
-if [ ! -f "$SVG" ]; then
-  echo "找不到 $SVG，跳过 preview.png" >&2
-  exit 1
+if [ -f "$ROOT/preview.png" ]; then
+  echo "hint: Preview Image 请选 preview.png"
+else
+  echo "hint: 未找到 preview.png" >&2
 fi
-
-python3 "$ROOT/tools/generate_preview.py" --svg "$SVG" -o "$PREVIEW_PNG"
-echo "hint: Preview Image 请选 preview/preview.png"
