@@ -38,7 +38,7 @@ AddSimPostInit(function()
         end
         if attacking and not was_attacking then
             TheNet:Announce(string.format(
-                "[Broadcasts] " .. BROADCASTS_STRINGS.attack_started,
+                BROADCASTS_STRINGS.attack_started,
                 AttackName()
             ))
         end

@@ -16,7 +16,7 @@ end
 
 local function AnnounceBroke(owner, item_name)
     TheNet:Announce(string.format(
-        "[Broadcasts] " .. BROADCASTS_STRINGS.item_broke,
+        BROADCASTS_STRINGS.item_broke,
         owner:GetDisplayName() or "?",
         item_name
     ))

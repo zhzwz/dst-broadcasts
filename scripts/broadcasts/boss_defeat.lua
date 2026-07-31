@@ -40,7 +40,7 @@ local TWIN_PREFABS = {
 }
 
 local function Announce(name)
-    TheNet:Announce(string.format("[Broadcasts] " .. BROADCASTS_STRINGS.boss_defeated, name))
+    TheNet:Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
 end
 
 local function IsAlive(inst)

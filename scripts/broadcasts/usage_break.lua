@@ -23,7 +23,7 @@ local function Announce(inst, owner, percent, message)
     local pct = math.floor(percent * 100 + 0.5)
 
     TheNet:Announce(string.format(
-        "[Broadcasts] " .. message,
+        message,
         owner_name,
         item_name,
         pct

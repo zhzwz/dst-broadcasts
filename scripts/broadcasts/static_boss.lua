@@ -95,7 +95,7 @@ local function OnNewDay()
     end
 
     TheNet:Announce(string.format(
-        "[Broadcasts] " .. BROADCASTS_STRINGS.daily_boss_report,
+        BROADCASTS_STRINGS.daily_boss_report,
         TheWorld.state.cycles + 1,
         table.concat(names, BROADCASTS_STRINGS.list_separator)
     ))
