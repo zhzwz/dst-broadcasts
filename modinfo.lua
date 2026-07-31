@@ -1,4 +1,4 @@
-name = "DST Broadcasts"
+name = "Broadcasts"
 description = [[
 全服播报合集。
 
@@ -8,7 +8,7 @@ description = [[
 - 巨兽存活日报
 ]]
 author = "zhzwz"
-version = "0.8.0"
+version = "1.0.0"
 
 forumthread = ""
 
