@@ -1,25 +1,27 @@
+local N = BROADCASTS_STRINGS.bosses
+
 local DEATH_BOSSES = {
-    deerclops = "巨鹿",
-    mutateddeerclops = "晶体巨鹿",
-    bearger = "熊獾",
-    mutatedbearger = "装甲熊獾",
-    dragonfly = "龙蝇",
-    beequeen = "蜂王",
-    toadstool = "毒菌蟾蜍",
-    toadstool_dark = "悲惨的毒菌蟾蜍",
-    moose = "麋鹿鹅",
-    klaus = "克劳斯",
-    malbatross = "邪天翁",
-    antlion = "蚁狮",
-    crabking = "帝王蟹",
-    eyeofterror = "恐怖之眼",
-    minotaur = "远古守护者",
-    stalker_atrium = "远古织影者",
-    alterguardian_phase3 = "天体英雄",
-    alterguardian_phase4_lunarrift = "天体后裔",
-    worm_boss = "巨大洞穴蠕虫",
+    deerclops = N.deerclops,
+    mutateddeerclops = N.mutateddeerclops,
+    bearger = N.bearger,
+    mutatedbearger = N.mutatedbearger,
+    dragonfly = N.dragonfly,
+    beequeen = N.beequeen,
+    toadstool = N.toadstool,
+    toadstool_dark = N.toadstool_dark,
+    moose = N.moose,
+    klaus = N.klaus,
+    malbatross = N.malbatross,
+    antlion = N.antlion,
+    crabking = N.crabking,
+    eyeofterror = N.eyeofterror,
+    minotaur = N.minotaur,
+    stalker_atrium = N.stalker_atrium,
+    alterguardian_phase3 = N.alterguardian_phase3,
+    alterguardian_phase4_lunarrift = N.alterguardian_phase4_lunarrift,
+    worm_boss = N.worm_boss,
     wagboss_robot = {
-        name = "启迪战争瓦器人",
+        name = N.wagboss_robot,
         test = function(inst)
             return inst.hostile == true
         end,
@@ -27,9 +29,9 @@ local DEATH_BOSSES = {
 }
 
 local NONLETHAL_BOSSES = {
-    daywalker = "梦魇疯猪",
-    daywalker2 = "拾荒疯猪",
-    sharkboi = "大霜鲨",
+    daywalker = N.daywalker,
+    daywalker2 = N.daywalker2,
+    sharkboi = N.sharkboi,
 }
 
 local TWIN_PREFABS = {
@@ -38,7 +40,7 @@ local TWIN_PREFABS = {
 }
 
 local function Announce(name)
-    TheNet:Announce(string.format("[Broadcasts] %s已被击败！", name))
+    TheNet:Announce(string.format("[Broadcasts] " .. BROADCASTS_STRINGS.boss_defeated, name))
 end
 
 local function IsAlive(inst)
@@ -102,7 +104,7 @@ for prefab in pairs(TWIN_PREFABS) do
             inst:DoTaskInTime(0, function()
                 if not HasLivingTwin() and not TheWorld._dst_broadcasts_twins_defeated then
                     TheWorld._dst_broadcasts_twins_defeated = true
-                    Announce("双子魔眼")
+                    Announce(N.twins)
                 end
             end)
         end)
@@ -119,7 +121,7 @@ AddPrefabPostInit("vault_pillar_guard", function(inst)
             if inst._vault_death_loot and
                 not TheWorld._dst_broadcasts_guard_towers_defeated then
                 TheWorld._dst_broadcasts_guard_towers_defeated = true
-                Announce("远古守卫塔")
+                Announce(N.vault_pillar_guard)
             end
         end)
     end)

@@ -1,11 +1,60 @@
-name = "Broadcasts"
-description = [[
+local EN = {
+    description = [[
+Server-side broadcast utility. No client installation required.
+
+- Hound, worm, Deerclops, and Bearger warnings
+- Low durability, low fuel, and item break alerts
+- Daily boss reports and defeat announcements
+]],
+    language_label = "Broadcast language",
+    language_hover = "Select the language used for server announcements.",
+    item_label = "Item status alerts",
+    item_hover = "Announce low durability, low fuel, and broken items held by players.",
+    hounded_label = "Hound and worm warnings",
+    hounded_hover = "Warn at multiple intervals before an attack.",
+    hassler_label = "Deerclops and Bearger warnings",
+    hassler_hover = "Warn before an attack and announce when the boss appears.",
+    daily_label = "Daily boss report",
+    daily_hover = "List bosses still alive in the current shard at the start of each day.",
+    defeat_label = "Boss defeat announcements",
+    defeat_hover = "Notify all players in the current shard when a boss is defeated.",
+    enabled = "Enabled",
+    disabled = "Disabled",
+}
+
+local ZH = {
+    description = [[
 纯服务端全服播报工具，客户端无需安装。
 
 - 猎犬、蠕虫、巨鹿与熊獾袭击预警
 - 物品低耐久、低燃料与损毁提醒
 - 每日巨兽简报与击败播报
-]]
+]],
+    language_label = "播报语言",
+    language_hover = "选择服务器播报使用的语言。",
+    item_label = "物品状态提醒",
+    item_hover = "播报玩家持有物品的低耐久、低燃料与损毁状态。",
+    hounded_label = "猎犬与蠕虫预警",
+    hounded_hover = "在来袭前的多个时间节点提醒。",
+    hassler_label = "巨鹿与熊獾预警",
+    hassler_hover = "在来袭前分阶段提醒，并在巨兽现身时立即播报。",
+    daily_label = "每日巨兽简报",
+    daily_hover = "每天开始时汇总当前分片仍然存活的巨兽。",
+    defeat_label = "巨兽击败播报",
+    defeat_hover = "巨兽被击败时通知当前分片的所有玩家。",
+    enabled = "启用",
+    disabled = "禁用",
+}
+
+local L = ChooseTranslationTable({
+    EN,
+    zh = ZH,
+    zhr = ZH,
+    zht = ZH,
+})
+
+name = "Broadcasts"
+description = L.description
 author = "zhzwz"
 version = "1.1.0"
 
@@ -29,52 +78,62 @@ server_filter_tags = {
 
 configuration_options = {
     {
-        name = "usage_break_enabled",
-        label = "物品状态提醒",
-        hover = "播报玩家持有物品的低耐久、低燃料与损毁状态。",
+        name = "language",
+        label = L.language_label,
+        hover = L.language_hover,
         options = {
-            { description = "启用", data = true },
-            { description = "禁用", data = false },
+            { description = "简体中文", data = "zh" },
+            { description = "English", data = "en" },
+        },
+        default = "zh",
+    },
+    {
+        name = "usage_break_enabled",
+        label = L.item_label,
+        hover = L.item_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
         },
         default = true,
     },
     {
         name = "hounded_enabled",
-        label = "猎犬与蠕虫预警",
-        hover = "在来袭前 1 个游戏日及多个现实时间节点提醒。",
+        label = L.hounded_label,
+        hover = L.hounded_hover,
         options = {
-            { description = "启用", data = true },
-            { description = "禁用", data = false },
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
         },
         default = true,
     },
     {
         name = "hassler_boss_enabled",
-        label = "巨鹿与熊獾预警",
-        hover = "在来袭前分阶段提醒，并在巨兽现身时立即播报。",
+        label = L.hassler_label,
+        hover = L.hassler_hover,
         options = {
-            { description = "启用", data = true },
-            { description = "禁用", data = false },
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
         },
         default = true,
     },
     {
         name = "static_boss_enabled",
-        label = "每日巨兽简报",
-        hover = "每天开始时汇总当前分片仍然存活的巨兽。",
+        label = L.daily_label,
+        hover = L.daily_hover,
         options = {
-            { description = "启用", data = true },
-            { description = "禁用", data = false },
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
         },
         default = true,
     },
     {
         name = "boss_defeat_enabled",
-        label = "巨兽击败播报",
-        hover = "巨兽被击败时通知当前分片的所有玩家。",
+        label = L.defeat_label,
+        hover = L.defeat_hover,
         options = {
-            { description = "启用", data = true },
-            { description = "禁用", data = false },
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
         },
         default = true,
     },

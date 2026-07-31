@@ -4,40 +4,41 @@
 ]]
 
 -- name 显示名；prefabs 任一存活即算存在（多阶段 Boss 合并）
+local N = BROADCASTS_STRINGS.bosses
 local BOSSES = {
-    { name = "龙蝇", prefabs = { "dragonfly" } },
-    { name = "蜂王", prefabs = { "beequeen" } },
-    { name = "毒菌蟾蜍", prefabs = { "toadstool" } },
-    { name = "悲惨的毒菌蟾蜍", prefabs = { "toadstool_dark" } },
-    { name = "麋鹿鹅", prefabs = { "moose" } },
-    { name = "克劳斯", prefabs = { "klaus" } },
-    { name = "邪天翁", prefabs = { "malbatross" } },
-    { name = "蚁狮", prefabs = { "antlion" } },
-    { name = "帝王蟹", prefabs = { "crabking" } },
-    { name = "恐怖之眼", prefabs = { "eyeofterror" } },
-    { name = "双子魔眼", prefabs = { "twinofterror1", "twinofterror2" } },
-    { name = "梦魇疯猪", prefabs = { "daywalker" } },
-    { name = "拾荒疯猪", prefabs = { "daywalker2" } },
-    { name = "大霜鲨", prefabs = { "sharkboi" } },
-    { name = "巨大洞穴蠕虫", prefabs = { "worm_boss" } },
+    { name = N.dragonfly, prefabs = { "dragonfly" } },
+    { name = N.beequeen, prefabs = { "beequeen" } },
+    { name = N.toadstool, prefabs = { "toadstool" } },
+    { name = N.toadstool_dark, prefabs = { "toadstool_dark" } },
+    { name = N.moose, prefabs = { "moose" } },
+    { name = N.klaus, prefabs = { "klaus" } },
+    { name = N.malbatross, prefabs = { "malbatross" } },
+    { name = N.antlion, prefabs = { "antlion" } },
+    { name = N.crabking, prefabs = { "crabking" } },
+    { name = N.eyeofterror, prefabs = { "eyeofterror" } },
+    { name = N.twins, prefabs = { "twinofterror1", "twinofterror2" } },
+    { name = N.daywalker, prefabs = { "daywalker" } },
+    { name = N.daywalker2, prefabs = { "daywalker2" } },
+    { name = N.sharkboi, prefabs = { "sharkboi" } },
+    { name = N.worm_boss, prefabs = { "worm_boss" } },
     {
-        name = "启迪战争瓦器人",
+        name = N.wagboss_robot,
         prefabs = { "wagboss_robot" },
         test = function(inst)
             return inst.hostile == true
         end,
     },
     {
-        name = "远古守卫塔",
+        name = N.vault_pillar_guard,
         prefabs = { "vault_pillar_guard" },
         test = function(inst)
             return not inst.crafted
         end,
     },
-    { name = "远古守护者", prefabs = { "minotaur" } },
-    { name = "远古织影者", prefabs = { "stalker_atrium" } },
-    { name = "天体英雄", prefabs = { "alterguardian_phase1", "alterguardian_phase2", "alterguardian_phase3" } },
-    { name = "天体后裔", prefabs = { "alterguardian_phase4_lunarrift" } },
+    { name = N.minotaur, prefabs = { "minotaur" } },
+    { name = N.stalker_atrium, prefabs = { "stalker_atrium" } },
+    { name = N.alterguardian_phase3, prefabs = { "alterguardian_phase1", "alterguardian_phase2", "alterguardian_phase3" } },
+    { name = N.alterguardian_phase4_lunarrift, prefabs = { "alterguardian_phase4_lunarrift" } },
 }
 
 local PREFAB_SET = {}
@@ -94,9 +95,9 @@ local function OnNewDay()
     end
 
     TheNet:Announce(string.format(
-        "[Broadcasts] 第 %d 天巨兽简报：%s仍然存活。",
+        "[Broadcasts] " .. BROADCASTS_STRINGS.daily_boss_report,
         TheWorld.state.cycles + 1,
-        table.concat(names, "、")
+        table.concat(names, BROADCASTS_STRINGS.list_separator)
     ))
 end
 

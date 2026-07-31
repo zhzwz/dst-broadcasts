@@ -17,22 +17,20 @@ local function PlayerOwner(inst)
     return nil
 end
 
-local function Announce(inst, owner, percent, kind, action)
+local function Announce(inst, owner, percent, message)
     local item_name = inst:GetDisplayName() or inst.prefab
     local owner_name = owner:GetDisplayName() or "?"
     local pct = math.floor(percent * 100 + 0.5)
 
     TheNet:Announce(string.format(
-        "[Broadcasts] %s的%s%s仅剩%d%%，请及时%s！",
+        "[Broadcasts] " .. message,
         owner_name,
         item_name,
-        kind,
-        pct,
-        action
+        pct
     ))
 end
 
-local function CheckThresholds(inst, owner, percent, thresholds, flag_key, kind, action)
+local function CheckThresholds(inst, owner, percent, thresholds, flag_key, message)
     local pct = percent * 100
     local flags = inst[flag_key]
     if flags == nil then
@@ -53,7 +51,7 @@ local function CheckThresholds(inst, owner, percent, thresholds, flag_key, kind,
     end
 
     if should_announce then
-        Announce(inst, owner, percent, kind, action)
+        Announce(inst, owner, percent, message)
     end
 end
 
@@ -70,9 +68,23 @@ local function OnPercentUsedChange(inst, data)
 
     local percent = (data and data.percent) or fueled:GetPercent()
     if fueled.fueltype == FUELTYPE.USAGE then
-        CheckThresholds(inst, owner, percent, SEW_THRESHOLDS, "_dst_broadcasts_sew_flags", "耐久", "缝补")
+        CheckThresholds(
+            inst,
+            owner,
+            percent,
+            SEW_THRESHOLDS,
+            "_dst_broadcasts_sew_flags",
+            BROADCASTS_STRINGS.item_low_durability
+        )
     else
-        CheckThresholds(inst, owner, percent, FUEL_THRESHOLDS, "_dst_broadcasts_fuel_flags", "燃料", "补充")
+        CheckThresholds(
+            inst,
+            owner,
+            percent,
+            FUEL_THRESHOLDS,
+            "_dst_broadcasts_fuel_flags",
+            BROADCASTS_STRINGS.item_low_fuel
+        )
     end
 end
 

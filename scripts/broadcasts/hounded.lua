@@ -4,9 +4,9 @@
 
 local function AttackName()
     if TheWorld:HasTag("cave") then
-        return "蠕虫"
+        return BROADCASTS_STRINGS.bosses.depths_worms
     end
-    return "猎犬"
+    return BROADCASTS_STRINGS.bosses.hounds
 end
 
 AddSimPostInit(function()
@@ -37,7 +37,10 @@ AddSimPostInit(function()
             return
         end
         if attacking and not was_attacking then
-            TheNet:Announce(string.format("[Broadcasts] %s来袭！", AttackName()))
+            TheNet:Announce(string.format(
+                "[Broadcasts] " .. BROADCASTS_STRINGS.attack_started,
+                AttackName()
+            ))
         end
         was_attacking = attacking
     end)

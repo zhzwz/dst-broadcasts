@@ -16,7 +16,7 @@ end
 
 local function AnnounceBroke(owner, item_name)
     TheNet:Announce(string.format(
-        "[Broadcasts] %s的%s已损毁！",
+        "[Broadcasts] " .. BROADCASTS_STRINGS.item_broke,
         owner:GetDisplayName() or "?",
         item_name
     ))
@@ -27,7 +27,8 @@ local function OnArmorBroke(player, data)
         return
     end
     local armor = data and data.armor
-    local item_name = (armor ~= nil and (armor:GetDisplayName() or armor.prefab)) or "护甲"
+    local item_name = (armor ~= nil and (armor:GetDisplayName() or armor.prefab)) or
+        BROADCASTS_STRINGS.armor
     AnnounceBroke(player, item_name)
 end
 

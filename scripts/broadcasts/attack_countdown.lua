@@ -7,14 +7,7 @@
 
 local ADVANCE_DAYS = 1
 local REAL_THRESHOLDS = { 300, 120, 60, 30, 10, 5 }
-local REAL_LABELS = {
-    [300] = "5分钟",
-    [120] = "2分钟",
-    [60] = "1分钟",
-    [30] = "30秒",
-    [10] = "10秒",
-    [5] = "5秒",
-}
+local S = BROADCASTS_STRINGS
 
 local function Announce(msg)
     TheNet:Announce("[Broadcasts] " .. msg)
@@ -51,9 +44,9 @@ function WatchAttackCountdown(get_seconds, get_name)
                 if key ~= state.last_day_key then
                     state.last_day_key = key
                     if days <= 0 then
-                        Announce(string.format("%s预计今日来袭，请提前准备！", name))
+                        Announce(string.format(S.attack_today, name))
                     else
-                        Announce(string.format("距离%s来袭还有1个游戏日，请提前准备！", name))
+                        Announce(string.format(S.attack_day, name))
                     end
                 end
             end
@@ -74,7 +67,7 @@ function WatchAttackCountdown(get_seconds, get_name)
         end
 
         if lowest ~= nil then
-            Announce(string.format("距离%s来袭还有%s，请做好准备！", name, REAL_LABELS[lowest]))
+            Announce(string.format(S.attack_time, name, S.durations[lowest]))
         end
     end)
 end

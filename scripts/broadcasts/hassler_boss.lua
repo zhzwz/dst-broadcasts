@@ -3,15 +3,15 @@
 ]]
 
 local BOSSES = {
-    { name = "巨鹿", timer = "deerclops_timetoattack" },
-    { name = "熊獾", timer = "bearger_timetospawn" },
+    { name = BROADCASTS_STRINGS.bosses.deerclops, timer = "deerclops_timetoattack" },
+    { name = BROADCASTS_STRINGS.bosses.bearger, timer = "bearger_timetospawn" },
 }
 
 local SPAWN_NAMES = {
-    deerclops = "巨鹿",
-    mutateddeerclops = "晶体巨鹿",
-    bearger = "熊獾",
-    mutatedbearger = "装甲熊獾",
+    deerclops = BROADCASTS_STRINGS.bosses.deerclops,
+    mutateddeerclops = BROADCASTS_STRINGS.bosses.mutateddeerclops,
+    bearger = BROADCASTS_STRINGS.bosses.bearger,
+    mutatedbearger = BROADCASTS_STRINGS.bosses.mutatedbearger,
 }
 
 AddSimPostInit(function()
@@ -56,7 +56,10 @@ for prefab, name in pairs(SPAWN_NAMES) do
 
         inst:DoTaskInTime(0, function()
             if inst:IsValid() and not inst._dst_broadcasts_loaded then
-                TheNet:Announce(string.format("[Broadcasts] %s已现身！", name))
+                TheNet:Announce(string.format(
+                    "[Broadcasts] " .. BROADCASTS_STRINGS.boss_appeared,
+                    name
+                ))
             end
         end)
     end)
