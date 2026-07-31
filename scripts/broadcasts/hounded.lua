@@ -1,5 +1,5 @@
 --[[
-  猎犬 / 洞穴蠕虫等 hounded 袭击倒计时。
+  猎犬 / 洞穴蠕虫等 hounded 袭击预警。
 ]]
 
 local function AttackName()
@@ -17,7 +17,7 @@ AddSimPostInit(function()
         return
     end
 
-    WatchAttackCountdown(function()
+    WatchAttackWarning(function()
         local hounded = TheWorld.components.hounded
         if hounded == nil or hounded:GetAttacking() then
             return nil

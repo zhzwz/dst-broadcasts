@@ -6,7 +6,7 @@
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
 modimport("scripts/broadcasts/strings.lua")
-modimport("scripts/broadcasts/attack_countdown.lua")
+modimport("scripts/broadcasts/attack_warning.lua")
 
 if GetModConfigData("usage_break_enabled") then
     modimport("scripts/broadcasts/usage_break.lua")

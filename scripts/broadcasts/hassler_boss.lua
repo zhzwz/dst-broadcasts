@@ -26,7 +26,7 @@ AddSimPostInit(function()
     end
 
     for _, boss in ipairs(BOSSES) do
-        WatchAttackCountdown(function()
+        WatchAttackWarning(function()
             local wst = TheWorld.components.worldsettingstimer
             if wst == nil or
                 not wst:ActiveTimerExists(boss.timer) or

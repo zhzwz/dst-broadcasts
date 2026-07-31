@@ -1,5 +1,5 @@
 --[[
-  袭击倒计时共用逻辑：
+  袭击预警共用逻辑：
   - 游戏时间提前 1 天
   - 现实时间 5 分 / 2 分 / 1 分 / 30 秒 / 10 秒 / 5 秒
   文案：距离猎犬来袭还有5秒，请做好准备！
@@ -13,9 +13,9 @@ local function Announce(msg)
     TheNet:Announce(msg)
 end
 
--- get_seconds: 返回剩余秒数；nil 表示当前无倒计时
+-- get_seconds: 返回剩余秒数；nil 表示当前没有袭击预警
 -- get_name: 返回袭击显示名
-function WatchAttackCountdown(get_seconds, get_name)
+function WatchAttackWarning(get_seconds, get_name)
     if not TheWorld.ismastersim then
         return
     end
