@@ -6,9 +6,10 @@ description = [[
 - 可缝补 / 可补燃料低耐久提醒
 - 武器、护甲损坏提醒
 - 巨兽存活日报
+- 巨兽击败播报
 ]]
 author = "zhzwz"
-version = "1.0.0"
+version = "1.1.0"
 
 forumthread = ""
 
@@ -63,6 +64,16 @@ configuration_options = {
         name = "static_boss_enabled",
         label = "巨兽存活播报",
         hover = "每天刷新时扫描龙蝇、蜂王等，若已在世界中则提示",
+        options = {
+            { description = "开启", data = true },
+            { description = "关闭", data = false },
+        },
+        default = true,
+    },
+    {
+        name = "boss_defeat_enabled",
+        label = "巨兽击败播报",
+        hover = "巨兽被击败时全服提示",
         options = {
             { description = "开启", data = true },
             { description = "关闭", data = false },

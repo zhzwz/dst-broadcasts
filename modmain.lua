@@ -23,3 +23,7 @@ end
 if GetModConfigData("static_boss_enabled") then
     modimport("scripts/broadcasts/static_boss.lua")
 end
+
+if GetModConfigData("boss_defeat_enabled") then
+    modimport("scripts/broadcasts/boss_defeat.lua")
+end

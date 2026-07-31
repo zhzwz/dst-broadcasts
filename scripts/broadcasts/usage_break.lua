@@ -17,12 +17,7 @@ local function PlayerOwner(inst)
     return nil
 end
 
-local function Announce(inst, percent, kind, action)
-    local owner = PlayerOwner(inst)
-    if owner == nil then
-        return
-    end
-
+local function Announce(inst, owner, percent, kind, action)
     local item_name = inst:GetDisplayName() or inst.prefab
     local owner_name = owner:GetDisplayName() or "?"
     local pct = math.floor(percent * 100 + 0.5)
@@ -37,7 +32,7 @@ local function Announce(inst, percent, kind, action)
     ))
 end
 
-local function CheckThresholds(inst, percent, thresholds, flag_key, kind, action)
+local function CheckThresholds(inst, owner, percent, thresholds, flag_key, kind, action)
     local pct = percent * 100
     local flags = inst[flag_key]
     if flags == nil then
@@ -58,7 +53,7 @@ local function CheckThresholds(inst, percent, thresholds, flag_key, kind, action
     end
 
     if should_announce then
-        Announce(inst, percent, kind, action)
+        Announce(inst, owner, percent, kind, action)
     end
 end
 
@@ -68,11 +63,16 @@ local function OnPercentUsedChange(inst, data)
         return
     end
 
+    local owner = PlayerOwner(inst)
+    if owner == nil then
+        return
+    end
+
     local percent = (data and data.percent) or fueled:GetPercent()
     if fueled.fueltype == FUELTYPE.USAGE then
-        CheckThresholds(inst, percent, SEW_THRESHOLDS, "_dst_broadcasts_sew_flags", "耐久", "缝补")
+        CheckThresholds(inst, owner, percent, SEW_THRESHOLDS, "_dst_broadcasts_sew_flags", "耐久", "缝补")
     else
-        CheckThresholds(inst, percent, FUEL_THRESHOLDS, "_dst_broadcasts_fuel_flags", "燃料", "补充")
+        CheckThresholds(inst, owner, percent, FUEL_THRESHOLDS, "_dst_broadcasts_fuel_flags", "燃料", "补充")
     end
 end
 

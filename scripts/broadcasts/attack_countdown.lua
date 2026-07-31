@@ -23,6 +23,10 @@ end
 -- get_seconds: 返回剩余秒数；nil 表示当前无倒计时
 -- get_name: 返回袭击显示名
 function WatchAttackCountdown(get_seconds, get_name)
+    if not TheWorld.ismastersim then
+        return
+    end
+
     local state = {
         real_flags = {},
         last_day_key = nil,
@@ -30,15 +34,18 @@ function WatchAttackCountdown(get_seconds, get_name)
 
     TheWorld:DoPeriodicTask(1, function()
         local t = get_seconds()
-        if t == nil then
+        if type(t) ~= "number" or t ~= t or t < 0 then
             state.real_flags = {}
             return
         end
 
         local name = get_name()
+        if name == nil then
+            return
+        end
 
         if TheWorld.state.cycles ~= 0 then
-            local days = math.floor(t / TUNING.TOTAL_DAY_TIME)
+            local days = math.ceil(t / TUNING.TOTAL_DAY_TIME)
             if days <= ADVANCE_DAYS then
                 local key = tostring(TheWorld.state.cycles) .. ":" .. tostring(days)
                 if key ~= state.last_day_key then

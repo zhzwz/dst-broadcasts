@@ -28,7 +28,9 @@ AddSimPostInit(function()
     for _, boss in ipairs(BOSSES) do
         WatchAttackCountdown(function()
             local wst = TheWorld.components.worldsettingstimer
-            if wst == nil then
+            if wst == nil or
+                not wst:ActiveTimerExists(boss.timer) or
+                wst:IsPaused(boss.timer) then
                 return nil
             end
             return wst:GetTimeLeft(boss.timer)
@@ -43,8 +45,17 @@ for prefab, name in pairs(SPAWN_NAMES) do
         if not TheWorld.ismastersim then
             return
         end
+
+        local old_on_load = inst.OnLoad
+        inst.OnLoad = function(inst, data)
+            inst._dst_broadcasts_loaded = true
+            if old_on_load ~= nil then
+                old_on_load(inst, data)
+            end
+        end
+
         inst:DoTaskInTime(0, function()
-            if inst:IsValid() then
+            if inst:IsValid() and not inst._dst_broadcasts_loaded then
                 TheNet:Announce(string.format("[Broadcasts] %s已出现！", name))
             end
         end)
