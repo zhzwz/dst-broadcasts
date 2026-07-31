@@ -2,11 +2,13 @@ name = "DST Warnings"
 description = [[
 全服预警合集。
 
-- 可缝补装备（眼球伞、雨衣等）低耐久提示
-- 猎犬 / 洞穴蠕虫袭击倒计时提示
+- 猎犬/蠕虫、巨鹿/熊獾袭击倒计时
+- 可缝补 / 可补燃料低耐久提醒
+- 武器、护甲损坏提醒
+- 巨兽存活日报
 ]]
 author = "zhzwz"
-version = "0.2.0"
+version = "0.7.0"
 
 forumthread = ""
 
@@ -29,31 +31,18 @@ server_filter_tags = {
 configuration_options = {
     {
         name = "usage_break_enabled",
-        label = "可缝补装备耐久预警",
-        hover = "眼球伞、雨衣等 USAGE 耐久低于阈值时全服提示",
+        label = "物品耐久/损坏预警",
+        hover = "可缝补、可补燃料低耐久；武器/护甲损坏时提醒",
         options = {
             { description = "开启", data = true },
             { description = "关闭", data = false },
         },
         default = true,
-    },
-    {
-        name = "usage_break_percent",
-        label = "耐久预警阈值",
-        hover = "剩余耐久低于该百分比时提醒（缝补回升后可再次提醒）",
-        options = {
-            { description = "5%", data = 5 },
-            { description = "10%", data = 10 },
-            { description = "20%", data = 20 },
-            { description = "30%", data = 30 },
-            { description = "50%", data = 50 },
-        },
-        default = 20,
     },
     {
         name = "hounded_enabled",
         label = "猎犬/蠕虫袭击预警",
-        hover = "地表猎犬、洞穴蠕虫等 hounded 袭击倒计时全服提示",
+        hover = "提前 1 天 + 现实时间 5分/2分/1分/30秒/10秒/5秒",
         options = {
             { description = "开启", data = true },
             { description = "关闭", data = false },
@@ -61,27 +50,23 @@ configuration_options = {
         default = true,
     },
     {
-        name = "hounded_advance_days",
-        label = "提前几天播报",
-        hover = "袭击尚未进入警戒阶段时，按天数提前提示（0=只在警戒/临近时提示）",
+        name = "hassler_boss_enabled",
+        label = "巨鹿/熊獾袭击预警",
+        hover = "提前 1 天 + 现实时间 5分/2分/1分/30秒/10秒/5秒；现身时提示",
         options = {
-            { description = "关闭", data = 0 },
-            { description = "1 天", data = 1 },
-            { description = "2 天", data = 2 },
-            { description = "3 天", data = 3 },
+            { description = "开启", data = true },
+            { description = "关闭", data = false },
         },
-        default = 1,
+        default = true,
     },
     {
-        name = "hounded_urgent_sec",
-        label = "临近二次提醒",
-        hover = "警戒阶段中，剩余时间低于该秒数时再提醒一次",
+        name = "static_boss_enabled",
+        label = "巨兽存活播报",
+        hover = "每天刷新时扫描龙蝇、蜂王等，若已在世界中则提示",
         options = {
-            { description = "15 秒", data = 15 },
-            { description = "30 秒", data = 30 },
-            { description = "60 秒", data = 60 },
-            { description = "关闭", data = 0 },
+            { description = "开启", data = true },
+            { description = "关闭", data = false },
         },
-        default = 30,
+        default = true,
     },
 }

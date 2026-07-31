@@ -1,9 +1,9 @@
 --[[
-  USAGE 型 fueled（可用缝纫包修复；归零通常会消失）低耐久全服提醒。
-  不覆盖矿工帽等「耗尽只熄灭、物品仍在」的燃料装备。
+  可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服提醒。
 ]]
 
-local THRESHOLD = (GetModConfigData("usage_break_percent") or 20) / 100
+local SEW_THRESHOLDS = { 20, 10, 5, 4, 3, 2, 1 }
+local FUEL_THRESHOLDS = { 30, 20, 10 }
 
 local function PlayerOwner(inst)
     local item = inst.components.inventoryitem
@@ -17,7 +17,7 @@ local function PlayerOwner(inst)
     return nil
 end
 
-local function AnnounceLow(inst, percent)
+local function Announce(inst, percent, kind, action)
     local owner = PlayerOwner(inst)
     if owner == nil then
         return
@@ -28,11 +28,38 @@ local function AnnounceLow(inst, percent)
     local pct = math.floor(percent * 100 + 0.5)
 
     TheNet:Announce(string.format(
-        "[Warnings] %s 的 %s 耐久仅剩 %d%%，请及时缝补！",
+        "[Warnings] %s的%s剩余%d%%%s，请及时%s！",
         owner_name,
         item_name,
-        pct
+        pct,
+        kind,
+        action
     ))
+end
+
+local function CheckThresholds(inst, percent, thresholds, flag_key, kind, action)
+    local pct = percent * 100
+    local flags = inst[flag_key]
+    if flags == nil then
+        flags = {}
+        inst[flag_key] = flags
+    end
+
+    local should_announce = false
+    for _, t in ipairs(thresholds) do
+        if pct <= t then
+            if not flags[t] then
+                flags[t] = true
+                should_announce = true
+            end
+        else
+            flags[t] = nil
+        end
+    end
+
+    if should_announce then
+        Announce(inst, percent, kind, action)
+    end
 end
 
 local function OnPercentUsedChange(inst, data)
@@ -42,25 +69,22 @@ local function OnPercentUsedChange(inst, data)
     end
 
     local percent = (data and data.percent) or fueled:GetPercent()
-    if percent <= THRESHOLD then
-        if not inst._dst_warnings_usage_warned then
-            inst._dst_warnings_usage_warned = true
-            AnnounceLow(inst, percent)
-        end
+    if fueled.fueltype == FUELTYPE.USAGE then
+        CheckThresholds(inst, percent, SEW_THRESHOLDS, "_dst_warnings_sew_flags", "耐久", "缝补")
     else
-        inst._dst_warnings_usage_warned = false
+        CheckThresholds(inst, percent, FUEL_THRESHOLDS, "_dst_warnings_fuel_flags", "燃料", "补充")
     end
 end
 
 local function WatchFueled(inst)
     local fueled = inst.components.fueled
-    if fueled == nil or fueled.fueltype ~= FUELTYPE.USAGE then
+    if fueled == nil then
         return
     end
-    if inst._dst_warnings_usage_watching then
+    if inst._dst_warnings_fueled_watching then
         return
     end
-    inst._dst_warnings_usage_watching = true
+    inst._dst_warnings_fueled_watching = true
     inst:ListenForEvent("percentusedchange", OnPercentUsedChange)
 end
 

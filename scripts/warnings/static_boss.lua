@@ -1,0 +1,91 @@
+--[[
+  不主动追人的 Boss：每天刷新时扫描是否已在世界中，有则全服提示。
+  巨鹿/熊獾由 hassler_boss 负责，不在此重复。
+]]
+
+-- name 显示名；prefabs 任一存活即算存在（多阶段 Boss 合并）
+local BOSSES = {
+    { name = "龙蝇", prefabs = { "dragonfly" } },
+    { name = "蜂王", prefabs = { "beequeen" } },
+    { name = "毒菌蟾蜍", prefabs = { "toadstool" } },
+    { name = "悲惨的毒菌蟾蜍", prefabs = { "toadstool_dark" } },
+    { name = "麋鹿鹅", prefabs = { "moose" } },
+    { name = "克劳斯", prefabs = { "klaus" } },
+    { name = "邪天翁", prefabs = { "malbatross" } },
+    { name = "蚁狮", prefabs = { "antlion" } },
+    { name = "帝王蟹", prefabs = { "crabking" } },
+    { name = "恐怖之眼", prefabs = { "eyeofterror" } },
+    { name = "双子魔眼", prefabs = { "twinofterror1", "twinofterror2" } },
+    { name = "梦魇疯猪", prefabs = { "daywalker" } },
+    { name = "拾荒疯猪", prefabs = { "daywalker2" } },
+    { name = "大霜鲨", prefabs = { "sharkboi" } },
+    { name = "远古守护者", prefabs = { "minotaur" } },
+    { name = "远古织影者", prefabs = { "stalker_atrium" } },
+    { name = "天体英雄", prefabs = { "alterguardian_phase1", "alterguardian_phase2", "alterguardian_phase3" } },
+}
+
+local PREFAB_SET = {}
+for _, boss in ipairs(BOSSES) do
+    for _, prefab in ipairs(boss.prefabs) do
+        PREFAB_SET[prefab] = true
+    end
+end
+
+local function IsAliveBoss(inst)
+    if not inst:IsValid() then
+        return false
+    end
+    if inst:HasTag("INLIMBO") then
+        return false
+    end
+    local health = inst.components.health
+    if health ~= nil and health:IsDead() then
+        return false
+    end
+    return true
+end
+
+local function CollectPresent()
+    local found = {}
+    for _, inst in pairs(Ents) do
+        local prefab = inst.prefab
+        if prefab ~= nil and PREFAB_SET[prefab] and IsAliveBoss(inst) then
+            found[prefab] = true
+        end
+    end
+
+    local names = {}
+    for _, boss in ipairs(BOSSES) do
+        for _, prefab in ipairs(boss.prefabs) do
+            if found[prefab] then
+                table.insert(names, boss.name)
+                break
+            end
+        end
+    end
+    return names
+end
+
+local function OnNewDay()
+    if TheWorld.state.cycles == 0 then
+        return
+    end
+
+    local names = CollectPresent()
+    if #names == 0 then
+        return
+    end
+
+    TheNet:Announce(string.format(
+        "[Warnings] 第 %d 天：当前存在 %s",
+        TheWorld.state.cycles,
+        table.concat(names, "、")
+    ))
+end
+
+AddSimPostInit(function()
+    if not TheWorld.ismastersim then
+        return
+    end
+    TheWorld:WatchWorldState("cycles", OnNewDay)
+end)
