@@ -16,7 +16,7 @@ end
 
 local function AnnounceBroke(owner, item_name)
     TheNet:Announce(string.format(
-        "[Warnings] %s的%s已损毁！",
+        "[Broadcasts] %s的%s已损毁！",
         owner:GetDisplayName() or "?",
         item_name
     ))
@@ -32,10 +32,10 @@ local function OnArmorBroke(player, data)
 end
 
 local function WatchPlayer(player)
-    if player._dst_warnings_armor_broke then
+    if player._dst_broadcasts_armor_broke then
         return
     end
-    player._dst_warnings_armor_broke = true
+    player._dst_broadcasts_armor_broke = true
     player:ListenForEvent("armorbroke", OnArmorBroke)
 end
 
@@ -58,13 +58,13 @@ local function OnFiniteUsesChange(inst, data)
 
     local percent = (data and data.percent) or uses:GetPercent()
     if percent > 0 then
-        inst._dst_warnings_uses_broke = nil
+        inst._dst_broadcasts_uses_broke = nil
         return
     end
-    if inst._dst_warnings_uses_broke then
+    if inst._dst_broadcasts_uses_broke then
         return
     end
-    inst._dst_warnings_uses_broke = true
+    inst._dst_broadcasts_uses_broke = true
 
     local owner = PlayerOwner(inst)
     if owner == nil then
@@ -78,9 +78,9 @@ AddComponentPostInit("finiteuses", function(self)
         return
     end
     local inst = self.inst
-    if inst._dst_warnings_finiteuses_watching then
+    if inst._dst_broadcasts_finiteuses_watching then
         return
     end
-    inst._dst_warnings_finiteuses_watching = true
+    inst._dst_broadcasts_finiteuses_watching = true
     inst:ListenForEvent("percentusedchange", OnFiniteUsesChange)
 end)

@@ -77,7 +77,7 @@ local function OnNewDay()
     end
 
     TheNet:Announce(string.format(
-        "[Warnings] 第 %d 天：当前存在 %s",
+        "[Broadcasts] 第 %d 天：当前存在 %s",
         TheWorld.state.cycles,
         table.concat(names, "、")
     ))

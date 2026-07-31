@@ -1,6 +1,6 @@
-name = "DST Warnings"
+name = "DST Broadcasts"
 description = [[
-全服预警合集。
+全服播报合集。
 
 - 猎犬/蠕虫、巨鹿/熊獾袭击倒计时
 - 可缝补 / 可补燃料低耐久提醒
@@ -8,7 +8,7 @@ description = [[
 - 巨兽存活日报
 ]]
 author = "zhzwz"
-version = "0.7.0"
+version = "0.8.0"
 
 forumthread = ""
 
@@ -25,7 +25,7 @@ all_clients_require_mod = false
 
 server_filter_tags = {
     "utility",
-    "warnings",
+    "broadcasts",
 }
 
 configuration_options = {

@@ -28,7 +28,7 @@ local function Announce(inst, percent, kind, action)
     local pct = math.floor(percent * 100 + 0.5)
 
     TheNet:Announce(string.format(
-        "[Warnings] %s的%s剩余%d%%%s，请及时%s！",
+        "[Broadcasts] %s的%s剩余%d%%%s，请及时%s！",
         owner_name,
         item_name,
         pct,
@@ -70,9 +70,9 @@ local function OnPercentUsedChange(inst, data)
 
     local percent = (data and data.percent) or fueled:GetPercent()
     if fueled.fueltype == FUELTYPE.USAGE then
-        CheckThresholds(inst, percent, SEW_THRESHOLDS, "_dst_warnings_sew_flags", "耐久", "缝补")
+        CheckThresholds(inst, percent, SEW_THRESHOLDS, "_dst_broadcasts_sew_flags", "耐久", "缝补")
     else
-        CheckThresholds(inst, percent, FUEL_THRESHOLDS, "_dst_warnings_fuel_flags", "燃料", "补充")
+        CheckThresholds(inst, percent, FUEL_THRESHOLDS, "_dst_broadcasts_fuel_flags", "燃料", "补充")
     end
 end
 
@@ -81,10 +81,10 @@ local function WatchFueled(inst)
     if fueled == nil then
         return
     end
-    if inst._dst_warnings_fueled_watching then
+    if inst._dst_broadcasts_fueled_watching then
         return
     end
-    inst._dst_warnings_fueled_watching = true
+    inst._dst_broadcasts_fueled_watching = true
     inst:ListenForEvent("percentusedchange", OnPercentUsedChange)
 end
 

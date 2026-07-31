@@ -45,7 +45,7 @@ for prefab, name in pairs(SPAWN_NAMES) do
         end
         inst:DoTaskInTime(0, function()
             if inst:IsValid() then
-                TheNet:Announce(string.format("[Warnings] %s已出现！", name))
+                TheNet:Announce(string.format("[Broadcasts] %s已出现！", name))
             end
         end)
     end)

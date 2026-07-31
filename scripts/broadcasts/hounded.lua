@@ -33,7 +33,7 @@ AddSimPostInit(function()
         end
         local attacking = hounded:GetAttacking()
         if attacking and not was_attacking then
-            TheNet:Announce(string.format("[Warnings] %s袭击开始！", AttackName()))
+            TheNet:Announce(string.format("[Broadcasts] %s袭击开始！", AttackName()))
         end
         was_attacking = attacking
     end)
