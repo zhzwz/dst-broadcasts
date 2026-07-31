@@ -5,7 +5,8 @@ Server-side broadcast utility. No client installation required.
 - Hound, worm, Deerclops, and Bearger warnings
 - Cave event warnings and status announcements
 - Low durability, low fuel, and item break alerts
-- Daily boss reports and defeat announcements
+- Daily season, weather, event, and boss reports
+- Boss appearance and defeat announcements
 ]],
     language_label = "Broadcast language",
     language_hover = "Select the language used for server announcements.",
@@ -17,8 +18,8 @@ Server-side broadcast utility. No client installation required.
     cave_events_hover = "Announce nightmare cycles, earthquakes, acid rain, and Ruins resets.",
     hassler_label = "Deerclops and Bearger warnings",
     hassler_hover = "Warn before an attack and announce when the boss appears.",
-    daily_label = "Daily boss report",
-    daily_hover = "List bosses still alive in the current shard at the start of each day.",
+    morning_label = "The Constant Daily",
+    morning_hover = "Report the season, weather outlook, upcoming events, and living bosses each morning.",
     defeat_label = "Boss defeat announcements",
     defeat_hover = "Notify all players in the current shard when a boss is defeated.",
     enabled = "Enabled",
@@ -32,7 +33,8 @@ local ZH = {
 - 猎犬、蠕虫、巨鹿与熊獾袭击预警
 - 洞穴事件预警与状态播报
 - 物品低耐久、低燃料与损毁提醒
-- 每日巨兽简报与击败播报
+- 每日季节、天气、事件与存活巨兽早报
+- 巨兽现身与击败播报
 ]],
     language_label = "播报语言",
     language_hover = "选择服务器播报使用的语言。",
@@ -44,8 +46,8 @@ local ZH = {
     cave_events_hover = "播报噩梦循环、地震、酸雨与远古遗迹重置。",
     hassler_label = "巨鹿与熊獾预警",
     hassler_hover = "在来袭前分阶段提醒，并在巨兽现身时立即播报。",
-    daily_label = "每日巨兽简报",
-    daily_hover = "每天开始时汇总当前分片仍然存活的巨兽。",
+    morning_label = "永恒早报",
+    morning_hover = "每天开始时播报季节、天气趋势、近期事件与存活巨兽。",
     defeat_label = "巨兽击败播报",
     defeat_hover = "巨兽被击败时通知当前分片的所有玩家。",
     enabled = "启用",
@@ -134,9 +136,9 @@ configuration_options = {
         default = true,
     },
     {
-        name = "static_boss_enabled",
-        label = L.daily_label,
-        hover = L.daily_hover,
+        name = "morning_news_enabled",
+        label = L.morning_label,
+        hover = L.morning_hover,
         options = {
             { description = L.enabled, data = true },
             { description = L.disabled, data = false },

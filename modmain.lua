@@ -25,8 +25,8 @@ if GetModConfigData("hassler_boss_enabled") then
     modimport("scripts/broadcasts/hassler_boss.lua")
 end
 
-if GetModConfigData("static_boss_enabled") then
-    modimport("scripts/broadcasts/static_boss.lua")
+if GetModConfigData("morning_news_enabled") then
+    modimport("scripts/broadcasts/morning_news.lua")
 end
 
 if GetModConfigData("boss_defeat_enabled") then
