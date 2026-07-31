@@ -17,6 +17,10 @@ if GetModConfigData("hounded_enabled") then
     modimport("scripts/broadcasts/hounded.lua")
 end
 
+if GetModConfigData("cave_events_enabled") then
+    modimport("scripts/broadcasts/cave_events.lua")
+end
+
 if GetModConfigData("hassler_boss_enabled") then
     modimport("scripts/broadcasts/hassler_boss.lua")
 end

@@ -3,6 +3,7 @@ local EN = {
 Server-side broadcast utility. No client installation required.
 
 - Hound, worm, Deerclops, and Bearger warnings
+- Cave event warnings and status announcements
 - Low durability, low fuel, and item break alerts
 - Daily boss reports and defeat announcements
 ]],
@@ -12,6 +13,8 @@ Server-side broadcast utility. No client installation required.
     item_hover = "Announce low durability, low fuel, and broken items held by players.",
     hounded_label = "Hound and worm warnings",
     hounded_hover = "Warn at multiple intervals before an attack.",
+    cave_events_label = "Cave event alerts",
+    cave_events_hover = "Announce nightmare cycles, earthquakes, acid rain, and Ruins resets.",
     hassler_label = "Deerclops and Bearger warnings",
     hassler_hover = "Warn before an attack and announce when the boss appears.",
     daily_label = "Daily boss report",
@@ -27,6 +30,7 @@ local ZH = {
 纯服务端全服播报工具，客户端无需安装。
 
 - 猎犬、蠕虫、巨鹿与熊獾袭击预警
+- 洞穴事件预警与状态播报
 - 物品低耐久、低燃料与损毁提醒
 - 每日巨兽简报与击败播报
 ]],
@@ -36,6 +40,8 @@ local ZH = {
     item_hover = "播报玩家持有物品的低耐久、低燃料与损毁状态。",
     hounded_label = "猎犬与蠕虫预警",
     hounded_hover = "在来袭前的多个时间节点提醒。",
+    cave_events_label = "洞穴事件提醒",
+    cave_events_hover = "播报噩梦循环、地震、酸雨与远古遗迹重置。",
     hassler_label = "巨鹿与熊獾预警",
     hassler_hover = "在来袭前分阶段提醒，并在巨兽现身时立即播报。",
     daily_label = "每日巨兽简报",
@@ -101,6 +107,16 @@ configuration_options = {
         name = "hounded_enabled",
         label = L.hounded_label,
         hover = L.hounded_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
+        },
+        default = true,
+    },
+    {
+        name = "cave_events_enabled",
+        label = L.cave_events_label,
+        hover = L.cave_events_hover,
         options = {
             { description = L.enabled, data = true },
             { description = L.disabled, data = false },
