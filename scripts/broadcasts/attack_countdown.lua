@@ -2,7 +2,7 @@
   袭击倒计时共用逻辑：
   - 游戏时间提前 1 天
   - 现实时间 5 分 / 2 分 / 1 分 / 30 秒 / 10 秒 / 5 秒
-  文案：[Broadcasts] {猎犬}还有五秒到达战场，请做好准备！
+  文案：[Broadcasts] 距离猎犬来袭还有5秒，请做好准备！
 ]]
 
 local ADVANCE_DAYS = 1
@@ -51,9 +51,9 @@ function WatchAttackCountdown(get_seconds, get_name)
                 if key ~= state.last_day_key then
                     state.last_day_key = key
                     if days <= 0 then
-                        Announce(string.format("%s今日将到达战场，请做好准备！", name))
+                        Announce(string.format("%s预计今日来袭，请提前准备！", name))
                     else
-                        Announce(string.format("%s还有1天到达战场，请做好准备！", name))
+                        Announce(string.format("距离%s来袭还有1个游戏日，请提前准备！", name))
                     end
                 end
             end
@@ -74,7 +74,7 @@ function WatchAttackCountdown(get_seconds, get_name)
         end
 
         if lowest ~= nil then
-            Announce(string.format("%s还有%s到达战场，请做好准备！", name, REAL_LABELS[lowest]))
+            Announce(string.format("距离%s来袭还有%s，请做好准备！", name, REAL_LABELS[lowest]))
         end
     end)
 end

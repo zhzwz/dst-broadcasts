@@ -46,11 +46,11 @@ cp -R "$ROOT/scripts" "$out_dir/"
 find "$out_dir" -name '.DS_Store' -delete
 find "$out_dir" -name '*.zip' -delete
 
-echo "packed ${out_dir#"$ROOT"/}/"
+echo "已生成 ${out_dir#"$ROOT"/}/"
 find "$out_dir" -type f | sed "s|^$out_dir/|  |" | sort
 
 if [ -f "$ROOT/preview.png" ]; then
-  echo "hint: Preview Image 请选 preview.png"
+  echo "创意工坊封面：preview.png"
 else
-  echo "hint: 未找到 preview.png" >&2
+  echo "未找到创意工坊封面 preview.png" >&2
 fi

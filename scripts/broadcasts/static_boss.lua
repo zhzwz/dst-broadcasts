@@ -94,7 +94,7 @@ local function OnNewDay()
     end
 
     TheNet:Announce(string.format(
-        "[Broadcasts] 第 %d 天：当前存在 %s",
+        "[Broadcasts] 第 %d 天巨兽简报：%s仍然存活。",
         TheWorld.state.cycles + 1,
         table.concat(names, "、")
     ))

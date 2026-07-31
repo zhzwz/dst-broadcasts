@@ -1,12 +1,10 @@
 name = "Broadcasts"
 description = [[
-全服播报合集。
+纯服务端全服播报工具，客户端无需安装。
 
-- 猎犬/蠕虫、巨鹿/熊獾袭击倒计时
-- 可缝补 / 可补燃料低耐久提醒
-- 武器、护甲损坏提醒
-- 巨兽存活日报
-- 巨兽击败播报
+- 猎犬、蠕虫、巨鹿与熊獾袭击预警
+- 物品低耐久、低燃料与损毁提醒
+- 每日巨兽简报与击败播报
 ]]
 author = "zhzwz"
 version = "1.1.0"
@@ -32,51 +30,51 @@ server_filter_tags = {
 configuration_options = {
     {
         name = "usage_break_enabled",
-        label = "物品耐久/损坏预警",
-        hover = "可缝补、可补燃料低耐久；武器/护甲损坏时提醒",
+        label = "物品状态提醒",
+        hover = "播报玩家持有物品的低耐久、低燃料与损毁状态。",
         options = {
-            { description = "开启", data = true },
-            { description = "关闭", data = false },
+            { description = "启用", data = true },
+            { description = "禁用", data = false },
         },
         default = true,
     },
     {
         name = "hounded_enabled",
-        label = "猎犬/蠕虫袭击预警",
-        hover = "提前 1 天 + 现实时间 5分/2分/1分/30秒/10秒/5秒",
+        label = "猎犬与蠕虫预警",
+        hover = "在来袭前 1 个游戏日及多个现实时间节点提醒。",
         options = {
-            { description = "开启", data = true },
-            { description = "关闭", data = false },
+            { description = "启用", data = true },
+            { description = "禁用", data = false },
         },
         default = true,
     },
     {
         name = "hassler_boss_enabled",
-        label = "巨鹿/熊獾袭击预警",
-        hover = "提前 1 天 + 现实时间 5分/2分/1分/30秒/10秒/5秒；现身时提示",
+        label = "巨鹿与熊獾预警",
+        hover = "在来袭前分阶段提醒，并在巨兽现身时立即播报。",
         options = {
-            { description = "开启", data = true },
-            { description = "关闭", data = false },
+            { description = "启用", data = true },
+            { description = "禁用", data = false },
         },
         default = true,
     },
     {
         name = "static_boss_enabled",
-        label = "巨兽存活播报",
-        hover = "每天刷新时扫描龙蝇、蜂王等，若已在世界中则提示",
+        label = "每日巨兽简报",
+        hover = "每天开始时汇总当前分片仍然存活的巨兽。",
         options = {
-            { description = "开启", data = true },
-            { description = "关闭", data = false },
+            { description = "启用", data = true },
+            { description = "禁用", data = false },
         },
         default = true,
     },
     {
         name = "boss_defeat_enabled",
         label = "巨兽击败播报",
-        hover = "巨兽被击败时全服提示",
+        hover = "巨兽被击败时通知当前分片的所有玩家。",
         options = {
-            { description = "开启", data = true },
-            { description = "关闭", data = false },
+            { description = "启用", data = true },
+            { description = "禁用", data = false },
         },
         default = true,
     },

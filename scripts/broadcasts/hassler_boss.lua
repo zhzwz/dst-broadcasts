@@ -56,7 +56,7 @@ for prefab, name in pairs(SPAWN_NAMES) do
 
         inst:DoTaskInTime(0, function()
             if inst:IsValid() and not inst._dst_broadcasts_loaded then
-                TheNet:Announce(string.format("[Broadcasts] %s已出现！", name))
+                TheNet:Announce(string.format("[Broadcasts] %s已现身！", name))
             end
         end)
     end)

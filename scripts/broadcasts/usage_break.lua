@@ -23,11 +23,11 @@ local function Announce(inst, owner, percent, kind, action)
     local pct = math.floor(percent * 100 + 0.5)
 
     TheNet:Announce(string.format(
-        "[Broadcasts] %s的%s剩余%d%%%s，请及时%s！",
+        "[Broadcasts] %s的%s%s仅剩%d%%，请及时%s！",
         owner_name,
         item_name,
-        pct,
         kind,
+        pct,
         action
     ))
 end

@@ -37,7 +37,7 @@ AddSimPostInit(function()
             return
         end
         if attacking and not was_attacking then
-            TheNet:Announce(string.format("[Broadcasts] %s袭击开始！", AttackName()))
+            TheNet:Announce(string.format("[Broadcasts] %s来袭！", AttackName()))
         end
         was_attacking = attacking
     end)
