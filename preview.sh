@@ -43,9 +43,28 @@ cp "$ROOT/modinfo.lua" "$out_dir/"
 cp "$ROOT/modmain.lua" "$out_dir/"
 cp -R "$ROOT/scripts" "$out_dir/"
 
+if ! command -v npx >/dev/null 2>&1; then
+  echo "找不到 npx，无法压缩 Lua 文件" >&2
+  exit 1
+fi
+
+for file in "$out_dir/modinfo.lua" "$out_dir/modmain.lua" "$out_dir"/scripts/broadcasts/*.lua; do
+  minified="$file.min"
+  code="$(sed -n 'p' "$file")"
+  if ! npx --yes luamin@1.0.4 --code "$code" > "$minified"; then
+    rm -f "$minified"
+    echo "压缩失败：${file#"$out_dir"/}" >&2
+    exit 1
+  fi
+  code="$(sed '1{/^$/d;}' "$minified")"
+  printf '%s' "$code" > "$file"
+  rm "$minified"
+done
+
 find "$out_dir" -name '.DS_Store' -delete
 find "$out_dir" -name '*.zip' -delete
 
+echo "Lua 文件已压缩"
 echo "已生成 ${out_dir#"$ROOT"/}/"
 find "$out_dir" -type f | sed "s|^$out_dir/|  |" | sort
 
