@@ -68,7 +68,7 @@ local L = ChooseTranslationTable({
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
-version = "1.2.1"
+version = "1.2.2"
 
 forumthread = ""
 
