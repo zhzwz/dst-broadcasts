@@ -2,8 +2,8 @@
   可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服提醒。
 ]]
 
-local SEW_THRESHOLDS = { 20, 10, 5, 4, 3, 2, 1 }
-local FUEL_THRESHOLDS = { 30, 20, 10 }
+local Safe = BROADCASTS_SAFE
+local C = BROADCASTS_CONSTANTS
 
 local function PlayerOwner(inst)
     local item = inst.components.inventoryitem
@@ -22,7 +22,7 @@ local function Announce(inst, owner, percent, message)
     local owner_name = owner:GetDisplayName() or "?"
     local pct = math.floor(percent * 100 + 0.5)
 
-    TheNet:Announce(string.format(
+    Safe.Announce(string.format(
         message,
         owner_name,
         item_name,
@@ -72,7 +72,7 @@ local function OnPercentUsedChange(inst, data)
             inst,
             owner,
             percent,
-            SEW_THRESHOLDS,
+            C.USAGE_SEW_THRESHOLDS,
             "_dst_broadcasts_sew_flags",
             BROADCASTS_STRINGS.item_low_durability
         )
@@ -81,7 +81,7 @@ local function OnPercentUsedChange(inst, data)
             inst,
             owner,
             percent,
-            FUEL_THRESHOLDS,
+            C.USAGE_FUEL_THRESHOLDS,
             "_dst_broadcasts_fuel_flags",
             BROADCASTS_STRINGS.item_low_fuel
         )
@@ -97,16 +97,16 @@ local function WatchFueled(inst)
         return
     end
     inst._dst_broadcasts_fueled_watching = true
-    inst:ListenForEvent("percentusedchange", OnPercentUsedChange)
+    inst:ListenForEvent("percentusedchange", Safe.Wrap("usage_break", OnPercentUsedChange))
 end
 
-AddComponentPostInit("fueled", function(self)
+AddComponentPostInit("fueled", Safe.Wrap("usage_break_init", function(self)
     if not TheWorld.ismastersim then
         return
     end
-    self.inst:DoTaskInTime(0, function(inst)
+    self.inst:DoTaskInTime(0, Safe.Wrap("usage_break_watch", function(inst)
         if inst:IsValid() then
             WatchFueled(inst)
         end
-    end)
-end)
+    end))
+end))

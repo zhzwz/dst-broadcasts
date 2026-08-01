@@ -2,6 +2,9 @@
   猎犬 / 洞穴蠕虫等 hounded 袭击预警。
 ]]
 
+local Safe = BROADCASTS_SAFE
+local C = BROADCASTS_CONSTANTS
+
 local function AttackName()
     if TheWorld:HasTag("cave") then
         return BROADCASTS_STRINGS.bosses.depths_worms
@@ -9,7 +12,7 @@ local function AttackName()
     return BROADCASTS_STRINGS.bosses.hounds
 end
 
-AddSimPostInit(function()
+AddSimPostInit(Safe.Wrap("hounded_init", function()
     if not TheWorld.ismastersim then
         return
     end
@@ -26,7 +29,7 @@ AddSimPostInit(function()
     end, AttackName)
 
     local was_attacking = nil
-    TheWorld:DoPeriodicTask(1, function()
+    TheWorld:DoPeriodicTask(C.HOUNDED_ATTACK_POLL_SECONDS, Safe.Wrap("hounded_attack", function()
         local hounded = TheWorld.components.hounded
         if hounded == nil then
             return
@@ -37,11 +40,11 @@ AddSimPostInit(function()
             return
         end
         if attacking and not was_attacking then
-            TheNet:Announce(string.format(
+            Safe.Announce(string.format(
                 BROADCASTS_STRINGS.attack_started,
                 AttackName()
             ))
         end
         was_attacking = attacking
-    end)
-end)
+    end))
+end))

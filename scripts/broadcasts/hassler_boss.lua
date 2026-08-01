@@ -2,9 +2,12 @@
   会主动找玩家的季节 Boss：巨鹿、熊獾。
 ]]
 
+local Safe = BROADCASTS_SAFE
+local C = BROADCASTS_CONSTANTS
+
 local BOSSES = {
-    { name = BROADCASTS_STRINGS.bosses.deerclops, timer = "deerclops_timetoattack" },
-    { name = BROADCASTS_STRINGS.bosses.bearger, timer = "bearger_timetospawn" },
+    { name = BROADCASTS_STRINGS.bosses.deerclops, timer = C.DEERCLOPS_TIMER },
+    { name = BROADCASTS_STRINGS.bosses.bearger, timer = C.BEARGER_TIMER },
 }
 
 local SPAWN_NAMES = {
@@ -14,7 +17,7 @@ local SPAWN_NAMES = {
     mutatedbearger = BROADCASTS_STRINGS.bosses.mutatedbearger,
 }
 
-AddSimPostInit(function()
+AddSimPostInit(Safe.Wrap("hassler_init", function()
     if not TheWorld.ismastersim then
         return
     end
@@ -26,22 +29,24 @@ AddSimPostInit(function()
     end
 
     for _, boss in ipairs(BOSSES) do
+        local timer = boss.timer
+        local name = boss.name
         WatchAttackWarning(function()
             local wst = TheWorld.components.worldsettingstimer
             if wst == nil or
-                not wst:ActiveTimerExists(boss.timer) or
-                wst:IsPaused(boss.timer) then
+                not wst:ActiveTimerExists(timer) or
+                wst:IsPaused(timer) then
                 return nil
             end
-            return wst:GetTimeLeft(boss.timer)
+            return wst:GetTimeLeft(timer)
         end, function()
-            return boss.name
+            return name
         end)
     end
-end)
+end))
 
 for prefab, name in pairs(SPAWN_NAMES) do
-    AddPrefabPostInit(prefab, function(inst)
+    AddPrefabPostInit(prefab, Safe.Wrap("hassler_spawn:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
             return
         end
@@ -54,13 +59,13 @@ for prefab, name in pairs(SPAWN_NAMES) do
             end
         end
 
-        inst:DoTaskInTime(0, function()
+        inst:DoTaskInTime(0, Safe.Wrap("hassler_appear:" .. prefab, function()
             if inst:IsValid() and not inst._dst_broadcasts_loaded then
-                TheNet:Announce(string.format(
+                Safe.Announce(string.format(
                     BROADCASTS_STRINGS.boss_appeared,
                     name
                 ))
             end
-        end)
-    end)
+        end))
+    end))
 end

@@ -1,4 +1,5 @@
 local N = BROADCASTS_STRINGS.bosses
+local Safe = BROADCASTS_SAFE
 
 local DEATH_BOSSES = {
     deerclops = N.deerclops,
@@ -40,13 +41,13 @@ local TWIN_PREFABS = {
 }
 
 local function Announce(name)
-    TheNet:Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
+    Safe.Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
 end
 
 local function IsAlive(inst)
-    return inst:IsValid() and
-        inst.components.health ~= nil and
-        not inst.components.health:IsDead()
+    local components = inst.components
+    local health = components ~= nil and components.health or nil
+    return inst:IsValid() and health ~= nil and not health:IsDead()
 end
 
 local function HasLivingTwin()
@@ -59,11 +60,11 @@ local function HasLivingTwin()
 end
 
 for prefab, boss in pairs(DEATH_BOSSES) do
-    AddPrefabPostInit(prefab, function(inst)
+    AddPrefabPostInit(prefab, Safe.Wrap("boss_defeat_init:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
             return
         end
-        inst:ListenForEvent("death", function()
+        inst:ListenForEvent("death", Safe.Wrap("boss_defeat:" .. prefab, function()
             local name = type(boss) == "table" and boss.name or boss
             local should_announce = type(boss) ~= "table" or
                 boss.test == nil or
@@ -72,57 +73,57 @@ for prefab, boss in pairs(DEATH_BOSSES) do
                 inst._dst_broadcasts_defeat_announced = true
                 Announce(name)
             end
-        end)
-    end)
+        end))
+    end))
 end
 
 for prefab, name in pairs(NONLETHAL_BOSSES) do
-    AddPrefabPostInit(prefab, function(inst)
+    AddPrefabPostInit(prefab, Safe.Wrap("boss_minhealth_init:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
             return
         end
-        inst:ListenForEvent("minhealth", function()
-            inst:DoTaskInTime(0, function()
+        inst:ListenForEvent("minhealth", Safe.Wrap("boss_minhealth:" .. prefab, function()
+            inst:DoTaskInTime(0, Safe.Wrap("boss_minhealth_task:" .. prefab, function()
                 local defeated = inst:IsValid() and
                     (inst.defeated or prefab == "sharkboi")
                 if defeated and not inst._dst_broadcasts_defeat_announced then
                     inst._dst_broadcasts_defeat_announced = true
                     Announce(name)
                 end
-            end)
-        end)
-    end)
+            end))
+        end))
+    end))
 end
 
 for prefab in pairs(TWIN_PREFABS) do
-    AddPrefabPostInit(prefab, function(inst)
+    AddPrefabPostInit(prefab, Safe.Wrap("twins_init:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
             return
         end
         TheWorld._dst_broadcasts_twins_defeated = nil
-        inst:ListenForEvent("death", function()
-            inst:DoTaskInTime(0, function()
+        inst:ListenForEvent("death", Safe.Wrap("twins_death:" .. prefab, function()
+            inst:DoTaskInTime(0, Safe.Wrap("twins_check", function()
                 if not HasLivingTwin() and not TheWorld._dst_broadcasts_twins_defeated then
                     TheWorld._dst_broadcasts_twins_defeated = true
                     Announce(N.twins)
                 end
-            end)
-        end)
-    end)
+            end))
+        end))
+    end))
 end
 
-AddPrefabPostInit("vault_pillar_guard", function(inst)
+AddPrefabPostInit("vault_pillar_guard", Safe.Wrap("guard_init", function(inst)
     if not TheWorld.ismastersim or inst.crafted then
         return
     end
     TheWorld._dst_broadcasts_guard_towers_defeated = nil
-    inst:ListenForEvent("death", function()
-        inst:DoTaskInTime(0, function()
+    inst:ListenForEvent("death", Safe.Wrap("guard_death", function()
+        inst:DoTaskInTime(0, Safe.Wrap("guard_check", function()
             if inst._vault_death_loot and
                 not TheWorld._dst_broadcasts_guard_towers_defeated then
                 TheWorld._dst_broadcasts_guard_towers_defeated = true
                 Announce(N.vault_pillar_guard)
             end
-        end)
-    end)
-end)
+        end))
+    end))
+end))

@@ -2,6 +2,8 @@
   武器（finiteuses）/ 护甲损坏时全服提醒一次。
 ]]
 
+local Safe = BROADCASTS_SAFE
+
 local function PlayerOwner(inst)
     local item = inst.components.inventoryitem
     if item == nil then
@@ -15,7 +17,7 @@ local function PlayerOwner(inst)
 end
 
 local function AnnounceBroke(owner, item_name)
-    TheNet:Announce(string.format(
+    Safe.Announce(string.format(
         BROADCASTS_STRINGS.item_broke,
         owner:GetDisplayName() or "?",
         item_name
@@ -37,19 +39,19 @@ local function WatchPlayer(player)
         return
     end
     player._dst_broadcasts_armor_broke = true
-    player:ListenForEvent("armorbroke", OnArmorBroke)
+    player:ListenForEvent("armorbroke", Safe.Wrap("equipment_armor", OnArmorBroke))
 end
 
-AddPlayerPostInit(function(player)
+AddPlayerPostInit(Safe.Wrap("equipment_player_init", function(player)
     if not TheWorld.ismastersim then
         return
     end
-    player:DoTaskInTime(0, function()
+    player:DoTaskInTime(0, Safe.Wrap("equipment_player_watch", function()
         if player:IsValid() then
             WatchPlayer(player)
         end
-    end)
-end)
+    end))
+end))
 
 local function OnFiniteUsesChange(inst, data)
     local uses = inst.components.finiteuses
@@ -74,7 +76,7 @@ local function OnFiniteUsesChange(inst, data)
     AnnounceBroke(owner, inst:GetDisplayName() or inst.prefab)
 end
 
-AddComponentPostInit("finiteuses", function(self)
+AddComponentPostInit("finiteuses", Safe.Wrap("equipment_finiteuses_init", function(self)
     if not TheWorld.ismastersim then
         return
     end
@@ -83,5 +85,5 @@ AddComponentPostInit("finiteuses", function(self)
         return
     end
     inst._dst_broadcasts_finiteuses_watching = true
-    inst:ListenForEvent("percentusedchange", OnFiniteUsesChange)
-end)
+    inst:ListenForEvent("percentusedchange", Safe.Wrap("equipment_finiteuses", OnFiniteUsesChange))
+end))

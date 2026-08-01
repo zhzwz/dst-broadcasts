@@ -1,13 +1,7 @@
 local S = BROADCASTS_STRINGS
 local N = S.bosses
-local DAY_SECONDS = TUNING.TOTAL_DAY_TIME
-
-local NEXT_SEASON = {
-    autumn = "winter",
-    winter = "spring",
-    spring = "summer",
-    summer = "autumn",
-}
+local C = BROADCASTS_CONSTANTS
+local Safe = BROADCASTS_SAFE
 
 local BOSSES = {
     { name = N.dragonfly, prefabs = { "dragonfly" } },
@@ -52,14 +46,35 @@ for _, boss in ipairs(BOSSES) do
     end
 end
 
+local function AsInt(value, fallback)
+    if type(value) ~= "number" or value ~= value or value == math.huge or value == -math.huge then
+        return fallback
+    end
+    return math.floor(value + 0.5)
+end
+
+local function Clamp01(value)
+    if type(value) ~= "number" or value ~= value then
+        return 0
+    end
+    if value < 0 then
+        return 0
+    end
+    if value > 1 then
+        return 1
+    end
+    return value
+end
+
 local function IsAliveBoss(inst, boss)
-    if not inst:IsValid() or inst:HasTag("INLIMBO") then
+    if inst == nil or not inst:IsValid() or inst:HasTag("INLIMBO") then
         return false
     end
     if inst.defeated or (inst.sg ~= nil and inst.sg:HasStateTag("defeated")) then
         return false
     end
-    local health = inst.components.health
+    local components = inst.components
+    local health = components ~= nil and components.health or nil
     if health ~= nil and health:IsDead() then
         return false
     end
@@ -85,14 +100,20 @@ local function CollectBossNames()
 end
 
 local function FormatDuration(seconds)
-    if seconds < 60 then
-        return string.format(S.morning_duration_seconds, math.max(1, math.ceil(seconds)))
+    local whole = AsInt(seconds, 0)
+    if whole < 60 then
+        return string.format(S.morning_duration_seconds, math.max(1, whole))
     end
-    return string.format(S.morning_duration_minutes, math.ceil(seconds / 60))
+    return string.format(S.morning_duration_minutes, math.max(1, math.ceil(whole / 60)))
 end
 
 local function AddAttack(events, name, seconds)
-    if type(seconds) == "number" and seconds > 0 and seconds <= DAY_SECONDS then
+    local day_seconds = TUNING.TOTAL_DAY_TIME
+    if type(seconds) == "number" and
+        seconds == seconds and
+        seconds > 0 and
+        type(day_seconds) == "number" and
+        seconds <= day_seconds then
         table.insert(events, string.format(S.morning_attack, name, FormatDuration(seconds)))
     end
 end
@@ -100,23 +121,27 @@ end
 local function CollectEvents()
     local events = {}
     local state = TheWorld.state
-    local next_season = NEXT_SEASON[state.season]
-    if state.remainingdaysinseason == 1 and next_season ~= nil then
+    local next_season = C.NEXT_SEASON[state.season]
+    if state.remainingdaysinseason == C.MORNING_SEASON_CHANGE_REMAINING_DAYS and
+        next_season ~= nil and
+        S.seasons[next_season] ~= nil then
         table.insert(events, string.format(S.morning_season_change, S.seasons[next_season]))
     end
 
     local hounded = TheWorld.components.hounded
-    if hounded ~= nil and not hounded:GetAttacking() then
-        local name = TheWorld:HasTag("cave") and N.depths_worms or N.hounds
-        AddAttack(events, name, hounded:GetTimeToAttack())
+    if hounded ~= nil and hounded.GetAttacking ~= nil and hounded.GetTimeToAttack ~= nil then
+        if not hounded:GetAttacking() then
+            local name = TheWorld:HasTag("cave") and N.depths_worms or N.hounds
+            AddAttack(events, name, hounded:GetTimeToAttack())
+        end
     end
 
     if not TheWorld:HasTag("cave") then
         local timers = TheWorld.components.worldsettingstimer
         if timers ~= nil then
             local attacks = {
-                { name = N.deerclops, timer = "deerclops_timetoattack" },
-                { name = N.bearger, timer = "bearger_timetospawn" },
+                { name = N.deerclops, timer = C.DEERCLOPS_TIMER },
+                { name = N.bearger, timer = C.BEARGER_TIMER },
             }
             for _, attack in ipairs(attacks) do
                 if timers:ActiveTimerExists(attack.timer) and not timers:IsPaused(attack.timer) then
@@ -135,12 +160,19 @@ local function WeatherSummary()
     if current ~= nil then
         return current
     end
-    local pop = math.floor(math.clamp(state.pop or 0, 0, 1) * 100 + 0.5)
+    local pop = AsInt(Clamp01(state.pop) * 100, 0)
     return string.format(S.weather_clear, pop)
 end
 
 local function AnnounceMorning()
     local state = TheWorld.state
+    if state == nil then
+        return
+    end
+
+    local day = AsInt(state.cycles, 0) + 1
+    local season_day = AsInt(state.elapseddaysinseason, 0) + 1
+    local season_name = S.seasons[state.season] or tostring(state.season or "")
     local events = CollectEvents()
     local bosses = CollectBossNames()
     local event_summary = #events > 0 and
@@ -150,27 +182,33 @@ local function AnnounceMorning()
         table.concat(bosses, S.list_separator) or
         S.morning_no_bosses
 
-    TheNet:Announce(string.format(
+    Safe.Announce(string.format(
         S.morning_report,
-        state.cycles + 1,
-        S.seasons[state.season] or state.season,
-        state.elapseddaysinseason + 1,
+        day,
+        season_name,
+        season_day,
         WeatherSummary(),
         event_summary,
         boss_summary
     ))
 end
 
-local function OnNewDay()
-    if TheWorld.state.cycles == 0 then
-        return
-    end
-    TheWorld:DoTaskInTime(0, AnnounceMorning)
-end
-
-AddSimPostInit(function()
+AddSimPostInit(Safe.Wrap("morning_init", function()
     if not TheWorld.ismastersim then
         return
     end
-    TheWorld:WatchWorldState("cycles", OnNewDay)
-end)
+
+    -- 读档时 cycles 会从默认 0 跳到存档天数；只在真正跨天（+1）时播报。
+    local prev_cycles = TheWorld.state.cycles
+    TheWorld:WatchWorldState("cycles", Safe.Wrap("morning_cycles", function(_, cycles)
+        local previous = prev_cycles
+        prev_cycles = cycles
+        if type(cycles) ~= "number" or type(previous) ~= "number" then
+            return
+        end
+        if cycles ~= previous + 1 or cycles <= 0 then
+            return
+        end
+        TheWorld:DoTaskInTime(0, Safe.Wrap("morning_report", AnnounceMorning))
+    end))
+end))

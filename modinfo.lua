@@ -22,6 +22,8 @@ Server-side broadcast utility. No client installation required.
     morning_hover = "Report the season, weather outlook, upcoming events, and living bosses each morning.",
     defeat_label = "Boss defeat announcements",
     defeat_hover = "Notify all players in the current shard when a boss is defeated.",
+    debug_label = "Debug logging",
+    debug_hover = "When enabled, Broadcasts errors are also announced in-game.",
     enabled = "Enabled",
     disabled = "Disabled",
 }
@@ -50,6 +52,8 @@ local ZH = {
     morning_hover = "每天开始时播报季节、天气趋势、近期事件与存活巨兽。",
     defeat_label = "巨兽击败播报",
     defeat_hover = "巨兽被击败时通知当前分片的所有玩家。",
+    debug_label = "调试模式",
+    debug_hover = "开启后，Broadcasts 报错会同时出现在游戏公告中。",
     enabled = "启用",
     disabled = "禁用",
 }
@@ -154,5 +158,15 @@ configuration_options = {
             { description = L.disabled, data = false },
         },
         default = true,
+    },
+    {
+        name = "debug_enabled",
+        label = L.debug_label,
+        hover = L.debug_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
+        },
+        default = false,
     },
 }

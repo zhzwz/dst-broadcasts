@@ -1,17 +1,12 @@
 --[[
   袭击预警共用逻辑：
-  - 游戏时间提前 1 天
-  - 现实时间 5 分 / 2 分 / 1 分 / 30 秒 / 10 秒 / 5 秒
-  文案：距离猎犬来袭还有5秒，请做好准备！
+  - 游戏时间提前若干天
+  - 现实时间多档阈值提醒
 ]]
 
-local ADVANCE_DAYS = 1
-local REAL_THRESHOLDS = { 300, 120, 60, 30, 10, 5 }
 local S = BROADCASTS_STRINGS
-
-local function Announce(msg)
-    TheNet:Announce(msg)
-end
+local C = BROADCASTS_CONSTANTS
+local Safe = BROADCASTS_SAFE
 
 -- get_seconds: 返回剩余秒数；nil 表示当前没有袭击预警
 -- get_name: 返回袭击显示名
@@ -25,7 +20,7 @@ function WatchAttackWarning(get_seconds, get_name)
         last_day_key = nil,
     }
 
-    TheWorld:DoPeriodicTask(1, function()
+    TheWorld:DoPeriodicTask(C.ATTACK_WARNING_POLL_SECONDS, Safe.Wrap("attack_warning", function()
         local t = get_seconds()
         if type(t) ~= "number" or t ~= t or t < 0 then
             state.real_flags = {}
@@ -39,21 +34,21 @@ function WatchAttackWarning(get_seconds, get_name)
 
         if TheWorld.state.cycles ~= 0 then
             local days = math.ceil(t / TUNING.TOTAL_DAY_TIME)
-            if days <= ADVANCE_DAYS then
+            if days <= C.ATTACK_WARNING_ADVANCE_DAYS then
                 local key = tostring(TheWorld.state.cycles) .. ":" .. tostring(days)
                 if key ~= state.last_day_key then
                     state.last_day_key = key
                     if days <= 0 then
-                        Announce(string.format(S.attack_today, name))
+                        Safe.Announce(string.format(S.attack_today, name))
                     else
-                        Announce(string.format(S.attack_day, name))
+                        Safe.Announce(string.format(S.attack_day, name))
                     end
                 end
             end
         end
 
         local lowest = nil
-        for _, th in ipairs(REAL_THRESHOLDS) do
+        for _, th in ipairs(C.ATTACK_WARNING_REAL_THRESHOLDS) do
             if t <= th then
                 if not state.real_flags[th] then
                     state.real_flags[th] = true
@@ -67,7 +62,7 @@ function WatchAttackWarning(get_seconds, get_name)
         end
 
         if lowest ~= nil then
-            Announce(string.format(S.attack_time, name, S.durations[lowest]))
+            Safe.Announce(string.format(S.attack_time, name, S.durations[lowest]))
         end
-    end)
+    end))
 end
