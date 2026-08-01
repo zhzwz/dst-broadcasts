@@ -6,6 +6,7 @@ Server-side broadcast utility. No client installation required.
 - Cave event warnings and status announcements
 - Frog rain totals when each shower ends
 - Low durability, low fuel, and item break alerts
+- Hunger and sanity alerts at 10 and 0
 - Daily season, weather, event, and boss reports
 - Boss appearance and defeat announcements
 ]],
@@ -13,6 +14,8 @@ Server-side broadcast utility. No client installation required.
     language_hover = "Select the language used for server announcements.",
     item_label = "Item status alerts",
     item_hover = "Announce low durability, low fuel, and broken items held by players.",
+    vitals_label = "Hunger and sanity alerts",
+    vitals_hover = "Announce once when hunger or sanity drops to 10, and again at 0.",
     hounded_label = "Hound and worm warnings",
     hounded_hover = "Warn at multiple intervals before an attack.",
     cave_events_label = "Cave event alerts",
@@ -39,6 +42,7 @@ local ZH = {
 - 洞穴事件预警与状态播报
 - 青蛙雨结束时播报本次青蛙总数
 - 物品低耐久、低燃料与损毁播报
+- 玩家饱食度或理智降至 10 / 0 时播报
 - 每日季节、天气、事件与存活巨兽早报
 - 巨兽现身与击败播报
 ]],
@@ -46,6 +50,8 @@ local ZH = {
     language_hover = "选择服务器播报使用的语言。",
     item_label = "物品状态播报",
     item_hover = "播报玩家持有物品的低耐久、低燃料与损毁状态。",
+    vitals_label = "饱食度与理智播报",
+    vitals_hover = "饱食度或理智降至 10 时播报一次，降至 0 时再播报一次。",
     hounded_label = "猎犬与蠕虫预警",
     hounded_hover = "在来袭前的多个时间节点播报。",
     cave_events_label = "洞穴事件播报",
@@ -109,6 +115,16 @@ configuration_options = {
         name = "usage_break_enabled",
         label = L.item_label,
         hover = L.item_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
+        },
+        default = true,
+    },
+    {
+        name = "player_vitals_enabled",
+        label = L.vitals_label,
+        hover = L.vitals_hover,
         options = {
             { description = L.enabled, data = true },
             { description = L.disabled, data = false },

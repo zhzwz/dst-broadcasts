@@ -27,6 +27,9 @@ BROADCASTS_CONSTANTS = {
     -- 可补充燃料物品的燃料播报阈值（百分比）
     USAGE_FUEL_THRESHOLDS = { 30, 20, 10 },
 
+    -- 玩家饱食度 / 理智过低播报阈值（当前值；各档各播一次）
+    PLAYER_STAT_LOW_THRESHOLDS = { 10, 0 },
+
     -- 永恒早报：剩余季节天数等于该值时，播报“明日换季”
     MORNING_SEASON_CHANGE_REMAINING_DAYS = 1,
 

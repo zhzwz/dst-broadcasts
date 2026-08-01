@@ -24,6 +24,10 @@ Announces major surface and cave events, including seasonal and weather trends, 
 播报玩家持有物品的低耐久、低燃料与损毁状态。
 Warns players about low durability, low fuel, and broken items they are carrying.
 
+[h3]玩家状态｜Player Status[/h3]
+任意玩家的饱食度或理智降至 10 时播报一次，降至 0 时再播报一次。
+Announces once when a player's hunger or sanity drops to 10, and again at 0.
+
 [h3]巨兽动态｜Boss Updates[/h3]
 巨兽现身或被击败时立即向当前分片的所有玩家播报。
 Notifies all players on the current shard when a boss appears or is defeated.

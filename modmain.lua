@@ -21,6 +21,10 @@ if GetModConfigData("usage_break_enabled") then
     modimport("scripts/broadcasts/equipment_break.lua")
 end
 
+if GetModConfigData("player_vitals_enabled") then
+    modimport("scripts/broadcasts/player_vitals.lua")
+end
+
 if GetModConfigData("hounded_enabled") then
     modimport("scripts/broadcasts/hounded.lua")
 end
