@@ -1,6 +1,6 @@
 --[[
   统一错误隔离：游戏回调 / API 读取失败时只记日志，不拖垮服务器。
-  debug_enabled 开启时，同步公告到当前分片。
+  debug_enabled 开启时，同步播报到当前分片。
 ]]
 
 local C = BROADCASTS_CONSTANTS

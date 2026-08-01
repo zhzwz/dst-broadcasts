@@ -1,5 +1,5 @@
 --[[
-  可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服提醒。
+  可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服播报。
 ]]
 
 local Safe = BROADCASTS_SAFE

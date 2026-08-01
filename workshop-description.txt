@@ -3,27 +3,29 @@
 为《饥荒联机版》服务器提供及时、清晰的世界事件播报。
 Timely and clear world event announcements for Don't Starve Together servers.
 
-[b]纯服务端模组[/b]，客户端无需订阅，不会向存档写入额外数据。
-[b]Server-only mod.[/b] Clients do not need to subscribe, and no extra data is written to saves.
+[b]纯服务端模组[/b]，客户端无需订阅，可随时安装或卸载。
+[b]Server-only mod.[/b] Clients do not need to subscribe, and it can be installed or removed at any time.
 
 [h2]功能｜Features[/h2]
 
 [h3]永恒早报｜The Constant Daily[/h3]
-每天开始时报告世界日期、季节、天气、事件、巨兽等。
+每天开始时播报世界日期、季节、天气、事件、巨兽等。
 Reports the world day, season, weather, events, bosses, and more at the start of each day.
 
 [h3]袭击预警｜Attack Warnings[/h3]
-在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点提醒。
+在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点播报。
 Provides countdown warnings for Hound, Depths Worm, Deerclops, and Bearger attacks.
 
 [h3]世界事件｜World Events[/h3]
-播报地表与洞穴的重要动态，包括季节与天气趋势、噩梦循环、洞穴地震、酸雨及远古遗迹重置。
-Announces major surface and cave events, including seasonal and weather trends, nightmare cycles, earthquakes, acid rain, and Ruins resets.
+播报地表与洞穴的重要动态，包括季节与天气趋势、青蛙雨、噩梦循环、洞穴地震、酸雨及远古遗迹重置。
+Announces major surface and cave events, including seasonal and weather trends, frog rain, nightmare cycles, earthquakes, acid rain, and Ruins resets.
 
 [h3]物品状态｜Item Status[/h3]
-提醒玩家持有物品的低耐久、低燃料与损毁状态。
+播报玩家持有物品的低耐久、低燃料与损毁状态。
 Warns players about low durability, low fuel, and broken items they are carrying.
 
 [h3]巨兽动态｜Boss Updates[/h3]
-巨兽现身或被击败时立即通知当前分片的所有玩家。
+巨兽现身或被击败时立即向当前分片的所有玩家播报。
 Notifies all players on the current shard when a boss appears or is defeated.
+当前支持：巨鹿、晶体巨鹿、熊獾、装甲熊獾、龙蝇、蜂王、毒菌蟾蜍、悲惨的毒菌蟾蜍、麋鹿鹅、克劳斯、邪天翁、蚁狮、帝王蟹、恐怖之眼、双子魔眼、梦魇疯猪、拾荒疯猪、大霜鲨、巨大洞穴蠕虫、启迪战争瓦器人、远古守卫塔、远古守护者、远古织影者、天体英雄、天体后裔。
+Currently supported: Deerclops, Crystal Deerclops, Bearger, Armored Bearger, Dragonfly, Bee Queen, Toadstool, Misery Toadstool, Moose/Goose, Klaus, Malbatross, Antlion, Crab King, Eye of Terror, Twins of Terror, Nightmare Werepig, Scrappy Werepig, Frostjaw, Great Depths Worm, Enlightened W.A.R.B.O.T., Ancient Guard Towers, Ancient Guardian, Ancient Fuelweaver, Celestial Champion, Celestial Scion.

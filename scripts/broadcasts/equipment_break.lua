@@ -1,5 +1,5 @@
 --[[
-  武器（finiteuses）/ 护甲损坏时全服提醒一次。
+  武器（finiteuses）/ 护甲损坏时全服播报一次。
 ]]
 
 local Safe = BROADCASTS_SAFE
