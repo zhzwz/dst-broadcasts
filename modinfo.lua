@@ -4,6 +4,7 @@ Server-side broadcast utility. No client installation required.
 
 - Hound, worm, Deerclops, and Bearger warnings
 - Cave event warnings and status announcements
+- Frog rain totals when each shower ends
 - Low durability, low fuel, and item break alerts
 - Daily season, weather, event, and boss reports
 - Boss appearance and defeat announcements
@@ -36,6 +37,7 @@ local ZH = {
 
 - 猎犬、蠕虫、巨鹿与熊獾袭击预警
 - 洞穴事件预警与状态播报
+- 青蛙雨结束时播报本次青蛙总数
 - 物品低耐久、低燃料与损毁播报
 - 每日季节、天气、事件与存活巨兽早报
 - 巨兽现身与击败播报
