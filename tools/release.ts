@@ -8,6 +8,7 @@
  */
 
 import { $ } from "bun";
+import { ensureCleanWorktree, finalizeRelease } from "./finalize";
 import { packMod } from "./pack";
 
 type WorkshopConfig = {
@@ -106,7 +107,7 @@ async function readLine(prompt: string): Promise<string> {
   return buffer.replace(/\r$/, "").trim();
 }
 
-async function askVersionBump(current: string): Promise<string> {
+async function askVersionBump(current: string, allowKeep: boolean): Promise<string> {
   const patch = bumpVersion(current, "patch");
   const minor = bumpVersion(current, "minor");
   const major = bumpVersion(current, "major");
@@ -116,14 +117,16 @@ async function askVersionBump(current: string): Promise<string> {
   console.log(`  1) patch  -> ${patch}`);
   console.log(`  2) minor  -> ${minor}`);
   console.log(`  3) major  -> ${major}`);
-  console.log(`  4) 保持   -> ${current}`);
+  if (allowKeep) {
+    console.log(`  4) 保持   -> ${current}`);
+  }
 
   while (true) {
-    const answer = await readLine("输入 1-4: ");
+    const answer = await readLine(`输入 1-${allowKeep ? 4 : 3}: `);
     if (answer === "1" || answer === "patch") return patch;
     if (answer === "2" || answer === "minor") return minor;
     if (answer === "3" || answer === "major") return major;
-    if (answer === "4" || answer === "keep" || answer === "") return current;
+    if (allowKeep && (answer === "4" || answer === "keep" || answer === "")) return current;
     console.log("无效输入，请重新选择。");
   }
 }
@@ -169,6 +172,10 @@ function ensureSteamcmd(): string {
 
 async function main() {
   const args = parseArgs(Bun.argv.slice(2));
+  if (!args.packOnly) {
+    await ensureCleanWorktree();
+  }
+
   const originalPackageJson = await Bun.file(PACKAGE_JSON).text();
   const originalModinfo = await Bun.file(MODINFO).text();
   const pkg = JSON.parse(originalPackageJson) as PackageJson;
@@ -186,7 +193,8 @@ async function main() {
   }
 
   const steamcmd = args.packOnly ? undefined : ensureSteamcmd();
-  const version = await askVersionBump(currentVersion);
+  const version = await askVersionBump(currentVersion, args.packOnly);
+  let uploaded = false;
   try {
     if (version !== currentVersion) {
       await writePackageVersion(pkg, version);
@@ -245,9 +253,15 @@ async function main() {
       throw new Error(`steamcmd 上传失败，退出码 ${upload.exitCode}`);
     }
 
+    uploaded = true;
     console.log("上传完成");
     console.log(`工坊: https://steamcommunity.com/sharedfiles/filedetails/?id=${workshop.publishedfileid}`);
+    await finalizeRelease(version);
   } catch (error) {
+    if (uploaded) {
+      console.error("工坊上传已完成，但 Git 收尾失败；版本修改已保留，请手动处理提交和标签");
+      throw error;
+    }
     try {
       await restoreVersionFiles(originalPackageJson, originalModinfo);
       console.error("发布失败，已回滚 package.json 和 modinfo.lua 的版本");
