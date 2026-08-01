@@ -4,6 +4,7 @@ type WorkshopUpload = {
   appId: number;
   publishedFileId: bigint;
   contentPath: string;
+  descriptionPath: string;
   modinfoPath: string;
   previewPath: string;
   version: string;
@@ -34,11 +35,16 @@ async function readWorkshopTags(modinfoPath: string, version: string): Promise<s
 export async function uploadWorkshopItem(upload: WorkshopUpload) {
   const client = steamworks.init(upload.appId);
   const tags = await readWorkshopTags(upload.modinfoPath, upload.version);
+  const description = (await Bun.file(upload.descriptionPath).text()).trim();
+  if (!description) {
+    throw new Error("创意工坊描述不能为空");
+  }
   console.log(`Steam 用户: ${client.localplayer.getName()}`);
   console.log(`创意工坊标签: ${tags.join(", ")}`);
 
   const result = await client.workshop.updateItem(upload.publishedFileId, {
     contentPath: upload.contentPath,
+    description,
     previewPath: upload.previewPath,
     tags,
     changeNote: "",

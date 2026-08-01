@@ -25,6 +25,7 @@ const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace
 const DST_APPID = 322330;
 const PACKAGE_JSON = `${ROOT}/package.json`;
 const MODINFO = `${ROOT}/modinfo.lua`;
+const WORKSHOP_DESCRIPTION = `${ROOT}/workshop-description.txt`;
 
 function usage(): never {
   console.error(`用法:
@@ -165,6 +166,9 @@ async function main() {
   if (!(await Bun.file(preview).exists())) {
     throw new Error("缺少 preview.png");
   }
+  if (!args.packOnly && !(await Bun.file(WORKSHOP_DESCRIPTION).exists())) {
+    throw new Error("缺少 workshop-description.txt");
+  }
 
   const version = await askVersionBump(currentVersion, args.packOnly);
   let uploaded = false;
@@ -198,6 +202,7 @@ async function main() {
       appId: workshop.appId,
       publishedFileId: workshop.publishedFileId,
       contentPath: outDir,
+      descriptionPath: WORKSHOP_DESCRIPTION,
       modinfoPath: MODINFO,
       previewPath: preview,
       version,
