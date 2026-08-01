@@ -1,7 +1,5 @@
 import steamworks from "steamworks.js";
 
-const MOD_UPLOADER_APP_ID = 245850;
-
 type WorkshopUpload = {
   appId: number;
   publishedFileId: bigint;
@@ -34,7 +32,7 @@ async function readWorkshopTags(modinfoPath: string, version: string): Promise<s
 }
 
 export async function uploadWorkshopItem(upload: WorkshopUpload) {
-  const client = steamworks.init(MOD_UPLOADER_APP_ID);
+  const client = steamworks.init(upload.appId);
   const tags = await readWorkshopTags(upload.modinfoPath, upload.version);
   console.log(`Steam 用户: ${client.localplayer.getName()}`);
   console.log(`创意工坊标签: ${tags.join(", ")}`);
