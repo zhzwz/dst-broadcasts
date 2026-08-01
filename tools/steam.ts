@@ -42,7 +42,14 @@ export async function uploadWorkshopItem(upload: WorkshopUpload) {
     previewPath: upload.previewPath,
     tags,
     changeNote: "",
-  }, upload.appId);
+  }, upload.appId).catch((error) => {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Steam Workshop 上传失败：${detail}\n` +
+      "请确认同一 Steam 账号未在其他电脑运行游戏，且没有其他 Mod Uploader 或上传任务正在执行。",
+      { cause: error },
+    );
+  });
 
   if (result.itemId !== upload.publishedFileId) {
     throw new Error("Steam 返回了不匹配的创意工坊项目 ID");
