@@ -91,6 +91,24 @@ async function cleanupJunk(outDir: string) {
   }
 }
 
+export async function cleanBuildDirs() {
+  const removed: string[] = [];
+  for await (const path of new Glob("broadcasts-*").scan({
+    cwd: ROOT,
+    absolute: true,
+    onlyFiles: false,
+  })) {
+    resolveOutDir("unused", path);
+    if ((await $`test -d ${path}`.quiet().nothrow()).exitCode === 0) {
+      await $`rm -rf ${path}`.quiet();
+      removed.push(path.slice(ROOT.length + 1));
+    }
+  }
+  if (removed.length > 0) {
+    console.log(`已删除历史打包目录: ${removed.sort().join(", ")}`);
+  }
+}
+
 export async function packMod(outDirArg?: string): Promise<string> {
   if (!(await pathExists(PACKAGE_JSON))) {
     throw new Error(`找不到 ${PACKAGE_JSON}`);

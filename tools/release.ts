@@ -8,7 +8,7 @@
  */
 
 import { ensureCleanWorktree, finalizeRelease } from "./finalize";
-import { packMod } from "./pack";
+import { cleanBuildDirs, packMod } from "./pack";
 import { uploadWorkshopItem } from "./steam";
 
 type WorkshopConfig = {
@@ -178,6 +178,9 @@ async function main() {
 
     const outDir = `${ROOT}/broadcasts-${version}`;
     console.log(`打包目录: ${outDir}`);
+    if (!args.packOnly) {
+      await cleanBuildDirs();
+    }
     await packMod(outDir);
     console.log(`已同步 modinfo.lua version = "${version}"`);
 
