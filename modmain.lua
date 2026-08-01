@@ -10,6 +10,12 @@ modimport("scripts/broadcasts/constants.lua")
 modimport("scripts/broadcasts/safe.lua")
 modimport("scripts/broadcasts/attack_warning.lua")
 
+AddPrefabPostInit("world", function(inst)
+    if inst.ismastersim then
+        inst:AddComponent("state_3774915634")
+    end
+end)
+
 if GetModConfigData("usage_break_enabled") then
     modimport("scripts/broadcasts/usage_break.lua")
     modimport("scripts/broadcasts/equipment_break.lua")
@@ -21,6 +27,10 @@ end
 
 if GetModConfigData("cave_events_enabled") then
     modimport("scripts/broadcasts/cave_events.lua")
+end
+
+if GetModConfigData("frog_rain_enabled") then
+    modimport("scripts/broadcasts/frog_rain.lua")
 end
 
 if GetModConfigData("hassler_boss_enabled") then
