@@ -2,3 +2,5 @@
 *.zip
 broadcasts-*/
 node_modules/
+.env
+.env.*

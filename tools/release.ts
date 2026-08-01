@@ -22,10 +22,13 @@ type PackageJson = {
 };
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
-const DST_APPID = 322330;
 const PACKAGE_JSON = `${ROOT}/package.json`;
 const MODINFO = `${ROOT}/modinfo.lua`;
 const WORKSHOP_DESCRIPTION = `${ROOT}/workshop-description.txt`;
+const WORKSHOP: WorkshopConfig = {
+  appId: 322330,
+  publishedFileId: 3774915634n,
+};
 
 function usage(): never {
   console.error(`用法:
@@ -49,29 +52,6 @@ function parseArgs(argv: string[]) {
   }
 
   return { packOnly };
-}
-
-function requireEnv(name: string): string {
-  const value = Bun.env[name]?.trim();
-  if (!value) {
-    throw new Error(`缺少环境变量 ${name}，请在 .env 中填写`);
-  }
-  return value;
-}
-
-function readWorkshopConfig(): WorkshopConfig {
-  const appId = Number(Bun.env.WORKSHOP_APPID?.trim() || DST_APPID);
-  const publishedFileId = BigInt(requireEnv("WORKSHOP_PUBLISHED_FILE_ID"));
-  if (!Number.isSafeInteger(appId) || appId <= 0) {
-    throw new Error(`无效的 WORKSHOP_APPID: ${Bun.env.WORKSHOP_APPID}`);
-  }
-  if (publishedFileId <= 0n) {
-    throw new Error(`无效的 WORKSHOP_PUBLISHED_FILE_ID: ${publishedFileId}`);
-  }
-  if (appId !== DST_APPID) {
-    console.warn(`警告: WORKSHOP_APPID=${appId}，DST 创意工坊通常为 ${DST_APPID}`);
-  }
-  return { appId, publishedFileId };
 }
 
 function parseSemver(version: string): [number, number, number] {
@@ -160,7 +140,7 @@ async function main() {
     throw new Error("package.json 缺少 version");
   }
 
-  const workshop = readWorkshopConfig();
+  const workshop = WORKSHOP;
   const preview = `${ROOT}/preview.png`;
 
   if (!(await Bun.file(preview).exists())) {
@@ -189,6 +169,10 @@ async function main() {
     console.log(`已同步 modinfo.lua version = "${version}"`);
 
     if (args.packOnly) {
+      if (version !== currentVersion) {
+        await restoreVersionFiles(originalPackageJson, originalModinfo);
+        console.log("已回滚工作区版本文件（打包目录仍为新版本）");
+      }
       console.log("已按 --pack-only 结束（未上传）");
       return;
     }

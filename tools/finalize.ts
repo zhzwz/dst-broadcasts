@@ -82,6 +82,7 @@ export async function finalizeRelease(version: string) {
   await runGit(["commit", "-m", `chore(release): ${tag}`]);
   await runGit(["tag", "-a", tag, "-m", `Release ${tag}`]);
   console.log(`已创建发布提交和标签 ${tag}`);
+  console.log("未推送到远程；需要时请执行: git push && git push --tags");
 }
 
 async function readVersion(): Promise<string> {
