@@ -3,6 +3,7 @@ local Safe = BROADCASTS_SAFE
 
 local ACTIVE_KEY = "frog_rain_active"
 local COUNT_KEY = "frog_rain_count"
+local ENABLED = GetModConfigData("frog_rain_enabled")
 
 local function GetState(world)
     return world.components.state_3774915634
@@ -15,6 +16,15 @@ local function IsFrogRainSpawning(world)
         and state.israining
         and state.precipitationrate > TUNING.FROG_RAIN_PRECIPITATION
         and state.moistureceil > TUNING.FROG_RAIN_MOISTURE
+end
+
+local function ClearFrogRainState(world)
+    local state = GetState(world)
+    if state == nil then
+        return
+    end
+    state:Set(ACTIVE_KEY, nil)
+    state:Set(COUNT_KEY, nil)
 end
 
 local function CountFrog(world)
@@ -34,24 +44,31 @@ local function FinishFrogRain(world)
     end
 
     local count = state:Get(COUNT_KEY, 0)
-    state:Set(ACTIVE_KEY, false)
-    state:Set(COUNT_KEY, 0)
+    ClearFrogRainState(world)
 
     if count > 0 then
         Safe.Announce(string.format(S.frog_rain_ended, count))
     end
 end
 
-AddComponentPostInit("frograin", function(self)
-    local old_start_tracking = self.StartTracking
-    self.StartTracking = function(component, target)
-        old_start_tracking(component, target)
-        Safe.Call("frog_rain_count", CountFrog, component.inst)
-    end
-end)
+if ENABLED then
+    AddComponentPostInit("frograin", function(self)
+        local old_start_tracking = self.StartTracking
+        self.StartTracking = function(component, target)
+            old_start_tracking(component, target)
+            Safe.Call("frog_rain_count", CountFrog, component.inst)
+        end
+    end)
+end
 
 AddSimPostInit(Safe.Wrap("frog_rain_init", function()
     if not TheWorld.ismastersim or TheWorld:HasTag("cave") then
+        return
+    end
+
+    -- 功能关闭时丢弃未结算计数，避免再次开启后误播报。
+    if not ENABLED then
+        ClearFrogRainState(TheWorld)
         return
     end
 

@@ -29,9 +29,7 @@ if GetModConfigData("cave_events_enabled") then
     modimport("scripts/broadcasts/cave_events.lua")
 end
 
-if GetModConfigData("frog_rain_enabled") then
-    modimport("scripts/broadcasts/frog_rain.lua")
-end
+modimport("scripts/broadcasts/frog_rain.lua")
 
 if GetModConfigData("hassler_boss_enabled") then
     modimport("scripts/broadcasts/hassler_boss.lua")
