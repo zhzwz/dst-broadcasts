@@ -16,9 +16,9 @@ Reports the world day, season, weather, events, bosses, and more at the start of
 在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点提醒。
 Provides countdown warnings for Hound, Depths Worm, Deerclops, and Bearger attacks.
 
-[h3]洞穴事件｜Cave Events[/h3]
-播报噩梦循环、洞穴地震、酸雨以及远古遗迹重置。
-Announces nightmare cycle phases, cave earthquakes, acid rain, and Ruins resets.
+[h3]世界事件｜World Events[/h3]
+播报地表与洞穴的重要动态，包括季节与天气趋势、噩梦循环、洞穴地震、酸雨及远古遗迹重置。
+Announces major surface and cave events, including seasonal and weather trends, nightmare cycles, earthquakes, acid rain, and Ruins resets.
 
 [h3]物品状态｜Item Status[/h3]
 提醒玩家持有物品的低耐久、低燃料与损毁状态。
