@@ -5,11 +5,11 @@
   "private": true,
   "scripts": {
     "pack": "bun run tools/release.ts --pack-only",
-    "release": "bun run tools/release.ts",
-    "release:dry": "bun run tools/release.ts --dry-run"
+    "release": "bun run tools/release.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "luamin": "1.0.4"
   },
   "peerDependencies": {
     "typescript": "^5"

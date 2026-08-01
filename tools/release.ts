@@ -1,13 +1,14 @@
 #!/usr/bin/env bun
 /**
  * 打包并上传 Steam Workshop。
+ * 版本以 package.json 为准，发布前询问递增方式并同步到 modinfo.lua。
  *
  *   bun run release
  *   bun run release -- --pack-only
- *   bun run release -- --dry-run
  */
 
 import { $ } from "bun";
+import { packMod } from "./pack";
 
 type WorkshopConfig = {
   appid: string;
@@ -15,26 +16,29 @@ type WorkshopConfig = {
   steamUser: string;
 };
 
+type PackageJson = {
+  version?: string;
+  [key: string]: unknown;
+};
+
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
 const DST_APPID = "322330";
+const PACKAGE_JSON = `${ROOT}/package.json`;
+const MODINFO = `${ROOT}/modinfo.lua`;
 
 function usage(): never {
   console.error(`用法:
   bun run release
-  bun run release -- --pack-only
-  bun run release -- --dry-run`);
+  bun run release -- --pack-only`);
   process.exit(1);
 }
 
 function parseArgs(argv: string[]) {
   let packOnly = false;
-  let dryRun = false;
 
   for (const arg of argv) {
     if (arg === "--pack-only") {
       packOnly = true;
-    } else if (arg === "--dry-run") {
-      dryRun = true;
     } else if (arg === "--help" || arg === "-h") {
       usage();
     } else {
@@ -43,16 +47,7 @@ function parseArgs(argv: string[]) {
     }
   }
 
-  return { packOnly, dryRun };
-}
-
-async function readVersion(modinfoPath: string): Promise<string> {
-  const text = await Bun.file(modinfoPath).text();
-  const match = text.match(/^\s*version\s*=\s*"([^"]+)"/m);
-  if (!match?.[1]) {
-    throw new Error(`无法从 ${modinfoPath} 解析 version`);
-  }
-  return match[1];
+  return { packOnly };
 }
 
 function requireEnv(name: string): string {
@@ -64,7 +59,6 @@ function requireEnv(name: string): string {
 }
 
 function readWorkshopConfig(): WorkshopConfig {
-  // Bun 会自动加载项目根目录 .env
   const workshop = {
     steamUser: requireEnv("STEAM_USER"),
     appid: Bun.env.WORKSHOP_APPID?.trim() || DST_APPID,
@@ -74,6 +68,76 @@ function readWorkshopConfig(): WorkshopConfig {
     console.warn(`警告: WORKSHOP_APPID=${workshop.appid}，DST 创意工坊通常为 ${DST_APPID}`);
   }
   return workshop;
+}
+
+function parseSemver(version: string): [number, number, number] {
+  const match = version.trim().match(/^(\d+)\.(\d+)\.(\d+)$/);
+  if (!match) {
+    throw new Error(`package.json version 不是 x.y.z 格式: ${version}`);
+  }
+  return [Number(match[1]), Number(match[2]), Number(match[3])];
+}
+
+function bumpVersion(current: string, kind: "patch" | "minor" | "major"): string {
+  const [major, minor, patch] = parseSemver(current);
+  if (kind === "major") return `${major + 1}.0.0`;
+  if (kind === "minor") return `${major}.${minor + 1}.0`;
+  return `${major}.${minor}.${patch + 1}`;
+}
+
+async function readLine(prompt: string): Promise<string> {
+  process.stdout.write(prompt);
+  const reader = Bun.stdin.stream().getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const newline = buffer.indexOf("\n");
+      if (newline >= 0) {
+        return buffer.slice(0, newline).replace(/\r$/, "").trim();
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return buffer.replace(/\r$/, "").trim();
+}
+
+async function askVersionBump(current: string): Promise<string> {
+  const patch = bumpVersion(current, "patch");
+  const minor = bumpVersion(current, "minor");
+  const major = bumpVersion(current, "major");
+
+  console.log(`当前版本: ${current}`);
+  console.log("请选择版本递增方式:");
+  console.log(`  1) patch  -> ${patch}`);
+  console.log(`  2) minor  -> ${minor}`);
+  console.log(`  3) major  -> ${major}`);
+  console.log(`  4) 保持   -> ${current}`);
+
+  while (true) {
+    const answer = await readLine("输入 1-4: ");
+    if (answer === "1" || answer === "patch") return patch;
+    if (answer === "2" || answer === "minor") return minor;
+    if (answer === "3" || answer === "major") return major;
+    if (answer === "4" || answer === "keep" || answer === "") return current;
+    console.log("无效输入，请重新选择。");
+  }
+}
+
+async function writePackageVersion(pkg: PackageJson, version: string) {
+  pkg.version = version;
+  await Bun.write(PACKAGE_JSON, `${JSON.stringify(pkg, null, 2)}\n`);
+}
+
+async function restoreVersionFiles(packageJson: string, modinfo: string) {
+  await Promise.all([
+    Bun.write(PACKAGE_JSON, packageJson),
+    Bun.write(MODINFO, modinfo),
+  ]);
 }
 
 async function writeVdf(filePath: string, values: {
@@ -105,9 +169,15 @@ function ensureSteamcmd(): string {
 
 async function main() {
   const args = parseArgs(Bun.argv.slice(2));
-  const version = await readVersion(`${ROOT}/modinfo.lua`);
+  const originalPackageJson = await Bun.file(PACKAGE_JSON).text();
+  const originalModinfo = await Bun.file(MODINFO).text();
+  const pkg = JSON.parse(originalPackageJson) as PackageJson;
+  const currentVersion = pkg.version;
+  if (!currentVersion) {
+    throw new Error("package.json 缺少 version");
+  }
+
   const workshop = readWorkshopConfig();
-  const outDir = `${ROOT}/broadcasts-${version}`;
   const preview = `${ROOT}/preview.png`;
   const vdfPath = `${ROOT}/workshop.vdf`;
 
@@ -115,70 +185,77 @@ async function main() {
     throw new Error("缺少 preview.png");
   }
 
-  console.log(`版本: ${version}`);
-  console.log(`打包目录: ${outDir}`);
+  const steamcmd = args.packOnly ? undefined : ensureSteamcmd();
+  const version = await askVersionBump(currentVersion);
+  try {
+    if (version !== currentVersion) {
+      await writePackageVersion(pkg, version);
+      console.log(`已更新 package.json version: ${currentVersion} -> ${version}`);
+    } else {
+      console.log(`保持版本: ${version}`);
+    }
 
-  if (args.dryRun) {
-    console.log("[dry-run] 跳过 preview.sh / steamcmd");
-    console.log(`将使用 publishedfileid=${workshop.publishedfileid}`);
-    return;
+    const outDir = `${ROOT}/broadcasts-${version}`;
+    console.log(`打包目录: ${outDir}`);
+    await packMod(outDir);
+    console.log(`已同步 modinfo.lua version = "${version}"`);
+
+    await writeVdf(vdfPath, {
+      appid: workshop.appid,
+      publishedfileid: workshop.publishedfileid,
+      contentfolder: outDir,
+      previewfile: preview,
+    });
+    console.log(`已写入 ${vdfPath}`);
+
+    if (args.packOnly) {
+      console.log("已按 --pack-only 结束（未上传）");
+      return;
+    }
+
+    if (version === currentVersion) {
+      console.warn("警告: 版本未变化，Steam 工坊可能拒绝更新（需 version 更新）。");
+    }
+
+    console.log(`上传中（Steam 用户: ${workshop.steamUser}）...`);
+    console.log("若未缓存登录态，请按提示输入密码 / Steam Guard。");
+
+    const steamHome = `${ROOT}/.steamcmd-home`;
+    await $`mkdir -p ${steamHome}`.quiet();
+    await $`chmod 700 ${steamHome}`.quiet();
+
+    const upload = Bun.spawn([
+      steamcmd!,
+      "+login",
+      workshop.steamUser,
+      "+workshop_build_item",
+      vdfPath,
+      "+quit",
+    ], {
+      cwd: ROOT,
+      stdin: "inherit",
+      stdout: "inherit",
+      stderr: "inherit",
+      env: {
+        ...Bun.env,
+        HOME: Bun.env.HOME || steamHome,
+      },
+    });
+    if ((await upload.exited) !== 0) {
+      throw new Error(`steamcmd 上传失败，退出码 ${upload.exitCode}`);
+    }
+
+    console.log("上传完成");
+    console.log(`工坊: https://steamcommunity.com/sharedfiles/filedetails/?id=${workshop.publishedfileid}`);
+  } catch (error) {
+    try {
+      await restoreVersionFiles(originalPackageJson, originalModinfo);
+      console.error("发布失败，已回滚 package.json 和 modinfo.lua 的版本");
+    } catch (rollbackError) {
+      throw new AggregateError([error, rollbackError], "发布失败，且版本回滚失败");
+    }
+    throw error;
   }
-
-  const pack = Bun.spawn(["./preview.sh", outDir], {
-    cwd: ROOT,
-    stdin: "inherit",
-    stdout: "inherit",
-    stderr: "inherit",
-  });
-  if ((await pack.exited) !== 0) {
-    throw new Error(`打包失败，退出码 ${pack.exitCode}`);
-  }
-
-  await writeVdf(vdfPath, {
-    appid: workshop.appid,
-    publishedfileid: workshop.publishedfileid,
-    contentfolder: outDir,
-    previewfile: preview,
-  });
-  console.log(`已写入 ${vdfPath}`);
-
-  if (args.packOnly) {
-    console.log("已按 --pack-only 结束（未上传）");
-    return;
-  }
-
-  const steamcmd = ensureSteamcmd();
-  console.log(`上传中（Steam 用户: ${workshop.steamUser}）...`);
-  console.log("若未缓存登录态，请按提示输入密码 / Steam Guard。");
-
-  // steamcmd 需要可写的 home；部分环境 HOME 异常时用本地目录兜底
-  const steamHome = `${ROOT}/.steamcmd-home`;
-  await $`mkdir -p ${steamHome}`.quiet();
-  await $`chmod 700 ${steamHome}`.quiet();
-
-  const upload = Bun.spawn([
-    steamcmd,
-    "+login",
-    workshop.steamUser,
-    "+workshop_build_item",
-    vdfPath,
-    "+quit",
-  ], {
-    cwd: ROOT,
-    stdin: "inherit",
-    stdout: "inherit",
-    stderr: "inherit",
-    env: {
-      ...Bun.env,
-      HOME: Bun.env.HOME || steamHome,
-    },
-  });
-  if ((await upload.exited) !== 0) {
-    throw new Error(`steamcmd 上传失败，退出码 ${upload.exitCode}`);
-  }
-
-  console.log("上传完成");
-  console.log(`工坊: https://steamcommunity.com/sharedfiles/filedetails/?id=${workshop.publishedfileid}`);
 }
 
 main().catch((error) => {
