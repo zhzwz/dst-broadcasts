@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "luamin": "1.0.4"
+    "luamin": "1.0.4",
+    "steamworks.js": "^0.4.0"
   },
   "peerDependencies": {
     "typescript": "^5"

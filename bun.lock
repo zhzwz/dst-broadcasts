@@ -7,6 +7,7 @@
       "devDependencies": {
         "@types/bun": "latest",
         "luamin": "1.0.4",
+        "steamworks.js": "^0.4.0",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -23,6 +24,8 @@
     "luamin": ["luamin@1.0.4", "", { "dependencies": { "luaparse": "^0.2.1" }, "bin": { "luamin": "bin/luamin" } }, "sha512-z1h0bclRD/QGsS/Dz4Skp9z0qPTmmm+IKcrCapGmdTczPWVdN9f9jk6WqkNrcifQr8+n9Pzsm9WkwpOH1JBUAQ=="],
 
     "luaparse": ["luaparse@0.2.1", "", { "bin": { "luaparse": "./bin/luaparse" } }, "sha512-VKBcryd5nJte4ZNR29NOk8F/UkMipjeb4yoxcSS51z6QAzg9DXUC2WsfLniS0J1eh3pr/ZL3e9ha6V8fhoLbBQ=="],
+
+    "steamworks.js": ["steamworks.js@0.4.0", "", { "dependencies": { "@types/node": "*" } }, "sha512-O5TTRs7ucCRql4IA/kYUIQYeghTsXqf3rAm81sC22RDId264LQYqQjuaMEUSqL60I5LdULiGu0W2/A+ZDcKBKA=="],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 

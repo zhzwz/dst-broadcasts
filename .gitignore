@@ -2,5 +2,3 @@
 *.zip
 broadcasts-*/
 node_modules/
-.steamcmd-home/
-workshop.vdf
