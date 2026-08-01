@@ -31,7 +31,7 @@ AddSimPostInit(Safe.Wrap("hassler_init", function()
     for _, boss in ipairs(BOSSES) do
         local timer = boss.timer
         local name = boss.name
-        WatchAttackWarning(function()
+        BROADCASTS_WATCH_ATTACK_WARNING(function()
             local wst = TheWorld.components.worldsettingstimer
             if wst == nil or
                 not wst:ActiveTimerExists(timer) or
@@ -55,7 +55,7 @@ for prefab, name in pairs(SPAWN_NAMES) do
         inst.OnLoad = function(inst, data)
             inst._dst_broadcasts_loaded = true
             if old_on_load ~= nil then
-                old_on_load(inst, data)
+                Safe.Call("hassler_onload:" .. prefab, old_on_load, inst, data)
             end
         end
 

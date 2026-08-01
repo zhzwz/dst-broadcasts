@@ -67,6 +67,12 @@ local function OnPercentUsedChange(inst, data)
     end
 
     local percent = (data and data.percent) or fueled:GetPercent()
+    if type(percent) ~= "number" or percent ~= percent then
+        percent = fueled:GetPercent()
+    end
+    if type(percent) ~= "number" or percent ~= percent then
+        return
+    end
     if fueled.fueltype == FUELTYPE.USAGE then
         CheckThresholds(
             inst,

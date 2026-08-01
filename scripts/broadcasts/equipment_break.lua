@@ -60,6 +60,12 @@ local function OnFiniteUsesChange(inst, data)
     end
 
     local percent = (data and data.percent) or uses:GetPercent()
+    if type(percent) ~= "number" or percent ~= percent then
+        percent = uses:GetPercent()
+    end
+    if type(percent) ~= "number" or percent ~= percent then
+        return
+    end
     if percent > 0 then
         inst._dst_broadcasts_uses_broke = nil
         return

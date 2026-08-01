@@ -20,7 +20,7 @@ AddSimPostInit(Safe.Wrap("hounded_init", function()
         return
     end
 
-    WatchAttackWarning(function()
+    BROADCASTS_WATCH_ATTACK_WARNING(function()
         local hounded = TheWorld.components.hounded
         if hounded == nil or hounded:GetAttacking() then
             return nil

@@ -8,9 +8,9 @@ local S = BROADCASTS_STRINGS
 local C = BROADCASTS_CONSTANTS
 local Safe = BROADCASTS_SAFE
 
--- get_seconds: 返回剩余秒数；nil 表示当前没有袭击预警
+-- get_seconds: 返回剩余秒数；nil/<=0 表示当前没有有效倒计时
 -- get_name: 返回袭击显示名
-function WatchAttackWarning(get_seconds, get_name)
+local function WatchAttackWarning(get_seconds, get_name)
     if not TheWorld.ismastersim then
         return
     end
@@ -22,7 +22,7 @@ function WatchAttackWarning(get_seconds, get_name)
 
     TheWorld:DoPeriodicTask(C.ATTACK_WARNING_POLL_SECONDS, Safe.Wrap("attack_warning", function()
         local t = get_seconds()
-        if type(t) ~= "number" or t ~= t or t < 0 then
+        if type(t) ~= "number" or t ~= t or t <= 0 then
             state.real_flags = {}
             return
         end
@@ -66,3 +66,5 @@ function WatchAttackWarning(get_seconds, get_name)
         end
     end))
 end
+
+BROADCASTS_WATCH_ATTACK_WARNING = WatchAttackWarning
