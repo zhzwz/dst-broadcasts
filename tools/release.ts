@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
- * 打包并上传 Steam Workshop。
- * 版本以 package.json 为准，发布前询问递增方式并同步到 modinfo.lua。
+ * 准备 Steam Workshop 发布文件。
+ * 版本以 package.json 为准，打包后创建发布提交和 Git 标签。
  *
  *   bun run release
  *   bun run release -- --pack-only
@@ -9,12 +9,6 @@
 
 import { ensureCleanWorktree, finalizeRelease } from "./finalize";
 import { packMod } from "./pack";
-import { uploadWorkshopItem } from "./steam";
-
-type WorkshopConfig = {
-  appId: number;
-  publishedFileId: bigint;
-};
 
 type PackageJson = {
   version?: string;
@@ -22,7 +16,6 @@ type PackageJson = {
 };
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
-const DST_APPID = 322330;
 const PACKAGE_JSON = `${ROOT}/package.json`;
 const MODINFO = `${ROOT}/modinfo.lua`;
 
@@ -48,29 +41,6 @@ function parseArgs(argv: string[]) {
   }
 
   return { packOnly };
-}
-
-function requireEnv(name: string): string {
-  const value = Bun.env[name]?.trim();
-  if (!value) {
-    throw new Error(`缺少环境变量 ${name}，请在 .env 中填写`);
-  }
-  return value;
-}
-
-function readWorkshopConfig(): WorkshopConfig {
-  const appId = Number(Bun.env.WORKSHOP_APPID?.trim() || DST_APPID);
-  const publishedFileId = BigInt(requireEnv("WORKSHOP_PUBLISHED_FILE_ID"));
-  if (!Number.isSafeInteger(appId) || appId <= 0) {
-    throw new Error(`无效的 WORKSHOP_APPID: ${Bun.env.WORKSHOP_APPID}`);
-  }
-  if (publishedFileId <= 0n) {
-    throw new Error(`无效的 WORKSHOP_PUBLISHED_FILE_ID: ${publishedFileId}`);
-  }
-  if (appId !== DST_APPID) {
-    console.warn(`警告: WORKSHOP_APPID=${appId}，DST 创意工坊通常为 ${DST_APPID}`);
-  }
-  return { appId, publishedFileId };
 }
 
 function parseSemver(version: string): [number, number, number] {
@@ -159,7 +129,6 @@ async function main() {
     throw new Error("package.json 缺少 version");
   }
 
-  const workshop = readWorkshopConfig();
   const preview = `${ROOT}/preview.png`;
 
   if (!(await Bun.file(preview).exists())) {
@@ -167,7 +136,7 @@ async function main() {
   }
 
   const version = await askVersionBump(currentVersion, args.packOnly);
-  let uploaded = false;
+  const outDir = `${ROOT}/broadcasts-${version}`;
   try {
     if (version !== currentVersion) {
       await writePackageVersion(pkg, version);
@@ -176,7 +145,6 @@ async function main() {
       console.log(`保持版本: ${version}`);
     }
 
-    const outDir = `${ROOT}/broadcasts-${version}`;
     console.log(`打包目录: ${outDir}`);
     await packMod(outDir);
     console.log(`已同步 modinfo.lua version = "${version}"`);
@@ -185,38 +153,25 @@ async function main() {
       console.log("已按 --pack-only 结束（未上传）");
       return;
     }
-
-    if (version === currentVersion) {
-      console.warn("警告: 版本未变化，Steam 工坊可能拒绝更新（需 version 更新）。");
-    }
-
-    console.log("正在通过已登录的 Steam 客户端上传...");
-    await uploadWorkshopItem({
-      appId: workshop.appId,
-      publishedFileId: workshop.publishedFileId,
-      contentPath: outDir,
-      modinfoPath: MODINFO,
-      previewPath: preview,
-      version,
-    });
-
-    uploaded = true;
-    console.log("上传完成");
-    console.log(`工坊: https://steamcommunity.com/sharedfiles/filedetails/?id=${workshop.publishedFileId}`);
-    await finalizeRelease(version);
   } catch (error) {
-    if (uploaded) {
-      console.error("工坊上传已完成，但 Git 收尾失败；版本修改已保留，请手动处理提交和标签");
-      throw error;
-    }
     try {
       await restoreVersionFiles(originalPackageJson, originalModinfo);
-      console.error("发布失败，已回滚 package.json 和 modinfo.lua 的版本");
+      console.error("打包失败，已回滚 package.json 和 modinfo.lua 的版本");
     } catch (rollbackError) {
-      throw new AggregateError([error, rollbackError], "发布失败，且版本回滚失败");
+      throw new AggregateError([error, rollbackError], "打包失败，且版本回滚失败");
     }
     throw error;
   }
+
+  try {
+    await finalizeRelease(version);
+  } catch (error) {
+    console.error("打包已完成，但 Git 提交或标签创建失败；版本修改已保留");
+    throw error;
+  }
+
+  console.log(`发布文件已准备完成: ${outDir}`);
+  console.log("请使用官方 Mod Uploader 上传该目录");
 }
 
 main()
