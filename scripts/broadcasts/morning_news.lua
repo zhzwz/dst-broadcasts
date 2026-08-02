@@ -4,12 +4,23 @@ local C = BROADCASTS_CONSTANTS
 local Safe = BROADCASTS_SAFE
 
 local BOSSES = {
+    { name = N.deerclops, prefabs = { "deerclops" } },
+    { name = N.mutateddeerclops, prefabs = { "mutateddeerclops" } },
+    { name = N.bearger, prefabs = { "bearger" } },
+    { name = N.mutatedbearger, prefabs = { "mutatedbearger" } },
     { name = N.dragonfly, prefabs = { "dragonfly" } },
     { name = N.beequeen, prefabs = { "beequeen" } },
     { name = N.toadstool, prefabs = { "toadstool" } },
     { name = N.toadstool_dark, prefabs = { "toadstool_dark" } },
     { name = N.moose, prefabs = { "moose" } },
-    { name = N.klaus, prefabs = { "klaus" } },
+    {
+        name = N.klaus,
+        prefabs = { "klaus" },
+        test = function(inst)
+            return inst.IsUnchained ~= nil and inst:IsUnchained()
+        end,
+    },
+
     { name = N.malbatross, prefabs = { "malbatross" } },
     { name = N.antlion, prefabs = { "antlion" } },
     { name = N.crabking, prefabs = { "crabking" } },

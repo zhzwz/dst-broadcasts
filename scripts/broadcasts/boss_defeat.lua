@@ -19,12 +19,17 @@ local DEATH_BOSSES = {
         end,
     },
     malbatross = N.malbatross,
-    antlion = N.antlion,
+    antlion = {
+        name = N.antlion,
+        -- 休眠态无 health；仅战斗中击杀会走 death
+        test = function(inst)
+            return inst.components ~= nil and inst.components.health ~= nil
+        end,
+    },
     crabking = N.crabking,
     eyeofterror = N.eyeofterror,
     minotaur = N.minotaur,
     stalker_atrium = N.stalker_atrium,
-    alterguardian_phase3 = N.alterguardian_phase3,
     alterguardian_phase4_lunarrift = N.alterguardian_phase4_lunarrift,
     worm_boss = N.worm_boss,
     wagboss_robot = {
@@ -44,6 +49,12 @@ local NONLETHAL_BOSSES = {
 local TWIN_PREFABS = {
     twinofterror1 = true,
     twinofterror2 = true,
+}
+
+local ALTERGUARDIAN_PHASES = {
+    alterguardian_phase1 = true,
+    alterguardian_phase2 = true,
+    alterguardian_phase3 = true,
 }
 
 local NON_WEAPON_CAUSES = {
@@ -297,6 +308,38 @@ local function HasLivingVaultGuard(exclude)
     return false
 end
 
+local function IsAtMinHealth(inst)
+    local health = inst.components ~= nil and inst.components.health or nil
+    if health == nil or type(health.currenthealth) ~= "number" then
+        return false
+    end
+    local minhealth = health.minhealth
+    if type(minhealth) ~= "number" then
+        minhealth = 0
+    end
+    return health.currenthealth <= minhealth
+end
+
+local function IsNonlethalDefeated(inst, prefab)
+    if not inst:IsValid() then
+        return false
+    end
+    if inst.defeated then
+        return true
+    end
+    if inst.sg ~= nil and inst.sg:HasStateTag("defeated") then
+        return true
+    end
+    -- sharkboi 不设 defeated；贴底或已 MakeTrader 视为击败
+    if prefab == "sharkboi" then
+        if inst.components.trader ~= nil then
+            return true
+        end
+        return IsAtMinHealth(inst)
+    end
+    return false
+end
+
 for prefab, boss in pairs(DEATH_BOSSES) do
     AddPrefabPostInit(prefab, Safe.Wrap("boss_defeat_init:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
@@ -319,6 +362,34 @@ for prefab, boss in pairs(DEATH_BOSSES) do
     end))
 end
 
+for prefab in pairs(ALTERGUARDIAN_PHASES) do
+    AddPrefabPostInit(prefab, Safe.Wrap("alterguardian_init:" .. prefab, function(inst)
+        if not TheWorld.ismastersim then
+            return
+        end
+        if prefab == "alterguardian_phase1" then
+            ClearSharedDamageBucket("alterguardian_damage")
+        end
+        WatchBossDamage(inst, function()
+            return GetSharedDamageBucket("alterguardian_damage")
+        end)
+        if prefab == "alterguardian_phase3" then
+            inst:ListenForEvent("death", Safe.Wrap("alterguardian_defeat", function(_, data)
+                if inst._dst_broadcasts_defeat_announced then
+                    return
+                end
+                inst._dst_broadcasts_defeat_announced = true
+                AnnounceDefeat(
+                    N.alterguardian_phase3,
+                    data,
+                    TheWorld._dst_broadcasts_alterguardian_damage
+                )
+                ClearSharedDamageBucket("alterguardian_damage")
+            end))
+        end
+    end))
+end
+
 for prefab, name in pairs(NONLETHAL_BOSSES) do
     AddPrefabPostInit(prefab, Safe.Wrap("boss_minhealth_init:" .. prefab, function(inst)
         if not TheWorld.ismastersim then
@@ -329,9 +400,8 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
         end)
         inst:ListenForEvent("minhealth", Safe.Wrap("boss_minhealth:" .. prefab, function(_, data)
             inst:DoTaskInTime(0, Safe.Wrap("boss_minhealth_task:" .. prefab, function()
-                local defeated = inst:IsValid() and
-                    (inst.defeated or prefab == "sharkboi")
-                if defeated and not inst._dst_broadcasts_defeat_announced then
+                if IsNonlethalDefeated(inst, prefab) and
+                    not inst._dst_broadcasts_defeat_announced then
                     inst._dst_broadcasts_defeat_announced = true
                     AnnounceDefeat(name, data, inst._dst_broadcasts_damage)
                     inst._dst_broadcasts_damage = nil
@@ -346,10 +416,10 @@ for prefab in pairs(TWIN_PREFABS) do
         if not TheWorld.ismastersim then
             return
         end
-        TheWorld._dst_broadcasts_twins_defeated = nil
-        if not HasLivingTwin(inst) then
+        if TheWorld._dst_broadcasts_twins_defeated then
             ClearSharedDamageBucket("twins_damage")
         end
+        TheWorld._dst_broadcasts_twins_defeated = nil
         WatchBossDamage(inst, function()
             return GetSharedDamageBucket("twins_damage")
         end)
@@ -369,16 +439,16 @@ AddPrefabPostInit("vault_pillar_guard", Safe.Wrap("guard_init", function(inst)
     if not TheWorld.ismastersim or inst.crafted then
         return
     end
-    TheWorld._dst_broadcasts_guard_towers_defeated = nil
-    if not HasLivingVaultGuard(inst) then
+    if TheWorld._dst_broadcasts_guard_towers_defeated then
         ClearSharedDamageBucket("guard_damage")
     end
+    TheWorld._dst_broadcasts_guard_towers_defeated = nil
     WatchBossDamage(inst, function()
         return GetSharedDamageBucket("guard_damage")
     end)
     inst:ListenForEvent("death", Safe.Wrap("guard_death", function(_, data)
         inst:DoTaskInTime(0, Safe.Wrap("guard_check", function()
-            if inst._vault_death_loot and
+            if not HasLivingVaultGuard() and
                 not TheWorld._dst_broadcasts_guard_towers_defeated then
                 TheWorld._dst_broadcasts_guard_towers_defeated = true
                 AnnounceDefeat(N.vault_pillar_guard, data, TheWorld._dst_broadcasts_guard_damage)
