@@ -6,7 +6,7 @@ local S = BROADCASTS_STRINGS
 local C = BROADCASTS_CONSTANTS
 local Safe = BROADCASTS_SAFE
 
-local function CheckStat(player, component_name, flag_key, message)
+local function CheckStat(player, component_name, flag_key, message, allow_announce)
     if player == nil or not player:IsValid() then
         return
     end
@@ -53,7 +53,7 @@ local function CheckStat(player, component_name, flag_key, message)
         end
     end
 
-    if not should_announce or type(message) ~= "string" then
+    if not allow_announce or not should_announce or type(message) ~= "string" then
         return
     end
 
@@ -74,11 +74,16 @@ local function CheckStat(player, component_name, flag_key, message)
 end
 
 local function OnHungerDelta(player)
-    CheckStat(player, "hunger", "_dst_broadcasts_low_hunger", S.player_low_hunger)
+    CheckStat(player, "hunger", "_dst_broadcasts_low_hunger", S.player_low_hunger, true)
 end
 
 local function OnSanityDelta(player)
-    CheckStat(player, "sanity", "_dst_broadcasts_low_sanity", S.player_low_sanity)
+    CheckStat(player, "sanity", "_dst_broadcasts_low_sanity", S.player_low_sanity, true)
+end
+
+local function SyncVitalsFlags(player)
+    CheckStat(player, "hunger", "_dst_broadcasts_low_hunger", S.player_low_hunger, false)
+    CheckStat(player, "sanity", "_dst_broadcasts_low_sanity", S.player_low_sanity, false)
 end
 
 local function WatchPlayer(player)
@@ -93,8 +98,7 @@ local function WatchPlayer(player)
     player:ListenForEvent("hungerdelta", Safe.Wrap("player_vitals_hunger", OnHungerDelta))
     player:ListenForEvent("sanitydelta", Safe.Wrap("player_vitals_sanity", OnSanityDelta))
 
-    Safe.Call("player_vitals_hunger_init", OnHungerDelta, player)
-    Safe.Call("player_vitals_sanity_init", OnSanityDelta, player)
+    Safe.Call("player_vitals_sync", SyncVitalsFlags, player)
 end
 
 AddPlayerPostInit(Safe.Wrap("player_vitals_init", function(player)

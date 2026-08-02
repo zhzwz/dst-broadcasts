@@ -30,7 +30,7 @@ local function Announce(inst, owner, percent, message)
     ))
 end
 
-local function CheckThresholds(inst, owner, percent, thresholds, flag_key, message)
+local function CheckThresholds(inst, owner, percent, thresholds, flag_key, message, allow_announce)
     local pct = percent * 100
     local flags = inst[flag_key]
     if flags == nil then
@@ -50,19 +50,18 @@ local function CheckThresholds(inst, owner, percent, thresholds, flag_key, messa
         end
     end
 
-    if should_announce then
+    if allow_announce and should_announce and owner ~= nil then
         Announce(inst, owner, percent, message)
     end
 end
 
-local function OnPercentUsedChange(inst, data)
-    local fueled = inst.components.fueled
-    if fueled == nil then
-        return
+local function OnPercentUsedChange(inst, data, allow_announce)
+    if allow_announce == nil then
+        allow_announce = inst._dst_broadcasts_fueled_ready == true
     end
 
-    local owner = PlayerOwner(inst)
-    if owner == nil then
+    local fueled = inst.components.fueled
+    if fueled == nil then
         return
     end
 
@@ -73,6 +72,8 @@ local function OnPercentUsedChange(inst, data)
     if type(percent) ~= "number" or percent ~= percent then
         return
     end
+
+    local owner = PlayerOwner(inst)
     if fueled.fueltype == FUELTYPE.USAGE then
         CheckThresholds(
             inst,
@@ -80,7 +81,8 @@ local function OnPercentUsedChange(inst, data)
             percent,
             C.USAGE_SEW_THRESHOLDS,
             "_dst_broadcasts_sew_flags",
-            BROADCASTS_STRINGS.item_low_durability
+            BROADCASTS_STRINGS.item_low_durability,
+            allow_announce
         )
     else
         CheckThresholds(
@@ -89,7 +91,8 @@ local function OnPercentUsedChange(inst, data)
             percent,
             C.USAGE_FUEL_THRESHOLDS,
             "_dst_broadcasts_fuel_flags",
-            BROADCASTS_STRINGS.item_low_fuel
+            BROADCASTS_STRINGS.item_low_fuel,
+            allow_announce
         )
     end
 end
@@ -103,7 +106,11 @@ local function WatchFueled(inst)
         return
     end
     inst._dst_broadcasts_fueled_watching = true
+    inst._dst_broadcasts_fueled_ready = false
+
     inst:ListenForEvent("percentusedchange", Safe.Wrap("usage_break", OnPercentUsedChange))
+    Safe.Call("usage_break_sync", OnPercentUsedChange, inst, nil, false)
+    inst._dst_broadcasts_fueled_ready = true
 end
 
 AddComponentPostInit("fueled", Safe.Wrap("usage_break_init", function(self)

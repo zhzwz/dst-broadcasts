@@ -83,7 +83,6 @@ AddSimPostInit(Safe.Wrap("frog_rain_init", function()
     TheWorld:WatchWorldState("precipitationrate", on_condition)
     TheWorld:WatchWorldState("moistureceil", on_condition)
 
-    if not IsFrogRainSpawning(TheWorld) then
-        FinishFrogRain(TheWorld)
-    end
+    -- 读档不继承上一段未结算计数（进行中读档从 0 重新计）
+    ClearFrogRainState(TheWorld)
 end))

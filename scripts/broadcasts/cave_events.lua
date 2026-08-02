@@ -17,8 +17,22 @@ AddSimPostInit(Safe.Wrap("cave_events_init", function()
         return
     end
 
-    TheWorld:WatchWorldState("nightmarephase", Safe.Wrap("cave_nightmare", OnNightmarePhase))
-    TheWorld:WatchWorldState("isacidraining", Safe.Wrap("cave_acidrain", OnAcidRain))
+    -- 读档还原世界状态时可能同步触发 WatchWorldState；首帧后再接受变化
+    local ready = false
+    TheWorld:DoTaskInTime(0, function()
+        ready = true
+    end)
+
+    TheWorld:WatchWorldState("nightmarephase", Safe.Wrap("cave_nightmare", function(_, phase)
+        if ready then
+            OnNightmarePhase(_, phase)
+        end
+    end))
+    TheWorld:WatchWorldState("isacidraining", Safe.Wrap("cave_acidrain", function(_, is_raining)
+        if ready then
+            OnAcidRain(_, is_raining)
+        end
+    end))
     TheWorld:ListenForEvent("resetruins", Safe.Wrap("cave_ruins", function()
         Safe.Announce(S.ruins_reset)
     end))

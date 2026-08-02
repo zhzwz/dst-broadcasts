@@ -53,6 +53,22 @@ AddPlayerPostInit(Safe.Wrap("equipment_player_init", function(player)
     end))
 end))
 
+local function SyncFiniteUsesFlags(inst)
+    local uses = inst.components.finiteuses
+    if uses == nil then
+        return
+    end
+    local percent = uses:GetPercent()
+    if type(percent) ~= "number" or percent ~= percent then
+        return
+    end
+    if percent > 0 then
+        inst._dst_broadcasts_uses_broke = nil
+    else
+        inst._dst_broadcasts_uses_broke = true
+    end
+end
+
 local function OnFiniteUsesChange(inst, data)
     local uses = inst.components.finiteuses
     if uses == nil then
@@ -75,6 +91,10 @@ local function OnFiniteUsesChange(inst, data)
     end
     inst._dst_broadcasts_uses_broke = true
 
+    if not inst._dst_broadcasts_finiteuses_ready then
+        return
+    end
+
     local owner = PlayerOwner(inst)
     if owner == nil then
         return
@@ -91,5 +111,13 @@ AddComponentPostInit("finiteuses", Safe.Wrap("equipment_finiteuses_init", functi
         return
     end
     inst._dst_broadcasts_finiteuses_watching = true
+    inst._dst_broadcasts_finiteuses_ready = false
     inst:ListenForEvent("percentusedchange", Safe.Wrap("equipment_finiteuses", OnFiniteUsesChange))
+    inst:DoTaskInTime(0, Safe.Wrap("equipment_finiteuses_sync", function()
+        if not inst:IsValid() then
+            return
+        end
+        SyncFiniteUsesFlags(inst)
+        inst._dst_broadcasts_finiteuses_ready = true
+    end))
 end))
