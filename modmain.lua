@@ -5,7 +5,7 @@
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
-modimport("scripts/broadcasts/strings.lua")
+modimport("scripts/broadcasts/language/init.lua")
 modimport("scripts/broadcasts/constants.lua")
 modimport("scripts/broadcasts/safe.lua")
 modimport("scripts/broadcasts/attack_warning.lua")

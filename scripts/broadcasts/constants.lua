@@ -12,7 +12,7 @@ BROADCASTS_CONSTANTS = {
     -- 袭击预警：提前多少个游戏日播报（1 = 剩余 ≤ 1 游戏日时播报）
     ATTACK_WARNING_ADVANCE_DAYS = 1,
 
-    -- 袭击预警：现实时间阈值（秒）。须与 strings.lua 中 durations 的键一致
+    -- 袭击预警：现实时间阈值（秒）。须与 language 文案中 durations 的键一致
     ATTACK_WARNING_REAL_THRESHOLDS = { 300, 120, 60, 30, 10, 5 },
 
     -- 袭击预警轮询间隔（秒）
