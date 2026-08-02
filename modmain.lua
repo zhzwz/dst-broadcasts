@@ -23,6 +23,8 @@ end
 
 if GetModConfigData("player_vitals_enabled") then
     modimport("scripts/broadcasts/player_vitals.lua")
+    modimport("scripts/broadcasts/player_health.lua")
+    modimport("scripts/broadcasts/player_temperature.lua")
 end
 
 if GetModConfigData("hounded_enabled") then

@@ -30,6 +30,9 @@ BROADCASTS_CONSTANTS = {
     -- 玩家饱食度 / 理智过低播报阈值（当前值；各档各播一次）
     PLAYER_STAT_LOW_THRESHOLDS = { 10, 0 },
 
+    -- 玩家生命过低播报阈值（GetPercent，0~1；各档各播一次）
+    PLAYER_HEALTH_LOW_THRESHOLDS = { 0.20, 0.10 },
+
     -- 永恒早报：剩余季节天数等于该值时，播报“明日换季”
     MORNING_SEASON_CHANGE_REMAINING_DAYS = 1,
 

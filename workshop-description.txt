@@ -25,8 +25,8 @@ Announces major surface and cave events, including seasonal and weather trends, 
 Warns players about low durability, low fuel, and broken items they are carrying.
 
 [h3]玩家状态｜Player Status[/h3]
-任意玩家的饱食度或理智降至 10 时播报一次，降至 0 时再播报一次。
-Announces once when a player's hunger or sanity drops to 10, and again at 0.
+任意玩家的饱食度或理智降至 10 时播报一次，降至 0 时再播报一次；生命值降至 20% 与 10% 时各播报一次（显示当前百分比）；开始过冷或过热时立即播报。
+Announces once when a player's hunger or sanity drops to 10, and again at 0. Announces health drops at 20% and 10% with the current percentage. Also announces when a player starts freezing or overheating.
 
 [h3]巨兽动态｜Boss Updates[/h3]
 巨兽现身或被击败时立即向当前分片的所有玩家播报。
