@@ -46,6 +46,7 @@ local CHAT_TRIGGERS = {
 
 -- userid -> { t = GetTime(), fail = bool }
 local last_announce_by_user = {}
+local FRIEND_ANNOUNCE_CYCLE_KEY = "pearl_friend_announce_cycle"
 local last_friend_announce_cycle = nil
 
 -- 跨分片查询：多人可共用同一次请求
@@ -131,7 +132,7 @@ local function IsTrustedRpc(magic)
     return magic == RPC_MAGIC
 end
 
--- 校验是否为本模组生成的状态文案（前缀 + 好感数字 + 待办/完成后缀）
+-- 结构校验：允许跨分片语言配置不一致（均以 [Name]x/y… 形式）
 local function IsValidStatusMessage(message)
     if type(message) ~= "string" or message == "" or #message > STATUS_MESSAGE_MAX_LEN then
         return false
@@ -139,38 +140,13 @@ local function IsValidStatusMessage(message)
     if string.find(message, "[\r\n%z]", 1) ~= nil then
         return false
     end
-
-    local name = S.pearl_name
-    if type(name) ~= "string" or name == "" then
+    if string.find(message, "^%[[^%]]+%]") ~= 1 then
         return false
     end
-    if string.find(message, name, 1, true) ~= 1 then
+    if string.find(message, "%d+/%d+") == nil then
         return false
     end
-
-    local rest = string.sub(message, #name + 1)
-    if string.find(rest, "%d+/%d+") == nil then
-        return false
-    end
-
-    local done = S.pearl_tasks_done
-    if type(done) == "string" and done ~= "" and #message >= #done then
-        if string.sub(message, -#done) == done then
-            return true
-        end
-    end
-
-    local pending_fmt = S.pearl_tasks_pending
-    if type(pending_fmt) == "string" then
-        local pending_lit = string.match(pending_fmt, "^(.*)%%s%s*$")
-        if type(pending_lit) == "string" and pending_lit ~= "" then
-            if string.find(message, pending_lit, 1, true) ~= nil then
-                return true
-            end
-        end
-    end
-
-    return false
+    return true
 end
 
 local function CooldownKey(userid)
@@ -305,6 +281,25 @@ local function AnnouncePearlStatusFromChat(userid)
     RequestRemoteStatus(userid)
 end
 
+local function GetPersistedFriendAnnounceCycle()
+    if last_friend_announce_cycle ~= nil then
+        return last_friend_announce_cycle
+    end
+    local state = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.state_3774915634 or nil
+    if state ~= nil then
+        last_friend_announce_cycle = state:Get(FRIEND_ANNOUNCE_CYCLE_KEY)
+    end
+    return last_friend_announce_cycle
+end
+
+local function SetPersistedFriendAnnounceCycle(cycles)
+    last_friend_announce_cycle = cycles
+    local state = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.state_3774915634 or nil
+    if state ~= nil then
+        state:Set(FRIEND_ANNOUNCE_CYCLE_KEY, cycles)
+    end
+end
+
 local function OnFriendLevelChanged(inst)
     local friendlevels = inst.components ~= nil and inst.components.friendlevels or nil
     if friendlevels == nil then
@@ -321,10 +316,10 @@ local function OnFriendLevelChanged(inst)
     if type(cycles) ~= "number" then
         return
     end
-    if last_friend_announce_cycle == cycles then
+    if GetPersistedFriendAnnounceCycle() == cycles then
         return
     end
-    last_friend_announce_cycle = cycles
+    SetPersistedFriendAnnounceCycle(cycles)
 
     local message = TryBuildLocalStatusMessage()
     if message ~= nil then
@@ -413,8 +408,7 @@ AddShardModRPCHandler(RPC_NS, RPC_QUERY_RESULT, function(from_shard, magic, mess
     end
 
     local token = tonumber(query_token) or 0
-    -- token 正常匹配；若传输丢失变为 0，仍允许在唯一进行中的请求上承接
-    if token == remote_expect_token or (token == 0 and remote_expect_token ~= 0) then
+    if token ~= 0 and token == remote_expect_token then
         FinishRemoteSuccess(message)
     end
 end)

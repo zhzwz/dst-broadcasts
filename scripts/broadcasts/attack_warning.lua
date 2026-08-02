@@ -24,6 +24,7 @@ local function WatchAttackWarning(get_seconds, get_name)
         local t = get_seconds()
         if type(t) ~= "number" or t ~= t or t <= 0 then
             state.real_flags = {}
+            state.last_day_key = nil
             return
         end
 
@@ -32,26 +33,21 @@ local function WatchAttackWarning(get_seconds, get_name)
             return
         end
 
-        if TheWorld.state.cycles ~= 0 then
-            local days = math.ceil(t / TUNING.TOTAL_DAY_TIME)
-            if days <= C.ATTACK_WARNING_ADVANCE_DAYS then
-                local key = tostring(TheWorld.state.cycles) .. ":" .. tostring(days)
-                if key ~= state.last_day_key then
-                    state.last_day_key = key
-                    if days <= 0 then
-                        Safe.Announce(string.format(S.attack_today, name))
-                    else
-                        Safe.Announce(string.format(S.attack_day, name))
-                    end
-                end
+        local day_key = nil
+        local days = math.ceil(t / TUNING.TOTAL_DAY_TIME)
+        if days <= C.ATTACK_WARNING_ADVANCE_DAYS then
+            local key = tostring(TheWorld.state.cycles) .. ":" .. tostring(days)
+            if key ~= state.last_day_key then
+                day_key = key
             end
         end
 
         local lowest = nil
+        local newly_crossed = {}
         for _, th in ipairs(C.ATTACK_WARNING_REAL_THRESHOLDS) do
             if t <= th then
                 if not state.real_flags[th] then
-                    state.real_flags[th] = true
+                    newly_crossed[#newly_crossed + 1] = th
                     if lowest == nil or th < lowest then
                         lowest = th
                     end
@@ -61,8 +57,18 @@ local function WatchAttackWarning(get_seconds, get_name)
             end
         end
 
+        -- 同一 tick 只播一条：优先更精确的现实时间档
         if lowest ~= nil then
+            for _, th in ipairs(newly_crossed) do
+                state.real_flags[th] = true
+            end
+            if day_key ~= nil then
+                state.last_day_key = day_key
+            end
             Safe.Announce(string.format(S.attack_time, name, S.durations[lowest]))
+        elseif day_key ~= nil then
+            state.last_day_key = day_key
+            Safe.Announce(string.format(S.attack_day, name))
         end
     end))
 end
