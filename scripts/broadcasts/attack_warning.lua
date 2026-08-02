@@ -40,6 +40,9 @@ local function WatchAttackWarning(get_seconds, get_name)
             if key ~= state.last_day_key then
                 day_key = key
             end
+        else
+            -- 离开「提前 N 游戏日」窗口后再进入时，允许重新播报
+            state.last_day_key = nil
         end
 
         local lowest = nil

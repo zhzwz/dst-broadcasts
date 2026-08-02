@@ -337,7 +337,30 @@ local function IsNonlethalDefeated(inst, prefab)
         end
         return IsAtMinHealth(inst)
     end
+    -- daywalker / daywalker2：只认 defeated / SG。
+    -- 出狱疲倦阶段也会贴底并反复推 minhealth，不能用 IsAtMinHealth 旁路（会误报并锁死真击败）。
+    -- 真击败时原版 MakeDefeated 同步设 defeated；若偶发时序落后由重试承接。
     return false
+end
+
+local NONLETHAL_RETRY_DELAY = 2 / 30
+local NONLETHAL_RETRY_MAX = 5
+
+local function TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt)
+    if not inst:IsValid() or inst._dst_broadcasts_defeat_announced then
+        return
+    end
+    if IsNonlethalDefeated(inst, prefab) then
+        inst._dst_broadcasts_defeat_announced = true
+        AnnounceDefeat(name, data, inst._dst_broadcasts_damage)
+        inst._dst_broadcasts_damage = nil
+        return
+    end
+    if attempt < NONLETHAL_RETRY_MAX then
+        inst:DoTaskInTime(NONLETHAL_RETRY_DELAY, Safe.Wrap("boss_minhealth_retry:" .. prefab, function()
+            TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt + 1)
+        end))
+    end
 end
 
 for prefab, boss in pairs(DEATH_BOSSES) do
@@ -399,13 +422,12 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
             return GetDamageBucket(inst)
         end)
         inst:ListenForEvent("minhealth", Safe.Wrap("boss_minhealth:" .. prefab, function(_, data)
+            -- 读档 SetVal(..., "file_load") / 世界填充期会推 minhealth，但不算当场击败
+            if POPULATING or (data ~= nil and data.cause == "file_load") then
+                return
+            end
             inst:DoTaskInTime(0, Safe.Wrap("boss_minhealth_task:" .. prefab, function()
-                if IsNonlethalDefeated(inst, prefab) and
-                    not inst._dst_broadcasts_defeat_announced then
-                    inst._dst_broadcasts_defeat_announced = true
-                    AnnounceDefeat(name, data, inst._dst_broadcasts_damage)
-                    inst._dst_broadcasts_damage = nil
-                end
+                TryAnnounceNonlethalDefeat(inst, prefab, name, data, 1)
             end))
         end))
     end))

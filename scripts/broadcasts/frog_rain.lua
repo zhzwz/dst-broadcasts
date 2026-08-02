@@ -83,6 +83,14 @@ AddSimPostInit(Safe.Wrap("frog_rain_init", function()
     TheWorld:WatchWorldState("precipitationrate", on_condition)
     TheWorld:WatchWorldState("moistureceil", on_condition)
 
-    -- 读档不继承上一段未结算计数（进行中读档从 0 重新计）
-    ClearFrogRainState(TheWorld)
+    if IsFrogRainSpawning(TheWorld) then
+        -- 雨仍在下：保留存档计数继续累加
+        local state = GetState(TheWorld)
+        if state ~= nil and state:Get(COUNT_KEY, 0) > 0 then
+            state:Set(ACTIVE_KEY, true)
+        end
+    else
+        -- 雨已停：丢弃未结算，避免读档瞬间误播旧场次
+        ClearFrogRainState(TheWorld)
+    end
 end))
