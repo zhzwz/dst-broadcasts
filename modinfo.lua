@@ -148,6 +148,16 @@ configuration_options = {
         default = true,
     },
     {
+        name = "drone_delivery_enabled",
+        label = L.drone_label,
+        hover = L.drone_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
+        },
+        default = true,
+    },
+    {
         name = "debug_enabled",
         label = L.debug_label,
         hover = L.debug_hover,

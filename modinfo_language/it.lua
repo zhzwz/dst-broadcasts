@@ -8,9 +8,10 @@ return {
 - Avvisi fame e sanità a 10 e 0
 - Avvisi vita al 20% e 10%
 - Avvisi per congelamento e surriscaldamento
-- Rapporto quotidiano su stagione, meteo, eventi e boss
+- Rapporto quotidiano: stagione, meteo, eventi, boss, arbusti di marmo / miele / colture / essiccati
 - Annunci di apparizione, sconfitta e classifica danni dei boss
 - Comando chat per amicizia e compiti dell'Eremita Burbera
+- Annuncio del drone di consegna WX-78 all'atterraggio
 ]],
     language_label = "Lingua degli annunci",
     language_hover = "Seleziona la lingua degli annunci del server.",
@@ -27,11 +28,13 @@ return {
     hassler_label = "Avvisi Cervoclope e Tassorso",
     hassler_hover = "Avvisa prima dell'attacco e annuncia l'apparizione del boss.",
     morning_label = "Il Quotidiano della Costante",
-    morning_hover = "Ogni mattina annuncia stagione, meteo, eventi e boss vivi.",
+    morning_hover = "Ogni mattina: stagione, meteo, eventi, boss, arbusti di marmo, miele, colture e cibi essiccati.",
     defeat_label = "Annunci sconfitta boss",
     defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
     pearl_label = "Stato dell'Eremita",
     pearl_hover = "Scrivi pearl o 珍珠 in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
+    drone_label = "Avvisi drone di consegna",
+    drone_hover = "Annuncia giocatore, nome e carico del drone di consegna WX-78 all'atterraggio.",
     debug_label = "Registro di debug",
     debug_hover = "Se attivo, gli errori di Broadcasts vengono annunciati anche in gioco.",
     enabled = "Attivato",

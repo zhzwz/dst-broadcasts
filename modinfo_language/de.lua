@@ -8,9 +8,10 @@ return {
 - Warnungen bei Hunger und Verstand bei 10 und 0
 - Gesundheitswarnungen bei 20% und 10%
 - Warnungen bei Erfrieren und Überhitzen
-- Tägliche Berichte zu Saison, Wetter, Ereignissen und Bossen
+- Täglicher Bericht: Saison, Wetter, Ereignisse, Bosse sowie Marmorsträucher / Honig / Nutzpflanzen / Trockengut
 - Ankündigungen zu Boss-Erscheinen, Niederlage und Schadensrangliste
 - Chatbefehl für Freundschaft und offene Aufgaben der Eremitin
+- WX-78-Lieferdrohne bei Landung ansagen
 ]],
     language_label = "Sprache der Ankündigungen",
     language_hover = "Sprache für Server-Ankündigungen wählen.",
@@ -27,11 +28,13 @@ return {
     hassler_label = "Deerclops- und Riesendachs-Warnungen",
     hassler_hover = "Vor dem Angriff warnen und das Erscheinen des Bosses ankündigen.",
     morning_label = "Der Morgen der Konstante",
-    morning_hover = "Jeden Morgen Saison, Wetter, Ereignisse und lebende Bosse melden.",
+    morning_hover = "Jeden Morgen Saison, Wetter, Ereignisse, Bosse sowie reife Marmorsträucher, Honig, Nutzpflanzen und getrocknete Waren.",
     defeat_label = "Boss-Niederlagen-Ankündigungen",
     defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
     pearl_label = "Eremitin-Status",
     pearl_hover = "Schreibe pearl oder 珍珠 in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
+    drone_label = "Lieferdrohnen-Meldungen",
+    drone_hover = "Meldet Spieler, Namen und Fracht der WX-78-Lieferdrohne bei der Landung.",
     debug_label = "Debug-Protokoll",
     debug_hover = "Wenn aktiv, werden Broadcasts-Fehler auch im Spiel angekündigt.",
     enabled = "Aktiviert",

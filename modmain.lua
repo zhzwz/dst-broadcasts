@@ -52,3 +52,7 @@ end
 if GetModConfigData("pearl_status_enabled") then
     modimport("scripts/broadcasts/pearl_status.lua")
 end
+
+if GetModConfigData("drone_delivery_enabled") then
+    modimport("scripts/broadcasts/drone_delivery.lua")
+end

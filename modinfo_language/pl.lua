@@ -8,9 +8,10 @@ return {
 - Ostrzeżenia o głodzie i rozsądku przy 10 i 0
 - Ostrzeżenia o zdrowiu przy 20% i 10%
 - Ostrzeżenia o zamarzaniu i przegrzaniu
-- Codzienny raport o porze roku, pogodzie, wydarzeniach i bossach
+- Codzienny raport: pora roku, pogoda, wydarzenia, bossy oraz marmurowe krzewy / miód / uprawy / suszenie
 - Ogłoszenia o pojawieniu, pokonaniu i rankingu obrażeń bossów
 - Komenda czatu dla przyjaźni i zadań Zrzędliwej Pustelnicy
+- Ogłoszenie lądowania drona dostawczego WX-78
 ]],
     language_label = "Język ogłoszeń",
     language_hover = "Wybierz język ogłoszeń serwera.",
@@ -27,11 +28,13 @@ return {
     hassler_label = "Ostrzeżenia o Jeleklopie i Bordźwiedziu",
     hassler_hover = "Ostrzegać przed atakiem i ogłaszać pojawienie się bossa.",
     morning_label = "Poranek Stałej",
-    morning_hover = "Każdego ranka ogłaszać porę roku, pogodę, wydarzenia i żyjące bossy.",
+    morning_hover = "Każdego ranka: pora roku, pogoda, wydarzenia, bossy oraz marmurowe krzewy, miód, uprawy i suszone zapasy.",
     defeat_label = "Ogłoszenia o pokonaniu bossów",
     defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
     pearl_label = "Status Pustelnicy",
     pearl_hover = "Napisz pearl lub 珍珠 na czacie (także z jaskiń). Auto-ogłoszenie najwyżej raz na dzień gry.",
+    drone_label = "Alerty drona dostawczego",
+    drone_hover = "Ogłasza gracza, nazwę i ładunek drona dostawczego WX-78 po wylądowaniu.",
     debug_label = "Dziennik debugowania",
     debug_hover = "Gdy włączone, błędy Broadcasts są też ogłaszane w grze.",
     enabled = "Włączone",

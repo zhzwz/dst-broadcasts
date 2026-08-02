@@ -8,9 +8,10 @@ return {
 - Alertes faim et santé mentale à 10 et 0
 - Alertes de vie à 20% et 10%
 - Alertes de gel et de surchauffe
-- Rapport quotidien : saison, météo, événements, boss
+- Rapport quotidien : saison, météo, événements, boss, arbustes de marbre / miel / cultures / séchage
 - Annonces d'apparition, de défaite et de classement des dégâts des boss
 - Commande de chat pour l'amitié et les tâches de l'Ermite grincheuse
+- Annonce du drone de livraison WX-78 à l'atterrissage
 ]],
     language_label = "Langue des annonces",
     language_hover = "Choisir la langue des annonces du serveur.",
@@ -27,11 +28,13 @@ return {
     hassler_label = "Alertes Cerf-clope et Blairours",
     hassler_hover = "Avertir avant l'attaque et annoncer l'apparition du boss.",
     morning_label = "Le Quotidien de la Constante",
-    morning_hover = "Annoncer chaque matin saison, météo, événements et boss vivants.",
+    morning_hover = "Chaque matin : saison, météo, événements, boss, arbustes de marbre, miel, cultures et denrées séchées.",
     defeat_label = "Annonces de défaite des boss",
     defeat_hover = "Annoncer la défaite, le coup final et le classement des dégâts réels.",
     pearl_label = "Statut de l'Ermite",
     pearl_hover = "Dites pearl ou 珍珠 dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
+    drone_label = "Alertes drone de livraison",
+    drone_hover = "Annonce le joueur, le nom du drone et sa cargaison à l'atterrissage.",
     debug_label = "Journalisation de débogage",
     debug_hover = "Si activé, les erreurs Broadcasts sont aussi annoncées en jeu.",
     enabled = "Activé",

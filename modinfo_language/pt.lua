@@ -8,9 +8,10 @@ return {
 - Avisos de fome e sanidade em 10 e 0
 - Avisos de vida em 20% e 10%
 - Avisos de congelamento e superaquecimento
-- Relatório diário de estação, clima, eventos e chefes
+- Relatório diário: estação, clima, eventos, chefes, arbustos de mármore / mel / cultivos / secos
 - Anúncios de aparecimento, derrota e ranking de dano de chefes
 - Comando de chat para amizade e tarefas da Eremita Rabugenta
+- Anuncia o drone de entrega do WX-78 ao pousar
 ]],
     language_label = "Idioma dos anúncios",
     language_hover = "Escolher o idioma dos anúncios do servidor.",
@@ -27,11 +28,13 @@ return {
     hassler_label = "Avisos de Cervoclope e Texurso",
     hassler_hover = "Avisar antes do ataque e anunciar o aparecimento do chefe.",
     morning_label = "O Diário da Constante",
-    morning_hover = "Toda manhã informar estação, clima, eventos e chefes vivos.",
+    morning_hover = "Toda manhã: estação, clima, eventos, chefes, arbustos de mármore, mel, cultivos e secos prontos.",
     defeat_label = "Anúncios de derrota de chefes",
     defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
     pearl_label = "Status da Eremita",
     pearl_hover = "Digite pearl ou 珍珠 no chat (também das cavernas). Anúncio automático no máximo uma vez por dia de jogo.",
+    drone_label = "Alertas do drone de entrega",
+    drone_hover = "Anuncia o jogador, o nome e a carga do drone de entrega do WX-78 ao pousar.",
     debug_label = "Registo de depuração",
     debug_hover = "Se ativo, os erros do Broadcasts também são anunciados no jogo.",
     enabled = "Ativado",

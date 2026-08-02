@@ -9,8 +9,8 @@ Timely and clear world event announcements for Don't Starve Together servers.
 [h2]功能｜Features[/h2]
 
 [h3]永恒早报｜The Constant Daily[/h3]
-每天开始时播报世界日期、季节、天气、事件、巨兽等。
-Reports the world day, season, weather, events, bosses, and more at the start of each day.
+每天开始时播报世界日期、季节、天气、近期事件与存活巨兽；并汇总成熟大理石灌木、待收蜂蜜、成熟农作物，以及晾晒架上已晒好待取的物品。
+Reports the world day, season, weather, upcoming events, and living bosses each morning; also summarizes mature marble shrubs, harvestable honey, mature farm plants, and finished drying-rack goods.
 
 [h3]袭击预警｜Attack Warnings[/h3]
 在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点播报。
@@ -31,6 +31,10 @@ Announces once when a player's hunger or sanity drops to 10, and again at 0. Ann
 [h3]Pearl｜寄居蟹隐士[/h3]
 公频聊天发送 pearl 或 珍珠，播报好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动播报一次）。
 Say pearl or 珍珠 in chat to announce friendship and unfinished tasks (works from caves; auto at most once per game day on friendship gain).
+
+[h3]快递无人机｜Delivery Drone[/h3]
+WX-78 快递无人机配送落地时，播报玩家名、无人机名称与内容物。
+Announces the player, drone name, and cargo when a WX-78 delivery drone lands after a successful delivery.
 
 [h3]巨兽动态｜Boss Updates[/h3]
 巨兽现身或被击败时立即向当前分片的所有玩家播报；击败时附带最终一击与按实际伤害量排序的伤害排行。
