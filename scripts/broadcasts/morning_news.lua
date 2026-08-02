@@ -171,26 +171,19 @@ local function AnnounceMorning()
     end
 
     local day = AsInt(state.cycles, 0) + 1
-    local season_day = AsInt(state.elapseddaysinseason, 0) + 1
-    local season_name = S.seasons[state.season] or tostring(state.season or "")
+    local season_name = (S.season_short and S.season_short[state.season]) or
+        S.seasons[state.season] or
+        tostring(state.season or "")
     local events = CollectEvents()
     local bosses = CollectBossNames()
-    local event_summary = #events > 0 and
-        table.concat(events, S.list_separator) or
-        S.morning_no_events
-    local boss_summary = #bosses > 0 and
-        table.concat(bosses, S.list_separator) or
-        S.morning_no_bosses
-
-    Safe.Announce(string.format(
-        S.morning_report,
-        day,
-        season_name,
-        season_day,
-        WeatherSummary(),
-        event_summary,
-        boss_summary
-    ))
+    local message = string.format(S.morning_report, day, season_name, WeatherSummary())
+    if #events > 0 then
+        message = message .. string.format(S.morning_events, table.concat(events, S.list_separator))
+    end
+    if #bosses > 0 then
+        message = message .. string.format(S.morning_bosses, table.concat(bosses, S.list_separator))
+    end
+    Safe.Announce(message .. S.morning_end)
 end
 
 AddSimPostInit(Safe.Wrap("morning_init", function()
