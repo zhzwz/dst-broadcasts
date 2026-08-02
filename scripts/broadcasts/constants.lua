@@ -49,4 +49,7 @@ BROADCASTS_CONSTANTS = {
 
     -- 熊獾袭击计时器名（worldsettingstimer）
     BEARGER_TIMER = "bearger_timetospawn",
+
+    -- 巨兽击败后伤害排行最多播报人数
+    BOSS_DAMAGE_RANKING_MAX = 10,
 }

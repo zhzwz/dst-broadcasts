@@ -29,7 +29,7 @@ Warns players about low durability, low fuel, and broken items they are carrying
 Announces once when a player's hunger or sanity drops to 10, and again at 0. Announces health drops at 20% and 10% with the current percentage. Also announces when a player starts freezing or overheating.
 
 [h3]巨兽动态｜Boss Updates[/h3]
-巨兽现身或被击败时立即向当前分片的所有玩家播报。
-Notifies all players on the current shard when a boss appears or is defeated.
+巨兽现身或被击败时立即向当前分片的所有玩家播报；击败时附带最终一击与按实际伤害量排序的伤害排行。
+Notifies all players on the current shard when a boss appears or is defeated, including the finishing blow and a damage ranking by actual HP dealt.
 当前支持：巨鹿、晶体巨鹿、熊獾、装甲熊獾、龙蝇、蜂王、毒菌蟾蜍、悲惨的毒菌蟾蜍、麋鹿鹅、克劳斯、邪天翁、蚁狮、帝王蟹、恐怖之眼、双子魔眼、梦魇疯猪、拾荒疯猪、大霜鲨、巨大洞穴蠕虫、启迪战争瓦器人、远古守卫塔、远古守护者、远古织影者、天体英雄、天体后裔。
 Currently supported: Deerclops, Crystal Deerclops, Bearger, Armored Bearger, Dragonfly, Bee Queen, Toadstool, Misery Toadstool, Moose/Goose, Klaus, Malbatross, Antlion, Crab King, Eye of Terror, Twins of Terror, Nightmare Werepig, Scrappy Werepig, Frostjaw, Great Depths Worm, Enlightened W.A.R.B.O.T., Ancient Guard Towers, Ancient Guardian, Ancient Fuelweaver, Celestial Champion, Celestial Scion.

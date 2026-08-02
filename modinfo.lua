@@ -10,7 +10,7 @@ Server-side broadcast utility. No client installation required.
 - Health alerts at 20% and 10%
 - Freezing and overheating alerts
 - Daily season, weather, event, and boss reports
-- Boss appearance and defeat announcements
+- Boss appearance, defeat, and damage ranking announcements
 ]],
     language_label = "Broadcast language",
     language_hover = "Select the language used for server announcements.",
@@ -29,7 +29,7 @@ Server-side broadcast utility. No client installation required.
     morning_label = "The Constant Daily",
     morning_hover = "Report the season, weather outlook, upcoming events, and living bosses each morning.",
     defeat_label = "Boss defeat announcements",
-    defeat_hover = "Notify all players in the current shard when a boss is defeated.",
+    defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
     debug_label = "Debug logging",
     debug_hover = "When enabled, Broadcasts errors are also announced in-game.",
     enabled = "Enabled",
@@ -48,7 +48,7 @@ local ZH = {
 - 玩家生命值降至 20% / 10% 时播报
 - 玩家开始过冷或过热时播报
 - 每日季节、天气、事件与存活巨兽早报
-- 巨兽现身与击败播报
+- 巨兽现身、击败与伤害排行播报
 ]],
     language_label = "播报语言",
     language_hover = "选择服务器播报使用的语言。",
@@ -67,7 +67,7 @@ local ZH = {
     morning_label = "永恒早报",
     morning_hover = "每天开始时播报季节、天气趋势、近期事件与存活巨兽。",
     defeat_label = "巨兽击败播报",
-    defeat_hover = "巨兽被击败时向当前分片的所有玩家播报。",
+    defeat_hover = "巨兽被击败时播报最终一击，并按实际伤害量播报伤害排行。",
     debug_label = "调试模式",
     debug_hover = "开启后，Broadcasts 报错会同时出现在游戏播报中。",
     enabled = "启用",
