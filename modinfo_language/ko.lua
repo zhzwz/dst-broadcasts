@@ -1,0 +1,36 @@
+return {
+    description = [[서버 전용 방송 도구입니다. 클라이언트 설치가 필요 없습니다.
+
+- 사냥개, 벌레, 외눈사슴, 곰소리 습격 경고
+- 동굴 이벤트 경고 및 상태 방송
+- 개구리 비가 끝날 때 총 마릿수 방송
+- 낮은 내구도, 낮은 연료, 아이템 파괴 경고
+- 배고픔·정신력 10 / 0 경고
+- 체력 20% / 10% 경고
+- 동상·과열 시작 경고
+- 매일 계절, 날씨, 이벤트, 보스 리포트
+- 보스 출현·처치·피해 순위 방송
+]],
+    language_label = "방송 언어",
+    language_hover = "서버 방송에 사용할 언어를 선택합니다.",
+    item_label = "아이템 상태 경고",
+    item_hover = "플레이어가 소지한 아이템의 낮은 내구도, 낮은 연료, 파괴를 방송합니다.",
+    vitals_label = "플레이어 상태 경고",
+    vitals_hover = "배고픔/정신력/체력 저하 및 동상·과열 시작을 방송합니다.",
+    hounded_label = "사냥개·벌레 경고",
+    hounded_hover = "습격 전 여러 시점에 경고합니다.",
+    cave_events_label = "동굴 이벤트 경고",
+    cave_events_hover = "악몽 주기, 지진, 산성비, 유적 초기화를 방송합니다.",
+    frog_rain_label = "개구리 비 리포트",
+    frog_rain_hover = "각 개구리 비에서 생성된 개구리 수를 세고 끝날 때 총합을 방송합니다.",
+    hassler_label = "외눈사슴·곰소리 경고",
+    hassler_hover = "습격 전에 경고하고 보스 출현 시 즉시 방송합니다.",
+    morning_label = "영원의 아침",
+    morning_hover = "매일 아침 계절, 날씨, 다가오는 이벤트, 생존 보스를 방송합니다.",
+    defeat_label = "보스 처치 방송",
+    defeat_hover = "처치, 마지막 일격, 실제 피해량 기준 순위를 방송합니다.",
+    debug_label = "디버그 로그",
+    debug_hover = "활성화하면 Broadcasts 오류도 게임 내에 방송됩니다.",
+    enabled = "활성화",
+    disabled = "비활성화",
+}

@@ -1,0 +1,36 @@
+return {
+    description = [[Ferramenta de anúncios no servidor. Sem instalação no cliente.
+
+- Avisos de cães de caça, vermes, Cervoclope e Texurso
+- Avisos e anúncios de eventos das cavernas
+- Total de sapos ao fim de cada chuva
+- Avisos de durabilidade, combustível e itens quebrados
+- Avisos de fome e sanidade em 10 e 0
+- Avisos de vida em 20% e 10%
+- Avisos de congelamento e superaquecimento
+- Relatório diário de estação, clima, eventos e chefes
+- Anúncios de aparecimento, derrota e ranking de dano de chefes
+]],
+    language_label = "Idioma dos anúncios",
+    language_hover = "Escolher o idioma dos anúncios do servidor.",
+    item_label = "Avisos de estado de itens",
+    item_hover = "Anunciar baixa durabilidade, baixo combustível e itens quebrados.",
+    vitals_label = "Avisos de estado de jogadores",
+    vitals_hover = "Anunciar fome/sanidade/vida baixas e início de congelamento ou superaquecimento.",
+    hounded_label = "Avisos de cães de caça e vermes",
+    hounded_hover = "Avisar em vários momentos antes de um ataque.",
+    cave_events_label = "Avisos de eventos das cavernas",
+    cave_events_hover = "Anunciar ciclos de pesadelo, terremotos, chuva ácida e reinício das Ruínas.",
+    frog_rain_label = "Relatórios de chuva de sapos",
+    frog_rain_hover = "Contar os sapos de cada chuva e anunciar o total no fim.",
+    hassler_label = "Avisos de Cervoclope e Texurso",
+    hassler_hover = "Avisar antes do ataque e anunciar o aparecimento do chefe.",
+    morning_label = "O Diário da Constante",
+    morning_hover = "Toda manhã informar estação, clima, eventos e chefes vivos.",
+    defeat_label = "Anúncios de derrota de chefes",
+    defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
+    debug_label = "Registo de depuração",
+    debug_hover = "Se ativo, os erros do Broadcasts também são anunciados no jogo.",
+    enabled = "Ativado",
+    disabled = "Desativado",
+}
