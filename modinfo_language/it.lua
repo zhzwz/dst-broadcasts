@@ -10,6 +10,7 @@ return {
 - Avvisi per congelamento e surriscaldamento
 - Rapporto quotidiano su stagione, meteo, eventi e boss
 - Annunci di apparizione, sconfitta e classifica danni dei boss
+- Comando chat per amicizia e compiti dell'Eremita Burbera
 ]],
     language_label = "Lingua degli annunci",
     language_hover = "Seleziona la lingua degli annunci del server.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Ogni mattina annuncia stagione, meteo, eventi e boss vivi.",
     defeat_label = "Annunci sconfitta boss",
     defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
+    pearl_label = "Stato dell'Eremita",
+    pearl_hover = "Scrivi pearl o 珍珠 in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
     debug_label = "Registro di debug",
     debug_hover = "Se attivo, gli errori di Broadcasts vengono annunciati anche in gioco.",
     enabled = "Attivato",

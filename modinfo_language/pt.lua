@@ -10,6 +10,7 @@ return {
 - Avisos de congelamento e superaquecimento
 - Relatório diário de estação, clima, eventos e chefes
 - Anúncios de aparecimento, derrota e ranking de dano de chefes
+- Comando de chat para amizade e tarefas da Eremita Rabugenta
 ]],
     language_label = "Idioma dos anúncios",
     language_hover = "Escolher o idioma dos anúncios do servidor.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Toda manhã informar estação, clima, eventos e chefes vivos.",
     defeat_label = "Anúncios de derrota de chefes",
     defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
+    pearl_label = "Status da Eremita",
+    pearl_hover = "Digite pearl ou 珍珠 no chat (também das cavernas). Anúncio automático no máximo uma vez por dia de jogo.",
     debug_label = "Registo de depuração",
     debug_hover = "Se ativo, os erros do Broadcasts também são anunciados no jogo.",
     enabled = "Ativado",

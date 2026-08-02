@@ -10,6 +10,7 @@ return {
 - Avisos de congelación y sobrecalentamiento
 - Informe diario de estación, clima, eventos y jefes
 - Anuncios de aparición, derrota y ranking de daño de jefes
+- Comando de chat para amistad y tareas de la Ermitaña Cascarrabias
 ]],
     language_label = "Idioma de los anuncios",
     language_hover = "Elige el idioma de los anuncios del servidor.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Cada mañana informar estación, clima, eventos y jefes vivos.",
     defeat_label = "Anuncios de derrota de jefes",
     defeat_hover = "Anunciar la derrota, el golpe final y el ranking de daño real.",
+    pearl_label = "Estado de la Ermitaña",
+    pearl_hover = "Escribe pearl o 珍珠 en el chat (también desde cuevas). Anuncio automático como máximo una vez por día de juego.",
     debug_label = "Registro de depuración",
     debug_hover = "Si está activo, los errores de Broadcasts también se anuncian en el juego.",
     enabled = "Activado",

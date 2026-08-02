@@ -48,3 +48,7 @@ end
 if GetModConfigData("boss_defeat_enabled") then
     modimport("scripts/broadcasts/boss_defeat.lua")
 end
+
+if GetModConfigData("pearl_status_enabled") then
+    modimport("scripts/broadcasts/pearl_status.lua")
+end

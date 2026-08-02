@@ -11,6 +11,7 @@ Server-side broadcast utility. No client installation required.
 - Freezing and overheating alerts
 - Daily season, weather, event, and boss reports
 - Boss appearance, defeat, and damage ranking announcements
+- Chat pearl / 珍珠 for Pearl friendship and unfinished tasks (cross-shard)
 ]],
     language_label = "Broadcast language",
     language_hover = "Select the language used for server announcements.",
@@ -30,6 +31,8 @@ Server-side broadcast utility. No client installation required.
     morning_hover = "Report the season, weather outlook, upcoming events, and living bosses each morning.",
     defeat_label = "Boss defeat announcements",
     defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
+    pearl_label = "Pearl status",
+    pearl_hover = "Say pearl or 珍珠 in chat to announce friendship and unfinished tasks (works from caves). Auto-announces at most once per game day on friendship gain.",
     debug_label = "Debug logging",
     debug_hover = "When enabled, Broadcasts errors are also announced in-game.",
     enabled = "Enabled",

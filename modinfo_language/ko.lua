@@ -10,6 +10,7 @@ return {
 - 동상·과열 시작 경고
 - 매일 계절, 날씨, 이벤트, 보스 리포트
 - 보스 출현·처치·피해 순위 방송
+- 채팅 명령으로 심술궂은 은둔자 호감도와 미완료 임무 확인
 ]],
     language_label = "방송 언어",
     language_hover = "서버 방송에 사용할 언어를 선택합니다.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "매일 아침 계절, 날씨, 다가오는 이벤트, 생존 보스를 방송합니다.",
     defeat_label = "보스 처치 방송",
     defeat_hover = "처치, 마지막 일격, 실제 피해량 기준 순위를 방송합니다.",
+    pearl_label = "은둔자 상태",
+    pearl_hover = "채팅에 pearl 또는 珍珠 입력(동굴에서도 가능). 호감도 상승 시 게임일당 최대 1회 자동 알림.",
     debug_label = "디버그 로그",
     debug_hover = "활성화하면 Broadcasts 오류도 게임 내에 방송됩니다.",
     enabled = "활성화",

@@ -138,6 +138,16 @@ configuration_options = {
         default = true,
     },
     {
+        name = "pearl_status_enabled",
+        label = L.pearl_label,
+        hover = L.pearl_hover,
+        options = {
+            { description = L.enabled, data = true },
+            { description = L.disabled, data = false },
+        },
+        default = true,
+    },
+    {
         name = "debug_enabled",
         label = L.debug_label,
         hover = L.debug_hover,

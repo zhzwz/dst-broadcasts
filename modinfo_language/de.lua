@@ -10,6 +10,7 @@ return {
 - Warnungen bei Erfrieren und Überhitzen
 - Tägliche Berichte zu Saison, Wetter, Ereignissen und Bossen
 - Ankündigungen zu Boss-Erscheinen, Niederlage und Schadensrangliste
+- Chatbefehl für Freundschaft und offene Aufgaben der Eremitin
 ]],
     language_label = "Sprache der Ankündigungen",
     language_hover = "Sprache für Server-Ankündigungen wählen.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Jeden Morgen Saison, Wetter, Ereignisse und lebende Bosse melden.",
     defeat_label = "Boss-Niederlagen-Ankündigungen",
     defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
+    pearl_label = "Eremitin-Status",
+    pearl_hover = "Schreibe pearl oder 珍珠 in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
     debug_label = "Debug-Protokoll",
     debug_hover = "Wenn aktiv, werden Broadcasts-Fehler auch im Spiel angekündigt.",
     enabled = "Aktiviert",

@@ -10,6 +10,7 @@ return {
 - Ostrzeżenia o zamarzaniu i przegrzaniu
 - Codzienny raport o porze roku, pogodzie, wydarzeniach i bossach
 - Ogłoszenia o pojawieniu, pokonaniu i rankingu obrażeń bossów
+- Komenda czatu dla przyjaźni i zadań Zrzędliwej Pustelnicy
 ]],
     language_label = "Język ogłoszeń",
     language_hover = "Wybierz język ogłoszeń serwera.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Każdego ranka ogłaszać porę roku, pogodę, wydarzenia i żyjące bossy.",
     defeat_label = "Ogłoszenia o pokonaniu bossów",
     defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
+    pearl_label = "Status Pustelnicy",
+    pearl_hover = "Napisz pearl lub 珍珠 na czacie (także z jaskiń). Auto-ogłoszenie najwyżej raz na dzień gry.",
     debug_label = "Dziennik debugowania",
     debug_hover = "Gdy włączone, błędy Broadcasts są też ogłaszane w grze.",
     enabled = "Włączone",

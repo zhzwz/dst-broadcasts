@@ -10,6 +10,7 @@ return {
 - 玩家開始過冷或過熱時播報
 - 每日季節、天氣、事件與存活巨獸早報
 - 巨獸現身、擊敗與傷害排行播報
+- 聊天命令查詢寄居蟹隱士好感與待辦任務
 ]],
     language_label = "播報語言",
     language_hover = "選擇伺服器播報使用的語言。",
@@ -29,6 +30,8 @@ return {
     morning_hover = "每天開始時播報季節、天氣趨勢、近期事件與存活巨獸。",
     defeat_label = "巨獸擊敗播報",
     defeat_hover = "巨獸被擊敗時播報最終一擊，並按實際傷害量播報傷害排行。",
+    pearl_label = "寄居蟹隱士查詢",
+    pearl_hover = "公頻聊天發送 pearl 或 珍珠，播報好感與未完成任務；洞穴也可查詢。好感提升時每個遊戲日最多自動播報一次。",
     debug_label = "除錯模式",
     debug_hover = "開啟後，Broadcasts 錯誤會同時出現在遊戲播報中。",
     enabled = "啟用",

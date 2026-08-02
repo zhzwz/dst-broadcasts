@@ -10,6 +10,7 @@ return {
 - Alertes de gel et de surchauffe
 - Rapport quotidien : saison, météo, événements, boss
 - Annonces d'apparition, de défaite et de classement des dégâts des boss
+- Commande de chat pour l'amitié et les tâches de l'Ermite grincheuse
 ]],
     language_label = "Langue des annonces",
     language_hover = "Choisir la langue des annonces du serveur.",
@@ -29,6 +30,8 @@ return {
     morning_hover = "Annoncer chaque matin saison, météo, événements et boss vivants.",
     defeat_label = "Annonces de défaite des boss",
     defeat_hover = "Annoncer la défaite, le coup final et le classement des dégâts réels.",
+    pearl_label = "Statut de l'Ermite",
+    pearl_hover = "Dites pearl ou 珍珠 dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
     debug_label = "Journalisation de débogage",
     debug_hover = "Si activé, les erreurs Broadcasts sont aussi annoncées en jeu.",
     enabled = "Activé",
