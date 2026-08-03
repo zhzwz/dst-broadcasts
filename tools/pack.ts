@@ -7,8 +7,8 @@
  *   默认目标目录: broadcasts-<version>
  */
 
+import { basename, isAbsolute, relative, resolve, sep } from 'node:path'
 import { $, Glob } from 'bun'
-import { isAbsolute, relative, resolve, sep } from 'node:path'
 import luamin from 'luamin'
 import { buildModinfo } from './build_modinfo'
 import { runMain } from './cli'
@@ -81,14 +81,24 @@ async function syncModinfoVersion(version: string) {
   }
 }
 
+/** 打包目录中排除非运行时文件：README.md（任意大小写）、*.test.lua，以及杂项。 */
 async function cleanupJunk(outDir: string) {
-  for await (const path of new Glob('**/{.DS_Store,*.zip}').scan({
+  for await (const path of new Glob('**/*').scan({
     cwd: outDir,
     absolute: true,
     dot: true,
     onlyFiles: true,
   })) {
-    await $`rm -f ${path}`.quiet()
+    const name = basename(path)
+    const lower = name.toLowerCase()
+    if (
+      lower === 'readme.md'
+      || name.endsWith('.test.lua')
+      || name === '.DS_Store'
+      || lower.endsWith('.zip')
+    ) {
+      await $`rm -f ${path}`.quiet()
+    }
   }
 }
 
@@ -137,12 +147,13 @@ export async function packMod(outDirArg?: string): Promise<string> {
   await buildModinfo(`${outDir}/modinfo.lua`)
   await $`cp ${ROOT}/modmain.lua ${outDir}/`.quiet()
   await $`cp -R ${ROOT}/scripts ${outDir}/`.quiet()
+  await cleanupJunk(outDir)
 
   const luaFiles = [
     `${outDir}/modinfo.lua`,
     `${outDir}/modmain.lua`,
     ...(await Array.fromAsync(
-      new Glob('scripts/broadcasts/*.lua').scan({ cwd: outDir, absolute: true }),
+      new Glob('scripts/**/*.lua').scan({ cwd: outDir, absolute: true }),
     )),
   ]
 
@@ -154,8 +165,6 @@ export async function packMod(outDirArg?: string): Promise<string> {
       throw new Error(`压缩失败：${rel}${error instanceof Error ? ` (${error.message})` : ''}`)
     }
   }
-
-  await cleanupJunk(outDir)
 
   console.log('Lua 文件已压缩')
   console.log(`已生成 ${outDir.startsWith(`${ROOT}/`) ? outDir.slice(ROOT.length + 1) : outDir}/`)

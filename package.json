@@ -6,7 +6,8 @@
   "scripts": {
     "build-modinfo": "bun run tools/build_modinfo.ts",
     "pack": "bun run tools/release.ts --pack-only",
-    "release": "bun run tools/release.ts"
+    "release": "bun run tools/release.ts",
+    "test": "bun run tools/run_lua_tests.ts"
   },
   "peerDependencies": {
     "typescript": "^5"
