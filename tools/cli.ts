@@ -13,16 +13,23 @@ export function fail(message: string, code = 1): never {
   exit(code)
 }
 
-/** 跑完成功则自然结束（exit 0）；失败打印 message 后 exit 1，不二次抛出。 */
+/**
+ * 跑完显式 exit：成功 0，失败 1。
+ * steamworks.js 等原生句柄会卡住事件循环，不能依赖「自然结束」。
+ */
 export function runMain(main: () => Promise<void>): void {
-  void main().catch((error: unknown) => {
-    if (error instanceof Error) {
-      if (error.message) {
-        console.error(error.message)
+  void main()
+    .then(() => {
+      exit(0)
+    })
+    .catch((error: unknown) => {
+      if (error instanceof Error) {
+        if (error.message) {
+          console.error(error.message)
+        }
+      } else {
+        console.error(error)
       }
-    } else {
-      console.error(error)
-    }
-    exit(1)
-  })
+      exit(1)
+    })
 }
