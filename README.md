@@ -1,19 +1,25 @@
 # Broadcasts
 
-《饥荒联机版》纯服务端事件播报模组。
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3774915634)
 
-- 永恒早报：季节天气、近期事件、存活巨兽，以及大理石灌木 / 蜂蜜 / 农作物 / 晾晒待收获
-- 袭击预警、洞穴事件、青蛙雨统计
-- 物品与玩家状态、巨兽现身与击败排行
-- 聊天 `pearl` 查询寄居蟹隐士
-- WX-78 快递无人机配送落地播报
+永恒电台，《饥荒联机版》纯服务端模组。
 
-订阅与详细说明：[Steam 创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3774915634)
+包括但不限于播报以下内容：
 
-## 模组信息
+- 季节、天气、袭击预警
+- 世界事件（青蛙雨、洞穴地震）
+- 玩家的状态与物品
+- 巨兽的状态与击杀
+- 大理石灌木、蜂蜜、农作物、晾晒架等待收获信息
+- WX-78 快递无人机落地
+- 按 `Y` 聊天输入 `pearl` 可查询寄居蟹隐士好感度与任务
 
-源文件在 `modinfo/`，打包或本地测试会生成根目录 `modinfo.lua`（gitignore）：
+## 开发环境
 
-- `modinfo/base.lua`：元数据与配置项
-- `modinfo/language/*.lua`：配置页 / 描述多语言
-- `bun run build-modinfo`：生成；`pack` / `release` 会自动跑
+```sh
+bun install
+# 会生成 modinfo.lua
+bun run build-modinfo
+# 打包发布
+bun run release
+```
