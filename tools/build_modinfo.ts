@@ -12,53 +12,55 @@
  *   默认输出: <repo>/modinfo.lua
  */
 
-const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
-const MODINFO_DIR = `${ROOT}/modinfo`;
-const MODINFO_BASE = `${MODINFO_DIR}/base.lua`;
-const MODINFO_OUT = `${ROOT}/modinfo.lua`;
-const LANG_DIR = `${MODINFO_DIR}/language`;
+import { runMain } from './cli'
 
-const BEGIN = "-- BEGIN_MODINFO_LANGUAGES";
-const END = "-- END_MODINFO_LANGUAGES";
+const ROOT = decodeURIComponent(new URL('..', import.meta.url).pathname).replace(/\/$/, '')
+const MODINFO_DIR = `${ROOT}/modinfo`
+const MODINFO_BASE = `${MODINFO_DIR}/base.lua`
+const MODINFO_OUT = `${ROOT}/modinfo.lua`
+const LANG_DIR = `${MODINFO_DIR}/language`
+
+const BEGIN = '-- BEGIN_MODINFO_LANGUAGES'
+const END = '-- END_MODINFO_LANGUAGES'
 
 const LANG_CODES = [
-  "en",
-  "zh",
-  "zht",
-  "fr",
-  "de",
-  "it",
-  "es",
-  "pt",
-  "pl",
-  "ru",
-  "ko",
-  "ja",
-] as const;
+  'en',
+  'zh',
+  'zht',
+  'fr',
+  'de',
+  'it',
+  'es',
+  'pt',
+  'pl',
+  'ru',
+  'ko',
+  'ja',
+] as const
 
 async function readLanguageTable(code: string): Promise<string> {
-  const text = (await Bun.file(`${LANG_DIR}/${code}.lua`).text()).replace(/^\uFEFF/, "");
-  const table = text.match(/^return\s*(\{[\s\S]*\})\s*$/)?.[1];
+  const text = (await Bun.file(`${LANG_DIR}/${code}.lua`).text()).replace(/^\uFEFF/, '')
+  const table = text.match(/^return\s*(\{[\s\S]*\})\s*$/)?.[1]
   if (!table) {
-    throw new Error(`无法解析 modinfo/language/${code}.lua：需要整文件为 return { ... }`);
+    throw new Error(`无法解析 modinfo/language/${code}.lua：需要整文件为 return { ... }`)
   }
-  return table;
+  return table
 }
 
 function formatLangEntry(code: string, table: string): string {
   // 不改动表体缩进，避免 [[...]] 长字符串内容被注入空格
-  return `${code} = ${table},`;
+  return `${code} = ${table},`
 }
 
 async function buildLanguageBlock(): Promise<string> {
-  const entries: string[] = [];
+  const entries: string[] = []
   for (const code of LANG_CODES) {
-    entries.push(formatLangEntry(code, await readLanguageTable(code)));
+    entries.push(formatLangEntry(code, await readLanguageTable(code)))
   }
 
-  return `${BEGIN}
-local MODINFO_LANG = {
-${entries.join("\n")}
+  // 不写入 BEGIN/END 与 ---@ 等编辑器注释，生成物只保留运行时所需代码
+  return `local MODINFO_LANG = {
+${entries.join('\n')}
 }
 
 local L = ChooseTranslationTable({
@@ -75,39 +77,43 @@ local L = ChooseTranslationTable({
     ru = MODINFO_LANG.ru,
     ko = MODINFO_LANG.ko,
     ja = MODINFO_LANG.ja,
-})
-${END}`;
+})`
 }
 
 function replaceLanguageBlock(base: string, block: string): string {
   if (!base.includes(BEGIN) || !base.includes(END)) {
-    throw new Error("modinfo/base.lua 缺少 BEGIN_MODINFO_LANGUAGES / END_MODINFO_LANGUAGES 标记");
+    throw new Error('modinfo/base.lua 缺少 BEGIN_MODINFO_LANGUAGES / END_MODINFO_LANGUAGES 标记')
   }
   const pattern = new RegExp(
-    `${BEGIN.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[\\s\\S]*?${END.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`,
-  );
-  const next = base.replace(pattern, block);
+    `${BEGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${END.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`,
+  )
+  const next = base.replace(pattern, block)
   if (next === base) {
-    throw new Error("未能替换 modinfo/base.lua 中的语言段");
+    throw new Error('未能替换 modinfo/base.lua 中的语言段')
   }
-  return next;
+  return next
+}
+
+/** 去掉 EmmyLua / 源文件说明注释，避免带进工坊包 */
+function stripSourceComments(lua: string): string {
+  const withoutAnnotations = lua
+    .split('\n')
+    .filter(line => !line.trimStart().startsWith('---@'))
+    .join('\n')
+  return withoutAnnotations.replace(/^(?:--[^\n]*\n)+/, '')
 }
 
 export async function buildModinfo(targetPath = MODINFO_OUT): Promise<void> {
-  const base = await Bun.file(MODINFO_BASE).text();
-  const block = await buildLanguageBlock();
-  await Bun.write(targetPath, replaceLanguageBlock(base, block));
+  const base = await Bun.file(MODINFO_BASE).text()
+  const block = await buildLanguageBlock()
+  await Bun.write(targetPath, stripSourceComments(replaceLanguageBlock(base, block)))
 }
 
 if (import.meta.main) {
-  const out = Bun.argv[2] || MODINFO_OUT;
-  buildModinfo(out)
-    .then(() => {
-      const rel = out.startsWith(`${ROOT}/`) ? out.slice(ROOT.length + 1) : out;
-      console.log(`已从 modinfo/ 生成 ${rel}`);
-    })
-    .catch((error) => {
-      console.error(error instanceof Error ? error.message : error);
-      process.exit(1);
-    });
+  runMain(async () => {
+    const out = Bun.argv[2] || MODINFO_OUT
+    await buildModinfo(out)
+    const rel = out.startsWith(`${ROOT}/`) ? out.slice(ROOT.length + 1) : out
+    console.log(`已从 modinfo/ 生成 ${rel}`)
+  })
 }
