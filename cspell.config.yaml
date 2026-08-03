@@ -15,21 +15,33 @@ words:
   - bearger # 熊獾
   - currenthealth
   - deerclops # 独眼巨鹿
+  - ents
   - forumthread
+  - frograin # 青蛙雨
+  - fueltype # 燃料类型
   - hassler
   - hungerdelta # 饱食度组件事件
   - inventoryitem # 可进背包的物品组件
   - ismastersim
+  - israining # 降雨
+  - isspring # 春季
   - luamin
+  - lunar
+  - lunarfrog # 明眼青蛙
+  - luarc
   - minhealth
   - modimport
   - modmain
   - modname
+  - moistureceil
   - moisturedelta # 湿度组件事件
   - overheattemp # 过热温度
+  - percentusedchange # 燃料组件事件：百分比变化
   - playerghost # 玩家幽灵
+  - precipitationrate # 降水率
   - sanitydelta # 理智组件事件
-  - startfreezing # 温度组件事件：开始冻结
-  - startoverheating # 温度组件事件：开始过热
+  - shardid # 分片 ID
+  - startfreezing # 开始冻结
+  - startoverheating # 开始过热
   - steamworks
   - temperaturedelta # 温度组件事件

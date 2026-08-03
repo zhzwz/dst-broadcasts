@@ -33,7 +33,9 @@ do
   for _ = 1, 40 do
     local picked = Pick(options)
     expect(picked == "a" or picked == "b" or picked == "c", "random pick in set")
-    seen[picked] = true
+    if picked ~= nil then
+      seen[picked] = true
+    end
   end
   expect(seen.a or seen.b or seen.c, "at least one pick recorded")
 end

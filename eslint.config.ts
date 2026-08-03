@@ -10,4 +10,13 @@ export default zhzwz({
       'no-console': 'off',
     },
   },
+  {
+    files: ['**/.luarc.json'],
+    rules: {
+      'jsonc/sort-array-values': ['error', {
+        pathPattern: '^diagnostics\\.globals$',
+        order: { type: 'asc' },
+      }],
+    },
+  },
 ])
