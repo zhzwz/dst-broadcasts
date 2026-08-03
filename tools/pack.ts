@@ -119,6 +119,9 @@ export async function packMod(outDirArg?: string): Promise<string> {
   if (!(await pathExists(`${ROOT}/modmain.lua`))) {
     throw new Error(`找不到 ${ROOT}/modmain.lua`);
   }
+  if (!(await pathExists(`${ROOT}/modinfo_language`))) {
+    throw new Error(`找不到 ${ROOT}/modinfo_language`);
+  }
   if (!(await pathExists(`${ROOT}/scripts`))) {
     throw new Error(`找不到 ${ROOT}/scripts`);
   }
@@ -130,11 +133,15 @@ export async function packMod(outDirArg?: string): Promise<string> {
   await $`rm -rf ${outDir}`.quiet();
   await $`mkdir -p ${outDir}`.quiet();
   await $`cp ${ROOT}/modinfo.lua ${ROOT}/modmain.lua ${outDir}/`.quiet();
+  await $`cp -R ${ROOT}/modinfo_language ${outDir}/`.quiet();
   await $`cp -R ${ROOT}/scripts ${outDir}/`.quiet();
 
   const luaFiles = [
     `${outDir}/modinfo.lua`,
     `${outDir}/modmain.lua`,
+    ...(await Array.fromAsync(
+      new Glob("modinfo_language/*.lua").scan({ cwd: outDir, absolute: true }),
+    )),
     ...(await Array.fromAsync(
       new Glob("scripts/broadcasts/*.lua").scan({ cwd: outDir, absolute: true }),
     )),
