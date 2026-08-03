@@ -3,19 +3,19 @@
 ]]
 
 local LANGUAGE_FILES = {
-    zh = "scripts/broadcasts/language/zh.lua",
-    zhr = "scripts/broadcasts/language/zh.lua",
-    zht = "scripts/broadcasts/language/zht.lua",
-    en = "scripts/broadcasts/language/en.lua",
-    fr = "scripts/broadcasts/language/fr.lua",
-    de = "scripts/broadcasts/language/de.lua",
-    it = "scripts/broadcasts/language/it.lua",
-    es = "scripts/broadcasts/language/es.lua",
-    pt = "scripts/broadcasts/language/pt.lua",
-    pl = "scripts/broadcasts/language/pl.lua",
-    ru = "scripts/broadcasts/language/ru.lua",
-    ko = "scripts/broadcasts/language/ko.lua",
-    ja = "scripts/broadcasts/language/ja.lua",
+  zh = "scripts/broadcasts/language/zh.lua",
+  zhr = "scripts/broadcasts/language/zh.lua",
+  zht = "scripts/broadcasts/language/zht.lua",
+  en = "scripts/broadcasts/language/en.lua",
+  fr = "scripts/broadcasts/language/fr.lua",
+  de = "scripts/broadcasts/language/de.lua",
+  it = "scripts/broadcasts/language/it.lua",
+  es = "scripts/broadcasts/language/es.lua",
+  pt = "scripts/broadcasts/language/pt.lua",
+  pl = "scripts/broadcasts/language/pl.lua",
+  ru = "scripts/broadcasts/language/ru.lua",
+  ko = "scripts/broadcasts/language/ko.lua",
+  ja = "scripts/broadcasts/language/ja.lua",
 }
 
 local language = GetModConfigData("language")
