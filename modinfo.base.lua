@@ -7,7 +7,7 @@ local L = nil -- placeholder; replaced by embed-modinfo
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
-version = "1.5.2"
+version = "1.5.3"
 
 forumthread = ""
 
