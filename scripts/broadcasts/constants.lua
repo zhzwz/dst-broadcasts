@@ -9,18 +9,6 @@ BROADCASTS_CONSTANTS = {
   -- 调试模式开启时，播报到聊天的最大字节数（超出截断并加 "..."）
   DEBUG_CHAT_MAX = 400,
 
-  -- 袭击预警：提前多少个游戏日播报（1 = 剩余 ≤ 1 游戏日时播报）
-  ATTACK_WARNING_ADVANCE_DAYS = 1,
-
-  -- 袭击预警：现实时间阈值（秒）。须与 language 文案中 durations 的键一致
-  ATTACK_WARNING_REAL_THRESHOLDS = { 300, 120, 60, 30, 10, 5 },
-
-  -- 袭击预警轮询间隔（秒）
-  ATTACK_WARNING_POLL_SECONDS = 1,
-
-  -- 猎犬/蠕虫“已开始袭击”检测轮询间隔（秒）
-  HOUNDED_ATTACK_POLL_SECONDS = 1,
-
   -- 可缝补物品（FUELTYPE.USAGE）耐久播报阈值（百分比）
   USAGE_SEW_THRESHOLDS = { 20, 10, 5, 4, 3, 2, 1 },
 
@@ -43,12 +31,6 @@ BROADCASTS_CONSTANTS = {
     spring = "summer",
     summer = "autumn",
   },
-
-  -- 巨鹿袭击计时器名（worldsettingstimer）
-  DEERCLOPS_TIMER = "deerclops_timetoattack",
-
-  -- 熊獾袭击计时器名（worldsettingstimer）
-  BEARGER_TIMER = "bearger_timetospawn",
 
   -- 巨兽击败后伤害排行最多播报人数
   BOSS_DAMAGE_RANKING_MAX = 10,

@@ -11,14 +11,18 @@
 ---@field item_hover string
 ---@field vitals_label string
 ---@field vitals_hover string
----@field hounded_label string
----@field hounded_hover string
+---@field hounds_label string
+---@field hounds_hover string
+---@field depths_worms_label string
+---@field depths_worms_hover string
+---@field deerclops_label string
+---@field deerclops_hover string
+---@field bearger_label string
+---@field bearger_hover string
 ---@field cave_events_label string
 ---@field cave_events_hover string
 ---@field frog_rain_label string
 ---@field frog_rain_hover string
----@field hassler_label string
----@field hassler_hover string
 ---@field morning_label string
 ---@field morning_hover string
 ---@field defeat_label string
@@ -41,14 +45,18 @@ local L = {
   item_hover = "",
   vitals_label = "",
   vitals_hover = "",
-  hounded_label = "",
-  hounded_hover = "",
+  hounds_label = "",
+  hounds_hover = "",
+  depths_worms_label = "",
+  depths_worms_hover = "",
+  deerclops_label = "",
+  deerclops_hover = "",
+  bearger_label = "",
+  bearger_hover = "",
   cave_events_label = "",
   cave_events_hover = "",
   frog_rain_label = "",
   frog_rain_hover = "",
-  hassler_label = "",
-  hassler_hover = "",
   morning_label = "",
   morning_hover = "",
   defeat_label = "",
@@ -128,9 +136,39 @@ configuration_options = {
     default = true,
   },
   {
-    name = "hounded_enabled",
-    label = L.hounded_label,
-    hover = L.hounded_hover,
+    name = "hounds_warning_enabled",
+    label = L.hounds_label,
+    hover = L.hounds_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "depths_worms_warning_enabled",
+    label = L.depths_worms_label,
+    hover = L.depths_worms_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "deerclops_warning_enabled",
+    label = L.deerclops_label,
+    hover = L.deerclops_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "bearger_warning_enabled",
+    label = L.bearger_label,
+    hover = L.bearger_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },
@@ -151,16 +189,6 @@ configuration_options = {
     name = "frog_rain_enabled",
     label = L.frog_rain_label,
     hover = L.frog_rain_hover,
-    options = {
-      { description = L.enabled,  data = true },
-      { description = L.disabled, data = false },
-    },
-    default = true,
-  },
-  {
-    name = "hassler_boss_enabled",
-    label = L.hassler_label,
-    hover = L.hassler_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

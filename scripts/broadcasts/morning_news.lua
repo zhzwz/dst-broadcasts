@@ -1,12 +1,17 @@
 --[[
-  永恒早报：跨天时播报日期、季节、天气、近期事件、存活巨兽，
+  永恒早报：跨天时播报日期、季节、天气、换季提示、存活巨兽，
   以及成熟大理石灌木、待收蜂蜜、成熟农作物与晾晒待收获物品。
 ]]
+
+modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
+modimport("scripts/broadcasts/shared/is_at_min_health.lua")
 
 local S = BROADCASTS_STRINGS
 local N = S.bosses
 local C = BROADCASTS_CONSTANTS
 local Safe = BROADCASTS_SAFE
+local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
+local IsAtMinHealth = BROADCASTS_IS_AT_MIN_HEALTH
 
 local BOSSES = {
   { name = N.deerclops,        prefabs = { "deerclops" } },
@@ -86,18 +91,6 @@ local function AppendFormatted(message, fmt, ...)
     return message
   end
   return message .. string.format(fmt, ...)
-end
-
-local function IsAtMinHealth(inst)
-  local health = inst.components ~= nil and inst.components.health or nil
-  if health == nil or type(health.currenthealth) ~= "number" then
-    return false
-  end
-  local minhealth = health.minhealth
-  if type(minhealth) ~= "number" then
-    minhealth = 0
-  end
-  return health.currenthealth <= minhealth
 end
 
 local function IsAliveBoss(inst, boss)
@@ -205,18 +198,6 @@ local function GetFarmPlantCountKey(inst)
     return inst.prefab
   end
   return nil
-end
-
-local function GetPrefabDisplayName(prefab)
-  if type(prefab) ~= "string" or prefab == "" then
-    return nil
-  end
-  local names = STRINGS and STRINGS.NAMES
-  local display = type(names) == "table" and names[string.upper(prefab)] or nil
-  if type(display) == "string" and display ~= "" then
-    return "[" .. display .. "]"
-  end
-  return "[" .. prefab .. "]"
 end
 
 local function AddNamedCount(counts, prefab, amount)
@@ -393,25 +374,6 @@ local function CollectWorldScan()
       FormatNamedCountSummary(S.morning_dried, dried_counts)
 end
 
-local function FormatDuration(seconds)
-  local whole = AsInt(seconds, 0)
-  if whole < 60 then
-    return string.format(S.morning_duration_seconds, math.max(1, whole))
-  end
-  return string.format(S.morning_duration_minutes, math.max(1, math.ceil(whole / 60)))
-end
-
-local function AddAttack(events, name, seconds)
-  local day_seconds = TUNING.TOTAL_DAY_TIME
-  if type(seconds) == "number" and
-      seconds == seconds and
-      seconds > 0 and
-      type(day_seconds) == "number" and
-      seconds <= day_seconds then
-    table.insert(events, string.format(S.morning_attack, name, FormatDuration(seconds)))
-  end
-end
-
 local function CollectEvents()
   local events = {}
   local state = TheWorld.state
@@ -421,30 +383,6 @@ local function CollectEvents()
       S.seasons[next_season] ~= nil then
     table.insert(events, string.format(S.morning_season_change, S.seasons[next_season]))
   end
-
-  local hounded = TheWorld.components.hounded
-  if hounded ~= nil and hounded.GetAttacking ~= nil and hounded.GetTimeToAttack ~= nil then
-    if not hounded:GetAttacking() then
-      local name = TheWorld:HasTag("cave") and N.depths_worms or N.hounds
-      AddAttack(events, name, hounded:GetTimeToAttack())
-    end
-  end
-
-  if not TheWorld:HasTag("cave") then
-    local timers = TheWorld.components.worldsettingstimer
-    if timers ~= nil then
-      local attacks = {
-        { name = N.deerclops, timer = C.DEERCLOPS_TIMER },
-        { name = N.bearger,   timer = C.BEARGER_TIMER },
-      }
-      for _, attack in ipairs(attacks) do
-        if timers:ActiveTimerExists(attack.timer) and not timers:IsPaused(attack.timer) then
-          AddAttack(events, attack.name, timers:GetTimeLeft(attack.timer))
-        end
-      end
-    end
-  end
-
   return events
 end
 

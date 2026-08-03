@@ -1,9 +1,13 @@
 --[[
-  猎犬 / 洞穴蠕虫等 hounded 袭击预警。
+  猎犬 / 洞穴蠕虫袭击预警（含开始播报）。
+  按世界分片与独立配置启用。
 ]]
 
 local Safe = BROADCASTS_SAFE
-local C = BROADCASTS_CONSTANTS
+local C = BROADCASTS_ATTACK_WARNING
+
+local HOUNDS_ENABLED = GetModConfigData("hounds_warning_enabled")
+local WORMS_ENABLED = GetModConfigData("depths_worms_warning_enabled")
 
 local function AttackName()
   if TheWorld:HasTag("cave") then
@@ -12,8 +16,18 @@ local function AttackName()
   return BROADCASTS_STRINGS.bosses.hounds
 end
 
+local function IsEnabledHere()
+  if TheWorld:HasTag("cave") then
+    return WORMS_ENABLED
+  end
+  return HOUNDS_ENABLED
+end
+
 AddSimPostInit(Safe.Wrap("hounded_init", function()
   if not TheWorld.ismastersim then
+    return
+  end
+  if not IsEnabledHere() then
     return
   end
   if TheWorld.components.hounded == nil then

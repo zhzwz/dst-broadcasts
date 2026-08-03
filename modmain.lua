@@ -8,7 +8,6 @@ GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL,
 modimport("scripts/broadcasts/language/init.lua")
 modimport("scripts/broadcasts/constants.lua")
 modimport("scripts/broadcasts/safe.lua")
-modimport("scripts/broadcasts/attack_warning.lua")
 
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then
@@ -27,19 +26,13 @@ if GetModConfigData("player_vitals_enabled") then
   modimport("scripts/broadcasts/player_temperature.lua")
 end
 
-if GetModConfigData("hounded_enabled") then
-  modimport("scripts/broadcasts/hounded.lua")
-end
+modimport("scripts/broadcasts/features/attack_warning/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")
 end
 
 modimport("scripts/broadcasts/frog_rain.lua")
-
-if GetModConfigData("hassler_boss_enabled") then
-  modimport("scripts/broadcasts/hassler_boss.lua")
-end
 
 if GetModConfigData("morning_news_enabled") then
   modimport("scripts/broadcasts/morning_news.lua")
