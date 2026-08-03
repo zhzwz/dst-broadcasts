@@ -22,6 +22,7 @@ BROADCASTS_STRINGS = {
   item_broke = "[%s] : %s est détruit !",
   armor = "armure",
   list_separator = ", ",
+  character_quote = " « %s »",
   seasons = {
     autumn = "Automne",
     winter = "Hiver",
@@ -64,11 +65,65 @@ BROADCASTS_STRINGS = {
   acid_rain_ended = "La pluie acide des caves est terminée.",
   ruins_reset = "Les Ruines se sont réinitialisées. Créatures et ressources ont réapparu.",
   frog_rain_ended = "La pluie de grenouilles est terminée : %d grenouilles au total.",
-  player_low_hunger = "La faim de [%s] est tombée à %d !",
-  player_low_sanity = "La santé mentale de [%s] est tombée à %d !",
-  player_low_health = "La vie de [%s] [%d/%d] n'est plus qu'à %d%% !",
-  player_start_freezing = "[%s] commence à geler !",
-  player_start_overheating = "[%s] commence à surchauffer !",
+  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  player_hunger = {
+    [10] = {
+      "Segment spécial : accueillons le ventre de [%s] pour un solo de tambour.",
+      "Garçon ? [%s] est prêt à commander.",
+      "Trouver à manger ou trouver la mort — choisis, [%s].",
+      "Promo livraison : quelqu'un commande deux viandes et un légume pour [%s] ?",
+      "[%s] n'arrive plus à avaler. Allez, juste une bouchée.",
+    },
+    [0] = {
+      "L'estomac de [%s] est complètement vide.",
+      "Peu importe quoi, fourrez quelque chose dans la bouche de [%s] !",
+      "Avant-goût de nécrologie ? Non — [%s] a juste la dalle.",
+      "Pour une raison inconnue, [%s] fait la grève de la faim.",
+      "[%s] a échoué à trouver de la nourriture et est au bout du rouleau. De l'aide ?",
+    },
+  },
+  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  player_low_sanity_50 = {
+    "Des fantômes d'un autre monde apparaissent dans les yeux de [%s]...",
+    "Des murmures résonnent — [%s] entend quelque chose d'innommable.",
+    "Les ombres remuent dans les coins ; le monde de [%s] se tord en silence.",
+    "[%s], pris d'une folie légère, commence à halluciner.",
+    "L'étincelle de raison vacille — l'esprit de [%s] s'embrume un peu.",
+    "Les cauchemars t'appellent. [%s] les entend-il ?",
+  },
+  player_low_sanity_10 = {
+    "C'est toi, [%s] ? Espérons que tu te réveilles demain.",
+    "Les cauchemars envahissent la réalité — [%s] est traqué par des créatures de l'ombre !",
+    "Toute croyance s'effondre — [%s] est englouti par les ténèbres sans fin !",
+    "Les ombres offrent l'âme de [%s] en sacrifice — combattre ou fuir ?",
+    "La dernière lueur va s'éteindre — la conscience de [%s] s'efface.",
+    "L'esprit de [%s] est déjà brisé — un festin pour les ombres !",
+  },
+  player_low_health = "La vie de [%s] est tombée à %d/%d !",
+  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  player_temperature = {
+    cold = {
+      "Vous entendez ? [%s] joue de la percussion avec ses dents.",
+      "Bulletin météo : le froid autour de [%s] a l'air louche.",
+      "[%s] cherche un feu de camp — quelqu'un peut aider ?",
+      "Ne clignez pas des yeux — [%s] va bientôt geler sur place.",
+      "Flash info : [%s] affronte l'air froid en manches courtes.",
+    },
+    hot = {
+      "Spécial été : [%s] commence à fumer.",
+      "Petit conseil : [%s] n'est pas loin de prendre feu.",
+      "Lien direct canicule — [%s], ça va ?",
+      "Secours d'urgence : laissez un couloir vers l'ombre pour [%s].",
+      "Flash : [%s] est en train de disputer la chaleur.",
+    },
+  },
+  player_moisture = {
+    [10] = "Attention — on dirait que [%s] a pris quelques gouttes.",
+    [20] = "Belle tenue, [%s]. Tu comptais prendre un bain digne dedans ?",
+    [40] = "Si vous croisez [%s], faites comme si de rien n'était. Plus très présentable.",
+    [60] = "Toujours dehors ? [%s] sait faire un feu… non ?",
+    [80] = "Émission spéciale rat trempé — en direct avec [%s].",
+  },
   pearl_name = "[Ermite grincheuse]",
   pearl_status = "%s amitié %d/%d",
   pearl_tasks_pending = ". À faire : %s",

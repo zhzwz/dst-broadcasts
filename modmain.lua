@@ -20,12 +20,7 @@ if GetModConfigData("usage_break_enabled") then
   modimport("scripts/broadcasts/equipment_break.lua")
 end
 
-if GetModConfigData("player_vitals_enabled") then
-  modimport("scripts/broadcasts/player_vitals.lua")
-  modimport("scripts/broadcasts/player_health.lua")
-  modimport("scripts/broadcasts/player_temperature.lua")
-end
-
+modimport("scripts/broadcasts/features/player_vitals/init.lua")
 modimport("scripts/broadcasts/features/attack_warning/init.lua")
 
 if GetModConfigData("cave_events_enabled") then

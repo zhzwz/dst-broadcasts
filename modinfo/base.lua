@@ -9,8 +9,16 @@
 ---@field language_hover string
 ---@field item_label string
 ---@field item_hover string
----@field vitals_label string
----@field vitals_hover string
+---@field hunger_label string
+---@field hunger_hover string
+---@field sanity_label string
+---@field sanity_hover string
+---@field health_label string
+---@field health_hover string
+---@field temperature_label string
+---@field temperature_hover string
+---@field moisture_label string
+---@field moisture_hover string
 ---@field hounds_label string
 ---@field hounds_hover string
 ---@field depths_worms_label string
@@ -43,8 +51,16 @@ local L = {
   language_hover = "",
   item_label = "",
   item_hover = "",
-  vitals_label = "",
-  vitals_hover = "",
+  hunger_label = "",
+  hunger_hover = "",
+  sanity_label = "",
+  sanity_hover = "",
+  health_label = "",
+  health_hover = "",
+  temperature_label = "",
+  temperature_hover = "",
+  moisture_label = "",
+  moisture_hover = "",
   hounds_label = "",
   hounds_hover = "",
   depths_worms_label = "",
@@ -126,9 +142,49 @@ configuration_options = {
     default = true,
   },
   {
-    name = "player_vitals_enabled",
-    label = L.vitals_label,
-    hover = L.vitals_hover,
+    name = "player_hunger_enabled",
+    label = L.hunger_label,
+    hover = L.hunger_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "player_sanity_enabled",
+    label = L.sanity_label,
+    hover = L.sanity_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "player_health_enabled",
+    label = L.health_label,
+    hover = L.health_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "player_temperature_enabled",
+    label = L.temperature_label,
+    hover = L.temperature_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "player_moisture_enabled",
+    label = L.moisture_label,
+    hover = L.moisture_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

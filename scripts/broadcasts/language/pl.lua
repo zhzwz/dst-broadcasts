@@ -22,6 +22,7 @@ BROADCASTS_STRINGS = {
   item_broke = "[%s]: %s uległ zniszczeniu!",
   armor = "zbroja",
   list_separator = ", ",
+  character_quote = " „%s”",
   seasons = {
     autumn = "Jesień",
     winter = "Zima",
@@ -64,11 +65,65 @@ BROADCASTS_STRINGS = {
   acid_rain_ended = "Kwaśny deszcz w jaskiniach się skończył.",
   ruins_reset = "Ruiny zostały zresetowane. Stworzenia i zasoby odrodziły się.",
   frog_rain_ended = "Deszcz żab się skończył: łącznie %d żab.",
-  player_low_hunger = "Głód [%s] spadł do %d!",
-  player_low_sanity = "Rozsądek [%s] spadł do %d!",
-  player_low_health = "Życie [%s] [%d/%d] wynosi już tylko %d%%!",
-  player_start_freezing = "[%s] zaczyna marznąć!",
-  player_start_overheating = "[%s] zaczyna się przegrzewać!",
+  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  player_hunger = {
+    [10] = {
+      "Segment specjalny: witamy brzuch [%s] na solówce na bębnie.",
+      "Kelner? [%s] chce zamówić.",
+      "Znajdź jedzenie albo znajdź śmierć — wybieraj, [%s].",
+      "Promocja na dowóz: ktoś zamówi dwa mięsa i warzywo dla [%s]?",
+      "[%s] nie może przełknąć. No dalej, choć kęs.",
+    },
+    [0] = {
+      "Żołądek [%s] jest kompletnie pusty.",
+      "Cokolwiek — wpychajcie coś [%s] do ust!",
+      "Zapowiedź nekrologu? Nie — [%s] po prostu umiera z głodu.",
+      "Z nieznanych przyczyn [%s] prowadzi strajk głodowy.",
+      "[%s] nic nie znalazł i jest w ślepym zaułku. Ktoś pomoże?",
+    },
+  },
+  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  player_low_sanity_50 = {
+    "W oczach [%s] pojawiają się widma spoza tego świata...",
+    "Szepty niosą się w powietrzu — [%s] słyszy coś niewypowiedzianego.",
+    "Cienie poruszają się w kątach, a świat [%s] cicho się wypacza.",
+    "[%s], w lekkim szaleństwie, zaczyna mieć halucynacje.",
+    "Iskra rozsądku migocze — świadomość [%s] trochę się zaciera.",
+    "Koszmary cię wołają. Czy [%s] je słyszy?",
+  },
+  player_low_sanity_10 = {
+    "To ty jesteś [%s], co? Obyś jutro jeszcze się obudził.",
+    "Koszmary wkraczają w rzeczywistość — [%s] jest tropiony przez stworzenia cienia!",
+    "Wszelka wiara się załamuje — [%s] pochłania bezkresna ciemność!",
+    "Cienie ofiarowują duszę [%s] — walczyć czy uciekać?",
+    "Ostatni blask zaraz zgaśnie — świadomość [%s] zanika.",
+    "Umysł [%s] jest już złamany — uczta dla cieni!",
+  },
+  player_low_health = "Życie [%s] spadło do %d/%d!",
+  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  player_temperature = {
+    cold = {
+      "Słyszycie? [%s] gra na perkusji zębami.",
+      "Komunikat pogodowy: chłód wokół [%s] wygląda nieciekawie.",
+      "[%s] szuka ogniska — ktoś pomoże?",
+      "Nie mrugajcie: [%s] zaraz zamarznie na amen.",
+      "Flash: [%s] w krótkim rękawku walczy z zimnym powietrzem.",
+    },
+    hot = {
+      "Lato specjalnie: [%s] zaczyna dymić.",
+      "Przyjazna wskazówka: [%s] niedaleko do zapalenia się.",
+      "Połączenie z falą upałów — [%s], wszystko w porządku?",
+      "Nagły wypadek: zróbcie [%s] przejście do cienia.",
+      "Pilny wtręt: [%s] kłóci się z upałem.",
+    },
+  },
+  player_moisture = {
+    [10] = "Uwaga — wygląda na to, że [%s] coś na siebie złapał.",
+    [20] = "Ładny strój, [%s]. Zamierzasz w tym wziąć dostojną kąpiel?",
+    [40] = "Jak zobaczycie [%s], udawajcie, że nie znacie. Już nie wygląda serio.",
+    [60] = "Nadal się włóczysz? [%s] umie rozpalić ognisko… prawda?",
+    [80] = "Specjalny program mokrego kurczaka — łączymy się na żywo z [%s].",
+  },
   pearl_name = "[Zrzędliwa Pustelnica]",
   pearl_status = "%s przyjaźń %d/%d",
   pearl_tasks_pending = ". Do zrobienia: %s",

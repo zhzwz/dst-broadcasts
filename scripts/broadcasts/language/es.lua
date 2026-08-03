@@ -22,6 +22,7 @@ BROADCASTS_STRINGS = {
   item_broke = "[%s]: ¡%s se ha roto!",
   armor = "armadura",
   list_separator = ", ",
+  character_quote = " «%s»",
   seasons = {
     autumn = "Otoño",
     winter = "Invierno",
@@ -64,11 +65,65 @@ BROADCASTS_STRINGS = {
   acid_rain_ended = "La lluvia ácida de las cuevas ha terminado.",
   ruins_reset = "Las Ruinas se han reiniciado. Criaturas y recursos han reaparecido.",
   frog_rain_ended = "La lluvia de ranas ha terminado: %d ranas en total.",
-  player_low_hunger = "¡El hambre de [%s] bajó a %d!",
-  player_low_sanity = "¡La cordura de [%s] bajó a %d!",
-  player_low_health = "¡La vida de [%s] [%d/%d] solo queda en %d%%!",
-  player_start_freezing = "¡[%s] empieza a congelarse!",
-  player_start_overheating = "¡[%s] empieza a sobrecalentarse!",
+  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  player_hunger = {
+    [10] = {
+      "Segmento especial: den la bienvenida a la panza de [%s] para un solo de tambor.",
+      "¿Camarero? [%s] quiere pedir.",
+      "Busca comida o busca la muerte — elige, [%s].",
+      "Oferta a domicilio: ¿alguien pide dos carnes y una verdura para [%s]?",
+      "[%s] no puede tragar. Vamos, solo un bocado.",
+    },
+    [0] = {
+      "El estómago de [%s] está completamente vacío.",
+      "Lo que sea, ¡metan algo en la boca de [%s]!",
+      "¿Avance de obituario? No — [%s] solo está muerto de hambre.",
+      "Por alguna razón, [%s] está en huelga de hambre.",
+      "[%s] no encontró comida y no le queda salida. ¿Alguien ayuda?",
+    },
+  },
+  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  player_low_sanity_50 = {
+    "Los ojos de [%s] empiezan a ver fantasmas que no pertenecen a este mundo...",
+    "Susurros resuenan — [%s] oye algo innombrable.",
+    "Las sombras se agitan en los rincones mientras el mundo de [%s] se retuerce en silencio.",
+    "[%s], presa de una locura leve, empieza a alucinar.",
+    "La chispa de la cordura parpadea — la mente de [%s] se enturbia un poco.",
+    "Las pesadillas te llaman. ¿Las oye [%s]?",
+  },
+  player_low_sanity_10 = {
+    "Así que eres [%s], ¿eh? Ojalá despiertes mañana.",
+    "¡Las pesadillas invaden la realidad — [%s] está siendo cazado por criaturas de sombra!",
+    "¡Toda creencia se derrumba — [%s] está siendo tragado por una oscuridad sin fin!",
+    "Las sombras ofrecen el alma de [%s] en sacrificio — ¿luchar o huir?",
+    "El último destello está por apagarse — la conciencia de [%s] se desvanece.",
+    "¡La mente de [%s] ya está destrozada — un festín para las sombras!",
+  },
+  player_low_health = "¡La vida de [%s] bajó a %d/%d!",
+  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  player_temperature = {
+    cold = {
+      "¿Lo oyen? [%s] está tocando percusión con los dientes.",
+      "Boletín del tiempo: el frío alrededor de [%s] no pinta bien.",
+      "[%s] busca una hoguera — ¿alguien puede ayudar?",
+      "No parpadeen: [%s] está a punto de congelarse del todo.",
+      "Última hora: [%s] se pelea con el aire frío en manga corta.",
+    },
+    hot = {
+      "Especial de verano: [%s] empieza a echar humo.",
+      "Aviso amable: [%s] no está lejos de prenderse.",
+      "Enlace en vivo por la ola de calor — [%s], ¿estás bien?",
+      "Emergencia: dejen un pasillo hacia la sombra para [%s].",
+      "Inserto urgente: [%s] está discutiendo con el calor.",
+    },
+  },
+  player_moisture = {
+    [10] = "Atención: parece que a [%s] le ha caído algo encima.",
+    [20] = "Bonito atuendo, [%s]. ¿Pensabas darte un baño digno con eso?",
+    [40] = "Si os topáis con [%s], haced como si no lo conocierais. Ya no da la talla.",
+    [60] = "¿Sigues deambulando? [%s] sabe hacer una hoguera… ¿verdad?",
+    [80] = "Programa especial pollo mojado — conectamos en directo con [%s].",
+  },
   pearl_name = "[Ermitaña Cascarrabias]",
   pearl_status = "%s amistad %d/%d",
   pearl_tasks_pending = ". Pendiente: %s",

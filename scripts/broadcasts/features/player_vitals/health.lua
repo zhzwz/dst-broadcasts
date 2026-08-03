@@ -1,10 +1,13 @@
 --[[
-  玩家生命值降至百分比阈值时全服播报；仅在下降时播报，回升后可再次触发。
+  玩家生命 ≤10% 时全服播报实际数值；仅在下降时播报，回升后可再次触发。
 ]]
 
+modimport("scripts/broadcasts/shared/get_player_display_name.lua")
+
 local S = BROADCASTS_STRINGS
-local C = BROADCASTS_CONSTANTS
+local C = BROADCASTS_PLAYER_VITALS
 local Safe = BROADCASTS_SAFE
+local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 
 local function CheckHealth(player, percent, allow_announce)
   if player == nil or not player:IsValid() then
@@ -18,7 +21,7 @@ local function CheckHealth(player, percent, allow_announce)
     return
   end
 
-  local thresholds = C.PLAYER_HEALTH_LOW_THRESHOLDS
+  local thresholds = C.HEALTH_LOW_THRESHOLDS
   if type(thresholds) ~= "table" then
     return
   end
@@ -71,13 +74,6 @@ local function CheckHealth(player, percent, allow_announce)
     return
   end
 
-  local value = math.floor(percent * 100 + 0.5)
-  if value < 0 then
-    value = 0
-  elseif value > 100 then
-    value = 100
-  end
-
   local current_display = math.floor(current + 0.5)
   if current_display < 0 then
     current_display = 0
@@ -87,20 +83,11 @@ local function CheckHealth(player, percent, allow_announce)
     max_display = 1
   end
 
-  local name = "?"
-  local ok, display_name = pcall(function()
-    return player:GetDisplayName()
-  end)
-  if ok and type(display_name) == "string" and display_name ~= "" then
-    name = display_name
-  end
-
   Safe.Announce(string.format(
     S.player_low_health,
-    name,
+    PlayerName(player),
     current_display,
-    max_display,
-    value
+    max_display
   ))
 end
 
