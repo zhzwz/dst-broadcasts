@@ -1,17 +1,27 @@
+-- modinfo 沙箱没有 require；用 kleiloadlua + folder_name 加载拆分文案。
+local function LoadModinfoLanguage(code)
+    local path = (MODS_ROOT or "../mods/") .. (folder_name or "") .. "/modinfo_language/" .. code .. ".lua"
+    local fn = kleiloadlua(path)
+    if type(fn) ~= "function" then
+        error("Failed to load modinfo_language/" .. tostring(code) .. ": " .. tostring(fn))
+    end
+    return fn()
+end
+
 local L = ChooseTranslationTable({
-    require("modinfo_language/en"),
-    zh = require("modinfo_language/zh"),
-    zhr = require("modinfo_language/zh"),
-    zht = require("modinfo_language/zht"),
-    fr = require("modinfo_language/fr"),
-    de = require("modinfo_language/de"),
-    it = require("modinfo_language/it"),
-    es = require("modinfo_language/es"),
-    pt = require("modinfo_language/pt"),
-    pl = require("modinfo_language/pl"),
-    ru = require("modinfo_language/ru"),
-    ko = require("modinfo_language/ko"),
-    ja = require("modinfo_language/ja"),
+    LoadModinfoLanguage("en"),
+    zh = LoadModinfoLanguage("zh"),
+    zhr = LoadModinfoLanguage("zh"),
+    zht = LoadModinfoLanguage("zht"),
+    fr = LoadModinfoLanguage("fr"),
+    de = LoadModinfoLanguage("de"),
+    it = LoadModinfoLanguage("it"),
+    es = LoadModinfoLanguage("es"),
+    pt = LoadModinfoLanguage("pt"),
+    pl = LoadModinfoLanguage("pl"),
+    ru = LoadModinfoLanguage("ru"),
+    ko = LoadModinfoLanguage("ko"),
+    ja = LoadModinfoLanguage("ja"),
 })
 name = "Broadcasts"
 description = L.description
