@@ -64,7 +64,27 @@ BROADCASTS_STRINGS = {
   acid_rain_started = "W jaskiniach zaczął padać kwaśny deszcz. Brońcie się!",
   acid_rain_ended = "Kwaśny deszcz w jaskiniach się skończył.",
   ruins_reset = "Ruiny zostały zresetowane. Stworzenia i zasoby odrodziły się.",
-  frog_rain_ended = "Deszcz żab się skończył: łącznie %d żab.",
+  frog_rain_started = {
+    "Komunikat pogodowy: dziś żaby od silnych do ulewnych. Chrońcie plony—i nogi.",
+    "Zielone krople się zameldowały. Uważajcie i uchylajcie się.",
+    "Przypomnienie: drogi śliskie, żaby skaczą.",
+    "Prognoza specjalna: deszcz żab na antenie. Nie patrzcie w górę z otwartymi ustami.",
+    "Bum-bum-bum—to nie bębny, to żabki lądują.",
+  },
+  frog_rain_ended = {
+    "Ten deszcz żab dobiegł końca: łącznie %d.",
+    "Do czyjego garnka zmieści się %d żab?",
+    "Czyje to %d zagubionych żab? Prosimy szybko odebrać.",
+    "Dziękujemy za Żaby z nieba—%d gości w tym odcinku.",
+    "Opad skończony. Spis żab: %d. Do zobaczenia za rok.",
+  },
+  frog_rain_ended_lunar = {
+    "Deszcz zakończony: %d żab, %d żab o jasnych oczach.",
+    "Do czyjego garnka wejdzie %d żab i %d o jasnych oczach?",
+    "Biuro rzeczy znalezionych: %d żab, %d o jasnych oczach.",
+    "Dziękujemy za Żaby z nieba: %d żab, %d gości księżycowych.",
+    "Opad skończony. Spis: %d żab, %d księżycowych. Do zobaczenia za rok.",
+  },
   -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {

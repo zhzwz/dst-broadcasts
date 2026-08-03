@@ -64,7 +64,27 @@ BROADCASTS_STRINGS = {
   acid_rain_started = "Säureregen hat in den Höhlen begonnen. Schützt euch!",
   acid_rain_ended = "Der Höhlen-Säureregen ist vorbei.",
   ruins_reset = "Die Ruinen wurden zurückgesetzt. Kreaturen und Ressourcen sind neu entstanden.",
-  frog_rain_ended = "Der Froschregen ist vorbei: insgesamt %d Frösche.",
+  frog_rain_started = {
+    "Einschub Wetterbericht: heute Frösche, stark bis heftig. Ernten sichern—und eure Beine.",
+    "Die grünen Tropfen checken ein. Bitte ausweichen.",
+    "Freundliche Erinnerung: Straßen sind rutschig, Frösche hüpfen.",
+    "Sonderwetter: Froschregen ist on air. Nicht mit offenem Mund nach oben schauen.",
+    "Rumms-rumms—das ist kein Trommeln, das sind Frösche beim Landen.",
+  },
+  frog_rain_ended = {
+    "Dieser Froschregen ist vorbei: insgesamt %d.",
+    "In wessen Topf passen schon %d Frösche?",
+    "Wem gehören diese %d verlorenen Frösche? Bitte bald abholen.",
+    "Danke fürs Einschalten bei Frösche von oben—%d Gäste in dieser Folge.",
+    "Niederschlag vorbei. Froschzählung: %d. Bis nächstes Jahr.",
+  },
+  frog_rain_ended_lunar = {
+    "Froschregen vorbei: %d Frösche, %d Leuchtaugenfrösche.",
+    "In wessen Topf passen %d Frösche und %d Leuchtaugenfrösche?",
+    "Fundsachen: %d Frösche, %d Leuchtaugenfrösche. Bitte abholen.",
+    "Danke für Frösche von oben: %d Frösche, %d leuchtende Gäste.",
+    "Niederschlag vorbei. Zählung: %d Frösche, %d Leuchtaugen. Bis nächstes Jahr.",
+  },
   -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {

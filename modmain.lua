@@ -22,12 +22,12 @@ end
 
 modimport("scripts/broadcasts/features/player_vitals/init.lua")
 modimport("scripts/broadcasts/features/attack_warning/init.lua")
+modimport("scripts/broadcasts/features/frog_rain/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")
 end
 
-modimport("scripts/broadcasts/frog_rain.lua")
 
 if GetModConfigData("morning_news_enabled") then
   modimport("scripts/broadcasts/morning_news.lua")

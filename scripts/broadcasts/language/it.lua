@@ -64,7 +64,27 @@ BROADCASTS_STRINGS = {
   acid_rain_started = "La pioggia acida è iniziata nelle caverne. Proteggetevi!",
   acid_rain_ended = "La pioggia acida delle caverne è finita.",
   ruins_reset = "Le Rovine si sono ripristinate. Creature e risorse sono riapparse.",
-  frog_rain_ended = "La pioggia di rane è finita: %d rane in totale.",
+  frog_rain_started = {
+    "Bollettino meteo: oggi rane da forti a violente. Mettete al sicuro le colture—e le gambe.",
+    "Le gocce verdi stanno facendo il check-in. Fate attenzione e schivate.",
+    "Promemoria gentile: strade scivolose, rane che saltellano.",
+    "Meteo speciale: pioggia di rane in onda. Non alzate lo sguardo a bocca aperta.",
+    "Tum-tum-tum—non è un rullio di tamburi, sono le ranocchie che atterrano.",
+  },
+  frog_rain_ended = {
+    "Questa pioggia di rane si chiude: %d in totale.",
+    "In quale pentola ci starebbero %d rane?",
+    "Di chi sono queste %d rane smarrite? Per favore ritiratele presto.",
+    "Grazie per aver seguito Rane dall'alto—%d ospiti in questa puntata.",
+    "Precipitazioni finite. Censimento delle rane: %d. All'anno prossimo.",
+  },
+  frog_rain_ended_lunar = {
+    "Pioggia chiusa: %d rane, %d rane dagli occhi lucenti.",
+    "In quale pentola starebbero %d rane e %d dagli occhi lucenti?",
+    "Oggetti smarriti: %d rane, %d dagli occhi lucenti. Ritiratele.",
+    "Grazie per Rane dall'alto: %d rane, %d ospiti lunari.",
+    "Precipitazioni finite. Censimento: %d rane, %d lunari. All'anno prossimo.",
+  },
   -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {
