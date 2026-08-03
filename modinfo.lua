@@ -16,7 +16,7 @@ local L = ChooseTranslationTable({
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
-version = "1.5.0"
+version = "1.5.1"
 
 forumthread = ""
 
