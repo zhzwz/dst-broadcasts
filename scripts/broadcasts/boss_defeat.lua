@@ -1,6 +1,13 @@
+modimport("scripts/broadcasts/shared/get_entity_display_name.lua")
+modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
+modimport("scripts/broadcasts/shared/is_at_min_health.lua")
+
 local N = BROADCASTS_STRINGS.bosses
 local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_CONSTANTS
+local GetEntityName = BROADCASTS_GET_ENTITY_DISPLAY_NAME
+local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
+local IsAtMinHealth = BROADCASTS_IS_AT_MIN_HEALTH
 
 local DEATH_BOSSES = {
   deerclops = N.deerclops,
@@ -69,26 +76,6 @@ local NON_WEAPON_CAUSES = {
   file_load = true,
 }
 
-local function Bracket(name)
-  if type(name) ~= "string" or name == "" then
-    return nil
-  end
-  return "[" .. name .. "]"
-end
-
-local function GetEntityName(inst)
-  if inst == nil or not inst:IsValid() then
-    return nil
-  end
-  local ok, name = pcall(function()
-    return inst:GetDisplayName()
-  end)
-  if ok then
-    return Bracket(name)
-  end
-  return nil
-end
-
 local function GetWeaponName(cause, afflicter)
   if type(cause) ~= "string" or cause == "" or NON_WEAPON_CAUSES[cause] then
     return nil
@@ -101,11 +88,11 @@ local function GetWeaponName(cause, afflicter)
   end
 
   local names = STRINGS and STRINGS.NAMES
-  if type(names) ~= "table" then
+  local display = type(names) == "table" and names[string.upper(cause)] or nil
+  if type(display) ~= "string" or display == "" then
     return nil
   end
-  local display = names[string.upper(cause)]
-  return Bracket(display)
+  return "[" .. display .. "]"
 end
 
 local function GetSummonOwner(afflicter)
@@ -173,17 +160,6 @@ local function AddDamage(bucket, key, name, amount)
   elseif entry.name == nil then
     entry.name = BROADCASTS_STRINGS.boss_damage_other
   end
-end
-
-local function GetPrefabDisplayName(prefab)
-  if type(prefab) ~= "string" or prefab == "" then
-    return nil
-  end
-  local names = STRINGS and STRINGS.NAMES
-  if type(names) ~= "table" then
-    return nil
-  end
-  return Bracket(names[string.upper(prefab)])
 end
 
 local function ResolveDamageSource(afflicter)
@@ -307,18 +283,6 @@ local function HasLivingVaultGuard(exclude)
     end
   end
   return false
-end
-
-local function IsAtMinHealth(inst)
-  local health = inst.components ~= nil and inst.components.health or nil
-  if health == nil or type(health.currenthealth) ~= "number" then
-    return false
-  end
-  local minhealth = health.minhealth
-  if type(minhealth) ~= "number" then
-    minhealth = 0
-  end
-  return health.currenthealth <= minhealth
 end
 
 local function IsNonlethalDefeated(inst, prefab)

@@ -12,10 +12,15 @@ ignoreWords:
   - zhzwz
 
 words:
+  - bearger # 熊獾
+  - currenthealth
+  - deerclops # 独眼巨鹿
   - forumthread
   - hassler
+  - inventoryitem # DST中可进背包的物品组件
   - ismastersim
   - luamin
+  - minhealth
   - modimport
   - modmain
   - modname

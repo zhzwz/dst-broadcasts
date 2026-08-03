@@ -2,20 +2,11 @@
   可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服播报。
 ]]
 
+modimport("scripts/broadcasts/shared/get_player_owner.lua")
+
 local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_CONSTANTS
-
-local function PlayerOwner(inst)
-  local item = inst.components.inventoryitem
-  if item == nil then
-    return nil
-  end
-  local owner = item:GetGrandOwner()
-  if owner ~= nil and owner:HasTag("player") then
-    return owner
-  end
-  return nil
-end
+local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
 
 local function Announce(inst, owner, percent, message)
   local item_name = inst:GetDisplayName() or inst.prefab

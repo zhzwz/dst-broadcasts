@@ -2,8 +2,11 @@
   WX-78 快递无人机（Portable Storage Unit）配送落地播报。
 ]]
 
+modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
+
 local S = BROADCASTS_STRINGS
 local Safe = BROADCASTS_SAFE
+local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 
 local SUCCESS_FLAG = "_dst_broadcasts_drone_delivery_ok"
 local SENDER_NAME_KEY = "_dst_broadcasts_drone_sender_name"
@@ -12,18 +15,6 @@ local DRONE_PREFABS = {
   "wx78_drone_delivery",
   "wx78_drone_delivery_small",
 }
-
-local function GetPrefabDisplayName(prefab)
-  if type(prefab) ~= "string" or prefab == "" then
-    return nil
-  end
-  local names = STRINGS and STRINGS.NAMES
-  local display = type(names) == "table" and names[string.upper(prefab)] or nil
-  if type(display) == "string" and display ~= "" then
-    return "[" .. display .. "]"
-  end
-  return "[" .. prefab .. "]"
-end
 
 local function GetItemStackSize(item)
   local stack = 1

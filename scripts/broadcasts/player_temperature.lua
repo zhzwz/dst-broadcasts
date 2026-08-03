@@ -2,18 +2,11 @@
   玩家开始过冷 / 过热时全服播报。
 ]]
 
+modimport("scripts/broadcasts/shared/get_player_display_name.lua")
+
 local S = BROADCASTS_STRINGS
 local Safe = BROADCASTS_SAFE
-
-local function PlayerName(player)
-  local ok, display_name = pcall(function()
-    return player:GetDisplayName()
-  end)
-  if ok and type(display_name) == "string" and display_name ~= "" then
-    return display_name
-  end
-  return "?"
-end
+local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 
 local function AnnounceTemperature(player, message)
   if player == nil or not player:IsValid() then

@@ -2,19 +2,10 @@
   武器（finiteuses）/ 护甲损坏时全服播报一次。
 ]]
 
-local Safe = BROADCASTS_SAFE
+modimport("scripts/broadcasts/shared/get_player_owner.lua")
 
-local function PlayerOwner(inst)
-  local item = inst.components.inventoryitem
-  if item == nil then
-    return nil
-  end
-  local owner = item:GetGrandOwner()
-  if owner ~= nil and owner:HasTag("player") then
-    return owner
-  end
-  return nil
-end
+local Safe = BROADCASTS_SAFE
+local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
 
 local function AnnounceBroke(owner, item_name)
   Safe.Announce(string.format(
