@@ -24,6 +24,7 @@ modimport("scripts/broadcasts/features/player_vitals/init.lua")
 modimport("scripts/broadcasts/features/attack_warning/init.lua")
 modimport("scripts/broadcasts/features/frog_rain/init.lua")
 modimport("scripts/broadcasts/features/calendar/init.lua")
+modimport("scripts/broadcasts/features/harvest/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")

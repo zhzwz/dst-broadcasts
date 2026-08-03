@@ -33,6 +33,14 @@
 ---@field frog_rain_hover string
 ---@field calendar_label string
 ---@field calendar_hover string
+---@field harvest_marbleshrub_label string
+---@field harvest_marbleshrub_hover string
+---@field harvest_beebox_label string
+---@field harvest_beebox_hover string
+---@field harvest_farmland_label string
+---@field harvest_farmland_hover string
+---@field harvest_dryingrack_label string
+---@field harvest_dryingrack_hover string
 ---@field morning_label string
 ---@field morning_hover string
 ---@field defeat_label string
@@ -77,6 +85,14 @@ local L = {
   frog_rain_hover = "",
   calendar_label = "",
   calendar_hover = "",
+  harvest_marbleshrub_label = "",
+  harvest_marbleshrub_hover = "",
+  harvest_beebox_label = "",
+  harvest_beebox_hover = "",
+  harvest_farmland_label = "",
+  harvest_farmland_hover = "",
+  harvest_dryingrack_label = "",
+  harvest_dryingrack_hover = "",
   morning_label = "",
   morning_hover = "",
   defeat_label = "",
@@ -259,6 +275,46 @@ configuration_options = {
     name = "calendar_enabled",
     label = L.calendar_label,
     hover = L.calendar_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "harvest_marbleshrub_enabled",
+    label = L.harvest_marbleshrub_label,
+    hover = L.harvest_marbleshrub_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "harvest_beebox_enabled",
+    label = L.harvest_beebox_label,
+    hover = L.harvest_beebox_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "harvest_farmland_enabled",
+    label = L.harvest_farmland_label,
+    hover = L.harvest_farmland_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "harvest_dryingrack_enabled",
+    label = L.harvest_dryingrack_label,
+    hover = L.harvest_dryingrack_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

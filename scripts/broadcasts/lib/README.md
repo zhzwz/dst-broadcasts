@@ -4,7 +4,7 @@
 
 ## 约定
 
-- **单文件单函数**：文件名用 snake_case，与导出符号对应。
+- **单文件导出**：文件名用 snake_case，与导出符号对应；可为单函数，或一组相关纯函数表（如 `harvest_announce`）。
 - **纯函数**：不访问 `TheWorld`、组件、`GetModConfigData`、网络等 DST / 模组环境。
 - **不必多处复用**：只要是纯逻辑，即可放这里，便于单测与阅读。
 - **随用随引**：功能模块在需要时 `modimport("scripts/broadcasts/lib/<name>.lua")`，不要在 `modmain` 里一次性全量加载。

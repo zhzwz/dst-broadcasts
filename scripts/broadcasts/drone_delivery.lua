@@ -3,10 +3,12 @@
 ]]
 
 modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
+modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
 local S = BROADCASTS_STRINGS
 local Safe = BROADCASTS_SAFE
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
+local FormatNamedCountList = BROADCASTS_HARVEST_ANNOUNCE.FormatNamedCountList
 
 local SUCCESS_FLAG = "_dst_broadcasts_drone_delivery_ok"
 local SENDER_NAME_KEY = "_dst_broadcasts_drone_sender_name"
@@ -58,33 +60,16 @@ local function CollectContents(inst)
 end
 
 local function FormatContents(counts)
-  local entry_fmt = S.named_count_entry or S.morning_dried_entry
-  if type(entry_fmt) ~= "string" then
-    return nil
-  end
-  local list = {}
+  local named = {}
   for prefab, n in pairs(counts) do
     if type(n) == "number" and n > 0 then
       local name = GetPrefabDisplayName(prefab)
       if name ~= nil then
-        list[#list + 1] = { name = name, n = n }
+        named[name] = (named[name] or 0) + n
       end
     end
   end
-  if #list == 0 then
-    return nil
-  end
-  table.sort(list, function(a, b)
-    if a.name == b.name then
-      return a.n < b.n
-    end
-    return a.name < b.name
-  end)
-  local parts = {}
-  for _, entry in ipairs(list) do
-    parts[#parts + 1] = string.format(entry_fmt, entry.name, entry.n)
-  end
-  return table.concat(parts, S.list_separator or ", ")
+  return FormatNamedCountList(named, S.list_separator or ", ")
 end
 
 local function BracketName(name)

@@ -13,37 +13,50 @@ ignoreWords:
 
 words:
   - bearger # 熊獾
+  - beebox # 蜂箱
   - currenthealth
   - deerclops # 独眼巨鹿
+  - dryinginfo # 晾晒信息
+  - dryingrack # 晾晒架
+  - drytime # 晾晒时间
   - elapseddaysinseason
   - ents
+  - farmland # 农田
   - forumthread
   - frograin # 青蛙雨
   - fueltype # 燃料类型
   - hassler
   - hungerdelta # 饱食度组件事件
+  - inlimbo # 虚空
   - inventoryitem # 可进背包的物品组件
   - ismastersim
   - israining # 降雨
   - isspring # 春季
+  - localplayer # 本地玩家
   - luamin
+  - luarc
   - lunar
   - lunarfrog # 明眼青蛙
-  - luarc
+  - marbleshrub # 大理石灌木
   - minhealth
   - modimport
   - modmain
   - modname
   - moistureceil
   - moisturedelta # 湿度组件事件
+  - nothrow
   - overheattemp # 过热温度
   - percentusedchange # 燃料组件事件：百分比变化
   - playerghost # 玩家幽灵
   - precipitationrate # 降水率
   - remainingdaysinseason
+  - saltrock # 盐石
   - sanitydelta # 理智组件事件
   - shardid # 分片 ID
+  - stackable # 可堆叠物品组件
   - startfreezing # 开始冻结
   - startoverheating # 开始过热
   - steamworks
   - temperaturedelta # 温度组件事件
+  - wobyrack # 圆木晾晒架
+  - worktree
