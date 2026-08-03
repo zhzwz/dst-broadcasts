@@ -44,8 +44,8 @@ return {
   pearl_label = "Pearl status",
   pearl_hover =
   "Say pearl in chat to announce friendship and unfinished tasks (works from caves). Auto-announces at most once per game day on friendship gain.",
-  drone_label = "Delivery drone announcements",
-  drone_hover = "When a WX-78 delivery drone lands, announce the player name, drone name, and cargo.",
+  portable_storage_label = "Portable Storage Unit",
+  portable_storage_hover = "When a WX-78 Portable Storage Unit lands, announce the player name, unit name, and cargo. Skip if empty.",
   debug_label = "Debug mode",
   debug_hover = "When enabled, Broadcasts errors are also shown in in-game announcements.",
   enabled = "Enabled",

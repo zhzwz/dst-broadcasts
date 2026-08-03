@@ -44,8 +44,8 @@ return {
   pearl_label = "Stato dell'Eremita",
   pearl_hover =
   "Scrivi pearl in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
-  drone_label = "Avvisi drone di consegna",
-  drone_hover = "Annuncia giocatore, nome e carico del drone di consegna WX-78 all'atterraggio.",
+  portable_storage_label = "Unità di stoccaggio portatile",
+  portable_storage_hover = "All'atterraggio di un'unità di stoccaggio portatile WX-78, annuncia giocatore, nome e carico; non annuncia se vuota.",
   debug_label = "Registro di debug",
   debug_hover = "Se attivo, gli errori di Broadcasts vengono annunciati anche in gioco.",
   enabled = "Attivato",

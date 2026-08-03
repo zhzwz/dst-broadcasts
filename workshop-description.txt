@@ -32,9 +32,9 @@ Announces once when a player's hunger or sanity drops to 10, and again at 0. Ann
 公频聊天发送 pearl，播报好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动播报一次）。
 Say pearl in chat to announce friendship and unfinished tasks (works from caves; auto at most once per game day on friendship gain).
 
-[h3]快递无人机｜Delivery Drone[/h3]
-WX-78 快递无人机配送落地时，播报玩家名、无人机名称与内容物。
-Announces the player, drone name, and cargo when a WX-78 delivery drone lands after a successful delivery.
+[h3]便携储存单元｜Portable Storage Unit[/h3]
+WX-78 便携储存单元配送落地时，播报玩家名、单元名称与内容物。
+Announces the player, unit name, and cargo when a WX-78 Portable Storage Unit lands after a successful delivery.
 
 [h3]巨兽动态｜Boss Updates[/h3]
 巨兽现身或被击败时立即向当前分片的所有玩家播报；击败时附带最终一击与按实际伤害量排序的伤害排行。

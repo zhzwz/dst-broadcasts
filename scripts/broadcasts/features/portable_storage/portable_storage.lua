@@ -1,5 +1,5 @@
 --[[
-  WX-78 快递无人机（Portable Storage Unit）配送落地播报。
+  WX-78 便携储存单元（Portable Storage Unit）配送落地播报。
 ]]
 
 modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
@@ -10,10 +10,10 @@ local Safe = BROADCASTS_SAFE
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 local FormatNamedCountList = BROADCASTS_HARVEST_ANNOUNCE.FormatNamedCountList
 
-local SUCCESS_FLAG = "_dst_broadcasts_drone_delivery_ok"
-local SENDER_NAME_KEY = "_dst_broadcasts_drone_sender_name"
+local SUCCESS_FLAG = "_dst_broadcasts_portable_storage_ok"
+local SENDER_NAME_KEY = "_dst_broadcasts_portable_storage_sender_name"
 
-local DRONE_PREFABS = {
+local UNIT_PREFABS = {
   "wx78_drone_delivery",
   "wx78_drone_delivery_small",
 }
@@ -47,7 +47,7 @@ local function CollectContents(inst)
   end
 
   if container.ForEachItem ~= nil then
-    Safe.Call("drone_delivery_foreach", function()
+    Safe.Call("portable_storage_foreach", function()
       container:ForEachItem(consider)
     end)
   elseif type(container.slots) == "table" then
@@ -79,8 +79,8 @@ local function BracketName(name)
   return "[" .. name .. "]"
 end
 
-local function GetDroneName(inst)
-  local name = Safe.Call("drone_delivery_name", function()
+local function GetUnitName(inst)
+  local name = Safe.Call("portable_storage_name", function()
     return inst:GetDisplayName()
   end)
   return BracketName(name) or GetPrefabDisplayName(inst.prefab) or "[?]"
@@ -89,7 +89,7 @@ end
 local function GetSenderName(inst)
   local sender = inst._sender
   if sender ~= nil and sender:IsValid() then
-    local name = Safe.Call("drone_delivery_sender", function()
+    local name = Safe.Call("portable_storage_sender", function()
       return sender:GetDisplayName()
     end)
     local bracketed = BracketName(name)
@@ -101,41 +101,38 @@ local function GetSenderName(inst)
 end
 
 local function AnnounceLanded(inst)
-  if type(S.drone_delivery_landed) ~= "string" then
+  if type(S.portable_storage_landed) ~= "string" then
     return
   end
   local contents = FormatContents(CollectContents(inst))
-  if contents == nil then
-    contents = S.drone_delivery_empty
-  end
   if type(contents) ~= "string" or contents == "" then
     return
   end
   local sender = inst[SENDER_NAME_KEY] or GetSenderName(inst) or ""
   inst[SENDER_NAME_KEY] = nil
-  local who = sender .. GetDroneName(inst)
-  Safe.Announce(string.format(S.drone_delivery_landed, who, contents))
+  local who = sender .. GetUnitName(inst)
+  Safe.Announce(string.format(S.portable_storage_landed, who, contents))
 end
 
-local function HookDrone(inst)
+local function HookUnit(inst)
   local md = inst.components.mapdeliverable
   if md == nil then
     return
   end
 
   local old_progress = md.ondeliveryprogressfn
-  md:SetOnDeliveryProgressFn(function(drone, t, len, origin, dest)
+  md:SetOnDeliveryProgressFn(function(unit, t, len, origin, dest)
     if old_progress ~= nil then
-      old_progress(drone, t, len, origin, dest)
+      old_progress(unit, t, len, origin, dest)
     end
     if type(t) == "number" and type(len) == "number" and len > 0 and t >= len then
-      drone[SUCCESS_FLAG] = true
+      unit[SUCCESS_FLAG] = true
       -- 落地动画结束时原版会清掉 _sender，先记住发货玩家
-      drone[SENDER_NAME_KEY] = GetSenderName(drone)
+      unit[SENDER_NAME_KEY] = GetSenderName(unit)
     end
   end)
 
-  inst:ListenForEvent("on_landed", Safe.Wrap("drone_delivery_landed", function()
+  inst:ListenForEvent("on_landed", Safe.Wrap("portable_storage_landed", function()
     if not inst[SUCCESS_FLAG] then
       return
     end
@@ -144,6 +141,6 @@ local function HookDrone(inst)
   end))
 end
 
-for _, prefab in ipairs(DRONE_PREFABS) do
-  AddPrefabPostInit(prefab, Safe.Wrap("drone_delivery_init:" .. prefab, HookDrone))
+for _, prefab in ipairs(UNIT_PREFABS) do
+  AddPrefabPostInit(prefab, Safe.Wrap("portable_storage_init:" .. prefab, HookUnit))
 end

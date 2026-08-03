@@ -37,6 +37,7 @@ words:
   - luarc
   - lunar
   - lunarfrog # 明眼青蛙
+  - mapdeliverable
   - marbleshrub # 大理石灌木
   - minhealth
   - modimport
@@ -45,6 +46,7 @@ words:
   - moistureceil
   - moisturedelta # 湿度组件事件
   - nothrow
+  - ondeliveryprogressfn
   - overheattemp # 过热温度
   - percentusedchange # 燃料组件事件：百分比变化
   - playerghost # 玩家幽灵

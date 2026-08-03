@@ -44,8 +44,8 @@ return {
   pearl_label = "Estado de la Ermitaña",
   pearl_hover =
   "Escribe pearl en el chat (también desde cuevas). Anuncio automático como máximo una vez por día de juego.",
-  drone_label = "Avisos de dron de entrega",
-  drone_hover = "Anuncia el jugador, el nombre y la carga del dron de entrega de WX-78 al aterrizar.",
+  portable_storage_label = "Unidad de almacenamiento portátil",
+  portable_storage_hover = "Al aterrizar una unidad de almacenamiento portátil de WX-78, anuncia el jugador, el nombre y la carga; no anuncia si está vacía.",
   debug_label = "Registro de depuración",
   debug_hover = "Si está activo, los errores de Broadcasts también se anuncian en el juego.",
   enabled = "Activado",

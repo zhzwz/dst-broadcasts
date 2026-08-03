@@ -44,8 +44,8 @@ return {
   pearl_label = "Eremitin-Status",
   pearl_hover =
   "Schreibe pearl in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
-  drone_label = "Lieferdrohnen-Meldungen",
-  drone_hover = "Meldet Spieler, Namen und Fracht der WX-78-Lieferdrohne bei der Landung.",
+  portable_storage_label = "Tragbare Speichereinheit",
+  portable_storage_hover = "Meldet Spieler, Namen und Fracht der WX-78 Tragbaren Speichereinheit bei der Landung; bei leerer Fracht keine Meldung.",
   debug_label = "Debug-Protokoll",
   debug_hover = "Wenn aktiv, werden Broadcasts-Fehler auch im Spiel angekündigt.",
   enabled = "Aktiviert",

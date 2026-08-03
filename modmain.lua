@@ -25,6 +25,7 @@ modimport("scripts/broadcasts/features/attack_warning/init.lua")
 modimport("scripts/broadcasts/features/frog_rain/init.lua")
 modimport("scripts/broadcasts/features/calendar/init.lua")
 modimport("scripts/broadcasts/features/harvest/init.lua")
+modimport("scripts/broadcasts/features/portable_storage/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")
@@ -40,8 +41,4 @@ end
 
 if GetModConfigData("pearl_status_enabled") then
   modimport("scripts/broadcasts/pearl_status.lua")
-end
-
-if GetModConfigData("drone_delivery_enabled") then
-  modimport("scripts/broadcasts/drone_delivery.lua")
 end

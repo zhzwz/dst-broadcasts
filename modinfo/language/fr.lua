@@ -44,8 +44,8 @@ return {
   pearl_label = "Statut de l'Ermite",
   pearl_hover =
   "Dites pearl dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
-  drone_label = "Alertes drone de livraison",
-  drone_hover = "Annonce le joueur, le nom du drone et sa cargaison à l'atterrissage.",
+  portable_storage_label = "Unité de stockage portable",
+  portable_storage_hover = "À l'atterrissage d'une unité de stockage portable WX-78, annonce le joueur, le nom et la cargaison ; ne rien annoncer si vide.",
   debug_label = "Journalisation de débogage",
   debug_hover = "Si activé, les erreurs Broadcasts sont aussi annoncées en jeu.",
   enabled = "Activé",

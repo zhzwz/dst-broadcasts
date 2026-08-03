@@ -47,8 +47,8 @@
 ---@field defeat_hover string
 ---@field pearl_label string
 ---@field pearl_hover string
----@field drone_label string
----@field drone_hover string
+---@field portable_storage_label string
+---@field portable_storage_hover string
 ---@field debug_label string
 ---@field debug_hover string
 ---@field enabled string
@@ -99,8 +99,8 @@ local L = {
   defeat_hover = "",
   pearl_label = "",
   pearl_hover = "",
-  drone_label = "",
-  drone_hover = "",
+  portable_storage_label = "",
+  portable_storage_hover = "",
   debug_label = "",
   debug_hover = "",
   enabled = "",
@@ -352,9 +352,9 @@ configuration_options = {
     default = true,
   },
   {
-    name = "drone_delivery_enabled",
-    label = L.drone_label,
-    hover = L.drone_hover,
+    name = "portable_storage_enabled",
+    label = L.portable_storage_label,
+    hover = L.portable_storage_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },
