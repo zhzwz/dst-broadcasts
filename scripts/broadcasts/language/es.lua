@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "Primavera",
     summer = "Verano",
   },
-  season_short = {
-    autumn = "Otoño",
-    winter = "Invierno",
-    spring = "Primavera",
-    summer = "Verano",
-  },
   weather = {
     rain = "lloviendo",
     snow = "nevando",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "granizo lunar",
   },
   weather_clear = "alrededor de %d%% de probabilidad de lluvia",
-  morning_report = "Calendario constante Día %d, %s, %s",
+  calendar_report = "Día constante %d, %s día %d; %s en %d días.",
+  calendar_report_soon = "Día constante %d, %s día %d; %s comienza pronto.",
   morning_events = ". Hoy: %s",
   morning_bosses = ". Jefes vivos: %s",
   morning_end = ".",

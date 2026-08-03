@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "봄",
     summer = "여름",
   },
-  season_short = {
-    autumn = "가을",
-    winter = "겨울",
-    spring = "봄",
-    summer = "여름",
-  },
   weather = {
     rain = "비 오는 중",
     snow = "눈 오는 중",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "달 우박",
   },
   weather_clear = "강수 확률 약 %d%%",
-  morning_report = "영원력 %d일, %s, %s",
+  calendar_report = "영원 %d일, %s %d일째, %s까지 %d일.",
+  calendar_report_soon = "영원 %d일, %s %d일째, 곧 %s입니다.",
   morning_events = ". 오늘의 주목: %s",
   morning_bosses = ". 생존 보스: %s",
   morning_end = ".",

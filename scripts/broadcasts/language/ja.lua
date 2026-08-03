@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "春",
     summer = "夏",
   },
-  season_short = {
-    autumn = "秋",
-    winter = "冬",
-    spring = "春",
-    summer = "夏",
-  },
   weather = {
     rain = "雨が降っています",
     snow = "雪が降っています",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "月の雹",
   },
   weather_clear = "降水確率 約%d%%",
-  morning_report = "永遠暦%d日、%s、%s",
+  calendar_report = "永遠%d日、%s%d日目、%sまであと%d日。",
+  calendar_report_soon = "永遠%d日、%s%d日目、まもなく%s。",
   morning_events = "。本日の注目：%s",
   morning_bosses = "。生存ボス：%s",
   morning_end = "。",

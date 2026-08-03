@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "Wiosna",
     summer = "Lato",
   },
-  season_short = {
-    autumn = "Jesień",
-    winter = "Zima",
-    spring = "Wiosna",
-    summer = "Lato",
-  },
   weather = {
     rain = "pada deszcz",
     snow = "pada śnieg",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "księżycowy grad",
   },
   weather_clear = "ok. %d%% szans na deszcz",
-  morning_report = "Kalendarz Stałej Dzień %d, %s, %s",
+  calendar_report = "Dzień Stałej %d, %s dzień %d; %s za %d dni.",
+  calendar_report_soon = "Dzień Stałej %d, %s dzień %d; wkrótce %s.",
   morning_events = ". Dziś: %s",
   morning_bosses = ". Żyjące bossy: %s",
   morning_end = ".",

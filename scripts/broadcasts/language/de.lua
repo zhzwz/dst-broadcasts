@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "Frühling",
     summer = "Sommer",
   },
-  season_short = {
-    autumn = "Herbst",
-    winter = "Winter",
-    spring = "Frühling",
-    summer = "Sommer",
-  },
   weather = {
     rain = "es regnet",
     snow = "es schneit",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "Mondhagel",
   },
   weather_clear = "etwa %d%% Regenwahrscheinlichkeit",
-  morning_report = "Ewiger Kalender Tag %d, %s, %s",
+  calendar_report = "Tag %d der Konstante, %s Tag %d; %s in %d Tagen.",
+  calendar_report_soon = "Tag %d der Konstante, %s Tag %d; %s beginnt bald.",
   morning_events = ". Heute: %s",
   morning_bosses = ". Lebende Bosse: %s",
   morning_end = ".",

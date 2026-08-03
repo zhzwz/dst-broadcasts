@@ -31,6 +31,8 @@
 ---@field cave_events_hover string
 ---@field frog_rain_label string
 ---@field frog_rain_hover string
+---@field calendar_label string
+---@field calendar_hover string
 ---@field morning_label string
 ---@field morning_hover string
 ---@field defeat_label string
@@ -73,6 +75,8 @@ local L = {
   cave_events_hover = "",
   frog_rain_label = "",
   frog_rain_hover = "",
+  calendar_label = "",
+  calendar_hover = "",
   morning_label = "",
   morning_hover = "",
   defeat_label = "",
@@ -245,6 +249,16 @@ configuration_options = {
     name = "frog_rain_enabled",
     label = L.frog_rain_label,
     hover = L.frog_rain_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "calendar_enabled",
+    label = L.calendar_label,
+    hover = L.calendar_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

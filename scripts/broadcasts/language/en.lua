@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "Spring",
     summer = "Summer",
   },
-  season_short = {
-    autumn = "Autumn",
-    winter = "Winter",
-    spring = "Spring",
-    summer = "Summer",
-  },
   weather = {
     rain = "raining",
     snow = "snowing",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "lunar hail",
   },
   weather_clear = "about %d%% rain chance",
-  morning_report = "Constant Calendar Day %d, %s, %s",
+  calendar_report = "Constant Day %d, %s day %d; %s in %d days.",
+  calendar_report_soon = "Constant Day %d, %s day %d; %s begins soon.",
   morning_events = ". Today: %s",
   morning_bosses = ". Living bosses: %s",
   morning_end = ".",

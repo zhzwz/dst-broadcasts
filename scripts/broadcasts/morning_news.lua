@@ -1,6 +1,7 @@
 --[[
-  永恒早报：跨天时播报日期、季节、天气、换季提示、存活巨兽，
+  永恒早报：跨天时播报天气、换季提示、存活巨兽，
   以及成熟大理石灌木、待收蜂蜜、成熟农作物与晾晒待收获物品。
+  日期/季节进度见 features/calendar。
 ]]
 
 modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
@@ -397,19 +398,14 @@ local function WeatherSummary()
 end
 
 local function AnnounceMorning()
-  local state = TheWorld.state
-  if state == nil then
+  if TheWorld.state == nil then
     return
   end
 
-  local day = AsInt(state.cycles, 0) + 1
-  local season_name = (S.season_short and S.season_short[state.season]) or
-      S.seasons[state.season] or
-      tostring(state.season or "")
   local events = CollectEvents()
   local bosses, marbleshrub, honey, farm_plant, dried = CollectWorldScan()
 
-  local message = string.format(S.morning_report, day, season_name, WeatherSummary())
+  local message = WeatherSummary()
   if #events > 0 then
     message = AppendFormatted(message, S.morning_events, table.concat(events, S.list_separator))
   end

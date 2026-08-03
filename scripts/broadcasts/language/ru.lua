@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "Весна",
     summer = "Лето",
   },
-  season_short = {
-    autumn = "Осень",
-    winter = "Зима",
-    spring = "Весна",
-    summer = "Лето",
-  },
   weather = {
     rain = "идёт дождь",
     snow = "идёт снег",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "лунный град",
   },
   weather_clear = "вероятность осадков около %d%%",
-  morning_report = "Календарь Постоянства День %d, %s, %s",
+  calendar_report = "День Постоянства %d, %s день %d; до %s ещё %d дн.",
+  calendar_report_soon = "День Постоянства %d, %s день %d; скоро начнётся %s.",
   morning_events = ". Сегодня: %s",
   morning_bosses = ". Живые боссы: %s",
   morning_end = ".",

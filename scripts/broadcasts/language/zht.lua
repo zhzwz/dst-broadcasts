@@ -29,12 +29,6 @@ BROADCASTS_STRINGS = {
     spring = "春季",
     summer = "夏季",
   },
-  season_short = {
-    autumn = "秋",
-    winter = "冬",
-    spring = "春",
-    summer = "夏",
-  },
   weather = {
     rain = "正在下雨",
     snow = "正在下雪",
@@ -42,7 +36,8 @@ BROADCASTS_STRINGS = {
     lunarhail = "正在下月亮冰雹",
   },
   weather_clear = "降水可能性約%d%%",
-  morning_report = "永恆曆%d日，%s，%s",
+  calendar_report = "永恆%d日，%s第%d天，距離%s還有%d天。",
+  calendar_report_soon = "永恆%d日，%s第%d天，即將進入%s。",
   morning_events = "。今日關注：%s",
   morning_bosses = "。存活巨獸：%s",
   morning_end = "。",
