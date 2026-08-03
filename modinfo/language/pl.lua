@@ -1,18 +1,5 @@
 return {
-    description = [[Narzędzie ogłoszeń po stronie serwera. Bez instalacji po stronie klienta.
-
-- Ostrzeżenia przed ogarami, robakami, Jeleklopem i Bordźwiedziem
-- Ostrzeżenia i ogłoszenia o wydarzeniach w jaskiniach
-- Łączna liczba żab po każdym deszczu
-- Ostrzeżenia o niskiej wytrzymałości, paliwie i zniszczonych przedmiotach
-- Ostrzeżenia o głodzie i rozsądku przy 10 i 0
-- Ostrzeżenia o zdrowiu przy 20% i 10%
-- Ostrzeżenia o zamarzaniu i przegrzaniu
-- Codzienny raport: pora roku, pogoda, wydarzenia, bossy oraz marmurowe krzewy / miód / uprawy / suszenie
-- Ogłoszenia o pojawieniu, pokonaniu i rankingu obrażeń bossów
-- Komenda czatu dla przyjaźni i zadań Zrzędliwej Pustelnicy
-- Ogłoszenie lądowania drona dostawczego WX-78
-]],
+    description = [[Broadcasts: ogłoszenia serwerowe o ostrzeżeniach przed atakiem, wydarzeniach świata, stanie graczy i bossach. Bez instalacji po stronie klienta.]],
     language_label = "Język ogłoszeń",
     language_hover = "Wybierz język ogłoszeń serwera.",
     item_label = "Ostrzeżenia o stanie przedmiotów",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Ogłoszenia o pokonaniu bossów",
     defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
     pearl_label = "Status Pustelnicy",
-    pearl_hover = "Napisz pearl lub 珍珠 na czacie (także z jaskiń). Auto-ogłoszenie najwyżej raz na dzień gry.",
+    pearl_hover = "Napisz pearl na czacie (także z jaskiń). Auto-ogłoszenie najwyżej raz na dzień gry.",
     drone_label = "Alerty drona dostawczego",
     drone_hover = "Ogłasza gracza, nazwę i ładunek drona dostawczego WX-78 po wylądowaniu.",
     debug_label = "Dziennik debugowania",

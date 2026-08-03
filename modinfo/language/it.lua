@@ -1,18 +1,5 @@
 return {
-    description = [[Strumento di annunci lato server. Nessuna installazione client richiesta.
-
-- Avvisi per segugi, vermi, Cervoclope e Tassorso
-- Avvisi e annunci sugli eventi delle caverne
-- Totale rane alla fine di ogni pioggia
-- Avvisi per durabilità, carburante e oggetti rotti
-- Avvisi fame e sanità a 10 e 0
-- Avvisi vita al 20% e 10%
-- Avvisi per congelamento e surriscaldamento
-- Rapporto quotidiano: stagione, meteo, eventi, boss, arbusti di marmo / miele / colture / essiccati
-- Annunci di apparizione, sconfitta e classifica danni dei boss
-- Comando chat per amicizia e compiti dell'Eremita Burbera
-- Annuncio del drone di consegna WX-78 all'atterraggio
-]],
+    description = [[Broadcasts: annunci lato server su avvisi d'attacco, eventi del mondo, stato dei giocatori e boss. Nessuna installazione client.]],
     language_label = "Lingua degli annunci",
     language_hover = "Seleziona la lingua degli annunci del server.",
     item_label = "Avvisi stato oggetti",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Annunci sconfitta boss",
     defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
     pearl_label = "Stato dell'Eremita",
-    pearl_hover = "Scrivi pearl o 珍珠 in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
+    pearl_hover = "Scrivi pearl in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
     drone_label = "Avvisi drone di consegna",
     drone_hover = "Annuncia giocatore, nome e carico del drone di consegna WX-78 all'atterraggio.",
     debug_label = "Registro di debug",

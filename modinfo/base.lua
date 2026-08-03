@@ -1,8 +1,7 @@
--- 模组元数据与配置项。界面文案唯一来源：modinfo_language/*.lua
--- DST 的 modinfo 沙箱只有 folder_name / locale / ChooseTranslationTable，不能加载外部文件；
--- 打包或本地测试前运行 bun run embed-modinfo，由工具把文案内联进生成的 modinfo.lua。
+-- 模组元数据与配置项。界面文案：modinfo/language/*.lua
+-- DST modinfo 沙箱不能加载外部文件；bun run build-modinfo 会生成根目录 modinfo.lua
 -- BEGIN_MODINFO_LANGUAGES
-local L = nil -- placeholder; replaced by embed-modinfo
+local L = nil -- placeholder; replaced by build-modinfo
 -- END_MODINFO_LANGUAGES
 name = "Broadcasts"
 description = L.description

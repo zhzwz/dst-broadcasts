@@ -10,11 +10,12 @@
 import { $, Glob } from "bun";
 import luamin from "luamin";
 import { isAbsolute, relative, resolve, sep } from "node:path";
-import { embedModinfoLanguages } from "./embed_modinfo_languages";
+import { buildModinfo } from "./build_modinfo";
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
 const PACKAGE_JSON = `${ROOT}/package.json`;
-const MODINFO_BASE = `${ROOT}/modinfo.base.lua`;
+const MODINFO_DIR = `${ROOT}/modinfo`;
+const MODINFO_BASE = `${MODINFO_DIR}/base.lua`;
 
 type PackageJson = {
   version?: string;
@@ -73,7 +74,7 @@ async function minifyLuaFile(filePath: string) {
 async function syncModinfoVersion(version: string) {
   const text = await Bun.file(MODINFO_BASE).text();
   if (!/^\s*version\s*=\s*"[^"]*"/m.test(text)) {
-    throw new Error("modinfo.base.lua 中找不到 version 字段");
+    throw new Error("modinfo/base.lua 中找不到 version 字段");
   }
   const next = text.replace(/^\s*version\s*=\s*"[^"]*"/m, `version = "${version}"`);
   if (next !== text) {
@@ -120,8 +121,8 @@ export async function packMod(outDirArg?: string): Promise<string> {
   if (!(await pathExists(`${ROOT}/modmain.lua`))) {
     throw new Error(`找不到 ${ROOT}/modmain.lua`);
   }
-  if (!(await pathExists(`${ROOT}/modinfo_language`))) {
-    throw new Error(`找不到 ${ROOT}/modinfo_language`);
+  if (!(await pathExists(MODINFO_DIR))) {
+    throw new Error(`找不到 ${MODINFO_DIR}`);
   }
   if (!(await pathExists(`${ROOT}/scripts`))) {
     throw new Error(`找不到 ${ROOT}/scripts`);
@@ -133,8 +134,8 @@ export async function packMod(outDirArg?: string): Promise<string> {
   await syncModinfoVersion(version);
   await $`rm -rf ${outDir}`.quiet();
   await $`mkdir -p ${outDir}`.quiet();
-  // 文案只存在于 modinfo_language/；生成自包含 modinfo.lua 到打包目录
-  await embedModinfoLanguages(`${outDir}/modinfo.lua`);
+  // 从 modinfo/ 生成自包含 modinfo.lua 到打包目录
+  await buildModinfo(`${outDir}/modinfo.lua`);
   await $`cp ${ROOT}/modmain.lua ${outDir}/`.quiet();
   await $`cp -R ${ROOT}/scripts ${outDir}/`.quiet();
 

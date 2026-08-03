@@ -1,18 +1,5 @@
 return {
-    description = [[Serverseitiges Ankündigungswerkzeug. Keine Client-Installation nötig.
-
-- Warnungen für Hunde, Würmer, Deerclops und Riesendachs
-- Warnungen und Statusmeldungen zu Höhlenereignissen
-- Froschregen-Gesamtzahl am Ende jedes Schauers
-- Warnungen bei niedriger Haltbarkeit, Brennstoff und kaputten Gegenständen
-- Warnungen bei Hunger und Verstand bei 10 und 0
-- Gesundheitswarnungen bei 20% und 10%
-- Warnungen bei Erfrieren und Überhitzen
-- Täglicher Bericht: Saison, Wetter, Ereignisse, Bosse sowie Marmorsträucher / Honig / Nutzpflanzen / Trockengut
-- Ankündigungen zu Boss-Erscheinen, Niederlage und Schadensrangliste
-- Chatbefehl für Freundschaft und offene Aufgaben der Eremitin
-- WX-78-Lieferdrohne bei Landung ansagen
-]],
+    description = [[Broadcasts: Serverseitige Ansagen zu Angriffswarnungen, Weltereignissen, Spielerstatus und Bossen. Keine Client-Installation nötig.]],
     language_label = "Sprache der Ankündigungen",
     language_hover = "Sprache für Server-Ankündigungen wählen.",
     item_label = "Gegenstandsstatus-Warnungen",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Boss-Niederlagen-Ankündigungen",
     defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
     pearl_label = "Eremitin-Status",
-    pearl_hover = "Schreibe pearl oder 珍珠 in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
+    pearl_hover = "Schreibe pearl in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
     drone_label = "Lieferdrohnen-Meldungen",
     drone_hover = "Meldet Spieler, Namen und Fracht der WX-78-Lieferdrohne bei der Landung.",
     debug_label = "Debug-Protokoll",

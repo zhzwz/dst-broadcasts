@@ -5,5 +5,5 @@ node_modules/
 .env
 .env.*
 
-# 由 modinfo.base.lua + modinfo_language/ 生成；勿手改、勿提交
+# 由 modinfo/ 生成；勿手改、勿提交
 modinfo.lua

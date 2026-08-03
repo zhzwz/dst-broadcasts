@@ -1,18 +1,5 @@
 return {
-    description = [[Ferramenta de anúncios no servidor. Sem instalação no cliente.
-
-- Avisos de cães de caça, vermes, Cervoclope e Texurso
-- Avisos e anúncios de eventos das cavernas
-- Total de sapos ao fim de cada chuva
-- Avisos de durabilidade, combustível e itens quebrados
-- Avisos de fome e sanidade em 10 e 0
-- Avisos de vida em 20% e 10%
-- Avisos de congelamento e superaquecimento
-- Relatório diário: estação, clima, eventos, chefes, arbustos de mármore / mel / cultivos / secos
-- Anúncios de aparecimento, derrota e ranking de dano de chefes
-- Comando de chat para amizade e tarefas da Eremita Rabugenta
-- Anuncia o drone de entrega do WX-78 ao pousar
-]],
+    description = [[Broadcasts: anúncios no servidor com avisos de ataque, eventos do mundo, estado dos jogadores e chefes. Sem instalação no cliente.]],
     language_label = "Idioma dos anúncios",
     language_hover = "Escolher o idioma dos anúncios do servidor.",
     item_label = "Avisos de estado de itens",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Anúncios de derrota de chefes",
     defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
     pearl_label = "Status da Eremita",
-    pearl_hover = "Digite pearl ou 珍珠 no chat (também das cavernas). Anúncio automático no máximo uma vez por dia de jogo.",
+    pearl_hover = "Digite pearl no chat (também das cavernas). Anúncio automático no máximo uma vez por dia de jogo.",
     drone_label = "Alertas do drone de entrega",
     drone_hover = "Anuncia o jogador, o nome e a carga do drone de entrega do WX-78 ao pousar.",
     debug_label = "Registo de depuração",

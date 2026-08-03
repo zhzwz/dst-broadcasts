@@ -2,7 +2,7 @@
   Pearl（寄居蟹隐士）好感与待办任务。
 
   触发：
-  - 公频聊天精确发送 pearl 或 珍珠（含跨分片：洞穴可查地表状态）
+  - 公频聊天精确发送 pearl（含跨分片：洞穴可查地表状态）
   - 好感等级提升时自动播报（每个游戏日最多一次）
 ]]
 
@@ -41,7 +41,6 @@ local TASK_IDS = {
 
 local CHAT_TRIGGERS = {
     pearl = true,
-    ["珍珠"] = true,
 }
 
 -- userid -> { t = GetTime(), fail = bool }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
-const VERSION_FILES = ["package.json", "modinfo.base.lua"];
+const VERSION_FILES = ["package.json", "modinfo/base.lua"];
 
 type PackageJson = {
   version?: string;

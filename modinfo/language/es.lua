@@ -1,18 +1,5 @@
 return {
-    description = [[Herramienta de anuncios del lado del servidor. No requiere instalación en el cliente.
-
-- Avisos de sabuesos, gusanos, Ciérclope y Osotejón
-- Avisos y anuncios de eventos de cuevas
-- Total de ranas al final de cada lluvia
-- Avisos de durabilidad, combustible y objetos rotos
-- Avisos de hambre y cordura a 10 y 0
-- Avisos de vida al 20% y 10%
-- Avisos de congelación y sobrecalentamiento
-- Informe diario: estación, clima, eventos, jefes, arbustos de mármol / miel / cultivos / secado
-- Anuncios de aparición, derrota y ranking de daño de jefes
-- Comando de chat para amistad y tareas de la Ermitaña Cascarrabias
-- Anuncio del dron de entrega de WX-78 al aterrizar
-]],
+    description = [[Broadcasts: anuncios del servidor con avisos de ataque, eventos del mundo, estado de jugadores y jefes. Sin instalación en el cliente.]],
     language_label = "Idioma de los anuncios",
     language_hover = "Elige el idioma de los anuncios del servidor.",
     item_label = "Avisos de estado de objetos",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Anuncios de derrota de jefes",
     defeat_hover = "Anunciar la derrota, el golpe final y el ranking de daño real.",
     pearl_label = "Estado de la Ermitaña",
-    pearl_hover = "Escribe pearl o 珍珠 en el chat (también desde cuevas). Anuncio automático como máximo una vez por día de juego.",
+    pearl_hover = "Escribe pearl en el chat (también desde cuevas). Anuncio automático como máximo una vez por día de juego.",
     drone_label = "Avisos de dron de entrega",
     drone_hover = "Anuncia el jugador, el nombre y la carga del dron de entrega de WX-78 al aterrizar.",
     debug_label = "Registro de depuración",

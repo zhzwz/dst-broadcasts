@@ -1,18 +1,5 @@
 return {
-    description = [[Outil d'annonces côté serveur. Aucune installation client requise.
-
-- Alertes molosses, vers, Cerf-clope et Blairours
-- Alertes et annonces des événements des caves
-- Total des grenouilles à la fin de chaque pluie
-- Alertes de durabilité, carburant et objets cassés
-- Alertes faim et santé mentale à 10 et 0
-- Alertes de vie à 20% et 10%
-- Alertes de gel et de surchauffe
-- Rapport quotidien : saison, météo, événements, boss, arbustes de marbre / miel / cultures / séchage
-- Annonces d'apparition, de défaite et de classement des dégâts des boss
-- Commande de chat pour l'amitié et les tâches de l'Ermite grincheuse
-- Annonce du drone de livraison WX-78 à l'atterrissage
-]],
+    description = [[Broadcasts : annonces côté serveur — alertes d'attaque, événements du monde, statut des joueurs et boss. Aucune installation client.]],
     language_label = "Langue des annonces",
     language_hover = "Choisir la langue des annonces du serveur.",
     item_label = "Alertes d'état des objets",
@@ -32,7 +19,7 @@ return {
     defeat_label = "Annonces de défaite des boss",
     defeat_hover = "Annoncer la défaite, le coup final et le classement des dégâts réels.",
     pearl_label = "Statut de l'Ermite",
-    pearl_hover = "Dites pearl ou 珍珠 dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
+    pearl_hover = "Dites pearl dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
     drone_label = "Alertes drone de livraison",
     drone_hover = "Annonce le joueur, le nom du drone et sa cargaison à l'atterrissage.",
     debug_label = "Journalisation de débogage",

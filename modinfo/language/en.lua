@@ -1,19 +1,5 @@
 return {
-    description = [[
-Server-side broadcast utility. No client installation required.
-
-- Hound, worm, Deerclops, and Bearger warnings
-- Cave event warnings and status announcements
-- Frog rain totals when each shower ends
-- Low durability, low fuel, and item break alerts
-- Hunger and sanity alerts at 10 and 0
-- Health alerts at 20% and 10%
-- Freezing and overheating alerts
-- Daily report: season, weather, events, bosses, plus marble shrubs / honey / crops / drying racks
-- Boss appearance, defeat, and damage ranking announcements
-- Chat pearl / 珍珠 for Pearl friendship and unfinished tasks (cross-shard)
-- Announce WX-78 delivery drone name and cargo on landing
-]],
+    description = [[Broadcasts: Server-side announcements for attack warnings, world events, player status, and boss updates. No client installation required.]],
     language_label = "Broadcast language",
     language_hover = "Select the language used for server announcements.",
     item_label = "Item status alerts",
@@ -33,11 +19,11 @@ Server-side broadcast utility. No client installation required.
     defeat_label = "Boss defeat announcements",
     defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
     pearl_label = "Pearl status",
-    pearl_hover = "Say pearl or 珍珠 in chat to announce friendship and unfinished tasks (works from caves). Auto-announces at most once per game day on friendship gain.",
-    drone_label = "Delivery drone alerts",
-    drone_hover = "Announce the player, drone name, and cargo when a WX-78 delivery drone lands.",
-    debug_label = "Debug logging",
-    debug_hover = "When enabled, Broadcasts errors are also announced in-game.",
+    pearl_hover = "Say pearl in chat to announce friendship and unfinished tasks (works from caves). Auto-announces at most once per game day on friendship gain.",
+    drone_label = "Delivery drone announcements",
+    drone_hover = "When a WX-78 delivery drone lands, announce the player name, drone name, and cargo.",
+    debug_label = "Debug mode",
+    debug_hover = "When enabled, Broadcasts errors are also shown in in-game announcements.",
     enabled = "Enabled",
     disabled = "Disabled",
 }

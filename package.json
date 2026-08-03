@@ -4,7 +4,7 @@
   "version": "1.5.3",
   "private": true,
   "scripts": {
-    "embed-modinfo": "bun run tools/embed_modinfo_languages.ts",
+    "build-modinfo": "bun run tools/build_modinfo.ts",
     "pack": "bun run tools/release.ts --pack-only",
     "release": "bun run tools/release.ts"
   },
