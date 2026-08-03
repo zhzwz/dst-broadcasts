@@ -10,9 +10,11 @@
 import { $, Glob } from "bun";
 import luamin from "luamin";
 import { isAbsolute, relative, resolve, sep } from "node:path";
+import { embedModinfoLanguages } from "./embed_modinfo_languages";
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
 const PACKAGE_JSON = `${ROOT}/package.json`;
+const MODINFO_BASE = `${ROOT}/modinfo.base.lua`;
 
 type PackageJson = {
   version?: string;
@@ -69,14 +71,13 @@ async function minifyLuaFile(filePath: string) {
 }
 
 async function syncModinfoVersion(version: string) {
-  const modinfoPath = `${ROOT}/modinfo.lua`;
-  const text = await Bun.file(modinfoPath).text();
+  const text = await Bun.file(MODINFO_BASE).text();
   if (!/^\s*version\s*=\s*"[^"]*"/m.test(text)) {
-    throw new Error("modinfo.lua 中找不到 version 字段");
+    throw new Error("modinfo.base.lua 中找不到 version 字段");
   }
   const next = text.replace(/^\s*version\s*=\s*"[^"]*"/m, `version = "${version}"`);
   if (next !== text) {
-    await Bun.write(modinfoPath, next);
+    await Bun.write(MODINFO_BASE, next);
   }
 }
 
@@ -113,8 +114,8 @@ export async function packMod(outDirArg?: string): Promise<string> {
   if (!(await pathExists(PACKAGE_JSON))) {
     throw new Error(`找不到 ${PACKAGE_JSON}`);
   }
-  if (!(await pathExists(`${ROOT}/modinfo.lua`))) {
-    throw new Error(`找不到 ${ROOT}/modinfo.lua`);
+  if (!(await pathExists(MODINFO_BASE))) {
+    throw new Error(`找不到 ${MODINFO_BASE}`);
   }
   if (!(await pathExists(`${ROOT}/modmain.lua`))) {
     throw new Error(`找不到 ${ROOT}/modmain.lua`);
@@ -132,16 +133,14 @@ export async function packMod(outDirArg?: string): Promise<string> {
   await syncModinfoVersion(version);
   await $`rm -rf ${outDir}`.quiet();
   await $`mkdir -p ${outDir}`.quiet();
-  await $`cp ${ROOT}/modinfo.lua ${ROOT}/modmain.lua ${outDir}/`.quiet();
-  await $`cp -R ${ROOT}/modinfo_language ${outDir}/`.quiet();
+  // 文案只存在于 modinfo_language/；生成自包含 modinfo.lua 到打包目录
+  await embedModinfoLanguages(`${outDir}/modinfo.lua`);
+  await $`cp ${ROOT}/modmain.lua ${outDir}/`.quiet();
   await $`cp -R ${ROOT}/scripts ${outDir}/`.quiet();
 
   const luaFiles = [
     `${outDir}/modinfo.lua`,
     `${outDir}/modmain.lua`,
-    ...(await Array.fromAsync(
-      new Glob("modinfo_language/*.lua").scan({ cwd: outDir, absolute: true }),
-    )),
     ...(await Array.fromAsync(
       new Glob("scripts/broadcasts/*.lua").scan({ cwd: outDir, absolute: true }),
     )),

@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * 打包并上传 Steam Workshop。
- * 版本以 package.json 为准，发布前询问递增方式并同步到 modinfo.lua。
+ * 版本以 package.json 为准，发布前询问递增方式并同步到 modinfo.base.lua。
  *
  *   bun run release
  *   bun run release -- --pack-only
@@ -23,7 +23,7 @@ type PackageJson = {
 
 const ROOT = decodeURIComponent(new URL("..", import.meta.url).pathname).replace(/\/$/, "");
 const PACKAGE_JSON = `${ROOT}/package.json`;
-const MODINFO = `${ROOT}/modinfo.lua`;
+const MODINFO = `${ROOT}/modinfo.base.lua`;
 const WORKSHOP_DESCRIPTION = `${ROOT}/workshop-description.txt`;
 const WORKSHOP: WorkshopConfig = {
   appId: 322330,
@@ -166,7 +166,7 @@ async function main() {
       await cleanBuildDirs();
     }
     await packMod(outDir);
-    console.log(`已同步 modinfo.lua version = "${version}"`);
+    console.log(`已同步 modinfo.base.lua version = "${version}"`);
 
     if (args.packOnly) {
       if (version !== currentVersion) {
@@ -203,7 +203,7 @@ async function main() {
     }
     try {
       await restoreVersionFiles(originalPackageJson, originalModinfo);
-      console.error("发布失败，已回滚 package.json 和 modinfo.lua 的版本");
+      console.error("发布失败，已回滚 package.json 和 modinfo.base.lua 的版本");
     } catch (rollbackError) {
       throw new AggregateError([error, rollbackError], "发布失败，且版本回滚失败");
     }

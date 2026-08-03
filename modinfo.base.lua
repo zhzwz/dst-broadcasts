@@ -1,28 +1,9 @@
--- modinfo 沙箱没有 require；用 kleiloadlua + folder_name 加载拆分文案。
-local function LoadModinfoLanguage(code)
-    local path = (MODS_ROOT or "../mods/") .. (folder_name or "") .. "/modinfo_language/" .. code .. ".lua"
-    local fn = kleiloadlua(path)
-    if type(fn) ~= "function" then
-        error("Failed to load modinfo_language/" .. tostring(code) .. ": " .. tostring(fn))
-    end
-    return fn()
-end
-
-local L = ChooseTranslationTable({
-    LoadModinfoLanguage("en"),
-    zh = LoadModinfoLanguage("zh"),
-    zhr = LoadModinfoLanguage("zh"),
-    zht = LoadModinfoLanguage("zht"),
-    fr = LoadModinfoLanguage("fr"),
-    de = LoadModinfoLanguage("de"),
-    it = LoadModinfoLanguage("it"),
-    es = LoadModinfoLanguage("es"),
-    pt = LoadModinfoLanguage("pt"),
-    pl = LoadModinfoLanguage("pl"),
-    ru = LoadModinfoLanguage("ru"),
-    ko = LoadModinfoLanguage("ko"),
-    ja = LoadModinfoLanguage("ja"),
-})
+-- 模组元数据与配置项。界面文案唯一来源：modinfo_language/*.lua
+-- DST 的 modinfo 沙箱只有 folder_name / locale / ChooseTranslationTable，不能加载外部文件；
+-- 打包或本地测试前运行 bun run embed-modinfo，由工具把文案内联进生成的 modinfo.lua。
+-- BEGIN_MODINFO_LANGUAGES
+local L = nil -- placeholder; replaced by embed-modinfo
+-- END_MODINFO_LANGUAGES
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
@@ -53,16 +34,16 @@ configuration_options = {
         hover = L.language_hover,
         options = {
             { description = "简体中文", data = "zh" },
-            { description = "繁體中文", data = "zht" },
             { description = "English", data = "en" },
             { description = "Français", data = "fr" },
+            { description = "Español", data = "es" },
             { description = "Deutsch", data = "de" },
             { description = "Italiano", data = "it" },
-            { description = "Español", data = "es" },
             { description = "Português", data = "pt" },
             { description = "Polski", data = "pl" },
             { description = "Русский", data = "ru" },
             { description = "한국어", data = "ko" },
+            { description = "繁體中文", data = "zht" },
             { description = "日本語", data = "ja" },
         },
         default = "zh",
