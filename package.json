@@ -8,12 +8,14 @@
     "pack": "bun run tools/release.ts --pack-only",
     "release": "bun run tools/release.ts"
   },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "luamin": "1.0.4",
-    "steamworks.js": "^0.4.0"
-  },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@zhzwz/eslint-config": "^0.1.0",
+    "eslint": "^10.8.0",
+    "luamin": "1.0.4",
+    "steamworks.js": "^0.4.0"
   }
 }

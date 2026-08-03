@@ -1,0 +1,51 @@
+{
+  "[lua]": {
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.markdownlint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.organizeImports": "never"
+  },
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "eslint.enable": true,
+  "eslint.rules.customizations": [
+    { "rule": "@cspell/spellchecker", "severity": "off" },
+  ],
+  "eslint.validate": [
+    "ignore",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "markdown",
+    "properties",
+    "typescript",
+    "yaml"
+  ],
+  "files.associations": {
+    "**/bun.lock": "jsonc",
+    "**/tsconfig.json": "jsonc"
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "bun.lock"
+      ],
+      "schema": {
+        "allowTrailingCommas": true
+      }
+    }
+  ],
+}

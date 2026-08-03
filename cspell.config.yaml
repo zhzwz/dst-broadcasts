@@ -1,0 +1,22 @@
+ignorePaths:
+  - .git
+  - bun.lock
+  - dist
+  - modinfo/language
+  - node_modules
+  - package.json
+  - scripts/broadcasts/language
+
+ignoreWords:
+  - dont
+  - zhzwz
+
+words:
+  - forumthread
+  - hassler
+  - ismastersim
+  - luamin
+  - modimport
+  - modmain
+  - modname
+  - steamworks

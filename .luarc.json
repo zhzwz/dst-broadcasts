@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "Lua 5.1",
+    "special": {
+      "modimport": "require"
+    }
+  },
+  "diagnostics": {
+    "globals": [
+      "GLOBAL",
+      "env",
+      "modimport",
+      "modname",
+      "GetModConfigData",
+      "AddPrefabPostInit",
+      "AddSimPostInit",
+      "AddComponentPostInit",
+      "AddPlayerPostInit",
+      "AddShardModRPCHandler",
+      "GetShardModRPC",
+      "SendModRPCToShard",
+      "ChooseTranslationTable",
+      "TheWorld",
+      "TheNet",
+      "TheShard",
+      "Ents",
+      "STRINGS",
+      "TUNING",
+      "Class",
+      "GetTime",
+      "Networking_Say",
+      "FUELTYPE",
+      "POPULATING",
+      "SHARDID",
+      "ShardList",
+      "Shard_IsWorldAvailable",
+      "BROADCASTS_STRINGS",
+      "BROADCASTS_CONSTANTS",
+      "BROADCASTS_SAFE",
+      "BROADCASTS_WATCH_ATTACK_WARNING"
+    ]
+  },
+  "workspace": {
+    "library": [],
+    "ignoreDir": [
+      "node_modules",
+      "broadcasts-"
+    ]
+  }
+}
