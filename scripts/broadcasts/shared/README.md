@@ -13,12 +13,12 @@
 
 ## 与 lib / 功能目录的边界
 
-| 位置 | 放什么 |
-|------|--------|
-| `../lib/` | 与游戏无关的纯 Lua 函数 |
-| `shared/`（本目录） | 读实体/组件/`STRINGS` 等可复用小函数 |
-| `../features/<name>/` | 某一玩法的流程、注册与状态机 |
-| 仓库根旁的 `safe.lua` / `constants.lua` / `language/` | 全局基础设施，暂不拆进本目录 |
+| 位置                                                  | 放什么                               |
+| ----------------------------------------------------- | ------------------------------------ |
+| `../lib/`                                             | 与游戏无关的纯 Lua 函数              |
+| `shared/`（本目录）                                   | 读实体/组件/`STRINGS` 等可复用小函数 |
+| `../features/<name>/`                                 | 某一玩法的流程、注册与状态机         |
+| 仓库根旁的 `safe.lua` / `constants.lua` / `language/` | 全局基础设施，暂不拆进本目录         |
 
 常用：`get_player_display_name`、`get_character_announce_line`（`ANNOUNCE_*`；`character_quote` 按语言加引号）等。
 

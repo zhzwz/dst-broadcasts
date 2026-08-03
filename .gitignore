@@ -1,9 +1,9 @@
 .DS_Store
-*.zip
-broadcasts-*/
-node_modules/
 .env
 .env.*
+*.zip
+broadcasts-*/
 
 # 由 modinfo/ 生成；勿手改、勿提交
 modinfo.lua
+node_modules/

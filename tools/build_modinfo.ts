@@ -5,9 +5,6 @@
  *   modinfo/base.lua          元数据与配置项
  *   modinfo/language/*.lua    界面文案（唯一来源）
  *
- * DST modinfo 沙箱没有 require / kleiloadlua，只能内联后才能被游戏加载。
- * 生成的 modinfo.lua 已 gitignore。
- *
  *   bun run tools/build_modinfo.ts [输出路径]
  *   默认输出: <repo>/modinfo.lua
  */
