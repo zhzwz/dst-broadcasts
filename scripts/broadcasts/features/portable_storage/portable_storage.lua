@@ -102,14 +102,15 @@ end
 
 local function AnnounceLanded(inst)
   if type(S.portable_storage_landed) ~= "string" then
+    inst[SENDER_NAME_KEY] = nil
     return
   end
   local contents = FormatContents(CollectContents(inst))
+  local sender = inst[SENDER_NAME_KEY] or GetSenderName(inst) or ""
+  inst[SENDER_NAME_KEY] = nil
   if type(contents) ~= "string" or contents == "" then
     return
   end
-  local sender = inst[SENDER_NAME_KEY] or GetSenderName(inst) or ""
-  inst[SENDER_NAME_KEY] = nil
   local who = sender .. GetUnitName(inst)
   Safe.Announce(string.format(S.portable_storage_landed, who, contents))
 end
