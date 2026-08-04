@@ -151,11 +151,6 @@ AddSimPostInit(mod.Wrap("frog_rain_init", function()
     return
   end
 
-  -- 读档还原世界状态时可能同步触发 WatchWorldState / StartTracking；首帧后再接受变化与计增
-  TheWorld:DoTaskInTime(0, function()
-    ready = true
-  end)
-
   local on_condition = mod.Wrap("frog_rain_condition", function()
     if ready and not IsFrogRainSpawning(TheWorld) then
       FinishFrogRain(TheWorld)
@@ -166,6 +161,13 @@ AddSimPostInit(mod.Wrap("frog_rain_init", function()
   TheWorld:WatchWorldState("israining", on_condition)
   TheWorld:WatchWorldState("precipitationrate", on_condition)
   TheWorld:WatchWorldState("moistureceil", on_condition)
+
+  -- 读档还原世界状态时可能同步触发 WatchWorldState / StartTracking；首帧后再接受变化与计增。
+  -- ready 打开后补跑一次结束检查，避免门闩窗口内错过结算导致场次粘连。
+  TheWorld:DoTaskInTime(0, function()
+    ready = true
+    on_condition()
+  end)
 
   local state = GetState(TheWorld)
   local frogs, lunar = 0, 0
