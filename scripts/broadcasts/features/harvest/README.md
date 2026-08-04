@@ -45,7 +45,7 @@
 
 ## 行为要点
 
-- 仅主机；仅 `day` → `dusk` 时播报（读档停黄昏 / `previous` 未就绪不播）
+- 仅主机；仅 `day` → `dusk` 时播报（森林 `phase` / 洞穴 `cavephase`；读档停黄昏 / `previous` 未就绪不播）
 - 每种物资单独 `Announce`，不拼成一条
 - 晾晒架单项需有 `dryinginfo` 且已晒完才计入（避免无信息时误报）
 - 与「永恒早报」独立

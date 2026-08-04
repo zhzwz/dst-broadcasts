@@ -4,10 +4,12 @@
 
 modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
+modimport("scripts/broadcasts/lib/day_slot.lua")
 
 local S = BROADCASTS_STRINGS
 local H = BROADCASTS_HARVEST
 local Announce = BROADCASTS_HARVEST_ANNOUNCE
+local Slot = BROADCASTS_DAY_SLOT
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 
 local function IsMatureMarbleshrub(inst)
@@ -258,9 +260,11 @@ AddSimPostInit(mod.Wrap("harvest_init", function()
     return
   end
 
-  -- 读档停在黄昏、或 phase 尚未就绪时不播；仅 day → dusk 时播报。
-  local prev_phase = TheWorld.state ~= nil and TheWorld.state.phase or nil
-  TheWorld:WatchWorldState("phase", mod.Wrap("harvest_phase", function(_, phase)
+  -- 读档停在黄昏、或相位尚未就绪时不播；仅 day → dusk 时播报。
+  -- 森林听 phase，洞穴听 cavephase（与电台一致）。
+  local key = Slot.PhaseStateKey(TheWorld:HasTag("cave"))
+  local prev_phase = TheWorld.state ~= nil and TheWorld.state[key] or nil
+  TheWorld:WatchWorldState(key, mod.Wrap("harvest_phase", function(_, phase)
     local previous = prev_phase
     prev_phase = phase
     if not Announce.ShouldAnnounceOnPhase(previous, phase) then
