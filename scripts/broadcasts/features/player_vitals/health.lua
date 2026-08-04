@@ -112,9 +112,10 @@ local function OnHealthDelta(player, data)
   end
 
   local oldpercent = data and data.oldpercent
-  local decreasing = type(oldpercent) == "number"
-      and oldpercent == oldpercent
-      and percent < oldpercent
+  -- 旧值缺失时与 sanity 一致：按下降处理，避免漏播
+  local decreasing = type(oldpercent) ~= "number"
+      or oldpercent ~= oldpercent
+      or percent < oldpercent
 
   CheckHealth(player, percent, decreasing)
 end
