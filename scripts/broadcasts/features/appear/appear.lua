@@ -178,11 +178,14 @@ local function HookAppear(prefab, boss)
     end
 
     inst:DoTaskInTime(0, mod.Wrap("appear:" .. prefab, function()
-      if not inst:IsValid() or inst._dst_broadcasts_appear_loaded then
+      if not inst:IsValid() then
         return
       end
-      if TryAnnounce(inst, boss) then
-        return
+      -- 读档 / 世界填充：跳过即时现身，但仍装 watch（Klaus 解链、瓦器人敌对等）
+      if not inst._dst_broadcasts_appear_loaded then
+        if TryAnnounce(inst, boss) then
+          return
+        end
       end
       if boss.watch ~= nil then
         boss.watch(inst, mod.Wrap("appear_watch:" .. prefab, function()
