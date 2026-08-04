@@ -7,8 +7,9 @@
 ]]
 
 local S = BROADCASTS_STRINGS
-local C = BROADCASTS_CONSTANTS
+local C = BROADCASTS_PEARL
 local Safe = BROADCASTS_SAFE
+local TASK_IDS = BROADCASTS_PEARL_TASKS
 
 local RPC_NS = modname
 local RPC_MAGIC = "dst_broadcasts_pearl_v1"
@@ -17,27 +18,6 @@ local RPC_ANNOUNCE = "PearlStatusAnnounce"
 local RPC_QUERY_RESULT = "PearlStatusQueryResult"
 -- 按字节计；中文待办较长时需留余量
 local STATUS_MESSAGE_MAX_LEN = 2048
-
--- 与游戏 prefabs/hermitcrab.lua 中 TASKS 一致
-local TASK_IDS = {
-  { id = 1,  key = "FIX_HOUSE_1" },
-  { id = 2,  key = "FIX_HOUSE_2" },
-  { id = 3,  key = "FIX_HOUSE_3" },
-  { id = 4,  key = "PLANT_FLOWERS" },
-  { id = 5,  key = "REMOVE_JUNK" },
-  { id = 6,  key = "PLANT_BERRIES" },
-  { id = 7,  key = "FILL_MEATRACKS" },
-  { id = 8,  key = "GIVE_HEAVY_FISH" },
-  { id = 9,  key = "REMOVE_LUREPLANT" },
-  { id = 10, key = "GIVE_UMBRELLA" },
-  { id = 11, key = "GIVE_PUFFY_VEST" },
-  { id = 12, key = "GIVE_FLOWER_SALAD" },
-  { id = 14, key = "GIVE_BIG_WINTER" },
-  { id = 15, key = "GIVE_BIG_SUMMER" },
-  { id = 16, key = "GIVE_BIG_SPRING" },
-  { id = 17, key = "GIVE_BIG_AUTUM" },
-  { id = 18, key = "MAKE_CHAIR" },
-}
 
 local CHAT_TRIGGERS = {
   pearl = true,
@@ -59,12 +39,14 @@ local function FindPearl()
   local mbm = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.messagebottlemanager or nil
   if mbm ~= nil then
     if mbm.GetHermitCrab ~= nil then
-      return mbm:GetHermitCrab()
-    end
-    if mbm.hermitcrab ~= nil and mbm.hermitcrab:IsValid() then
+      local pearl = mbm:GetHermitCrab()
+      if pearl ~= nil then
+        return pearl
+      end
+    elseif mbm.hermitcrab ~= nil and mbm.hermitcrab:IsValid() then
       return mbm.hermitcrab
     end
-    return nil
+    -- 管理器未挂上实例时回退扫描，避免误报未找到
   end
 
   -- Pearl 只在地表；洞穴等次级分片不要扫 Ents
@@ -160,7 +142,7 @@ local function IsOnCooldown(userid)
   if entry == nil or type(entry.t) ~= "number" then
     return false
   end
-  local cd = entry.fail and C.PEARL_STATUS_FAIL_COOLDOWN_SECONDS or C.PEARL_STATUS_COOLDOWN_SECONDS
+  local cd = entry.fail and C.FAIL_COOLDOWN_SECONDS or C.COOLDOWN_SECONDS
   return (GetTime() - entry.t) < cd
 end
 
@@ -203,32 +185,38 @@ local function CanSendShardRpc()
 end
 
 -- 普通全分片播报（聊天本分片命中、好感同步）
+-- @return boolean 是否已播报
 local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
-    return
+    return false
   end
   Safe.Announce(message)
   if CanSendShardRpc() then
     SendModRPCToShard(GetShardModRPC(RPC_NS, RPC_ANNOUNCE), nil, RPC_MAGIC, message)
   end
+  return true
 end
 
 -- 跨分片查询的回复（独立 RPC，不与普通播报混用）
+-- @return boolean 是否已播报
 local function BroadcastQueryResult(message, query_token)
   if not IsValidStatusMessage(message) then
-    return
+    return false
   end
   Safe.Announce(message)
   if CanSendShardRpc() then
     SendModRPCToShard(GetShardModRPC(RPC_NS, RPC_QUERY_RESULT), nil, RPC_MAGIC, message, query_token or 0)
   end
+  return true
 end
 
 local function FinishRemoteSuccess(message)
   CancelRemoteRequest()
-  MarkWaitersCooldown(false)
   if IsValidStatusMessage(message) then
+    MarkWaitersCooldown(false)
     Safe.Announce(message)
+  else
+    MarkWaitersCooldown(true)
   end
 end
 
@@ -258,7 +246,7 @@ local function RequestRemoteStatus(userid)
   local target = (SHARDID ~= nil and SHARDID.MASTER) or nil
   SendModRPCToShard(GetShardModRPC(RPC_NS, RPC_REQUEST), target, RPC_MAGIC, token)
 
-  TheWorld:DoTaskInTime(C.PEARL_STATUS_SHARD_TIMEOUT_SECONDS, function()
+  TheWorld:DoTaskInTime(C.SHARD_TIMEOUT_SECONDS, function()
     if token ~= remote_expect_token or not remote_request_inflight then
       return
     end
@@ -273,8 +261,11 @@ local function AnnouncePearlStatusFromChat(userid)
 
   local message = TryBuildLocalStatusMessage()
   if message ~= nil then
-    MarkCooldown(userid, false)
-    BroadcastStatus(message)
+    if BroadcastStatus(message) then
+      MarkCooldown(userid, false)
+    else
+      MarkCooldown(userid, true)
+    end
     return
   end
   RequestRemoteStatus(userid)
@@ -318,11 +309,10 @@ local function OnFriendLevelChanged(inst)
   if GetPersistedFriendAnnounceCycle() == cycles then
     return
   end
-  SetPersistedFriendAnnounceCycle(cycles)
 
   local message = TryBuildLocalStatusMessage()
-  if message ~= nil then
-    BroadcastStatus(message)
+  if message ~= nil and BroadcastStatus(message) then
+    SetPersistedFriendAnnounceCycle(cycles)
   end
 end
 

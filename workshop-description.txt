@@ -29,8 +29,8 @@ Separately toggleable: low durability, low fuel, weapon/armor break, and break w
 Announces once when a player's hunger or sanity drops to 10, and again at 0. Announces health drops at 20% and 10% with the current percentage. Also announces when a player starts freezing or overheating.
 
 [h3]Pearl｜寄居蟹隐士[/h3]
-公频聊天发送 pearl，播报好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动播报一次）。
-Say pearl in chat to announce friendship and unfinished tasks (works from caves; auto at most once per game day on friendship gain).
+永久开启。公频聊天发送 pearl，播报好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动播报一次）。
+Always on. Say pearl in chat to announce friendship and unfinished tasks (works from caves; auto at most once per game day on friendship gain).
 
 [h3]便携储存单元｜Portable Storage Unit[/h3]
 WX-78 便携储存单元配送落地时，播报玩家名、单元名称与内容物。

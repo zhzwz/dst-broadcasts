@@ -46,8 +46,6 @@ return {
   morning_hover = "毎朝、天気と生存ボスを報告します。",
   defeat_label = "ボス撃破アナウンス",
   defeat_hover = "撃破時に最後の一撃と実ダメージ順位をアナウンスします。",
-  pearl_label = "隠居蟹ステータス",
-  pearl_hover = "チャットで pearl（洞窟からも可）。友好度上昇時はゲーム日あたり最大1回自動告知。",
   portable_storage_label = "携帯ストレージユニット",
   portable_storage_hover = "WX-78の携帯ストレージユニットが着陸したとき、プレイヤー名・名前と荷物を放送します。空の場合は放送しません。",
   debug_label = "デバッグログ",

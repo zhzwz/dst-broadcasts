@@ -46,8 +46,6 @@ return {
   morning_hover = "每天开始时播报天气与存活巨兽。",
   defeat_label = "巨兽击败播报",
   defeat_hover = "巨兽被击败时播报最终一击，并按实际伤害量播报伤害排行。",
-  pearl_label = "寄居蟹隐士查询",
-  pearl_hover = "公频聊天发送 pearl，播报好感与未完成任务；洞穴也可查询。好感提升时每个游戏日最多自动播报一次。",
   portable_storage_label = "便携储存单元",
   portable_storage_hover = "WX-78 便携储存单元配送落地时，播报玩家名、单元名称与内容物；内容物为空时不播报。",
   debug_label = "调试模式",

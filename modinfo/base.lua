@@ -51,8 +51,6 @@
 ---@field morning_hover string
 ---@field defeat_label string
 ---@field defeat_hover string
----@field pearl_label string
----@field pearl_hover string
 ---@field portable_storage_label string
 ---@field portable_storage_hover string
 ---@field debug_label string
@@ -109,8 +107,6 @@ local L = {
   morning_hover = "",
   defeat_label = "",
   defeat_hover = "",
-  pearl_label = "",
-  pearl_hover = "",
   portable_storage_label = "",
   portable_storage_hover = "",
   debug_label = "",
@@ -377,16 +373,6 @@ configuration_options = {
     name = "boss_defeat_enabled",
     label = L.defeat_label,
     hover = L.defeat_hover,
-    options = {
-      { description = L.enabled,  data = true },
-      { description = L.disabled, data = false },
-    },
-    default = true,
-  },
-  {
-    name = "pearl_status_enabled",
-    label = L.pearl_label,
-    hover = L.pearl_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

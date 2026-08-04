@@ -47,8 +47,6 @@ return {
   morning_hover = "Toda manhã: clima e chefes vivos.",
   defeat_label = "Anúncios de derrota de chefes",
   defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
-  pearl_label = "Status da Eremita",
-  pearl_hover = "Digite pearl no chat (também das cavernas). Anúncio automático no máximo uma vez por dia de jogo.",
   portable_storage_label = "Unidade de armazenamento portátil",
   portable_storage_hover = "Ao pousar uma unidade de armazenamento portátil do WX-78, anuncia o jogador, o nome e a carga; não anuncia se estiver vazia.",
   debug_label = "Registo de depuração",

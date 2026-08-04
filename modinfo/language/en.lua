@@ -47,9 +47,6 @@ return {
   morning_hover = "Each morning: weather and living bosses.",
   defeat_label = "Boss defeat announcements",
   defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
-  pearl_label = "Pearl status",
-  pearl_hover =
-  "Say pearl in chat to announce friendship and unfinished tasks (works from caves). Auto-announces at most once per game day on friendship gain.",
   portable_storage_label = "Portable Storage Unit",
   portable_storage_hover = "When a WX-78 Portable Storage Unit lands, announce the player name, unit name, and cargo. Skip if empty.",
   debug_label = "Debug mode",

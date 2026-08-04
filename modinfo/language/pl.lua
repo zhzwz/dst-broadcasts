@@ -47,8 +47,6 @@ return {
   morning_hover = "Każdego ranka: pogoda i żyjące bossy.",
   defeat_label = "Ogłoszenia o pokonaniu bossów",
   defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
-  pearl_label = "Status Pustelnicy",
-  pearl_hover = "Napisz pearl na czacie (także z jaskiń). Auto-ogłoszenie najwyżej raz na dzień gry.",
   portable_storage_label = "Przenośna jednostka magazynowa",
   portable_storage_hover = "Po wylądowaniu przenośnej jednostki magazynowej WX-78 ogłasza gracza, nazwę i ładunek; pusta nie ogłasza.",
   debug_label = "Dziennik debugowania",

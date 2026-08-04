@@ -47,9 +47,6 @@ return {
   morning_hover = "Ogni mattina: meteo e boss vivi.",
   defeat_label = "Annunci sconfitta boss",
   defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
-  pearl_label = "Stato dell'Eremita",
-  pearl_hover =
-  "Scrivi pearl in chat (anche dalle grotte). Annuncio automatico al massimo una volta per giorno di gioco.",
   portable_storage_label = "Unità di stoccaggio portatile",
   portable_storage_hover = "All'atterraggio di un'unità di stoccaggio portatile WX-78, annuncia giocatore, nome e carico; non annuncia se vuota.",
   debug_label = "Registro di debug",

@@ -47,9 +47,6 @@ return {
   morning_hover = "Chaque matin : météo et boss vivants.",
   defeat_label = "Annonces de défaite des boss",
   defeat_hover = "Annoncer la défaite, le coup final et le classement des dégâts réels.",
-  pearl_label = "Statut de l'Ermite",
-  pearl_hover =
-  "Dites pearl dans le chat pour l'amitié et les tâches (aussi depuis les caves). Annonce auto au plus une fois par jour de jeu.",
   portable_storage_label = "Unité de stockage portable",
   portable_storage_hover = "À l'atterrissage d'une unité de stockage portable WX-78, annonce le joueur, le nom et la cargaison ; ne rien annoncer si vide.",
   debug_label = "Journalisation de débogage",

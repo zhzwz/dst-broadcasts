@@ -47,9 +47,6 @@ return {
   morning_hover = "Cada mañana: clima y jefes vivos.",
   defeat_label = "Anuncios de derrota de jefes",
   defeat_hover = "Anunciar la derrota, el golpe final y el ranking de daño real.",
-  pearl_label = "Estado de la Ermitaña",
-  pearl_hover =
-  "Escribe pearl en el chat (también desde cuevas). Anuncio automático como máximo una vez por día de juego.",
   portable_storage_label = "Unidad de almacenamiento portátil",
   portable_storage_hover = "Al aterrizar una unidad de almacenamiento portátil de WX-78, anuncia el jugador, el nombre y la carga; no anuncia si está vacía.",
   debug_label = "Registro de depuración",

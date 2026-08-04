@@ -15,6 +15,7 @@ words:
   - armorbroke # 护甲损坏
   - bearger # 熊獾
   - beebox # 蜂箱
+  - cooldown # 冷却
   - currenthealth
   - deerclops # 独眼巨鹿
   - dryinginfo # 晾晒信息
@@ -28,6 +29,7 @@ words:
   - frograin # 青蛙雨
   - fueltype # 燃料类型
   - hassler
+  - hermitcrab # 寄居蟹隐士
   - hungerdelta # 饱食度组件事件
   - inlimbo # 虚空
   - inventoryitem # 可进背包的物品组件
@@ -39,8 +41,10 @@ words:
   - luarc
   - lunar
   - lunarfrog # 明眼青蛙
+  - lureplant # 食人花
   - mapdeliverable
   - marbleshrub # 大理石灌木
+  - meatracks # 晾肉架
   - minhealth
   - modimport
   - modmain

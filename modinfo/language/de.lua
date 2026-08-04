@@ -47,9 +47,6 @@ return {
   morning_hover = "Jeden Morgen Wetter und lebende Bosse.",
   defeat_label = "Boss-Niederlagen-Ankündigungen",
   defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
-  pearl_label = "Eremitin-Status",
-  pearl_hover =
-  "Schreibe pearl in den Chat (auch aus Höhlen). Bei Freundschaftsgewinn höchstens einmal pro Spieltage automatisch.",
   portable_storage_label = "Tragbare Speichereinheit",
   portable_storage_hover = "Meldet Spieler, Namen und Fracht der WX-78 Tragbaren Speichereinheit bei der Landung; bei leerer Fracht keine Meldung.",
   debug_label = "Debug-Protokoll",

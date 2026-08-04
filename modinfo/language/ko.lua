@@ -46,8 +46,6 @@ return {
   morning_hover = "매일 아침 날씨와 생존 보스를 방송합니다.",
   defeat_label = "보스 처치 방송",
   defeat_hover = "처치, 마지막 일격, 실제 피해량 기준 순위를 방송합니다.",
-  pearl_label = "은둔자 상태",
-  pearl_hover = "채팅에 pearl 입력(동굴에서도 가능). 호감도 상승 시 게임일당 최대 1회 자동 알림.",
   portable_storage_label = "휴대용 저장 장치",
   portable_storage_hover = "WX-78 휴대용 저장 장치가 착륙할 때 플레이어, 이름과 화물을 안내합니다. 비어 있으면 방송하지 않습니다.",
   debug_label = "디버그 로그",

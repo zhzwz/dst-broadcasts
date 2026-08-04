@@ -22,6 +22,7 @@ modimport("scripts/broadcasts/features/frog_rain/init.lua")
 modimport("scripts/broadcasts/features/calendar/init.lua")
 modimport("scripts/broadcasts/features/harvest/init.lua")
 modimport("scripts/broadcasts/features/portable_storage/init.lua")
+modimport("scripts/broadcasts/features/pearl/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")
@@ -33,8 +34,4 @@ end
 
 if GetModConfigData("boss_defeat_enabled") then
   modimport("scripts/broadcasts/boss_defeat.lua")
-end
-
-if GetModConfigData("pearl_status_enabled") then
-  modimport("scripts/broadcasts/pearl_status.lua")
 end
