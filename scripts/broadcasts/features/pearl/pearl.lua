@@ -313,7 +313,7 @@ local function OnFriendLevelChanged(inst)
 end
 
 local function WatchPearl(inst)
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
   -- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
@@ -361,7 +361,7 @@ end
 
 local old_networking_say = Networking_Say
 Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-  if TheWorld ~= nil and TheWorld.ismastersim then
+  if mod.World.IsMaster() then
     mod.Call("pearl_status_say", OnChatSay, guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
   end
   if old_networking_say ~= nil then

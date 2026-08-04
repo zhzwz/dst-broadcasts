@@ -267,11 +267,7 @@ local function AnnounceDefeat(name, data, damage_bucket)
   AnnounceDamageRanking(damage_bucket)
 end
 
-local function IsAlive(inst)
-  local components = inst.components
-  local health = components ~= nil and components.health or nil
-  return inst:IsValid() and health ~= nil and not health:IsDead()
-end
+local IsAlive = mod.Entity.IsAlive
 
 local function HasLivingTwin(exclude)
   for _, inst in pairs(Ents) do

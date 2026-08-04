@@ -95,11 +95,8 @@ local function SharedKey(shared)
   return "_dst_broadcasts_appear_" .. shared
 end
 
--- 与 features/boss_defeat.HasLivingTwin 一致：IsValid 且未死；不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
-local function IsAlive(inst)
-  local health = inst.components ~= nil and inst.components.health or nil
-  return inst:IsValid() and health ~= nil and not health:IsDead()
-end
+-- 与 features/boss_defeat.HasLivingTwin 一致：不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
+local IsAlive = mod.Entity.IsAlive
 
 local function CountLivingPrefabs(prefabs, test)
   local set = {}
@@ -156,7 +153,7 @@ end
 
 local function HookAppear(prefab, boss)
   AddPrefabPostInit(prefab, mod.Wrap("appear_init:" .. prefab, function(inst)
-    if not TheWorld.ismastersim then
+    if not mod.World.IsMaster() then
       return
     end
 

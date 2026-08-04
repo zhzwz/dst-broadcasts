@@ -12,11 +12,11 @@ local function OnAir()
 end
 
 AddSimPostInit(mod.Wrap("midnight_radio_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
 
-  local key = Slot.PhaseStateKey(TheWorld:HasTag("cave"))
+  local key = Slot.PhaseStateKey(mod.World.IsCave())
   local prev_phase = TheWorld.state ~= nil and TheWorld.state[key] or nil
   TheWorld:WatchWorldState(key, mod.Wrap("midnight_radio_phase", function(_, phase)
     local previous = prev_phase

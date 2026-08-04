@@ -11,7 +11,7 @@ modimport("scripts/broadcasts/features/frog_rain/constants.lua")
 if not enabled then
   local C = BROADCASTS_FROG_RAIN
   AddSimPostInit(mod.Wrap("frog_rain_clear", function()
-    if not TheWorld.ismastersim or TheWorld:HasTag("cave") then
+    if not mod.World.IsMaster() or mod.World.IsCave() then
       return
     end
     local state = TheWorld.components.state_3774915634

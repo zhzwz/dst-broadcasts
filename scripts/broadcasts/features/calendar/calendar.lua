@@ -93,7 +93,7 @@ local function AnnounceCalendar()
 end
 
 AddSimPostInit(mod.Wrap("calendar_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
 

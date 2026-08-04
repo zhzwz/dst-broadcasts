@@ -147,7 +147,7 @@ AddComponentPostInit("frograin", function(self)
 end)
 
 AddSimPostInit(mod.Wrap("frog_rain_init", function()
-  if not TheWorld.ismastersim or TheWorld:HasTag("cave") then
+  if not mod.World.IsMaster() or mod.World.IsCave() then
     return
   end
 

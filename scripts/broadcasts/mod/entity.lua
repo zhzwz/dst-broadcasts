@@ -1,3 +1,14 @@
+-- 是否存活：有效且带 health、未死；不排除 INLIMBO
+-- @param inst Entity|nil
+-- @return boolean
+local function IsAlive(inst)
+  if inst == nil or not inst:IsValid() then
+    return false
+  end
+  local health = inst.components ~= nil and inst.components.health or nil
+  return health ~= nil and not health:IsDead()
+end
+
 local TAG = "mod.Entity.GetDisplayName"
 
 -- 安全读取实体名称
@@ -15,5 +26,6 @@ local function GetDisplayName(inst)
 end
 
 mod.Entity = {
+  IsAlive = IsAlive,
   GetDisplayName = GetDisplayName,
 }

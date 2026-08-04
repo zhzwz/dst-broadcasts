@@ -107,7 +107,7 @@ local function WatchPlayer(player)
 end
 
 AddPlayerPostInit(mod.Wrap("player_hunger_init", function(player)
-  if TheWorld == nil or not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
   player:DoTaskInTime(0, mod.Wrap("player_hunger_watch", function()

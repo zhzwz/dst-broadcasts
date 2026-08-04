@@ -231,7 +231,7 @@ end
 local function AnnounceHarvest()
   local marbleshrub, honey, farm_list, dried_list = CollectHarvest()
   local lines = Announce.BuildAnnounceLines({
-    mark = Announce.CaveMark(TheWorld:HasTag("cave"), S.harvest_cave_mark),
+    mark = Announce.CaveMark(mod.World.IsCave(), S.harvest_cave_mark),
     marbleshrub = marbleshrub,
     honey = honey,
     farm_list = farm_list,
@@ -254,13 +254,13 @@ local function AnnounceHarvest()
 end
 
 AddSimPostInit(mod.Wrap("harvest_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
 
   -- 读档停在黄昏、或相位尚未就绪时不播；仅 day → dusk 时播报。
   -- 森林听 phase，洞穴听 cavephase（与电台一致）。
-  local key = Slot.PhaseStateKey(TheWorld:HasTag("cave"))
+  local key = Slot.PhaseStateKey(mod.World.IsCave())
   local prev_phase = TheWorld.state ~= nil and TheWorld.state[key] or nil
   TheWorld:WatchWorldState(key, mod.Wrap("harvest_phase", function(_, phase)
     local previous = prev_phase

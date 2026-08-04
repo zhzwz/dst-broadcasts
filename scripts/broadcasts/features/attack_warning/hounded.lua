@@ -9,21 +9,21 @@ local HOUNDS_ENABLED = GetModConfigData("hounds_warning_enabled")
 local WORMS_ENABLED = GetModConfigData("depths_worms_warning_enabled")
 
 local function AttackName()
-  if TheWorld:HasTag("cave") then
+  if mod.World.IsCave() then
     return BROADCASTS_STRINGS.bosses.depths_worms
   end
   return BROADCASTS_STRINGS.bosses.hounds
 end
 
 local function IsEnabledHere()
-  if TheWorld:HasTag("cave") then
+  if mod.World.IsCave() then
     return WORMS_ENABLED
   end
   return HOUNDS_ENABLED
 end
 
 AddSimPostInit(mod.Wrap("hounded_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
   if not IsEnabledHere() then

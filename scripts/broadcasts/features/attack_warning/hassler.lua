@@ -26,10 +26,10 @@ if #BOSSES == 0 then
 end
 
 AddSimPostInit(mod.Wrap("hassler_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
-  if TheWorld:HasTag("cave") then
+  if mod.World.IsCave() then
     return
   end
   if TheWorld.components.worldsettingstimer == nil then

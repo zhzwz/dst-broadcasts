@@ -12,7 +12,7 @@ local function OnAir()
 end
 
 AddSimPostInit(mod.Wrap("morning_radio_init", function()
-  if not TheWorld.ismastersim then
+  if not mod.World.IsMaster() then
     return
   end
 
