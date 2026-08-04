@@ -2,6 +2,8 @@
   "[lua]": {
     "editor.formatOnSave": true
   },
+  "cSpell.autoFormatConfigFile": false,
+  "cSpell.autocorrect": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit",
