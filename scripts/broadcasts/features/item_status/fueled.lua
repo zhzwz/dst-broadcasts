@@ -8,8 +8,9 @@ local PlayerOwner = mod.Player.GetOwner
 local S = BROADCASTS_STRINGS
 
 local function Announce(inst, owner, percent, message)
-  local item_name = inst:GetDisplayName() or inst.prefab
-  local owner_name = owner:GetDisplayName() or "?"
+  local item_name = mod.Entity.GetDisplayName(inst)
+      or mod.Prefab.GetDisplayName(inst.prefab)
+  local owner_name = mod.Player.GetDisplayName(owner)
   local pct = math.floor(percent * 100 + 0.5)
 
   mod.Announce(string.format(

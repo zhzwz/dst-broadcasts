@@ -11,7 +11,7 @@ local LastUseWhitelist = BROADCASTS_ITEM_STATUS_LAST_USE_WHITELIST or {}
 local function AnnounceBroke(owner, item_name)
   mod.Announce(string.format(
     S.item_broke,
-    owner:GetDisplayName() or "?",
+    mod.Player.GetDisplayName(owner),
     item_name
   ))
 end
@@ -19,7 +19,7 @@ end
 local function AnnounceLastUse(owner, item_name)
   mod.Announce(string.format(
     S.item_last_use,
-    owner:GetDisplayName() or "?",
+    mod.Player.GetDisplayName(owner),
     item_name
   ))
 end
@@ -29,7 +29,7 @@ local function OnArmorBroke(player, data)
     return
   end
   local armor = data and data.armor
-  local item_name = (armor ~= nil and (armor:GetDisplayName() or armor.prefab)) or
+  local item_name = (armor ~= nil and (mod.Entity.GetDisplayName(armor) or mod.Prefab.GetDisplayName(armor.prefab))) or
       S.armor
   AnnounceBroke(player, item_name)
 end
@@ -105,7 +105,7 @@ local function TryAnnounceLastUse(inst, allow_announce)
   end
 
   inst._dst_broadcasts_uses_last = true
-  AnnounceLastUse(owner, inst:GetDisplayName() or inst.prefab)
+  AnnounceLastUse(owner, mod.Entity.GetDisplayName(inst) or mod.Prefab.GetDisplayName(inst.prefab))
 end
 
 local function TryAnnounceBroke(inst, allow_announce)
@@ -129,7 +129,7 @@ local function TryAnnounceBroke(inst, allow_announce)
 
   inst._dst_broadcasts_uses_broke = true
   inst._dst_broadcasts_uses_last = true
-  AnnounceBroke(owner, inst:GetDisplayName() or inst.prefab)
+  AnnounceBroke(owner, mod.Entity.GetDisplayName(inst) or mod.Prefab.GetDisplayName(inst.prefab))
 end
 
 local function ApplyFiniteUsesState(inst, current, allow_announce)

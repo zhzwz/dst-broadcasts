@@ -167,17 +167,7 @@ local function CollectDoneDriedFromRack(inst, counts)
     if not IsDoneDriedRackItem(dryingrack, item) then
       return
     end
-    local stack = 1
-    local stackable = item.components ~= nil and item.components.stackable or nil
-    if stackable ~= nil and stackable.StackSize ~= nil then
-      local ok, size = pcall(function()
-        return stackable:StackSize()
-      end)
-      if ok and type(size) == "number" and size > 0 then
-        stack = size
-      end
-    end
-    AddNamedCount(counts, item.prefab, stack)
+    AddNamedCount(counts, item.prefab, mod.Entity.GetStackSize(item))
   end
 
   if container.ForEachItem ~= nil then

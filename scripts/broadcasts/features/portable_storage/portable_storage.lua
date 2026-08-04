@@ -15,20 +15,6 @@ local UNIT_PREFABS = {
   "wx78_drone_delivery_small",
 }
 
-local function GetItemStackSize(item)
-  local stack = 1
-  local stackable = item.components ~= nil and item.components.stackable or nil
-  if stackable ~= nil and stackable.StackSize ~= nil then
-    local ok, size = pcall(function()
-      return stackable:StackSize()
-    end)
-    if ok and type(size) == "number" and size > 0 then
-      stack = size
-    end
-  end
-  return stack
-end
-
 local function CollectContents(inst)
   local counts = {}
   local container = inst.components ~= nil and inst.components.container or nil
@@ -40,7 +26,7 @@ local function CollectContents(inst)
     if item == nil or not item:IsValid() or type(item.prefab) ~= "string" then
       return
     end
-    counts[item.prefab] = (counts[item.prefab] or 0) + GetItemStackSize(item)
+    counts[item.prefab] = (counts[item.prefab] or 0) + mod.Entity.GetStackSize(item)
   end
 
   if container.ForEachItem ~= nil then
@@ -70,24 +56,15 @@ local function FormatContents(counts)
 end
 
 local function GetUnitName(inst)
-  local name = mod.Call("portable_storage_name", function()
-    return inst:GetDisplayName()
-  end)
-  if type(name) == "string" and name ~= "" then
-    return name
-  end
-  return mod.Prefab.GetDisplayName(inst.prefab) or "?"
+  return mod.Entity.GetDisplayName(inst)
+      or mod.Prefab.GetDisplayName(inst.prefab)
+      or "?"
 end
 
 local function GetSenderName(inst)
   local sender = inst._sender
   if sender ~= nil and sender:IsValid() then
-    local name = mod.Call("portable_storage_sender", function()
-      return sender:GetDisplayName()
-    end)
-    if type(name) == "string" and name ~= "" then
-      return name
-    end
+    return mod.Entity.GetDisplayName(sender)
   end
   return nil
 end
