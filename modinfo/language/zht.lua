@@ -40,8 +40,6 @@ return {
   harvest_farmland_hover = "進入黃昏時播報本分片成熟農作物彙總。",
   harvest_dryingrack_label = "晾曬架",
   harvest_dryingrack_hover = "進入黃昏時播報本分片晾曬架待取成品。",
-  defeat_label = "巨獸擊敗播報",
-  defeat_hover = "巨獸被擊敗時播報最終一擊，並按實際傷害量播報傷害排行。",
   portable_storage_label = "便攜儲存單元",
   portable_storage_hover = "WX-78 便攜儲存單元配送落地時，播報玩家名、單元名稱與內容物；內容物為空時不播報。",
   enabled = "啟用",

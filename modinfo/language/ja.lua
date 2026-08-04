@@ -40,8 +40,6 @@ return {
   harvest_farmland_hover = "夕暮れ時に、このシャードの成熟した農作物を報せます。",
   harvest_dryingrack_label = "干し架",
   harvest_dryingrack_hover = "夕暮れ時に、このシャードの干し上がり待ちを報せます。",
-  defeat_label = "ボス撃破アナウンス",
-  defeat_hover = "撃破時に最後の一撃と実ダメージ順位をアナウンスします。",
   portable_storage_label = "携帯ストレージユニット",
   portable_storage_hover = "WX-78の携帯ストレージユニットが着陸したとき、プレイヤー名・名前と荷物を放送します。空の場合は放送しません。",
   enabled = "有効",

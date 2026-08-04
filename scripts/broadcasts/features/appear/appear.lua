@@ -96,7 +96,7 @@ local function SharedKey(shared)
   return "_dst_broadcasts_appear_" .. shared
 end
 
--- 与 boss_defeat.HasLivingTwin 一致：IsValid 且未死；不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
+-- 与 features/boss_defeat.HasLivingTwin 一致：IsValid 且未死；不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
 local function IsAlive(inst)
   local health = inst.components ~= nil and inst.components.health or nil
   return inst:IsValid() and health ~= nil and not health:IsDead()

@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "O zmierzchu ogłaszaj dojrzałe uprawy na tym shardzie.",
   harvest_dryingrack_label = "Suszarki",
   harvest_dryingrack_hover = "O zmierzchu ogłaszaj gotowe suszone zapasy na tym shardzie.",
-  defeat_label = "Ogłoszenia o pokonaniu bossów",
-  defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
   portable_storage_label = "Przenośna jednostka magazynowa",
   portable_storage_hover = "Po wylądowaniu przenośnej jednostki magazynowej WX-78 ogłasza gracza, nazwę i ładunek; pusta nie ogłasza.",
   enabled = "Włączone",

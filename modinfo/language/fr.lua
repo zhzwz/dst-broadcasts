@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "Au crépuscule, annoncer les cultures matures de ce shard.",
   harvest_dryingrack_label = "Séchoirs",
   harvest_dryingrack_hover = "Au crépuscule, annoncer les denrées séchées prêtes de ce shard.",
-  defeat_label = "Annonces de défaite des boss",
-  defeat_hover = "Annoncer la défaite, le coup final et le classement des dégâts réels.",
   portable_storage_label = "Unité de stockage portable",
   portable_storage_hover = "À l'atterrissage d'une unité de stockage portable WX-78, annonce le joueur, le nom et la cargaison ; ne rien annoncer si vide.",
   enabled = "Activé",

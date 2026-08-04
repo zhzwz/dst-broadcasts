@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "At dusk, announce mature farm crops on this shard.",
   harvest_dryingrack_label = "Drying racks",
   harvest_dryingrack_hover = "At dusk, announce finished drying-rack goods on this shard.",
-  defeat_label = "Boss defeat announcements",
-  defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
   portable_storage_label = "Portable Storage Unit",
   portable_storage_hover = "When a WX-78 Portable Storage Unit lands, announce the player name, unit name, and cargo. Skip if empty.",
   enabled = "Enabled",

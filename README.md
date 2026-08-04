@@ -19,7 +19,7 @@
 
 ```sh
 bun install
-# 会生成 modinfo.lua
+# 生成 modinfo.lua
 bun run build-modinfo
 # 打包发布
 bun run release

@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "Ao anoitecer, anuncia cultivos maduros neste shard.",
   harvest_dryingrack_label = "Secadores",
   harvest_dryingrack_hover = "Ao anoitecer, anuncia secos prontos neste shard.",
-  defeat_label = "Anúncios de derrota de chefes",
-  defeat_hover = "Anunciar a derrota, o golpe final e o ranking de dano real.",
   portable_storage_label = "Unidade de armazenamento portátil",
   portable_storage_hover = "Ao pousar uma unidade de armazenamento portátil do WX-78, anuncia o jogador, o nome e a carga; não anuncia se estiver vazia.",
   enabled = "Ativado",

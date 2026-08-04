@@ -1,3 +1,7 @@
+--[[
+  巨兽击败：最终一击、伤害排行；双子/守卫塔等同组结算。
+]]
+
 modimport("scripts/broadcasts/shared/get_entity_display_name.lua")
 modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/shared/is_at_min_health.lua")

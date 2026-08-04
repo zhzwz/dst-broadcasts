@@ -45,8 +45,6 @@
 ---@field harvest_farmland_hover string
 ---@field harvest_dryingrack_label string
 ---@field harvest_dryingrack_hover string
----@field defeat_label string
----@field defeat_hover string
 ---@field portable_storage_label string
 ---@field portable_storage_hover string
 ---@field enabled string
@@ -95,8 +93,6 @@ local L = {
   harvest_farmland_hover = "",
   harvest_dryingrack_label = "",
   harvest_dryingrack_hover = "",
-  defeat_label = "",
-  defeat_hover = "",
   portable_storage_label = "",
   portable_storage_hover = "",
   enabled = "",
@@ -331,16 +327,6 @@ configuration_options = {
     name = "harvest_dryingrack_enabled",
     label = L.harvest_dryingrack_label,
     hover = L.harvest_dryingrack_hover,
-    options = {
-      { description = L.enabled,  data = true },
-      { description = L.disabled, data = false },
-    },
-    default = true,
-  },
-  {
-    name = "boss_defeat_enabled",
-    label = L.defeat_label,
-    hover = L.defeat_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

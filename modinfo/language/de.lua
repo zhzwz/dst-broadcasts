@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "Bei Einbruch der Dämmerung reife Nutzpflanzen melden.",
   harvest_dryingrack_label = "Trockengestelle",
   harvest_dryingrack_hover = "Bei Einbruch der Dämmerung fertig getrocknete Waren melden.",
-  defeat_label = "Boss-Niederlagen-Ankündigungen",
-  defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
   portable_storage_label = "Tragbare Speichereinheit",
   portable_storage_hover = "Meldet Spieler, Namen und Fracht der WX-78 Tragbaren Speichereinheit bei der Landung; bei leerer Fracht keine Meldung.",
   enabled = "Aktiviert",

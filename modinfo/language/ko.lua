@@ -40,8 +40,6 @@ return {
   harvest_farmland_hover = "황혼에 이 샤드의 성숙한 농작물을 방송합니다.",
   harvest_dryingrack_label = "건조대",
   harvest_dryingrack_hover = "황혼에 이 샤드의 건조 완료 대기를 방송합니다.",
-  defeat_label = "보스 처치 방송",
-  defeat_hover = "처치, 마지막 일격, 실제 피해량 기준 순위를 방송합니다.",
   portable_storage_label = "휴대용 저장 장치",
   portable_storage_hover = "WX-78 휴대용 저장 장치가 착륙할 때 플레이어, 이름과 화물을 안내합니다. 비어 있으면 방송하지 않습니다.",
   enabled = "활성화",

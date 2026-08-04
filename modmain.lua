@@ -11,6 +11,7 @@ modimport("scripts/broadcasts/safe.lua")
 
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then
+    -- 自定义组件
     inst:AddComponent("state_3774915634")
   end
 end)
@@ -24,11 +25,8 @@ modimport("scripts/broadcasts/features/harvest/init.lua")
 modimport("scripts/broadcasts/features/portable_storage/init.lua")
 modimport("scripts/broadcasts/features/pearl/init.lua")
 modimport("scripts/broadcasts/features/appear/init.lua")
+modimport("scripts/broadcasts/features/boss_defeat/init.lua")
 modimport("scripts/broadcasts/features/cave_events/init.lua")
 modimport("scripts/broadcasts/features/morning_radio/init.lua")
 modimport("scripts/broadcasts/features/dusk_radio/init.lua")
 modimport("scripts/broadcasts/features/midnight_radio/init.lua")
-
-if GetModConfigData("boss_defeat_enabled") then
-  modimport("scripts/broadcasts/boss_defeat.lua")
-end

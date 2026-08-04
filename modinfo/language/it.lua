@@ -41,8 +41,6 @@ return {
   harvest_farmland_hover = "Al tramonto, annuncia le colture mature su questo shard.",
   harvest_dryingrack_label = "Essiccatoi",
   harvest_dryingrack_hover = "Al tramonto, annuncia i cibi essiccati pronti su questo shard.",
-  defeat_label = "Annunci sconfitta boss",
-  defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
   portable_storage_label = "Unità di stoccaggio portatile",
   portable_storage_hover = "All'atterraggio di un'unità di stoccaggio portatile WX-78, annuncia giocatore, nome e carico; non annuncia se vuota.",
   enabled = "Attivato",
