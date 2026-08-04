@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Avisos em etapas antes do ataque.",
   bearger_label = "Avisos de Texurso",
   bearger_hover = "Avisos em etapas antes do ataque.",
-  cave_events_label = "Avisos de eventos das cavernas",
-  cave_events_hover = "Anunciar ciclos de pesadelo, terremotos, chuva ácida e reinício das Ruínas.",
   frog_rain_label = "Chuva de sapos",
   frog_rain_hover = "Anúncio no primeiro sapo da chuva; fim com contagens separadas incl. olhos brilhantes.",
   calendar_label = "Calendário constante",

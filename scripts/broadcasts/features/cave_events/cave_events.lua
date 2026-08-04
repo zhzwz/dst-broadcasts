@@ -1,3 +1,8 @@
+--[[
+  洞穴事件：噩梦相位、酸雨、遗迹重置、地震预警。
+  仅洞穴主机；读档首帧不播。
+]]
+
 local S = BROADCASTS_STRINGS
 local Safe = BROADCASTS_SAFE
 

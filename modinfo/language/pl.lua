@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Ostrzeżenia etapowe przed atakiem.",
   bearger_label = "Ostrzeżenia o Bordźwiedziu",
   bearger_hover = "Ostrzeżenia etapowe przed atakiem.",
-  cave_events_label = "Ostrzeżenia o wydarzeniach w jaskiniach",
-  cave_events_hover = "Ogłaszać cykle koszmaru, trzęsienia ziemi, kwaśny deszcz i reset Ruin.",
   frog_rain_label = "Deszcz żab",
   frog_rain_hover = "Zapowiedź przy pierwszej żabie deszczu; koniec z osobnym liczeniem jasnoookich.",
   calendar_label = "Kalendarz Stałej",

@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Avvisi a intervalli prima dell'attacco.",
   bearger_label = "Avvisi Tassorso",
   bearger_hover = "Avvisi a intervalli prima dell'attacco.",
-  cave_events_label = "Avvisi eventi delle caverne",
-  cave_events_hover = "Annuncia cicli dell'incubo, terremoti, pioggia acida e reset delle Rovine.",
   frog_rain_label = "Pioggia di rane",
   frog_rain_hover = "Annuncio alla prima rana della pioggia; fine con conteggi separati incl. occhi lucenti.",
   calendar_label = "Calendario costante",

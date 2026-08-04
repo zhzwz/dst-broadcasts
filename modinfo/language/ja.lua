@@ -28,8 +28,6 @@ return {
   deerclops_hover = "襲撃前に段階的なカウントダウン警告を出します。",
   bearger_label = "ベアーガー警告",
   bearger_hover = "襲撃前に段階的なカウントダウン警告を出します。",
-  cave_events_label = "洞窟イベントアラート",
-  cave_events_hover = "悪夢周期・地震・酸性雨・遺跡リセットをアナウンスします。",
   frog_rain_label = "カエルの雨放送",
   frog_rain_hover = "最初の雨カエル着地で開始；終了時は通常と輝く目のカエルを分けて集計します。",
   calendar_label = "永遠暦",

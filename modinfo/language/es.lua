@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Avisos por etapas antes del ataque.",
   bearger_label = "Avisos de Osotejón",
   bearger_hover = "Avisos por etapas antes del ataque.",
-  cave_events_label = "Avisos de eventos de cuevas",
-  cave_events_hover = "Anunciar ciclos de pesadilla, terremotos, lluvia ácida y reinicio de las Ruinas.",
   frog_rain_label = "Lluvia de ranas",
   frog_rain_hover = "Anuncio con la primera rana de lluvia; fin con conteos separados incl. ojos brillantes.",
   calendar_label = "Calendario constante",

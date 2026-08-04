@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Warn at staged intervals before an attack.",
   bearger_label = "Bearger warnings",
   bearger_hover = "Warn at staged intervals before an attack.",
-  cave_events_label = "Cave event alerts",
-  cave_events_hover = "Announce nightmare cycles, earthquakes, acid rain, and Ruins resets.",
   frog_rain_label = "Frog rain broadcasts",
   frog_rain_hover = "Announce when the first rain frog lands; end with separate frog and bright-eyed frog counts.",
   calendar_label = "Constant calendar",

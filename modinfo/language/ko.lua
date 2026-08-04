@@ -28,8 +28,6 @@ return {
   deerclops_hover = "습격 전 단계별 카운트다운 경고.",
   bearger_label = "비거 경고",
   bearger_hover = "습격 전 단계별 카운트다운 경고.",
-  cave_events_label = "동굴 이벤트 경고",
-  cave_events_hover = "악몽 주기, 지진, 산성비, 유적 초기화를 방송합니다.",
   frog_rain_label = "개구리 비 방송",
   frog_rain_hover = "첫 비 개구리가 떨어질 때 방송; 종료 시 개구리와 밝은 눈 개구리를 따로 집계합니다.",
   calendar_label = "영원력",

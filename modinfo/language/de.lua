@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Stufenweise Countdown-Warnung vor dem Angriff.",
   bearger_label = "Riesendachs-Warnungen",
   bearger_hover = "Stufenweise Countdown-Warnung vor dem Angriff.",
-  cave_events_label = "Höhlenereignis-Warnungen",
-  cave_events_hover = "Albtraumzyklen, Erdbeben, Säureregen und Ruinen-Reset ankündigen.",
   frog_rain_label = "Froschregen",
   frog_rain_hover = "Ansage beim ersten Regenfrosch; Ende mit getrennter Zählung inkl. Leuchtaugenfrösche.",
   calendar_label = "Kalender der Konstante",

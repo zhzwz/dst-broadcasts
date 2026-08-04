@@ -29,8 +29,6 @@ return {
   deerclops_hover = "Avertissements par paliers avant l'attaque.",
   bearger_label = "Alertes Blairours",
   bearger_hover = "Avertissements par paliers avant l'attaque.",
-  cave_events_label = "Alertes des événements des caves",
-  cave_events_hover = "Annoncer cycles cauchemardesques, séismes, pluie acide et réinitialisation des Ruines.",
   frog_rain_label = "Pluie de grenouilles",
   frog_rain_hover = "Annonce à la première grenouille de pluie ; fin avec totaux grenouilles / yeux brillants.",
   calendar_label = "Calendrier constant",

@@ -28,8 +28,6 @@ return {
   deerclops_hover = "在来袭前分阶段播报倒计时预警。",
   bearger_label = "熊獾预警",
   bearger_hover = "在来袭前分阶段播报倒计时预警。",
-  cave_events_label = "洞穴事件播报",
-  cave_events_hover = "播报噩梦循环、地震、酸雨与远古遗迹重置。",
   frog_rain_label = "青蛙雨播报",
   frog_rain_hover = "第一只雨蛙落地时开播；结束时分别播报青蛙与明眼青蛙数量。",
   calendar_label = "日历",

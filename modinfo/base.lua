@@ -33,8 +33,6 @@
 ---@field deerclops_hover string
 ---@field bearger_label string
 ---@field bearger_hover string
----@field cave_events_label string
----@field cave_events_hover string
 ---@field frog_rain_label string
 ---@field frog_rain_hover string
 ---@field calendar_label string
@@ -85,8 +83,6 @@ local L = {
   deerclops_hover = "",
   bearger_label = "",
   bearger_hover = "",
-  cave_events_label = "",
-  cave_events_hover = "",
   frog_rain_label = "",
   frog_rain_hover = "",
   calendar_label = "",
@@ -275,16 +271,6 @@ configuration_options = {
     name = "bearger_warning_enabled",
     label = L.bearger_label,
     hover = L.bearger_hover,
-    options = {
-      { description = L.enabled,  data = true },
-      { description = L.disabled, data = false },
-    },
-    default = true,
-  },
-  {
-    name = "cave_events_enabled",
-    label = L.cave_events_label,
-    hover = L.cave_events_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

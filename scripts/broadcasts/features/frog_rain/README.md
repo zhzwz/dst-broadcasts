@@ -34,7 +34,7 @@
 - **开始**：`frograin:StartTracking` 首次计入 `frog` / `lunarfrog` 时开场并播报（非天气条件）
 - **结束**：生成条件不再满足，且 `青蛙 + 明眼青蛙 > 0` 时播报
 - **去重**：实体标记 `COUNTED_FLAG`；读档时对 `frograin._frogs` 已在场个体打标
-- **读档门闩**：`POPULATING` 或首帧前只打标不计增；`DoTaskInTime(0)` 后再响应结算与计增（同 `cave_events`）
+- **读档门闩**：`POPULATING` 或首帧前只打标不计增；`DoTaskInTime(0)` 后再响应结算与计增（同 `features/cave_events`）
 - 生成条件与原版 `ToggleUpdate` 一致，仅用于判断何时结算
 
 ## 依赖
