@@ -4,7 +4,6 @@
 
 modimport("scripts/broadcasts/shared/get_player_owner.lua")
 
-local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_ITEM_STATUS_CONSTANTS
 local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
@@ -15,7 +14,7 @@ local function Announce(inst, owner, percent, message)
   local owner_name = owner:GetDisplayName() or "?"
   local pct = math.floor(percent * 100 + 0.5)
 
-  Safe.Announce(string.format(
+  mod.Announce(string.format(
     message,
     owner_name,
     item_name,
@@ -115,17 +114,17 @@ local function WatchFueled(inst)
   inst._dst_broadcasts_fueled_watching = true
   inst._dst_broadcasts_fueled_ready = false
 
-  inst:ListenForEvent("percentusedchange", Safe.Wrap("item_status_fueled", OnPercentUsedChange))
-  inst:ListenForEvent("onputininventory", Safe.Wrap("item_status_fueled_inv", OnPutInInventory))
-  Safe.Call("item_status_fueled_sync", OnPercentUsedChange, inst, nil, false)
+  inst:ListenForEvent("percentusedchange", mod.Wrap("item_status_fueled", OnPercentUsedChange))
+  inst:ListenForEvent("onputininventory", mod.Wrap("item_status_fueled_inv", OnPutInInventory))
+  mod.Call("item_status_fueled_sync", OnPercentUsedChange, inst, nil, false)
   inst._dst_broadcasts_fueled_ready = true
 end
 
-AddComponentPostInit("fueled", Safe.Wrap("item_status_fueled_init", function(self)
+AddComponentPostInit("fueled", mod.Wrap("item_status_fueled_init", function(self)
   if not TheWorld.ismastersim then
     return
   end
-  self.inst:DoTaskInTime(0, Safe.Wrap("item_status_fueled_watch", function(inst)
+  self.inst:DoTaskInTime(0, mod.Wrap("item_status_fueled_watch", function(inst)
     if inst:IsValid() then
       WatchFueled(inst)
     end

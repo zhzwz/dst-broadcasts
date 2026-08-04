@@ -8,7 +8,6 @@ modimport("scripts/broadcasts/shared/get_player_display_name.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local Safe = BROADCASTS_SAFE
 local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 
@@ -33,7 +32,7 @@ local function AnnounceTier(player, messages_key)
   if message == nil then
     return
   end
-  Safe.Announce(string.format(message, PlayerName(player)))
+  mod.Announce(string.format(message, PlayerName(player)))
 end
 
 -- allow_announce=false 时只同步 flags（进服对齐）
@@ -108,15 +107,15 @@ local function WatchPlayer(player)
   end
   player._dst_broadcasts_sanity_watching = true
 
-  player:ListenForEvent("sanitydelta", Safe.Wrap("player_sanity_delta", OnSanityDelta))
-  Safe.Call("player_sanity_sync", SyncFlags, player)
+  player:ListenForEvent("sanitydelta", mod.Wrap("player_sanity_delta", OnSanityDelta))
+  mod.Call("player_sanity_sync", SyncFlags, player)
 end
 
-AddPlayerPostInit(Safe.Wrap("player_sanity_init", function(player)
+AddPlayerPostInit(mod.Wrap("player_sanity_init", function(player)
   if TheWorld == nil or not TheWorld.ismastersim then
     return
   end
-  player:DoTaskInTime(0, Safe.Wrap("player_sanity_watch", function()
+  player:DoTaskInTime(0, mod.Wrap("player_sanity_watch", function()
     if player:IsValid() then
       WatchPlayer(player)
     end

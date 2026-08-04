@@ -4,20 +4,19 @@
 ]]
 
 local S = BROADCASTS_STRINGS
-local Safe = BROADCASTS_SAFE
 
 local function OnNightmarePhase(_, phase)
   local message = S.nightmare_phases[phase]
   if message ~= nil then
-    Safe.Announce(message)
+    mod.Announce(message)
   end
 end
 
 local function OnAcidRain(_, is_raining)
-  Safe.Announce(is_raining and S.acid_rain_started or S.acid_rain_ended)
+  mod.Announce(is_raining and S.acid_rain_started or S.acid_rain_ended)
 end
 
-AddSimPostInit(Safe.Wrap("cave_events_init", function()
+AddSimPostInit(mod.Wrap("cave_events_init", function()
   if not TheWorld.ismastersim or not TheWorld:HasTag("cave") then
     return
   end
@@ -28,23 +27,23 @@ AddSimPostInit(Safe.Wrap("cave_events_init", function()
     ready = true
   end)
 
-  TheWorld:WatchWorldState("nightmarephase", Safe.Wrap("cave_nightmare", function(_, phase)
+  TheWorld:WatchWorldState("nightmarephase", mod.Wrap("cave_nightmare", function(_, phase)
     if ready then
       OnNightmarePhase(_, phase)
     end
   end))
-  TheWorld:WatchWorldState("isacidraining", Safe.Wrap("cave_acidrain", function(_, is_raining)
+  TheWorld:WatchWorldState("isacidraining", mod.Wrap("cave_acidrain", function(_, is_raining)
     if ready then
       OnAcidRain(_, is_raining)
     end
   end))
-  TheWorld:ListenForEvent("resetruins", Safe.Wrap("cave_ruins", function()
-    Safe.Announce(S.ruins_reset)
+  TheWorld:ListenForEvent("resetruins", mod.Wrap("cave_ruins", function()
+    mod.Announce(S.ruins_reset)
   end))
 
   if TheWorld.net ~= nil and TheWorld.net.components.quaker ~= nil then
-    TheWorld.net:ListenForEvent("warnquake", Safe.Wrap("cave_quake", function()
-      Safe.Announce(S.quake_warning)
+    TheWorld.net:ListenForEvent("warnquake", mod.Wrap("cave_quake", function()
+      mod.Announce(S.quake_warning)
     end))
   end
 end))

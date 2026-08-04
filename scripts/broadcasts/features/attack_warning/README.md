@@ -31,9 +31,4 @@
 
 现身播报见 `features/appear`。与早报无关；不写持久化状态，重载后阈值标记重置。
 
-## 依赖
-
-- `../../lib/cross_real_thresholds.lua`：阈值跨越纯函数
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS` / 全局常量
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

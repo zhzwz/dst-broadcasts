@@ -8,7 +8,6 @@
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PEARL
-local Safe = BROADCASTS_SAFE
 local TASK_IDS = BROADCASTS_PEARL_TASKS
 
 local RPC_NS = modname
@@ -190,7 +189,7 @@ local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
     return false
   end
-  Safe.Announce(message)
+  mod.Announce(message)
   if CanSendShardRpc() then
     SendModRPCToShard(GetShardModRPC(RPC_NS, RPC_ANNOUNCE), nil, RPC_MAGIC, message)
   end
@@ -203,7 +202,7 @@ local function BroadcastQueryResult(message, query_token)
   if not IsValidStatusMessage(message) then
     return false
   end
-  Safe.Announce(message)
+  mod.Announce(message)
   if CanSendShardRpc() then
     SendModRPCToShard(GetShardModRPC(RPC_NS, RPC_QUERY_RESULT), nil, RPC_MAGIC, message, query_token or 0)
   end
@@ -214,7 +213,7 @@ local function FinishRemoteSuccess(message)
   CancelRemoteRequest()
   if IsValidStatusMessage(message) then
     MarkWaitersCooldown(false)
-    Safe.Announce(message)
+    mod.Announce(message)
   else
     MarkWaitersCooldown(true)
   end
@@ -223,7 +222,7 @@ end
 local function FinishRemoteNotFound()
   MarkWaitersCooldown(true)
   CancelRemoteRequest()
-  Safe.Announce(S.pearl_not_found)
+  mod.Announce(S.pearl_not_found)
 end
 
 local function RequestRemoteStatus(userid)
@@ -330,7 +329,7 @@ local function WatchPearl(inst)
       return
     end
     inst._broadcasts_pearl_level = friendlevels:GetLevel() or 0
-    inst:ListenForEvent("friend_level_changed", Safe.Wrap("pearl_level_changed", OnFriendLevelChanged))
+    inst:ListenForEvent("friend_level_changed", mod.Wrap("pearl_level_changed", OnFriendLevelChanged))
   end)
 end
 
@@ -366,7 +365,7 @@ end
 local old_networking_say = Networking_Say
 Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
   if TheWorld ~= nil and TheWorld.ismastersim then
-    Safe.Call("pearl_status_say", OnChatSay, guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
+    mod.Call("pearl_status_say", OnChatSay, guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
   end
   if old_networking_say ~= nil then
     return old_networking_say(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
@@ -383,7 +382,7 @@ AddShardModRPCHandler(RPC_NS, RPC_ANNOUNCE, function(from_shard, magic, message)
     return
   end
   if IsValidStatusMessage(message) then
-    Safe.Announce(message)
+    mod.Announce(message)
   end
 end)
 
@@ -402,7 +401,7 @@ AddShardModRPCHandler(RPC_NS, RPC_QUERY_RESULT, function(from_shard, magic, mess
   end
 end)
 
-AddShardModRPCHandler(RPC_NS, RPC_REQUEST, Safe.Wrap("pearl_rpc_request", function(from_shard, magic, query_token)
+AddShardModRPCHandler(RPC_NS, RPC_REQUEST, mod.Wrap("pearl_rpc_request", function(from_shard, magic, query_token)
   if IsSelfShard(from_shard) or not IsTrustedRpc(magic) then
     return
   end

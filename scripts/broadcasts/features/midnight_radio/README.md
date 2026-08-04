@@ -12,8 +12,4 @@
 
 `OnAir()` 目前为空，待填午夜电台内容。
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_DAY_SLOT`
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

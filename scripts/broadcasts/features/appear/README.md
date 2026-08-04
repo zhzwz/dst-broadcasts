@@ -16,8 +16,4 @@
 - **克劳斯**：包装 `Unchain`，解链后播；**启迪战争瓦器人**：包装 `ConfigureHostile`，进入敌对后播
 - 巨鹿 / 熊獾现身由本功能负责；`attack_warning` 的 hassler 仅保留倒计时预警
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS.boss_appeared` / `bosses`
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

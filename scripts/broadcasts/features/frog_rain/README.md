@@ -37,9 +37,4 @@
 - **读档门闩**：`POPULATING` 或首帧前只打标不计增；`DoTaskInTime(0)` 后再响应结算与计增（同 `features/cave_events`）
 - 生成条件与原版 `ToggleUpdate` 一致，仅用于判断何时结算
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS` / `BROADCASTS_PICK_MESSAGE`
-- 世界组件 `state_3774915634`（由 `modmain` 挂载）
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

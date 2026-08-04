@@ -8,7 +8,6 @@ modimport("scripts/broadcasts/lib/appear_shared.lua")
 
 local S = BROADCASTS_STRINGS
 local N = S.bosses
-local Safe = BROADCASTS_SAFE
 local Shared = BROADCASTS_APPEAR_SHARED
 
 local BOSSES = {
@@ -140,23 +139,23 @@ local function TryAnnounce(inst, boss)
   inst._dst_broadcasts_appear_announced = true
   local template = S.boss_appeared
   if type(template) == "string" and template ~= "" and type(boss.name) == "string" then
-    Safe.Announce(string.format(template, boss.name))
+    mod.Announce(string.format(template, boss.name))
   end
   return true
 end
 
 local function WatchSharedRelease(inst, boss)
   local key = SharedKey(boss.shared)
-  inst:ListenForEvent("onremove", Safe.Wrap("appear_shared_remove:" .. boss.shared, function()
+  inst:ListenForEvent("onremove", mod.Wrap("appear_shared_remove:" .. boss.shared, function()
     -- inst 任务在 onremove 后可能被清；挂到世界上延后计数
-    TheWorld:DoTaskInTime(0, Safe.Wrap("appear_shared_release:" .. boss.shared, function()
+    TheWorld:DoTaskInTime(0, mod.Wrap("appear_shared_release:" .. boss.shared, function()
       Shared.ReleaseIfEmpty(TheWorld, key, CountLivingPrefabs(boss.prefabs, boss.test))
     end))
   end))
 end
 
 local function HookAppear(prefab, boss)
-  AddPrefabPostInit(prefab, Safe.Wrap("appear_init:" .. prefab, function(inst)
+  AddPrefabPostInit(prefab, mod.Wrap("appear_init:" .. prefab, function(inst)
     if not TheWorld.ismastersim then
       return
     end
@@ -174,11 +173,11 @@ local function HookAppear(prefab, boss)
     inst.OnLoad = function(inst, data)
       inst._dst_broadcasts_appear_loaded = true
       if old_on_load ~= nil then
-        Safe.Call("appear_onload:" .. prefab, old_on_load, inst, data)
+        mod.Call("appear_onload:" .. prefab, old_on_load, inst, data)
       end
     end
 
-    inst:DoTaskInTime(0, Safe.Wrap("appear:" .. prefab, function()
+    inst:DoTaskInTime(0, mod.Wrap("appear:" .. prefab, function()
       if not inst:IsValid() or inst._dst_broadcasts_appear_loaded then
         return
       end
@@ -186,7 +185,7 @@ local function HookAppear(prefab, boss)
         return
       end
       if boss.watch ~= nil then
-        boss.watch(inst, Safe.Wrap("appear_watch:" .. prefab, function()
+        boss.watch(inst, mod.Wrap("appear_watch:" .. prefab, function()
           TryAnnounce(inst, boss)
         end))
       end

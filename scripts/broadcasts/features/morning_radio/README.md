@@ -12,8 +12,4 @@
 
 日历、收获等仍为独立功能；本目录只负责早间电台时段槽。
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_DAY_SLOT`
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

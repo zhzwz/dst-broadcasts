@@ -6,7 +6,6 @@ modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
 local S = BROADCASTS_STRINGS
-local Safe = BROADCASTS_SAFE
 local H = BROADCASTS_HARVEST
 local Announce = BROADCASTS_HARVEST_ANNOUNCE
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
@@ -182,7 +181,7 @@ local function CollectDoneDriedFromRack(inst, counts)
   end
 
   if container.ForEachItem ~= nil then
-    Safe.Call("harvest_dried_foreach", function()
+    mod.Call("harvest_dried_foreach", function()
       container:ForEachItem(consider)
     end)
   elseif type(container.slots) == "table" then
@@ -250,23 +249,23 @@ local function AnnounceHarvest()
   })
 
   for _, line in ipairs(lines) do
-    Safe.Announce(line)
+    mod.Announce(line)
   end
 end
 
-AddSimPostInit(Safe.Wrap("harvest_init", function()
+AddSimPostInit(mod.Wrap("harvest_init", function()
   if not TheWorld.ismastersim then
     return
   end
 
   -- 读档停在黄昏、或 phase 尚未就绪时不播；仅 day → dusk 时播报。
   local prev_phase = TheWorld.state ~= nil and TheWorld.state.phase or nil
-  TheWorld:WatchWorldState("phase", Safe.Wrap("harvest_phase", function(_, phase)
+  TheWorld:WatchWorldState("phase", mod.Wrap("harvest_phase", function(_, phase)
     local previous = prev_phase
     prev_phase = phase
     if not Announce.ShouldAnnounceOnPhase(previous, phase) then
       return
     end
-    TheWorld:DoTaskInTime(0, Safe.Wrap("harvest_report", AnnounceHarvest))
+    TheWorld:DoTaskInTime(0, mod.Wrap("harvest_report", AnnounceHarvest))
   end))
 end))

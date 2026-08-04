@@ -9,7 +9,6 @@ modimport("scripts/broadcasts/shared/get_character_announce_line.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local Safe = BROADCASTS_SAFE
 local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 local CharacterQuote = BROADCASTS_GET_QUOTED_CHARACTER_ANNOUNCE_LINE
@@ -152,7 +151,7 @@ local function AnnounceTemperature(player, key)
   if type(quote) == "string" and quote ~= "" then
     message = message .. quote
   end
-  Safe.Announce(message)
+  mod.Announce(message)
 end
 
 -- allow_announce=false 时只同步 flags（进服对齐）
@@ -223,15 +222,15 @@ local function WatchPlayer(player)
   end
   player._dst_broadcasts_temperature_watching = true
 
-  player:ListenForEvent("temperaturedelta", Safe.Wrap("player_temp_delta", OnTemperatureDelta))
-  Safe.Call("player_temp_sync", SyncFlags, player)
+  player:ListenForEvent("temperaturedelta", mod.Wrap("player_temp_delta", OnTemperatureDelta))
+  mod.Call("player_temp_sync", SyncFlags, player)
 end
 
-AddPlayerPostInit(Safe.Wrap("player_temperature_init", function(player)
+AddPlayerPostInit(mod.Wrap("player_temperature_init", function(player)
   if TheWorld == nil or not TheWorld.ismastersim then
     return
   end
-  player:DoTaskInTime(0, Safe.Wrap("player_temperature_watch", function()
+  player:DoTaskInTime(0, mod.Wrap("player_temperature_watch", function()
     if player:IsValid() then
       WatchPlayer(player)
     end

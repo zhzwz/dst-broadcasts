@@ -5,14 +5,13 @@
 
 modimport("scripts/broadcasts/shared/get_player_owner.lua")
 
-local Safe = BROADCASTS_SAFE
 local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
 local S = BROADCASTS_STRINGS
 local LastUseWhitelist = BROADCASTS_ITEM_STATUS_LAST_USE_WHITELIST or {}
 
 local function AnnounceBroke(owner, item_name)
-  Safe.Announce(string.format(
+  mod.Announce(string.format(
     S.item_broke,
     owner:GetDisplayName() or "?",
     item_name
@@ -20,7 +19,7 @@ local function AnnounceBroke(owner, item_name)
 end
 
 local function AnnounceLastUse(owner, item_name)
-  Safe.Announce(string.format(
+  mod.Announce(string.format(
     S.item_last_use,
     owner:GetDisplayName() or "?",
     item_name
@@ -42,15 +41,15 @@ local function WatchPlayer(player)
     return
   end
   player._dst_broadcasts_armor_broke = true
-  player:ListenForEvent("armorbroke", Safe.Wrap("item_status_armor", OnArmorBroke))
+  player:ListenForEvent("armorbroke", mod.Wrap("item_status_armor", OnArmorBroke))
 end
 
 if H.BREAK then
-  AddPlayerPostInit(Safe.Wrap("item_status_player_init", function(player)
+  AddPlayerPostInit(mod.Wrap("item_status_player_init", function(player)
     if not TheWorld.ismastersim then
       return
     end
-    player:DoTaskInTime(0, Safe.Wrap("item_status_player_watch", function()
+    player:DoTaskInTime(0, mod.Wrap("item_status_player_watch", function()
       if player:IsValid() then
         WatchPlayer(player)
       end
@@ -199,7 +198,7 @@ local function SyncFiniteUsesFlags(inst)
   ApplyFiniteUsesState(inst, current, false)
 end
 
-AddComponentPostInit("finiteuses", Safe.Wrap("item_status_finiteuses_init", function(self)
+AddComponentPostInit("finiteuses", mod.Wrap("item_status_finiteuses_init", function(self)
   if not TheWorld.ismastersim then
     return
   end
@@ -209,9 +208,9 @@ AddComponentPostInit("finiteuses", Safe.Wrap("item_status_finiteuses_init", func
   end
   inst._dst_broadcasts_finiteuses_watching = true
   inst._dst_broadcasts_finiteuses_ready = false
-  inst:ListenForEvent("percentusedchange", Safe.Wrap("item_status_finiteuses", OnFiniteUsesChange))
-  inst:ListenForEvent("onputininventory", Safe.Wrap("item_status_finiteuses_inv", OnPutInInventory))
-  inst:DoTaskInTime(0, Safe.Wrap("item_status_finiteuses_sync", function()
+  inst:ListenForEvent("percentusedchange", mod.Wrap("item_status_finiteuses", OnFiniteUsesChange))
+  inst:ListenForEvent("onputininventory", mod.Wrap("item_status_finiteuses_inv", OnPutInInventory))
+  inst:DoTaskInTime(0, mod.Wrap("item_status_finiteuses_sync", function()
     if not inst:IsValid() then
       return
     end

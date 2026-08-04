@@ -3,7 +3,6 @@
   按世界分片与独立配置启用。
 ]]
 
-local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_ATTACK_WARNING
 
 local HOUNDS_ENABLED = GetModConfigData("hounds_warning_enabled")
@@ -23,7 +22,7 @@ local function IsEnabledHere()
   return HOUNDS_ENABLED
 end
 
-AddSimPostInit(Safe.Wrap("hounded_init", function()
+AddSimPostInit(mod.Wrap("hounded_init", function()
   if not TheWorld.ismastersim then
     return
   end
@@ -43,7 +42,7 @@ AddSimPostInit(Safe.Wrap("hounded_init", function()
   end, AttackName)
 
   local was_attacking = nil
-  TheWorld:DoPeriodicTask(C.HOUNDED_ATTACK_POLL_SECONDS, Safe.Wrap("hounded_attack", function()
+  TheWorld:DoPeriodicTask(C.HOUNDED_ATTACK_POLL_SECONDS, mod.Wrap("hounded_attack", function()
     local hounded = TheWorld.components.hounded
     if hounded == nil then
       return
@@ -54,7 +53,7 @@ AddSimPostInit(Safe.Wrap("hounded_init", function()
       return
     end
     if attacking and not was_attacking then
-      Safe.Announce(string.format(
+      mod.Announce(string.format(
         BROADCASTS_STRINGS.attack_started,
         AttackName()
       ))

@@ -4,9 +4,7 @@
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_ATTACK_WARNING
-local Safe = BROADCASTS_SAFE
 local Cross = BROADCASTS_CROSS_REAL_THRESHOLDS
-local LOG_PREFIX = BROADCASTS_CONSTANTS.LOG_PREFIX
 
 -- get_seconds: 返回剩余秒数；false 表示暂停（保留已播档位）；nil/<=0 表示无有效倒计时（清空档位）
 -- get_name: 返回袭击显示名
@@ -20,7 +18,7 @@ local function WatchAttackWarning(get_seconds, get_name)
     missing_duration = nil,
   }
 
-  TheWorld:DoPeriodicTask(C.POLL_SECONDS, Safe.Wrap("attack_warning", function()
+  TheWorld:DoPeriodicTask(C.POLL_SECONDS, mod.Wrap("attack_warning", function()
     local t = get_seconds()
     if t == false then
       return
@@ -47,7 +45,7 @@ local function WatchAttackWarning(get_seconds, get_name)
         state.missing_duration = lowest
         print(string.format(
           "%s attack_warning: missing durations[%s]",
-          LOG_PREFIX,
+          mod.CONSTANTS.LOG_PREFIX,
           tostring(lowest)
         ))
       end
@@ -58,7 +56,7 @@ local function WatchAttackWarning(get_seconds, get_name)
       state.real_flags[th] = true
     end
     state.missing_duration = nil
-    Safe.Announce(string.format(S.attack_time, name, duration))
+    mod.Announce(string.format(S.attack_time, name, duration))
   end))
 end
 

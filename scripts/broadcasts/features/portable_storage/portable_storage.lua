@@ -6,7 +6,6 @@ modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
 local S = BROADCASTS_STRINGS
-local Safe = BROADCASTS_SAFE
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 local FormatNamedCountList = BROADCASTS_HARVEST_ANNOUNCE.FormatNamedCountList
 
@@ -47,7 +46,7 @@ local function CollectContents(inst)
   end
 
   if container.ForEachItem ~= nil then
-    Safe.Call("portable_storage_foreach", function()
+    mod.Call("portable_storage_foreach", function()
       container:ForEachItem(consider)
     end)
   elseif type(container.slots) == "table" then
@@ -80,7 +79,7 @@ local function BracketName(name)
 end
 
 local function GetUnitName(inst)
-  local name = Safe.Call("portable_storage_name", function()
+  local name = mod.Call("portable_storage_name", function()
     return inst:GetDisplayName()
   end)
   return BracketName(name) or GetPrefabDisplayName(inst.prefab) or "[?]"
@@ -89,7 +88,7 @@ end
 local function GetSenderName(inst)
   local sender = inst._sender
   if sender ~= nil and sender:IsValid() then
-    local name = Safe.Call("portable_storage_sender", function()
+    local name = mod.Call("portable_storage_sender", function()
       return sender:GetDisplayName()
     end)
     local bracketed = BracketName(name)
@@ -112,7 +111,7 @@ local function AnnounceLanded(inst)
     return
   end
   local who = sender .. GetUnitName(inst)
-  Safe.Announce(string.format(S.portable_storage_landed, who, contents))
+  mod.Announce(string.format(S.portable_storage_landed, who, contents))
 end
 
 local function HookUnit(inst)
@@ -133,7 +132,7 @@ local function HookUnit(inst)
     end
   end)
 
-  inst:ListenForEvent("on_landed", Safe.Wrap("portable_storage_landed", function()
+  inst:ListenForEvent("on_landed", mod.Wrap("portable_storage_landed", function()
     if not inst[SUCCESS_FLAG] then
       return
     end
@@ -143,5 +142,5 @@ local function HookUnit(inst)
 end
 
 for _, prefab in ipairs(UNIT_PREFABS) do
-  AddPrefabPostInit(prefab, Safe.Wrap("portable_storage_init:" .. prefab, HookUnit))
+  AddPrefabPostInit(prefab, mod.Wrap("portable_storage_init:" .. prefab, HookUnit))
 end

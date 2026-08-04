@@ -7,8 +7,6 @@ modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/shared/is_at_min_health.lua")
 
 local N = BROADCASTS_STRINGS.bosses
-local Safe = BROADCASTS_SAFE
-local C = BROADCASTS_CONSTANTS
 local GetEntityName = BROADCASTS_GET_ENTITY_DISPLAY_NAME
 local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 local IsAtMinHealth = BROADCASTS_IS_AT_MIN_HEALTH
@@ -203,7 +201,7 @@ local function OnBossHealthDelta(inst, data, bucket)
 end
 
 local function WatchBossDamage(inst, get_bucket)
-  inst:ListenForEvent("healthdelta", Safe.Wrap("boss_damage:" .. tostring(inst.prefab), function(_, data)
+  inst:ListenForEvent("healthdelta", mod.Wrap("boss_damage:" .. tostring(inst.prefab), function(_, data)
     OnBossHealthDelta(inst, data, get_bucket())
   end))
 end
@@ -233,7 +231,10 @@ local function AnnounceDamageRanking(bucket)
     return
   end
 
-  local max_entries = C.BOSS_DAMAGE_RANKING_MAX or 10
+  local max_entries = mod.CONSTANTS.BOSS_DAMAGE_RANKING_MAX
+  if type(max_entries) ~= "number" or max_entries ~= max_entries or max_entries < 1 then
+    max_entries = 10
+  end
   local sep = BROADCASTS_STRINGS.list_separator
   local entry_fmt = BROADCASTS_STRINGS.boss_damage_entry
   local parts = {}
@@ -242,7 +243,7 @@ local function AnnounceDamageRanking(bucket)
     parts[#parts + 1] = string.format(entry_fmt, entry.name, math.floor(entry.damage + 0.5))
   end
 
-  Safe.Announce(string.format(BROADCASTS_STRINGS.boss_damage_ranking, table.concat(parts, sep)))
+  mod.Announce(string.format(BROADCASTS_STRINGS.boss_damage_ranking, table.concat(parts, sep)))
 end
 
 local function AnnounceDefeat(name, data, damage_bucket)
@@ -250,13 +251,13 @@ local function AnnounceDefeat(name, data, damage_bucket)
   local cause = data ~= nil and data.cause or nil
   local _, killer = ResolveDamageSource(afflicter)
   if afflicter == nil or not afflicter:IsValid() then
-    Safe.Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
+    mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
   else
     local weapon = GetWeaponName(cause, afflicter)
     if weapon ~= nil then
-      Safe.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by_weapon, name, killer, weapon))
+      mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by_weapon, name, killer, weapon))
     else
-      Safe.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by, name, killer))
+      mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by, name, killer))
     end
   end
   AnnounceDamageRanking(damage_bucket)
@@ -327,21 +328,21 @@ local function TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt)
     return
   end
   if attempt < NONLETHAL_RETRY_MAX then
-    inst:DoTaskInTime(NONLETHAL_RETRY_DELAY, Safe.Wrap("boss_minhealth_retry:" .. prefab, function()
+    inst:DoTaskInTime(NONLETHAL_RETRY_DELAY, mod.Wrap("boss_minhealth_retry:" .. prefab, function()
       TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt + 1)
     end))
   end
 end
 
 for prefab, boss in pairs(DEATH_BOSSES) do
-  AddPrefabPostInit(prefab, Safe.Wrap("boss_defeat_init:" .. prefab, function(inst)
+  AddPrefabPostInit(prefab, mod.Wrap("boss_defeat_init:" .. prefab, function(inst)
     if not TheWorld.ismastersim then
       return
     end
     WatchBossDamage(inst, function()
       return GetDamageBucket(inst)
     end)
-    inst:ListenForEvent("death", Safe.Wrap("boss_defeat:" .. prefab, function(_, data)
+    inst:ListenForEvent("death", mod.Wrap("boss_defeat:" .. prefab, function(_, data)
       local name = type(boss) == "table" and boss.name or boss
       local should_announce = type(boss) ~= "table" or
           boss.test == nil or
@@ -356,7 +357,7 @@ for prefab, boss in pairs(DEATH_BOSSES) do
 end
 
 for prefab in pairs(ALTERGUARDIAN_PHASES) do
-  AddPrefabPostInit(prefab, Safe.Wrap("alterguardian_init:" .. prefab, function(inst)
+  AddPrefabPostInit(prefab, mod.Wrap("alterguardian_init:" .. prefab, function(inst)
     if not TheWorld.ismastersim then
       return
     end
@@ -367,7 +368,7 @@ for prefab in pairs(ALTERGUARDIAN_PHASES) do
       return GetSharedDamageBucket("alterguardian_damage")
     end)
     if prefab == "alterguardian_phase3" then
-      inst:ListenForEvent("death", Safe.Wrap("alterguardian_defeat", function(_, data)
+      inst:ListenForEvent("death", mod.Wrap("alterguardian_defeat", function(_, data)
         if inst._dst_broadcasts_defeat_announced then
           return
         end
@@ -384,19 +385,19 @@ for prefab in pairs(ALTERGUARDIAN_PHASES) do
 end
 
 for prefab, name in pairs(NONLETHAL_BOSSES) do
-  AddPrefabPostInit(prefab, Safe.Wrap("boss_minhealth_init:" .. prefab, function(inst)
+  AddPrefabPostInit(prefab, mod.Wrap("boss_minhealth_init:" .. prefab, function(inst)
     if not TheWorld.ismastersim then
       return
     end
     WatchBossDamage(inst, function()
       return GetDamageBucket(inst)
     end)
-    inst:ListenForEvent("minhealth", Safe.Wrap("boss_minhealth:" .. prefab, function(_, data)
+    inst:ListenForEvent("minhealth", mod.Wrap("boss_minhealth:" .. prefab, function(_, data)
       -- 读档 SetVal(..., "file_load") / 世界填充期会推 minhealth，但不算当场击败
       if POPULATING or (data ~= nil and data.cause == "file_load") then
         return
       end
-      inst:DoTaskInTime(0, Safe.Wrap("boss_minhealth_task:" .. prefab, function()
+      inst:DoTaskInTime(0, mod.Wrap("boss_minhealth_task:" .. prefab, function()
         TryAnnounceNonlethalDefeat(inst, prefab, name, data, 1)
       end))
     end))
@@ -404,7 +405,7 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
 end
 
 for prefab in pairs(TWIN_PREFABS) do
-  AddPrefabPostInit(prefab, Safe.Wrap("twins_init:" .. prefab, function(inst)
+  AddPrefabPostInit(prefab, mod.Wrap("twins_init:" .. prefab, function(inst)
     if not TheWorld.ismastersim then
       return
     end
@@ -415,8 +416,8 @@ for prefab in pairs(TWIN_PREFABS) do
     WatchBossDamage(inst, function()
       return GetSharedDamageBucket("twins_damage")
     end)
-    inst:ListenForEvent("death", Safe.Wrap("twins_death:" .. prefab, function(_, data)
-      inst:DoTaskInTime(0, Safe.Wrap("twins_check", function()
+    inst:ListenForEvent("death", mod.Wrap("twins_death:" .. prefab, function(_, data)
+      inst:DoTaskInTime(0, mod.Wrap("twins_check", function()
         if not HasLivingTwin() and not TheWorld._dst_broadcasts_twins_defeated then
           TheWorld._dst_broadcasts_twins_defeated = true
           AnnounceDefeat(N.twins, data, TheWorld._dst_broadcasts_twins_damage)
@@ -427,7 +428,7 @@ for prefab in pairs(TWIN_PREFABS) do
   end))
 end
 
-AddPrefabPostInit("vault_pillar_guard", Safe.Wrap("guard_init", function(inst)
+AddPrefabPostInit("vault_pillar_guard", mod.Wrap("guard_init", function(inst)
   if not TheWorld.ismastersim or inst.crafted then
     return
   end
@@ -438,8 +439,8 @@ AddPrefabPostInit("vault_pillar_guard", Safe.Wrap("guard_init", function(inst)
   WatchBossDamage(inst, function()
     return GetSharedDamageBucket("guard_damage")
   end)
-  inst:ListenForEvent("death", Safe.Wrap("guard_death", function(_, data)
-    inst:DoTaskInTime(0, Safe.Wrap("guard_check", function()
+  inst:ListenForEvent("death", mod.Wrap("guard_death", function(_, data)
+    inst:DoTaskInTime(0, mod.Wrap("guard_check", function()
       if not HasLivingVaultGuard() and
           not TheWorld._dst_broadcasts_guard_towers_defeated then
         TheWorld._dst_broadcasts_guard_towers_defeated = true

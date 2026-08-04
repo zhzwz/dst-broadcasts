@@ -6,7 +6,6 @@ modimport("scripts/broadcasts/shared/get_player_display_name.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local Safe = BROADCASTS_SAFE
 local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 
 local function CheckHealth(player, percent, allow_announce)
@@ -83,7 +82,7 @@ local function CheckHealth(player, percent, allow_announce)
     max_display = 1
   end
 
-  Safe.Announce(string.format(
+  mod.Announce(string.format(
     S.player_low_health,
     PlayerName(player),
     current_display,
@@ -136,15 +135,15 @@ local function WatchPlayer(player)
   end
   player._dst_broadcasts_health_watching = true
 
-  player:ListenForEvent("healthdelta", Safe.Wrap("player_health_delta", OnHealthDelta))
-  Safe.Call("player_health_sync", SyncHealthFlags, player)
+  player:ListenForEvent("healthdelta", mod.Wrap("player_health_delta", OnHealthDelta))
+  mod.Call("player_health_sync", SyncHealthFlags, player)
 end
 
-AddPlayerPostInit(Safe.Wrap("player_health_setup", function(player)
+AddPlayerPostInit(mod.Wrap("player_health_setup", function(player)
   if TheWorld == nil or not TheWorld.ismastersim then
     return
   end
-  player:DoTaskInTime(0, Safe.Wrap("player_health_watch", function()
+  player:DoTaskInTime(0, mod.Wrap("player_health_watch", function()
     if player:IsValid() then
       WatchPlayer(player)
     end

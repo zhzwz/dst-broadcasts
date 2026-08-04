@@ -19,11 +19,6 @@
 - 仅主机
 - 普通死亡 / 非致死贴底（如蚁狮、鲨鱼人等）均可能结算
 - **双子魔眼 / 远古守卫塔**：整组清场后播一次
-- 伤害按实际扣血累计，排行上限见 `BROADCASTS_CONSTANTS.BOSS_DAMAGE_RANKING_MAX`
-
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS` / `BROADCASTS_CONSTANTS`
-- `shared/get_entity_display_name` / `get_prefab_display_name` / `is_at_min_health`
+- 伤害按实际扣血累计，排行上限见 `mod.CONSTANTS.BOSS_DAMAGE_RANKING_MAX`
 
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

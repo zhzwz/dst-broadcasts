@@ -5,25 +5,24 @@
 
 modimport("scripts/broadcasts/lib/day_slot.lua")
 
-local Safe = BROADCASTS_SAFE
 local Slot = BROADCASTS_DAY_SLOT
 
 local function OnAir()
   -- TODO: 早间电台节目
 end
 
-AddSimPostInit(Safe.Wrap("morning_radio_init", function()
+AddSimPostInit(mod.Wrap("morning_radio_init", function()
   if not TheWorld.ismastersim then
     return
   end
 
   local prev_cycles = TheWorld.state.cycles
-  TheWorld:WatchWorldState("cycles", Safe.Wrap("morning_radio_cycles", function(_, cycles)
+  TheWorld:WatchWorldState("cycles", mod.Wrap("morning_radio_cycles", function(_, cycles)
     local previous = prev_cycles
     prev_cycles = cycles
     if not Slot.IsCyclesIncrement(previous, cycles) then
       return
     end
-    TheWorld:DoTaskInTime(0, Safe.Wrap("morning_radio_onair", OnAir))
+    TheWorld:DoTaskInTime(0, mod.Wrap("morning_radio_onair", OnAir))
   end))
 end))

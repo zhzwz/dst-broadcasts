@@ -5,7 +5,6 @@
 modimport("scripts/broadcasts/lib/pick_message.lua")
 
 local S = BROADCASTS_STRINGS
-local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_FROG_RAIN
 local PickMessage = BROADCASTS_PICK_MESSAGE
 
@@ -52,14 +51,14 @@ local function AnnounceStarted()
   if template == nil then
     return
   end
-  Safe.Announce(template)
+  mod.Announce(template)
 end
 
 local function AnnounceEnded(frogs, lunar)
   if lunar > 0 then
     local template = PickMessage(S.frog_rain_ended_lunar)
     if template ~= nil then
-      Safe.Announce(string.format(template, frogs, lunar))
+      mod.Announce(string.format(template, frogs, lunar))
       return
     end
   end
@@ -67,7 +66,7 @@ local function AnnounceEnded(frogs, lunar)
   if template == nil then
     return
   end
-  Safe.Announce(string.format(template, frogs))
+  mod.Announce(string.format(template, frogs))
 end
 
 -- 读档后已在场的雨蛙打上去重标记，避免 StartTracking 重入导致重复计数。
@@ -143,11 +142,11 @@ AddComponentPostInit("frograin", function(self)
   local old_start_tracking = self.StartTracking
   self.StartTracking = function(component, target)
     old_start_tracking(component, target)
-    Safe.Call("frog_rain_count", CountFrog, component.inst, target)
+    mod.Call("frog_rain_count", CountFrog, component.inst, target)
   end
 end)
 
-AddSimPostInit(Safe.Wrap("frog_rain_init", function()
+AddSimPostInit(mod.Wrap("frog_rain_init", function()
   if not TheWorld.ismastersim or TheWorld:HasTag("cave") then
     return
   end
@@ -157,7 +156,7 @@ AddSimPostInit(Safe.Wrap("frog_rain_init", function()
     ready = true
   end)
 
-  local on_condition = Safe.Wrap("frog_rain_condition", function()
+  local on_condition = mod.Wrap("frog_rain_condition", function()
     if ready and not IsFrogRainSpawning(TheWorld) then
       FinishFrogRain(TheWorld)
     end

@@ -19,8 +19,4 @@
 - 仅洞穴主机
 - 读档门闩：`DoTaskInTime(0)` 后再响应 `WatchWorldState`（避免还原状态误播）
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS`
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

@@ -13,9 +13,8 @@
       "AddPrefabPostInit",
       "AddShardModRPCHandler",
       "AddSimPostInit",
-      "BROADCASTS_CONSTANTS",
-      "BROADCASTS_CROSS_REAL_THRESHOLDS",
       "BROADCASTS_APPEAR_SHARED",
+      "BROADCASTS_CROSS_REAL_THRESHOLDS",
       "BROADCASTS_CURRENT_WEATHER",
       "BROADCASTS_DAY_SLOT",
       "BROADCASTS_FORMAT_CHARACTER_QUOTE",
@@ -36,7 +35,6 @@
       "BROADCASTS_PEARL_TASKS",
       "BROADCASTS_PICK_MESSAGE",
       "BROADCASTS_PLAYER_VITALS",
-      "BROADCASTS_SAFE",
       "BROADCASTS_STRINGS",
       "BROADCASTS_WATCH_ATTACK_WARNING",
       "ChooseTranslationTable",
@@ -60,6 +58,7 @@
       "TheShard",
       "TheWorld",
       "env",
+      "mod",
       "modimport",
       "modname"
     ]

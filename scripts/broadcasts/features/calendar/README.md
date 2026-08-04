@@ -31,9 +31,4 @@
 - 距下季 = `remainingdaysinseason`；≤0 时用不含天数的「即将进入」文案
 - 与「早间电台」独立：日历仍只报日期/天气/季节；电台节目见 `features/morning_radio`
 
-## 依赖
-
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS` / `BROADCASTS_CONSTANTS.NEXT_SEASON`
-- `BROADCASTS_CURRENT_WEATHER`（`lib/current_weather.lua`）
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。

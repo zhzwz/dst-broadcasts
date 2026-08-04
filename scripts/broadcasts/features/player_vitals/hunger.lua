@@ -8,7 +8,6 @@ modimport("scripts/broadcasts/shared/get_character_announce_line.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local Safe = BROADCASTS_SAFE
 local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
 local CharacterQuote = BROADCASTS_GET_QUOTED_CHARACTER_ANNOUNCE_LINE
@@ -38,7 +37,7 @@ local function AnnounceTier(player, threshold)
   if type(quote) == "string" and quote ~= "" then
     message = message .. quote
   end
-  Safe.Announce(message)
+  mod.Announce(message)
 end
 
 -- allow_announce=false 时只同步 flags（进服对齐）
@@ -104,15 +103,15 @@ local function WatchPlayer(player)
   end
   player._dst_broadcasts_hunger_watching = true
 
-  player:ListenForEvent("hungerdelta", Safe.Wrap("player_hunger_delta", OnHungerDelta))
-  Safe.Call("player_hunger_sync", SyncFlags, player)
+  player:ListenForEvent("hungerdelta", mod.Wrap("player_hunger_delta", OnHungerDelta))
+  mod.Call("player_hunger_sync", SyncFlags, player)
 end
 
-AddPlayerPostInit(Safe.Wrap("player_hunger_init", function(player)
+AddPlayerPostInit(mod.Wrap("player_hunger_init", function(player)
   if TheWorld == nil or not TheWorld.ismastersim then
     return
   end
-  player:DoTaskInTime(0, Safe.Wrap("player_hunger_watch", function()
+  player:DoTaskInTime(0, mod.Wrap("player_hunger_watch", function()
     if player:IsValid() then
       WatchPlayer(player)
     end

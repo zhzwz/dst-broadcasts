@@ -2,7 +2,6 @@
   巨鹿 / 熊獾：倒计时预警（现身见 features/appear）。
 ]]
 
-local Safe = BROADCASTS_SAFE
 local C = BROADCASTS_ATTACK_WARNING
 
 local DEERCLOPS_ENABLED = GetModConfigData("deerclops_warning_enabled")
@@ -26,7 +25,7 @@ if #BOSSES == 0 then
   return
 end
 
-AddSimPostInit(Safe.Wrap("hassler_init", function()
+AddSimPostInit(mod.Wrap("hassler_init", function()
   if not TheWorld.ismastersim then
     return
   end

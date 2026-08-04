@@ -5,9 +5,14 @@
 modimport("scripts/broadcasts/lib/current_weather.lua")
 
 local S = BROADCASTS_STRINGS
-local C = BROADCASTS_CONSTANTS
-local Safe = BROADCASTS_SAFE
 local ClassifyWeather = BROADCASTS_CURRENT_WEATHER.Classify
+
+local NEXT_SEASON = {
+  autumn = "winter",
+  winter = "spring",
+  spring = "summer",
+  summer = "autumn",
+}
 
 local function AsInt(value, fallback)
   if type(value) ~= "number" or value ~= value or value == math.huge or value == -math.huge then
@@ -56,7 +61,7 @@ local function AnnounceCalendar()
 
   local season = state.season
   local season_name = S.seasons ~= nil and S.seasons[season] or nil
-  local next_key = C.NEXT_SEASON[season]
+  local next_key = NEXT_SEASON[season]
   local next_name = next_key ~= nil and S.seasons ~= nil and S.seasons[next_key] or nil
   if season_name == nil or next_name == nil then
     return
@@ -76,7 +81,7 @@ local function AnnounceCalendar()
     if type(template) ~= "string" or template == "" then
       return
     end
-    Safe.Announce(string.format(template, day, weather, season_name, day_in_season, next_name))
+    mod.Announce(string.format(template, day, weather, season_name, day_in_season, next_name))
     return
   end
 
@@ -84,17 +89,17 @@ local function AnnounceCalendar()
   if type(template) ~= "string" or template == "" then
     return
   end
-  Safe.Announce(string.format(template, day, weather, season_name, day_in_season, next_name, remaining))
+  mod.Announce(string.format(template, day, weather, season_name, day_in_season, next_name, remaining))
 end
 
-AddSimPostInit(Safe.Wrap("calendar_init", function()
+AddSimPostInit(mod.Wrap("calendar_init", function()
   if not TheWorld.ismastersim then
     return
   end
 
   -- 读档时 cycles 会从默认 0 跳到存档天数；只在真正跨天（+1）时播报。
   local prev_cycles = TheWorld.state.cycles
-  TheWorld:WatchWorldState("cycles", Safe.Wrap("calendar_cycles", function(_, cycles)
+  TheWorld:WatchWorldState("cycles", mod.Wrap("calendar_cycles", function(_, cycles)
     local previous = prev_cycles
     prev_cycles = cycles
     if type(cycles) ~= "number" or type(previous) ~= "number" then
@@ -103,6 +108,6 @@ AddSimPostInit(Safe.Wrap("calendar_init", function()
     if cycles ~= previous + 1 or cycles <= 0 then
       return
     end
-    TheWorld:DoTaskInTime(0, Safe.Wrap("calendar_report", AnnounceCalendar))
+    TheWorld:DoTaskInTime(0, mod.Wrap("calendar_report", AnnounceCalendar))
   end))
 end))

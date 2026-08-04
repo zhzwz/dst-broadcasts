@@ -70,11 +70,4 @@
 | `temperature.lua`                          | 过冷 / 过热播报                   |
 | `moisture.lua`                             | 湿度分档                          |
 
-## 依赖
-
-- `../../lib/pick_message.lua`
-- `../../shared/get_player_display_name.lua`
-- `../../shared/get_character_announce_line.lua`
-- `BROADCASTS_SAFE` / `BROADCASTS_STRINGS`
-
 `README.md` 仅供仓库阅读；打包时会排除，不进工坊包。
