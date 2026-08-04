@@ -2,11 +2,9 @@
   WX-78 便携储存单元（Portable Storage Unit）配送落地播报。
 ]]
 
-modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
 local S = BROADCASTS_STRINGS
-local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 local FormatNamedCountList = BROADCASTS_HARVEST_ANNOUNCE.FormatNamedCountList
 
 local SUCCESS_FLAG = "_dst_broadcasts_portable_storage_ok"
@@ -62,7 +60,7 @@ local function FormatContents(counts)
   local named = {}
   for prefab, n in pairs(counts) do
     if type(n) == "number" and n > 0 then
-      local name = GetPrefabDisplayName(prefab)
+      local name = mod.Prefab.GetDisplayName(prefab)
       if name ~= nil then
         named[name] = (named[name] or 0) + n
       end
@@ -71,18 +69,14 @@ local function FormatContents(counts)
   return FormatNamedCountList(named, S.list_separator or ", ")
 end
 
-local function BracketName(name)
-  if type(name) ~= "string" or name == "" then
-    return nil
-  end
-  return "[" .. name .. "]"
-end
-
 local function GetUnitName(inst)
   local name = mod.Call("portable_storage_name", function()
     return inst:GetDisplayName()
   end)
-  return BracketName(name) or GetPrefabDisplayName(inst.prefab) or "[?]"
+  if type(name) == "string" and name ~= "" then
+    return name
+  end
+  return mod.Prefab.GetDisplayName(inst.prefab) or "?"
 end
 
 local function GetSenderName(inst)
@@ -91,9 +85,8 @@ local function GetSenderName(inst)
     local name = mod.Call("portable_storage_sender", function()
       return sender:GetDisplayName()
     end)
-    local bracketed = BracketName(name)
-    if bracketed ~= nil then
-      return bracketed
+    if type(name) == "string" and name ~= "" then
+      return name
     end
   end
   return nil

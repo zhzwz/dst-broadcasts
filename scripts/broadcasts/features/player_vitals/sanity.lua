@@ -4,12 +4,11 @@
 ]]
 
 modimport("scripts/broadcasts/lib/pick_message.lua")
-modimport("scripts/broadcasts/shared/get_player_display_name.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
 local PickMessage = BROADCASTS_PICK_MESSAGE
-local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
+local PlayerName = mod.Player.GetDisplayName
 
 local FLAG = "_dst_broadcasts_low_sanity"
 

@@ -2,12 +2,11 @@
   玩家湿度 10/20/40/60/80 分档播报：模组短句 + 角色内置潮湿台词。
 ]]
 
-modimport("scripts/broadcasts/shared/get_player_display_name.lua")
 modimport("scripts/broadcasts/shared/get_character_announce_line.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
+local PlayerName = mod.Player.GetDisplayName
 local CharacterQuote = BROADCASTS_GET_QUOTED_CHARACTER_ANNOUNCE_LINE
 
 local FLAG = "_dst_broadcasts_moisture_tiers"

@@ -3,10 +3,8 @@
   白名单物品在剩余 1 次时提前提醒（由 BREAK_WARNING 开关控制）。
 ]]
 
-modimport("scripts/broadcasts/shared/get_player_owner.lua")
-
 local H = BROADCASTS_ITEM_STATUS
-local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
+local PlayerOwner = mod.Player.GetOwner
 local S = BROADCASTS_STRINGS
 local LastUseWhitelist = BROADCASTS_ITEM_STATUS_LAST_USE_WHITELIST or {}
 

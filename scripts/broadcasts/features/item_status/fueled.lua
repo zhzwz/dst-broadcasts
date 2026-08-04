@@ -2,11 +2,9 @@
   可缝补（USAGE）耐久与可补燃料（非 USAGE）的多档全服播报。
 ]]
 
-modimport("scripts/broadcasts/shared/get_player_owner.lua")
-
 local C = BROADCASTS_ITEM_STATUS_CONSTANTS
 local H = BROADCASTS_ITEM_STATUS
-local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
+local PlayerOwner = mod.Player.GetOwner
 local S = BROADCASTS_STRINGS
 
 local function Announce(inst, owner, percent, message)

@@ -2,11 +2,9 @@
   玩家生命 ≤10% 时全服播报实际数值；仅在下降时播报，回升后可再次触发。
 ]]
 
-modimport("scripts/broadcasts/shared/get_player_display_name.lua")
-
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
-local PlayerName = BROADCASTS_GET_PLAYER_DISPLAY_NAME
+local PlayerName = mod.Player.GetDisplayName
 
 local function CheckHealth(player, percent, allow_announce)
   if player == nil or not player:IsValid() then

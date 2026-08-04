@@ -2,14 +2,18 @@
   巨兽击败：最终一击、伤害排行；双子/守卫塔等同组结算。
 ]]
 
-modimport("scripts/broadcasts/shared/get_entity_display_name.lua")
-modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/shared/is_at_min_health.lua")
 
 local N = BROADCASTS_STRINGS.bosses
-local GetEntityName = BROADCASTS_GET_ENTITY_DISPLAY_NAME
-local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 local IsAtMinHealth = BROADCASTS_IS_AT_MIN_HEALTH
+
+local function GetEntityName(inst)
+  return mod.Entity.GetDisplayName(inst)
+end
+
+local function GetPrefabDisplayName(prefab)
+  return mod.Prefab.GetDisplayName(prefab)
+end
 
 local DEATH_BOSSES = {
   deerclops = N.deerclops,
@@ -94,7 +98,7 @@ local function GetWeaponName(cause, afflicter)
   if type(display) ~= "string" or display == "" then
     return nil
   end
-  return "[" .. display .. "]"
+  return display
 end
 
 local function GetSummonOwner(afflicter)

@@ -2,7 +2,6 @@
   收获：进入黄昏时按物资种类分别播报；洞穴在类别后加括号标记。
 ]]
 
-modimport("scripts/broadcasts/shared/get_prefab_display_name.lua")
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 modimport("scripts/broadcasts/lib/day_slot.lua")
 
@@ -10,7 +9,6 @@ local S = BROADCASTS_STRINGS
 local H = BROADCASTS_HARVEST
 local Announce = BROADCASTS_HARVEST_ANNOUNCE
 local Slot = BROADCASTS_DAY_SLOT
-local GetPrefabDisplayName = BROADCASTS_GET_PREFAB_DISPLAY_NAME
 
 local function IsMatureMarbleshrub(inst)
   if inst == nil or inst.prefab ~= "marbleshrub" or not inst:IsValid() or inst:HasTag("INLIMBO") then
@@ -197,7 +195,7 @@ local function FormatPrefabCountList(counts)
   local named = {}
   for prefab, n in pairs(counts) do
     if type(n) == "number" and n > 0 then
-      local name = GetPrefabDisplayName(prefab)
+      local name = mod.Prefab.GetDisplayName(prefab)
       if name ~= nil then
         named[name] = (named[name] or 0) + n
       end

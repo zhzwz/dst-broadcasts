@@ -112,15 +112,12 @@ local function IsTrustedRpc(magic)
   return magic == RPC_MAGIC
 end
 
--- 结构校验：允许跨分片语言配置不一致（均以 [Name]x/y… 形式）
+-- 结构校验：允许跨分片语言配置不一致（含 x/y 好感格式即可）
 local function IsValidStatusMessage(message)
   if type(message) ~= "string" or message == "" or #message > STATUS_MESSAGE_MAX_LEN then
     return false
   end
   if string.find(message, "[\r\n%z]", 1) ~= nil then
-    return false
-  end
-  if string.find(message, "^%[[^%]]+%]") ~= 1 then
     return false
   end
   if string.find(message, "%d+/%d+") == nil then
