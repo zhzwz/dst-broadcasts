@@ -42,10 +42,11 @@ AddSimPostInit(Safe.Wrap("hassler_init", function()
     local name = boss.name
     BROADCASTS_WATCH_ATTACK_WARNING(function()
       local wst = TheWorld.components.worldsettingstimer
-      if wst == nil or
-          not wst:ActiveTimerExists(timer) or
-          wst:IsPaused(timer) then
+      if wst == nil or not wst:ActiveTimerExists(timer) then
         return nil
+      end
+      if wst:IsPaused(timer) then
+        return false
       end
       return wst:GetTimeLeft(timer)
     end, function()
