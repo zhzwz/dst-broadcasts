@@ -23,6 +23,8 @@ local function Announce(inst, owner, percent, message)
   ))
 end
 
+-- allow_announce=false：读档对齐可钉 flag；无主且允许播报时不钉，等进背包再检
+-- 新跨越的每一档各播一次（与饱食一致；一次跳变跨多档会连播）
 local function CheckThresholds(inst, owner, percent, thresholds, flag_key, message, allow_announce)
   local pct = percent * 100
   local flags = inst[flag_key]
@@ -31,20 +33,19 @@ local function CheckThresholds(inst, owner, percent, thresholds, flag_key, messa
     inst[flag_key] = flags
   end
 
-  local should_announce = false
   for _, t in ipairs(thresholds) do
     if pct <= t then
       if not flags[t] then
-        flags[t] = true
-        should_announce = true
+        if not allow_announce then
+          flags[t] = true
+        elseif owner ~= nil then
+          flags[t] = true
+          Announce(inst, owner, percent, message)
+        end
       end
     else
       flags[t] = nil
     end
-  end
-
-  if allow_announce and should_announce and owner ~= nil then
-    Announce(inst, owner, percent, message)
   end
 end
 
@@ -96,6 +97,13 @@ local function OnPercentUsedChange(inst, data, allow_announce)
   end
 end
 
+local function OnPutInInventory(inst)
+  if not inst._dst_broadcasts_fueled_ready then
+    return
+  end
+  OnPercentUsedChange(inst, nil, true)
+end
+
 local function WatchFueled(inst)
   local fueled = inst.components.fueled
   if fueled == nil then
@@ -108,6 +116,7 @@ local function WatchFueled(inst)
   inst._dst_broadcasts_fueled_ready = false
 
   inst:ListenForEvent("percentusedchange", Safe.Wrap("item_status_fueled", OnPercentUsedChange))
+  inst:ListenForEvent("onputininventory", Safe.Wrap("item_status_fueled_inv", OnPutInInventory))
   Safe.Call("item_status_fueled_sync", OnPercentUsedChange, inst, nil, false)
   inst._dst_broadcasts_fueled_ready = true
 end
