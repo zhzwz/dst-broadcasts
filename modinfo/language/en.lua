@@ -47,8 +47,6 @@ return {
   defeat_hover = "Announce boss defeats, the finishing blow, and a damage ranking by actual HP dealt.",
   portable_storage_label = "Portable Storage Unit",
   portable_storage_hover = "When a WX-78 Portable Storage Unit lands, announce the player name, unit name, and cargo. Skip if empty.",
-  debug_label = "Debug mode",
-  debug_hover = "When enabled, Broadcasts errors are also shown in in-game announcements.",
   enabled = "Enabled",
   disabled = "Disabled",
 }

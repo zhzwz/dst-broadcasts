@@ -47,8 +47,6 @@ return {
   defeat_hover = "Annuncia la sconfitta, il colpo finale e la classifica dei danni reali.",
   portable_storage_label = "Unità di stoccaggio portatile",
   portable_storage_hover = "All'atterraggio di un'unità di stoccaggio portatile WX-78, annuncia giocatore, nome e carico; non annuncia se vuota.",
-  debug_label = "Registro di debug",
-  debug_hover = "Se attivo, gli errori di Broadcasts vengono annunciati anche in gioco.",
   enabled = "Attivato",
   disabled = "Disattivato",
 }

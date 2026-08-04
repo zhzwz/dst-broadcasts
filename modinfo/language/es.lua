@@ -47,8 +47,6 @@ return {
   defeat_hover = "Anunciar la derrota, el golpe final y el ranking de daño real.",
   portable_storage_label = "Unidad de almacenamiento portátil",
   portable_storage_hover = "Al aterrizar una unidad de almacenamiento portátil de WX-78, anuncia el jugador, el nombre y la carga; no anuncia si está vacía.",
-  debug_label = "Registro de depuración",
-  debug_hover = "Si está activo, los errores de Broadcasts también se anuncian en el juego.",
   enabled = "Activado",
   disabled = "Desactivado",
 }

@@ -51,8 +51,6 @@
 ---@field defeat_hover string
 ---@field portable_storage_label string
 ---@field portable_storage_hover string
----@field debug_label string
----@field debug_hover string
 ---@field enabled string
 ---@field disabled string
 
@@ -105,8 +103,6 @@ local L = {
   defeat_hover = "",
   portable_storage_label = "",
   portable_storage_hover = "",
-  debug_label = "",
-  debug_hover = "",
   enabled = "",
   disabled = "",
 }
@@ -374,15 +370,5 @@ configuration_options = {
       { description = L.disabled, data = false },
     },
     default = true,
-  },
-  {
-    name = "debug_enabled",
-    label = L.debug_label,
-    hover = L.debug_hover,
-    options = {
-      { description = L.enabled,  data = true },
-      { description = L.disabled, data = false },
-    },
-    default = false,
   },
 }

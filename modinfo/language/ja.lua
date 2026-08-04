@@ -46,8 +46,6 @@ return {
   defeat_hover = "撃破時に最後の一撃と実ダメージ順位をアナウンスします。",
   portable_storage_label = "携帯ストレージユニット",
   portable_storage_hover = "WX-78の携帯ストレージユニットが着陸したとき、プレイヤー名・名前と荷物を放送します。空の場合は放送しません。",
-  debug_label = "デバッグログ",
-  debug_hover = "有効時、Broadcasts のエラーもゲーム内にアナウンスされます。",
   enabled = "有効",
   disabled = "無効",
 }

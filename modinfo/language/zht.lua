@@ -46,8 +46,6 @@ return {
   defeat_hover = "巨獸被擊敗時播報最終一擊，並按實際傷害量播報傷害排行。",
   portable_storage_label = "便攜儲存單元",
   portable_storage_hover = "WX-78 便攜儲存單元配送落地時，播報玩家名、單元名稱與內容物；內容物為空時不播報。",
-  debug_label = "除錯模式",
-  debug_hover = "開啟後，Broadcasts 報錯會同時出現在遊戲播報中。",
   enabled = "啟用",
   disabled = "停用",
 }

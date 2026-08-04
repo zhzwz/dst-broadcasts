@@ -46,8 +46,6 @@ return {
   defeat_hover = "처치, 마지막 일격, 실제 피해량 기준 순위를 방송합니다.",
   portable_storage_label = "휴대용 저장 장치",
   portable_storage_hover = "WX-78 휴대용 저장 장치가 착륙할 때 플레이어, 이름과 화물을 안내합니다. 비어 있으면 방송하지 않습니다.",
-  debug_label = "디버그 로그",
-  debug_hover = "활성화하면 Broadcasts 오류도 게임 내에 방송됩니다.",
   enabled = "활성화",
   disabled = "비활성화",
 }

@@ -47,8 +47,6 @@ return {
   defeat_hover = "Niederlage, finalen Treffer und Schadensrangliste nach tatsächlichem Schaden ankündigen.",
   portable_storage_label = "Tragbare Speichereinheit",
   portable_storage_hover = "Meldet Spieler, Namen und Fracht der WX-78 Tragbaren Speichereinheit bei der Landung; bei leerer Fracht keine Meldung.",
-  debug_label = "Debug-Protokoll",
-  debug_hover = "Wenn aktiv, werden Broadcasts-Fehler auch im Spiel angekündigt.",
   enabled = "Aktiviert",
   disabled = "Deaktiviert",
 }

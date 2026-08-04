@@ -3,11 +3,8 @@
 ]]
 
 BROADCASTS_CONSTANTS = {
-  -- 日志与调试播报前缀
+  -- 日志前缀
   LOG_PREFIX = "[Broadcasts]",
-
-  -- 调试模式开启时，播报到聊天的最大字节数（超出截断并加 "..."）
-  DEBUG_CHAT_MAX = 400,
 
   -- 季节循环：当前季节 -> 下一季节（日历播报）
   NEXT_SEASON = {

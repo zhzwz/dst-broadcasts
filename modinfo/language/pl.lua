@@ -47,8 +47,6 @@ return {
   defeat_hover = "Ogłaszać pokonanie, ostateczny cios i ranking rzeczywistych obrażeń.",
   portable_storage_label = "Przenośna jednostka magazynowa",
   portable_storage_hover = "Po wylądowaniu przenośnej jednostki magazynowej WX-78 ogłasza gracza, nazwę i ładunek; pusta nie ogłasza.",
-  debug_label = "Dziennik debugowania",
-  debug_hover = "Gdy włączone, błędy Broadcasts są też ogłaszane w grze.",
   enabled = "Włączone",
   disabled = "Wyłączone",
 }
