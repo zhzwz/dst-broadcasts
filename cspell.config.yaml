@@ -12,6 +12,7 @@ ignoreWords:
   - zhzwz
 
 words:
+  - armorbroke # 护甲损坏
   - bearger # 熊獾
   - beebox # 蜂箱
   - currenthealth
@@ -22,6 +23,7 @@ words:
   - elapseddaysinseason
   - ents
   - farmland # 农田
+  - finiteuses # 有限耐久
   - forumthread
   - frograin # 青蛙雨
   - fueltype # 燃料类型

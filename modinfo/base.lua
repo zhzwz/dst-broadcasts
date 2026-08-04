@@ -7,8 +7,14 @@
 ---@field description string
 ---@field language_label string
 ---@field language_hover string
----@field item_label string
----@field item_hover string
+---@field item_durability_label string
+---@field item_durability_hover string
+---@field item_fuel_label string
+---@field item_fuel_hover string
+---@field item_break_label string
+---@field item_break_hover string
+---@field item_break_warning_label string
+---@field item_break_warning_hover string
 ---@field hunger_label string
 ---@field hunger_hover string
 ---@field sanity_label string
@@ -59,8 +65,14 @@ local L = {
   description = "",
   language_label = "",
   language_hover = "",
-  item_label = "",
-  item_hover = "",
+  item_durability_label = "",
+  item_durability_hover = "",
+  item_fuel_label = "",
+  item_fuel_hover = "",
+  item_break_label = "",
+  item_break_hover = "",
+  item_break_warning_label = "",
+  item_break_warning_hover = "",
   hunger_label = "",
   hunger_hover = "",
   sanity_label = "",
@@ -152,9 +164,39 @@ configuration_options = {
     default = "zh",
   },
   {
-    name = "usage_break_enabled",
-    label = L.item_label,
-    hover = L.item_hover,
+    name = "item_durability_enabled",
+    label = L.item_durability_label,
+    hover = L.item_durability_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "item_fuel_enabled",
+    label = L.item_fuel_label,
+    hover = L.item_fuel_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "item_break_enabled",
+    label = L.item_break_label,
+    hover = L.item_break_hover,
+    options = {
+      { description = L.enabled,  data = true },
+      { description = L.disabled, data = false },
+    },
+    default = true,
+  },
+  {
+    name = "item_break_warning_enabled",
+    label = L.item_break_warning_label,
+    hover = L.item_break_warning_hover,
     options = {
       { description = L.enabled,  data = true },
       { description = L.disabled, data = false },

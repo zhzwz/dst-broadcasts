@@ -21,8 +21,8 @@ Provides countdown warnings for Hound, Depths Worm, Deerclops, and Bearger attac
 Announces major surface and cave events, including seasonal and weather trends, frog rain, nightmare cycles, earthquakes, acid rain, and Ruins resets.
 
 [h3]物品状态｜Item Status[/h3]
-播报玩家持有物品的低耐久、低燃料与损毁状态。
-Warns players about low durability, low fuel, and broken items they are carrying.
+分别开关：低耐久、低燃料、武器/护甲损毁、损毁预警（白名单剩余 1 次）。
+Separately toggleable: low durability, low fuel, weapon/armor break, and break warning (whitelist at 1 use left).
 
 [h3]玩家状态｜Player Status[/h3]
 任意玩家的饱食度或理智降至 10 时播报一次，降至 0 时再播报一次；生命值降至 20% 与 10% 时各播报一次（显示当前百分比）；开始过冷或过热时立即播报。

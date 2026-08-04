@@ -15,11 +15,7 @@ AddPrefabPostInit("world", function(inst)
   end
 end)
 
-if GetModConfigData("usage_break_enabled") then
-  modimport("scripts/broadcasts/usage_break.lua")
-  modimport("scripts/broadcasts/equipment_break.lua")
-end
-
+modimport("scripts/broadcasts/features/item_status/init.lua")
 modimport("scripts/broadcasts/features/player_vitals/init.lua")
 modimport("scripts/broadcasts/features/attack_warning/init.lua")
 modimport("scripts/broadcasts/features/frog_rain/init.lua")

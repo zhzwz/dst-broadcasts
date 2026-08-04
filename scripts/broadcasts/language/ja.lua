@@ -20,6 +20,7 @@ BROADCASTS_STRINGS = {
   item_low_durability = "[%s]の%sの耐久値が残り%d%%です。早めに修理しましょう！",
   item_low_fuel = "[%s]の%sの燃料が残り%d%%です。早めに補充しましょう！",
   item_broke = "[%s]の%sが壊れました！",
+  item_last_use = "[%s]の%sの使用回数が残り1回です！",
   armor = "防具",
   list_separator = "、",
   character_quote = "「%s」",

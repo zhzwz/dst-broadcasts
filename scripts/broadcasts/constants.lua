@@ -9,12 +9,6 @@ BROADCASTS_CONSTANTS = {
   -- 调试模式开启时，播报到聊天的最大字节数（超出截断并加 "..."）
   DEBUG_CHAT_MAX = 400,
 
-  -- 可缝补物品（FUELTYPE.USAGE）耐久播报阈值（百分比）
-  USAGE_SEW_THRESHOLDS = { 20, 10, 5, 4, 3, 2, 1 },
-
-  -- 可补充燃料物品的燃料播报阈值（百分比）
-  USAGE_FUEL_THRESHOLDS = { 30, 20, 10 },
-
   -- 季节循环：当前季节 -> 下一季节（日历播报）
   NEXT_SEASON = {
     autumn = "winter",

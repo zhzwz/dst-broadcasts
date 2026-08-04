@@ -20,6 +20,7 @@ BROADCASTS_STRINGS = {
   item_low_durability = "[%s]的%s耐久僅剩%d%%，請及時縫補！",
   item_low_fuel = "[%s]的%s燃料僅剩%d%%，請及時補充！",
   item_broke = "[%s]的%s已損毀！",
+  item_last_use = "[%s]的%s僅剩最後 1 次使用！",
   armor = "護甲",
   list_separator = "、",
   character_quote = "「%s」",

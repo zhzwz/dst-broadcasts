@@ -1,12 +1,14 @@
 --[[
-  可缝补（USAGE）与可补燃料（非 USAGE）的 fueled 多档全服播报。
+  可缝补（USAGE）耐久与可补燃料（非 USAGE）的多档全服播报。
 ]]
 
 modimport("scripts/broadcasts/shared/get_player_owner.lua")
 
 local Safe = BROADCASTS_SAFE
-local C = BROADCASTS_CONSTANTS
+local C = BROADCASTS_ITEM_STATUS_CONSTANTS
+local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = BROADCASTS_GET_PLAYER_OWNER
+local S = BROADCASTS_STRINGS
 
 local function Announce(inst, owner, percent, message)
   local item_name = inst:GetDisplayName() or inst.prefab
@@ -66,23 +68,29 @@ local function OnPercentUsedChange(inst, data, allow_announce)
 
   local owner = PlayerOwner(inst)
   if fueled.fueltype == FUELTYPE.USAGE then
+    if not H.DURABILITY then
+      return
+    end
     CheckThresholds(
       inst,
       owner,
       percent,
-      C.USAGE_SEW_THRESHOLDS,
+      C.DURABILITY_THRESHOLDS,
       "_dst_broadcasts_sew_flags",
-      BROADCASTS_STRINGS.item_low_durability,
+      S.item_low_durability,
       allow_announce
     )
   else
+    if not H.FUEL then
+      return
+    end
     CheckThresholds(
       inst,
       owner,
       percent,
-      C.USAGE_FUEL_THRESHOLDS,
+      C.FUEL_THRESHOLDS,
       "_dst_broadcasts_fuel_flags",
-      BROADCASTS_STRINGS.item_low_fuel,
+      S.item_low_fuel,
       allow_announce
     )
   end
@@ -99,16 +107,16 @@ local function WatchFueled(inst)
   inst._dst_broadcasts_fueled_watching = true
   inst._dst_broadcasts_fueled_ready = false
 
-  inst:ListenForEvent("percentusedchange", Safe.Wrap("usage_break", OnPercentUsedChange))
-  Safe.Call("usage_break_sync", OnPercentUsedChange, inst, nil, false)
+  inst:ListenForEvent("percentusedchange", Safe.Wrap("item_status_fueled", OnPercentUsedChange))
+  Safe.Call("item_status_fueled_sync", OnPercentUsedChange, inst, nil, false)
   inst._dst_broadcasts_fueled_ready = true
 end
 
-AddComponentPostInit("fueled", Safe.Wrap("usage_break_init", function(self)
+AddComponentPostInit("fueled", Safe.Wrap("item_status_fueled_init", function(self)
   if not TheWorld.ismastersim then
     return
   end
-  self.inst:DoTaskInTime(0, Safe.Wrap("usage_break_watch", function(inst)
+  self.inst:DoTaskInTime(0, Safe.Wrap("item_status_fueled_watch", function(inst)
     if inst:IsValid() then
       WatchFueled(inst)
     end

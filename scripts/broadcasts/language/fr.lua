@@ -20,6 +20,7 @@ BROADCASTS_STRINGS = {
   item_low_durability = "[%s] : %s n'a plus que %d%% de durabilité. Réparez vite !",
   item_low_fuel = "[%s] : %s n'a plus que %d%% de carburant. Rechargez vite !",
   item_broke = "[%s] : %s est détruit !",
+  item_last_use = "[%s] : %s n'a plus qu'1 utilisation !",
   armor = "armure",
   list_separator = ", ",
   character_quote = " « %s »",
