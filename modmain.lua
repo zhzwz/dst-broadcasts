@@ -28,10 +28,6 @@ if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")
 end
 
-if GetModConfigData("morning_news_enabled") then
-  modimport("scripts/broadcasts/morning_news.lua")
-end
-
 if GetModConfigData("boss_defeat_enabled") then
   modimport("scripts/broadcasts/boss_defeat.lua")
 end

@@ -1,16 +1,51 @@
 --[[
-  日历：跨天时播报绝对日、季节进度与距下季天数。
+  日历：跨天时播报绝对日、当前天气一词、季节进度与距下季天数。
 ]]
+
+modimport("scripts/broadcasts/lib/current_weather.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_CONSTANTS
 local Safe = BROADCASTS_SAFE
+local ClassifyWeather = BROADCASTS_CURRENT_WEATHER.Classify
 
 local function AsInt(value, fallback)
   if type(value) ~= "number" or value ~= value or value == math.huge or value == -math.huge then
     return fallback
   end
   return math.floor(value + 0.5)
+end
+
+local function IsMoonstormActive()
+  local net = TheWorld.net
+  local moonstorms = net ~= nil and net.components.moonstorms or nil
+  if moonstorms == nil or moonstorms.GetMoonstormNodes == nil then
+    return false
+  end
+  local nodes = moonstorms:GetMoonstormNodes()
+  return type(nodes) == "table" and next(nodes) ~= nil
+end
+
+local function WeatherLabel()
+  local state = TheWorld.state
+  local sandstorms = TheWorld.components.sandstorms
+  local tuning = TUNING or {}
+  local key = ClassifyWeather({
+    precipitation = state.precipitation,
+    precipitationrate = state.precipitationrate,
+    sandstorm_active = sandstorms ~= nil and sandstorms:IsSandstormActive() or false,
+    moonstorm_active = IsMoonstormActive(),
+    heavy_rain_rate = tuning.FROG_RAIN_PRECIPITATION,
+  })
+  local labels = S.calendar_weather
+  if type(labels) ~= "table" then
+    return ""
+  end
+  local label = labels[key]
+  if type(label) ~= "string" or label == "" then
+    label = labels.clear
+  end
+  return type(label) == "string" and label or ""
 end
 
 local function AnnounceCalendar()
@@ -27,6 +62,11 @@ local function AnnounceCalendar()
     return
   end
 
+  local weather = WeatherLabel()
+  if weather == "" then
+    return
+  end
+
   local day = AsInt(state.cycles, 0) + 1
   local day_in_season = AsInt(state.elapseddaysinseason, 0) + 1
   local remaining = AsInt(state.remainingdaysinseason, 0)
@@ -36,7 +76,7 @@ local function AnnounceCalendar()
     if type(template) ~= "string" or template == "" then
       return
     end
-    Safe.Announce(string.format(template, day, season_name, day_in_season, next_name))
+    Safe.Announce(string.format(template, day, weather, season_name, day_in_season, next_name))
     return
   end
 
@@ -44,7 +84,7 @@ local function AnnounceCalendar()
   if type(template) ~= "string" or template == "" then
     return
   end
-  Safe.Announce(string.format(template, day, season_name, day_in_season, next_name, remaining))
+  Safe.Announce(string.format(template, day, weather, season_name, day_in_season, next_name, remaining))
 end
 
 AddSimPostInit(Safe.Wrap("calendar_init", function()
