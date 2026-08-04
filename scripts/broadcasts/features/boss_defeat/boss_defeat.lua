@@ -312,8 +312,9 @@ local function IsNonlethalDefeated(inst, prefab)
   return false
 end
 
-local NONLETHAL_RETRY_DELAY = 2 / 30
-local NONLETHAL_RETRY_MAX = 5
+-- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播
+local NONLETHAL_RETRY_DELAY = 0.25
+local NONLETHAL_RETRY_MAX = 12
 
 local function TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt)
   if not inst:IsValid() or inst._dst_broadcasts_defeat_announced then
