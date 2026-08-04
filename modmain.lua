@@ -23,6 +23,7 @@ modimport("scripts/broadcasts/features/calendar/init.lua")
 modimport("scripts/broadcasts/features/harvest/init.lua")
 modimport("scripts/broadcasts/features/portable_storage/init.lua")
 modimport("scripts/broadcasts/features/pearl/init.lua")
+modimport("scripts/broadcasts/features/appear/init.lua")
 
 if GetModConfigData("cave_events_enabled") then
   modimport("scripts/broadcasts/cave_events.lua")

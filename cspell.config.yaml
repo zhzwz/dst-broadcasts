@@ -12,17 +12,22 @@ ignoreWords:
   - zhzwz
 
 words:
+  - alterguardian # 天体守护者
   - armorbroke # 护甲损坏
   - bearger # 熊獾
   - beebox # 蜂箱
+  - beequeen # 蜂后
   - cooldown # 冷却
+  - crabking # 螃蟹王
   - currenthealth
+  - daywalker # 日行者
   - deerclops # 独眼巨鹿
   - dryinginfo # 晾晒信息
   - dryingrack # 晾晒架
   - drytime # 晾晒时间
   - elapseddaysinseason
   - ents
+  - eyeofterror # 错乱之眼
   - farmland # 农田
   - finiteuses # 有限耐久
   - forumthread
@@ -41,7 +46,9 @@ words:
   - luarc
   - lunar
   - lunarfrog # 明眼青蛙
+  - lunarrift # 月蚀裂隙
   - lureplant # 食人花
+  - malbatross # 秃鹫
   - mapdeliverable
   - marbleshrub # 大理石灌木
   - meatracks # 晾肉架
@@ -51,6 +58,8 @@ words:
   - modname
   - moistureceil
   - moisturedelta # 湿度组件事件
+  - mutatedbearger # 变异熊獾
+  - mutateddeerclops # 变异独眼巨鹿
   - nothrow
   - ondeliveryprogressfn
   - overheattemp # 过热温度
@@ -61,10 +70,13 @@ words:
   - saltrock # 盐石
   - sanitydelta # 理智组件事件
   - shardid # 分片 ID
+  - sharkboi # 鲨鱼人
   - stackable # 可堆叠物品组件
   - startfreezing # 开始冻结
   - startoverheating # 开始过热
   - steamworks
   - temperaturedelta # 温度组件事件
+  - twinofterror # 双胞胎错乱
+  - wagboss # 机器人首领
   - wobyrack # 圆木晾晒架
   - worktree
