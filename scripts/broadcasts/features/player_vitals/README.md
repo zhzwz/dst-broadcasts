@@ -9,7 +9,7 @@
 | `player_hunger_enabled`      | 饱食度过低（≤10 / ≤0）           |
 | `player_sanity_enabled`      | 理智过低（百分比 50% / 10%）     |
 | `player_health_enabled`      | 生命过低（≤10% 时播报当前/上限） |
-| `player_temperature_enabled` | 温度预警（距伤害阈值还有 5°）    |
+| `player_temperature_enabled` | 真正过冷 / 过热时播报            |
 | `player_moisture_enabled`    | 湿度 10/20/40/60/80 分档         |
 
 `modmain` 始终 `modimport` 本目录 `init.lua`；全部关闭时直接返回。
@@ -52,10 +52,11 @@
 
 每档各播一次；变干低于该档后可再次触发。播报 = 模组短句 + 角色台词。
 
-## 温度预警
+## 温度
 
-游戏伤害阈值默认过冷 `0°`、过热 `70°`（优先读角色 `overheattemp` / `TUNING.OVERHEAT_TEMP`）。
-模组提前 `TEMPERATURE_WARN_OFFSET`（默认 5）度播报：降温至 ≤5°、升温至 ≥65° 各播一次；离开预警区后可再次触发。
+与游戏伤害判定一致：过冷 `current < 0`、过热 `current > overheattemp`（默认 70°；优先读角色 `overheattemp` / `TUNING.OVERHEAT_TEMP`）。
+进入过冷 / 过热时各播一次；离开后可再次触发。
+若 `mintemp` / `maxtemp` 已使角色无法真正受伤（如 WX-78 加热 / 制冷电路），则跳过对应播报。
 文案在 `player_temperature.cold` / `player_temperature.hot`（字符串或字符串数组，多条时随机；`%s` = 玩家名），
 播报后拼接角色内置 `ANNOUNCE_COLD` / `ANNOUNCE_HOT`。
 
@@ -66,7 +67,7 @@
 | `init.lua`                                 | 入口与按配置加载                  |
 | `constants.lua`                            | 阈值 → `BROADCASTS_PLAYER_VITALS` |
 | `hunger.lua` / `sanity.lua` / `health.lua` | 各分项监听                        |
-| `temperature.lua`                          | 过冷 / 过热提前预警               |
+| `temperature.lua`                          | 过冷 / 过热播报                   |
 | `moisture.lua`                             | 湿度分档                          |
 
 ## 依赖

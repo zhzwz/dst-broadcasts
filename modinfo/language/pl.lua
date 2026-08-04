@@ -18,7 +18,7 @@ return {
   health_label = "Zdrowie gracza",
   health_hover = "Ogłaszać rzeczywiste życie przy ok. 10% (tylko przy spadku).",
   temperature_label = "Temperatura gracza",
-  temperature_hover = "Ostrzegać ok. 5° przed zamarzaniem/przegrzaniem (≤5° / ≥65°).",
+  temperature_hover = "Ogłaszaj przy prawdziwym zamarzaniu/przegrzaniu (<0° / >70°).",
   moisture_label = "Wilgotność gracza",
   moisture_hover = "Ogłaszać przy wilgotności 10/20/40/60/80, z kwestią postaci.",
   hounds_label = "Ostrzeżenia o ogarach",

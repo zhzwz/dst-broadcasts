@@ -25,8 +25,7 @@ BROADCASTS_PLAYER_VITALS = {
     { threshold = 80, announce = "ANNOUNCE_SOAKED" },
   },
 
-  -- 温度：游戏过冷/过热伤害阈值；提前 WARN_OFFSET 度预警（默认 ≤5° / ≥65°）
+  -- 温度：与游戏伤害判定一致（过冷 current < 0；过热 current > overheattemp，默认 70）
   TEMPERATURE_FREEZE_DAMAGE = 0,
   TEMPERATURE_OVERHEAT_DAMAGE = 70,
-  TEMPERATURE_WARN_OFFSET = 5,
 }

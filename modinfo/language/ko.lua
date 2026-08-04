@@ -17,7 +17,7 @@ return {
   health_label = "플레이어 체력",
   health_hover = "체력이 약 10%일 때 실제 수치를 방송합니다(감소 시에만).",
   temperature_label = "플레이어 체온",
-  temperature_hover = "동상/과열 약 5도 전에 경고합니다(≤5° / ≥65°).",
+  temperature_hover = "실제로 동상/과열일 때 안내합니다(<0° / >70°).",
   moisture_label = "플레이어 습기",
   moisture_hover = "습기 10/20/40/60/80에서 방송하며 캐릭터 대사를 붙입니다.",
   hounds_label = "사냥개 경고",

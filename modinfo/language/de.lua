@@ -18,7 +18,7 @@ return {
   health_label = "Spielergesundheit",
   health_hover = "Tatsächliche Gesundheit bei etwa 10% ankündigen (nur bei Abnahme).",
   temperature_label = "Spielertemperatur",
-  temperature_hover = "Etwa 5° vor Erfrieren/Überhitzen warnen (≤5° / ≥65°).",
+  temperature_hover = "Melden bei echtem Erfrieren/Überhitzen (<0° / >70°).",
   moisture_label = "Spielernässe",
   moisture_hover = "Bei Feuchtigkeit 10/20/40/60/80 ankündigen, inkl. Charakterzeile.",
   hounds_label = "Hundewarnungen",

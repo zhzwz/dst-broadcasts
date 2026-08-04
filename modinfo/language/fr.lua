@@ -18,7 +18,7 @@ return {
   health_label = "Vie du joueur",
   health_hover = "Annoncer la vie réelle vers 10% (à la baisse seulement).",
   temperature_label = "Température du joueur",
-  temperature_hover = "Prévenir environ 5° avant gel/surchauffe (≤5° / ≥65°).",
+  temperature_hover = "Annoncer au vrai gel/surchauffe (<0° / >70°).",
   moisture_label = "Humidité du joueur",
   moisture_hover = "Annoncer à 10/20/40/60/80 d'humidité, avec la réplique du personnage.",
   hounds_label = "Alertes molosses",

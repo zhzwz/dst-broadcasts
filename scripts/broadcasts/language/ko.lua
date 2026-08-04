@@ -113,7 +113,7 @@ BROADCASTS_STRINGS = {
     "[%s]의 정신은 이미 망가졌습니다 — 그림자의 진미죠!",
   },
   player_low_health = "[%s]의 체력이 %d/%d까지 떨어졌습니다!",
-  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "들리나요? [%s]가 이로 타악기를 연주하고 있습니다.",

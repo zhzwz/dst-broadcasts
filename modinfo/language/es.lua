@@ -18,7 +18,7 @@ return {
   health_label = "Vida del jugador",
   health_hover = "Anunciar la vida real cerca del 10% (solo al bajar).",
   temperature_label = "Temperatura del jugador",
-  temperature_hover = "Avisar unos 5° antes de congelarse/sobrecalentarse (≤5° / ≥65°).",
+  temperature_hover = "Anunciar al congelarse/sobrecalentarse de verdad (<0° / >70°).",
   moisture_label = "Humedad del jugador",
   moisture_hover = "Anunciar en humedad 10/20/40/60/80, con la frase del personaje.",
   hounds_label = "Avisos de sabuesos",

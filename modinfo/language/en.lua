@@ -18,7 +18,7 @@ return {
   health_label = "Player health",
   health_hover = "Announce actual health when it falls to about 10% (on decrease only).",
   temperature_label = "Player temperature",
-  temperature_hover = "Warn about 5° before freezing/overheating (≤5° / ≥65°).",
+  temperature_hover = "Announce when actually freezing/overheating (<0° / >70°).",
   moisture_label = "Player moisture",
   moisture_hover = "Announce at moisture 10/20/40/60/80, appending the character's wet line.",
   hounds_label = "Hound warnings",

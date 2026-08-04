@@ -38,6 +38,7 @@ words:
   - hassler
   - hermitcrab # 寄居蟹隐士
   - hungerdelta # 饱食度组件事件
+  - hurtrate
   - inlimbo # 虚空
   - inventoryitem # 可进背包的物品组件
   - isacidraining # 是否酸雨
@@ -54,8 +55,10 @@ words:
   - malbatross # 秃鹫
   - mapdeliverable
   - marbleshrub # 大理石灌木
+  - maxtemp
   - meatracks # 晾肉架
   - minhealth
+  - mintemp
   - modimport
   - modmain
   - modname
@@ -66,6 +69,7 @@ words:
   - nightmarephase # 噩梦相位
   - nothrow
   - ondeliveryprogressfn
+  - overheathurtrate
   - overheattemp # 过热温度
   - percentusedchange # 燃料组件事件：百分比变化
   - playerghost # 玩家幽灵

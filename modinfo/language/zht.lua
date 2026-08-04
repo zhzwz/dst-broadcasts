@@ -17,7 +17,7 @@ return {
   health_label = "玩家生命",
   health_hover = "生命降至約 10% 時播報實際數值（僅下降時）。",
   temperature_label = "玩家溫度",
-  temperature_hover = "距過冷/過熱還有約 5 度時預警（≤5° / ≥65°）。",
+  temperature_hover = "真正過冷/過熱時播報（<0° / >70°）。",
   moisture_label = "玩家濕度",
   moisture_hover = "濕度達到 10/20/40/60/80 時播報，並附帶角色潮濕台詞。",
   hounds_label = "獵犬預警",

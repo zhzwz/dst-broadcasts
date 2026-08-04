@@ -17,7 +17,7 @@ return {
   health_label = "プレイヤー体力",
   health_hover = "体力が約10%のときに実数値をアナウンスします（低下時のみ）。",
   temperature_label = "プレイヤー体温",
-  temperature_hover = "凍傷/熱中の約5度手前で警告します（≤5° / ≥65°）。",
+  temperature_hover = "実際に凍傷/熱中した時に放送します（<0° / >70°）。",
   moisture_label = "プレイヤー湿度",
   moisture_hover = "湿度10/20/40/60/80でアナウンスし、キャラの濡れ台詞を付けます。",
   hounds_label = "猟犬警告",

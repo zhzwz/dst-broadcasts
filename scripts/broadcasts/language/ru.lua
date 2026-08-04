@@ -113,7 +113,7 @@ BROADCASTS_STRINGS = {
     "Разум [%s] уже сломан — лакомство для теней!",
   },
   player_low_health = "Здоровье [%s] упало до %d/%d!",
-  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "Слышите? [%s] отбивает ритм зубами.",

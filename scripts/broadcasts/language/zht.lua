@@ -115,7 +115,7 @@ BROADCASTS_STRINGS = {
     "[%s]的大腦已經殘廢，那是暗影的美味！",
   },
   player_low_health = "[%s]的生命已降至%d/%d！",
-  -- 温度预警；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "聽見了嗎？[%s]用牙齒在敲打擊樂。",
