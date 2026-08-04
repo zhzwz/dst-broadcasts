@@ -402,7 +402,7 @@ AddShardModRPCHandler(RPC_NS, RPC_QUERY_RESULT, function(from_shard, magic, mess
   end
 end)
 
-AddShardModRPCHandler(RPC_NS, RPC_REQUEST, function(from_shard, magic, query_token)
+AddShardModRPCHandler(RPC_NS, RPC_REQUEST, Safe.Wrap("pearl_rpc_request", function(from_shard, magic, query_token)
   if IsSelfShard(from_shard) or not IsTrustedRpc(magic) then
     return
   end
@@ -410,4 +410,4 @@ AddShardModRPCHandler(RPC_NS, RPC_REQUEST, function(from_shard, magic, query_tok
   if message ~= nil then
     BroadcastQueryResult(message, tonumber(query_token) or 0)
   end
-end)
+end))
