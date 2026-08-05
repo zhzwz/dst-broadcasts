@@ -102,7 +102,7 @@ local L = {
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
-version = "1.7.0"
+version = "1.8.0"
 
 forumthread = ""
 
