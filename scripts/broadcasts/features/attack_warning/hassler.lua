@@ -10,13 +10,13 @@ local BEARGER_ENABLED = GetModConfigData("bearger_warning_enabled")
 local BOSSES = {}
 if DEERCLOPS_ENABLED then
   BOSSES[#BOSSES + 1] = {
-    name = BROADCASTS_STRINGS.bosses.deerclops,
+    name = i18n.bosses.deerclops,
     timer = C.DEERCLOPS_TIMER,
   }
 end
 if BEARGER_ENABLED then
   BOSSES[#BOSSES + 1] = {
-    name = BROADCASTS_STRINGS.bosses.bearger,
+    name = i18n.bosses.bearger,
     timer = C.BEARGER_TIMER,
   }
 end

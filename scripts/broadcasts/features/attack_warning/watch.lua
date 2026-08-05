@@ -2,7 +2,7 @@
   袭击预警共用倒计时：现实时间多档阈值播报。
 ]]
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local C = BROADCASTS_ATTACK_WARNING
 local Cross = BROADCASTS_CROSS_REAL_THRESHOLDS
 

@@ -5,9 +5,8 @@
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
+modimport("scripts/broadcasts/i18n.lua")
 modimport("scripts/broadcasts/mod.lua")
-
-modimport("scripts/broadcasts/language/init.lua")
 
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then

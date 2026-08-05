@@ -2,7 +2,7 @@
   玩家湿度 10/20/40/60/80 分档播报：模组短句 + 角色内置潮湿台词。
 ]]
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
 local PlayerName = mod.Player.GetDisplayName
 local CharacterQuote = mod.Character.GetQuotedAnnounceLine

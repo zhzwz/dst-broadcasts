@@ -5,7 +5,7 @@
 local C = BROADCASTS_ITEM_STATUS_CONSTANTS
 local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = mod.Item.GetOwner
-local S = BROADCASTS_STRINGS
+local S = i18n
 
 local function Announce(inst, owner, percent, message)
   local item_name = mod.Entity.GetDisplayName(inst)

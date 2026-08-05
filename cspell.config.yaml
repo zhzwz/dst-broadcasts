@@ -5,7 +5,7 @@ ignorePaths:
   - modinfo/language
   - node_modules
   - package.json
-  - scripts/broadcasts/language
+  - scripts/broadcasts/i18n
 
 ignoreWords:
   - dont

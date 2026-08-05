@@ -6,7 +6,7 @@
 
 modimport("scripts/broadcasts/lib/appear_shared.lua")
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local N = S.bosses
 local Shared = BROADCASTS_APPEAR_SHARED
 

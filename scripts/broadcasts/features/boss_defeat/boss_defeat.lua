@@ -2,7 +2,7 @@
   巨兽击败：最终一击、伤害排行；双子/守卫塔等同组结算。
 ]]
 
-local N = BROADCASTS_STRINGS.bosses
+local N = i18n.bosses
 local IsAtMinHealth = mod.Entity.IsAtMinHealth
 
 local function GetEntityName(inst)
@@ -162,20 +162,20 @@ local function AddDamage(bucket, key, name, amount)
   if name ~= nil then
     entry.name = name
   elseif entry.name == nil then
-    entry.name = BROADCASTS_STRINGS.boss_damage_other
+    entry.name = i18n.boss_damage_other
   end
 end
 
 local function ResolveDamageSource(afflicter)
   if afflicter ~= nil and afflicter:IsValid() and afflicter:HasTag("player") then
-    return GetPlayerKey(afflicter), GetEntityName(afflicter) or BROADCASTS_STRINGS.boss_damage_other
+    return GetPlayerKey(afflicter), GetEntityName(afflicter) or i18n.boss_damage_other
   end
 
   local owner = GetSummonOwner(afflicter)
   if owner ~= nil then
     local prefab = afflicter.prefab
-    local summon_name = GetPrefabDisplayName(prefab) or GetEntityName(afflicter) or BROADCASTS_STRINGS.boss_damage_other
-    local owner_name = GetEntityName(owner) or BROADCASTS_STRINGS.boss_damage_other
+    local summon_name = GetPrefabDisplayName(prefab) or GetEntityName(afflicter) or i18n.boss_damage_other
+    local owner_name = GetEntityName(owner) or i18n.boss_damage_other
     local owner_key = GetPlayerKey(owner)
     local summon_key = type(prefab) == "string" and prefab ~= "" and prefab or tostring(afflicter.GUID)
     return "summon:" .. owner_key .. ":" .. summon_key, owner_name .. summon_name
@@ -185,11 +185,11 @@ local function ResolveDamageSource(afflicter)
     local prefab = afflicter.prefab
     local key = type(prefab) == "string" and prefab ~= "" and ("prefab:" .. prefab) or
         ("entity:" .. tostring(afflicter.GUID))
-    local name = GetEntityName(afflicter) or GetPrefabDisplayName(prefab) or BROADCASTS_STRINGS.boss_damage_other
+    local name = GetEntityName(afflicter) or GetPrefabDisplayName(prefab) or i18n.boss_damage_other
     return key, name
   end
 
-  return "other", BROADCASTS_STRINGS.boss_damage_other
+  return "other", i18n.boss_damage_other
 end
 
 local function OnBossHealthDelta(inst, data, bucket)
@@ -237,15 +237,15 @@ local function AnnounceDamageRanking(bucket)
   if type(max_entries) ~= "number" or max_entries ~= max_entries or max_entries < 1 then
     max_entries = 10
   end
-  local sep = BROADCASTS_STRINGS.list_separator
-  local entry_fmt = BROADCASTS_STRINGS.boss_damage_entry
+  local sep = i18n.list_separator
+  local entry_fmt = i18n.boss_damage_entry
   local parts = {}
   for i = 1, math.min(#list, max_entries) do
     local entry = list[i]
     parts[#parts + 1] = string.format(entry_fmt, entry.name, math.floor(entry.damage + 0.5))
   end
 
-  mod.Announce(string.format(BROADCASTS_STRINGS.boss_damage_ranking, table.concat(parts, sep)))
+  mod.Announce(string.format(i18n.boss_damage_ranking, table.concat(parts, sep)))
 end
 
 local function AnnounceDefeat(name, data, damage_bucket)
@@ -253,13 +253,13 @@ local function AnnounceDefeat(name, data, damage_bucket)
   local cause = data ~= nil and data.cause or nil
   local _, killer = ResolveDamageSource(afflicter)
   if afflicter == nil or not afflicter:IsValid() then
-    mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated, name))
+    mod.Announce(string.format(i18n.boss_defeated, name))
   else
     local weapon = GetWeaponName(cause, afflicter)
     if weapon ~= nil then
-      mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by_weapon, name, killer, weapon))
+      mod.Announce(string.format(i18n.boss_defeated_by_weapon, name, killer, weapon))
     else
-      mod.Announce(string.format(BROADCASTS_STRINGS.boss_defeated_by, name, killer))
+      mod.Announce(string.format(i18n.boss_defeated_by, name, killer))
     end
   end
   AnnounceDamageRanking(damage_bucket)

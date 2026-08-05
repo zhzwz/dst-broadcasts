@@ -6,7 +6,7 @@
   - 好感等级提升时自动播报（每个游戏日最多一次）
 ]]
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local C = BROADCASTS_PEARL
 local TASK_IDS = BROADCASTS_PEARL_TASKS
 

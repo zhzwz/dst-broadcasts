@@ -3,7 +3,7 @@
   仅洞穴主机；读档首帧不播。
 ]]
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 
 local function OnNightmarePhase(_, phase)
   local message = S.nightmare_phases[phase]

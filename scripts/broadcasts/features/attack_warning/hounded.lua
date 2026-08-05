@@ -10,9 +10,9 @@ local WORMS_ENABLED = GetModConfigData("depths_worms_warning_enabled")
 
 local function AttackName()
   if mod.World.IsCave() then
-    return BROADCASTS_STRINGS.bosses.depths_worms
+    return i18n.bosses.depths_worms
   end
-  return BROADCASTS_STRINGS.bosses.hounds
+  return i18n.bosses.hounds
 end
 
 local function IsEnabledHere()
@@ -54,7 +54,7 @@ AddSimPostInit(mod.Wrap("hounded_init", function()
     end
     if attacking and not was_attacking then
       mod.Announce(string.format(
-        BROADCASTS_STRINGS.attack_started,
+        i18n.attack_started,
         AttackName()
       ))
     end

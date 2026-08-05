@@ -4,7 +4,7 @@
 
 ## 文案
 
-`scripts/broadcasts/language/<语种>.lua`：
+`scripts/broadcasts/i18n/<语种>.lua`：
 
 | 键                         | 说明                         |
 | -------------------------- | ---------------------------- |

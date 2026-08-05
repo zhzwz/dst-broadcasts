@@ -5,7 +5,7 @@
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 modimport("scripts/broadcasts/lib/day_slot.lua")
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local H = BROADCASTS_HARVEST
 local Announce = BROADCASTS_HARVEST_ANNOUNCE
 local Slot = BROADCASTS_DAY_SLOT

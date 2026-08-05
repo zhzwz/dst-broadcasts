@@ -1,7 +1,7 @@
 -- spell:ignore autum
 --[[
   Pearl 任务 id 与文案键，需与游戏 prefabs/hermitcrab.lua 中 TASKS 保持一致。
-  key 对应 BROADCASTS_STRINGS.pearl_tasks。
+  key 对应 i18n.pearl_tasks。
 ]]
 
 BROADCASTS_PEARL_TASKS = {

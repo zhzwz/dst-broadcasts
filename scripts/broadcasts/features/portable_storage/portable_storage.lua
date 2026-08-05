@@ -4,7 +4,7 @@
 
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local FormatNamedCountList = BROADCASTS_HARVEST_ANNOUNCE.FormatNamedCountList
 
 local SUCCESS_FLAG = "_dst_broadcasts_portable_storage_ok"

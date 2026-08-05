@@ -1,4 +1,4 @@
-BROADCASTS_STRINGS = {
+i18n = {
   durations = {
     [480] = "8분",
     [240] = "4분",

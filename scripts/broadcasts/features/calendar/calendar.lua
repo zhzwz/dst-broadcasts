@@ -4,7 +4,7 @@
 
 modimport("scripts/broadcasts/lib/current_weather.lua")
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local ClassifyWeather = BROADCASTS_CURRENT_WEATHER.Classify
 
 local NEXT_SEASON = {

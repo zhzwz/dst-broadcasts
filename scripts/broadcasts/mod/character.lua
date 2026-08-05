@@ -43,33 +43,20 @@ local function GetAnnounceLine(player, announce_key)
   end
 end
 
---- 给台词加引号
---- @param line string|nil
---- @return string|nil
-local function FormatQuote(line)
-  if type(line) ~= "string" or line == "" then
-    return nil
-  end
-  -- 按当前语言 character_quote；缺省为 ASCII "..."
-  local fmt = type(BROADCASTS_STRINGS) == "table" and BROADCASTS_STRINGS.character_quote or nil
-  if type(fmt) == "string" and fmt ~= "" then
-    local wrapped = mod.Call("mod.Character.FormatQuote", string.format, fmt, line)
-    if type(wrapped) == "string" and wrapped ~= "" then
-      return wrapped
-    end
-  end
-  return ' "' .. line .. '"'
-end
-
+--- 读取角色内置台词并按当前语言加引号
 --- @param player Entity|nil
 --- @param announce_key string
 --- @return string|nil
 local function GetQuotedAnnounceLine(player, announce_key)
-  return FormatQuote(GetAnnounceLine(player, announce_key))
+  local line = GetAnnounceLine(player, announce_key)
+  if type(line) ~= "string" or line == "" then
+    return nil
+  end
+  local fmt = i18n.character_quote or ' "%s"'
+  return mod.Call("mod.Character.GetQuotedAnnounceLine", string.format, fmt, line)
 end
 
 mod.Character = {
   GetAnnounceLine = GetAnnounceLine,
-  FormatQuote = FormatQuote,
   GetQuotedAnnounceLine = GetQuotedAnnounceLine,
 }

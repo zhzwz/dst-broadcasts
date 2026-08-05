@@ -4,7 +4,7 @@
 
 modimport("scripts/broadcasts/lib/pick_message.lua")
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
 local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = mod.Player.GetDisplayName

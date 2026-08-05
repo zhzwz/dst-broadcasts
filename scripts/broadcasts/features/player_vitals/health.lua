@@ -2,7 +2,7 @@
   玩家生命 ≤10% 时全服播报实际数值；仅在下降时播报，回升后可再次触发。
 ]]
 
-local S = BROADCASTS_STRINGS
+local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
 local PlayerName = mod.Player.GetDisplayName
 
