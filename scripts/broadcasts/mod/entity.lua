@@ -1,43 +1,79 @@
--- 是否存活：有效且带 health、未死；不排除 INLIMBO
--- @param inst Entity|nil
--- @return boolean
-local function IsAlive(inst)
-  if inst == nil or not inst:IsValid() then
+--- 判断实体是否有效
+--- @param inst Entity|nil
+--- @return boolean
+local function IsValid(inst)
+  if inst == nil then
     return false
   end
-  local health = inst.components ~= nil and inst.components.health or nil
-  return health ~= nil and not health:IsDead()
+  if type(inst.IsValid) ~= "function" then
+    return false
+  end
+  return mod.Call("mod.Entity.IsValid", inst.IsValid, inst) == true
 end
 
-local STACK_TAG = "mod.Entity.GetStackSize"
--- 安全读取堆叠数量；非堆叠或失败时为 1
--- @param inst Entity|nil
--- @return number
-local function GetStackSize(inst)
-  if inst == nil or not inst:IsValid() then
-    return 1
+--- 判断实体是否带有指定标签
+--- @param inst Entity|nil
+--- @param tag string
+--- @return boolean
+local function HasTag(inst, tag)
+  if inst == nil or type(tag) ~= "string" then
+    return false
   end
-  local stackable = inst.components ~= nil and inst.components.stackable or nil
+  if type(inst.HasTag) ~= "function" then
+    return false
+  end
+  return mod.Call("mod.Entity.HasTag", inst.HasTag, inst, tag) == true
+end
+
+--- 判断实体是否存活
+--- @param inst Entity|nil
+--- @return boolean
+local function IsAlive(inst)
+  if not IsValid(inst) then
+    return false
+  end
+  --- @cast inst Entity
+  local health = inst.components and inst.components.health
+  if health == nil then
+    return false
+  end
+  if type(health.IsDead) ~= "function" then
+    return false
+  end
+  return mod.Call("mod.Entity.IsAlive(health.IsDead)", health.IsDead, health) == false
+end
+
+--- 读取实体的当前数量
+--- @param inst Entity|nil
+--- @return number
+local function GetCount(inst)
+  if not IsValid(inst) then
+    return 0
+  end
+  --- @cast inst Entity
+  local stackable = inst.components and inst.components.stackable
   if stackable == nil or stackable.StackSize == nil then
     return 1
   end
-  local size = mod.Call(STACK_TAG, stackable.StackSize, stackable)
+  local size = mod.Call("mod.Entity.GetCount", stackable.StackSize, stackable)
   if type(size) == "number" and size > 0 then
     return size
   end
   return 1
 end
 
-local TAG = "mod.Entity.GetDisplayName"
-
--- 安全读取实体名称
--- @param inst Entity|nil
--- @return string|nil 例如 "Wilson"
+--- 读取实体的显示名称
+--- @param inst Entity|nil
+--- @return string|nil
 local function GetDisplayName(inst)
-  if inst == nil or not inst:IsValid() then
+  if not IsValid(inst) then
     return nil
   end
-  local name = mod.Call(TAG, inst.GetDisplayName, inst)
+  --- @cast inst Entity
+  if type(inst.GetDisplayName) ~= "function" then
+    return nil
+  end
+  local name = mod.Call("mod.Entity.GetDisplayName", inst.GetDisplayName, inst)
   if type(name) == "string" and name ~= "" then
     return name
   end
@@ -45,7 +81,9 @@ local function GetDisplayName(inst)
 end
 
 mod.Entity = {
+  IsValid = IsValid,
+  HasTag = HasTag,
   IsAlive = IsAlive,
-  GetStackSize = GetStackSize,
+  GetCount = GetCount,
   GetDisplayName = GetDisplayName,
 }

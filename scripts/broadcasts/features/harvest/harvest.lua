@@ -167,7 +167,7 @@ local function CollectDoneDriedFromRack(inst, counts)
     if not IsDoneDriedRackItem(dryingrack, item) then
       return
     end
-    AddNamedCount(counts, item.prefab, mod.Entity.GetStackSize(item))
+    AddNamedCount(counts, item.prefab, mod.Entity.GetCount(item))
   end
 
   if container.ForEachItem ~= nil then

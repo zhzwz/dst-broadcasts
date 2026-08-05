@@ -1,9 +1,14 @@
-local function Print(tag, err)
-  local p = mod.CONSTANTS.LOG_PREFIX
-  local t = tostring(tag or "?")
-  local e = tostring(err)
-  local m = string.format("%s %s: %s", p, t, e)
-  print(m)
+--- 打印日志
+--- @param tag string 日志标签
+--- @param content any 日志内容
+local function Print(tag, content)
+  local log = string.format(
+    "%s %s: %s",
+    mod.CONSTANTS.LOG_PREFIX,
+    mod.Trim(tag or "?"),
+    mod.Trim(content)
+  )
+  print(log)
 end
 
 mod.Print = Print
