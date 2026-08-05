@@ -311,25 +311,36 @@ local function IsNonlethalDefeated(inst, prefab)
   return false
 end
 
--- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播
+-- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播。
+-- 每个实体只允许一条重试链；后续 minhealth 只刷新击杀 data，避免疲倦贴底叠任务。
 local NONLETHAL_RETRY_DELAY = 0.25
 local NONLETHAL_RETRY_MAX = 12
 
-local function TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt)
+local function ClearNonlethalRetry(inst)
+  inst._dst_broadcasts_minhealth_retrying = nil
+  inst._dst_broadcasts_minhealth_data = nil
+end
+
+local function TryAnnounceNonlethalDefeat(inst, prefab, name, attempt)
   if not inst:IsValid() or inst._dst_broadcasts_defeat_announced then
+    ClearNonlethalRetry(inst)
     return
   end
+  local data = inst._dst_broadcasts_minhealth_data
   if IsNonlethalDefeated(inst, prefab) then
     inst._dst_broadcasts_defeat_announced = true
+    ClearNonlethalRetry(inst)
     AnnounceDefeat(name, data, inst._dst_broadcasts_damage)
     inst._dst_broadcasts_damage = nil
     return
   end
   if attempt < NONLETHAL_RETRY_MAX then
     inst:DoTaskInTime(NONLETHAL_RETRY_DELAY, mod.Wrap("boss_minhealth_retry:" .. prefab, function()
-      TryAnnounceNonlethalDefeat(inst, prefab, name, data, attempt + 1)
+      TryAnnounceNonlethalDefeat(inst, prefab, name, attempt + 1)
     end))
+    return
   end
+  ClearNonlethalRetry(inst)
 end
 
 for prefab, boss in pairs(DEATH_BOSSES) do
@@ -395,8 +406,15 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
       if POPULATING or (data ~= nil and data.cause == "file_load") then
         return
       end
+      -- 已在轮询：只刷新击杀数据，不另开重试链
+      if inst._dst_broadcasts_minhealth_retrying then
+        inst._dst_broadcasts_minhealth_data = data
+        return
+      end
+      inst._dst_broadcasts_minhealth_retrying = true
+      inst._dst_broadcasts_minhealth_data = data
       inst:DoTaskInTime(0, mod.Wrap("boss_minhealth_task:" .. prefab, function()
-        TryAnnounceNonlethalDefeat(inst, prefab, name, data, 1)
+        TryAnnounceNonlethalDefeat(inst, prefab, name, 1)
       end))
     end))
   end))
