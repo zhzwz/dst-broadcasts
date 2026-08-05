@@ -24,3 +24,7 @@ bun run build-modinfo
 # 打包发布
 bun run release
 ```
+
+### 关于开发习惯
+
+- 追加表项优先用 `table.insert(t, v)`，少写 `t[#t + 1] = v`

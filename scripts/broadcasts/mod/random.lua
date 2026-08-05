@@ -7,7 +7,7 @@ local function Random(list)
   end
   local choices = {}
   for _, item in ipairs(list) do
-    choices[#choices + 1] = item
+    table.insert(choices, item)
   end
   if #choices == 0 then
     return nil

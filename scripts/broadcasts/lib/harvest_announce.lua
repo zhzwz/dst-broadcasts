@@ -35,7 +35,7 @@ local function FormatNamedCountList(counts, separator)
   for name, n in pairs(counts) do
     local entry = FormatNamedCountEntry(name, n)
     if entry ~= nil then
-      list[#list + 1] = { name = name, n = n, text = entry }
+      table.insert(list, { name = name, n = n, text = entry })
     end
   end
   if #list == 0 then
@@ -49,7 +49,7 @@ local function FormatNamedCountList(counts, separator)
   end)
   local parts = {}
   for _, item in ipairs(list) do
-    parts[#parts + 1] = item.text
+    table.insert(parts, item.text)
   end
   if type(separator) ~= "string" then
     separator = ", "
@@ -79,7 +79,7 @@ local function BuildAnnounceLines(data, enabled, templates)
       and marbleshrub == marbleshrub
       and marbleshrub > 0
       and type(templates.marbleshrub) == "string" then
-    lines[#lines + 1] = string.format(templates.marbleshrub, mark, math.floor(marbleshrub))
+    table.insert(lines, string.format(templates.marbleshrub, mark, math.floor(marbleshrub)))
   end
 
   local honey = data.honey
@@ -88,7 +88,7 @@ local function BuildAnnounceLines(data, enabled, templates)
       and honey == honey
       and honey > 0
       and type(templates.beebox) == "string" then
-    lines[#lines + 1] = string.format(templates.beebox, mark, math.floor(honey))
+    table.insert(lines, string.format(templates.beebox, mark, math.floor(honey)))
   end
 
   local farm_list = data.farm_list
@@ -96,7 +96,7 @@ local function BuildAnnounceLines(data, enabled, templates)
       and type(farm_list) == "string"
       and farm_list ~= ""
       and type(templates.farm) == "string" then
-    lines[#lines + 1] = string.format(templates.farm, mark, farm_list)
+    table.insert(lines, string.format(templates.farm, mark, farm_list))
   end
 
   local dried_list = data.dried_list
@@ -104,7 +104,7 @@ local function BuildAnnounceLines(data, enabled, templates)
       and type(dried_list) == "string"
       and dried_list ~= ""
       and type(templates.dried) == "string" then
-    lines[#lines + 1] = string.format(templates.dried, mark, dried_list)
+    table.insert(lines, string.format(templates.dried, mark, dried_list))
   end
 
   return lines

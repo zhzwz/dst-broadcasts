@@ -19,7 +19,7 @@ local function CrossRealThresholds(seconds, thresholds, flags)
   for _, th in ipairs(thresholds) do
     if seconds <= th then
       if not flags[th] then
-        newly_crossed[#newly_crossed + 1] = th
+        table.insert(newly_crossed, th)
         if lowest == nil or th < lowest then
           lowest = th
         end

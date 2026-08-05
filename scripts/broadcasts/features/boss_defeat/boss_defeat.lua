@@ -215,7 +215,7 @@ local function BuildDamageRanking(bucket)
   end
   for _, entry in pairs(bucket) do
     if type(entry) == "table" and type(entry.damage) == "number" and entry.damage > 0 and entry.name ~= nil then
-      list[#list + 1] = entry
+      table.insert(list, entry)
     end
   end
   table.sort(list, function(a, b)
@@ -242,7 +242,7 @@ local function AnnounceDamageRanking(bucket)
   local parts = {}
   for i = 1, math.min(#list, max_entries) do
     local entry = list[i]
-    parts[#parts + 1] = string.format(entry_fmt, entry.name, math.floor(entry.damage + 0.5))
+    table.insert(parts, string.format(entry_fmt, entry.name, math.floor(entry.damage + 0.5)))
   end
 
   mod.Announce(string.format(i18n.boss_damage_ranking, table.concat(parts, sep)))
