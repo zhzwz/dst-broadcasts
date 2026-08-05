@@ -4,14 +4,14 @@
 
 ## 触发
 
-- 公频聊天精确发送 `pearl`（洞穴可跨分片查地表）
+- 公频聊天精确发送 `pearl`（洞穴可跨分片查地表；不限制触发频率）
 - 好感等级提升时自动播报（每个游戏日最多一次）
 
 ## 文件
 
 | 文件            | 职责                                      |
 | --------------- | ----------------------------------------- |
-| `constants.lua` | 冷却与跨片超时 → `BROADCASTS_PEARL`       |
+| `constants.lua` | `BROADCASTS_PEARL`（预留）                |
 | `tasks.lua`     | 任务 id/文案键 → `BROADCASTS_PEARL_TASKS` |
 | `pearl.lua`     | 聊天钩子、好感监听、跨片 RPC              |
 

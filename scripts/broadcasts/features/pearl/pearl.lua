@@ -2,16 +2,14 @@
   Pearl（寄居蟹隐士）好感与待办任务。
 
   触发：
-  - 公频聊天精确发送 pearl（含跨分片：洞穴可查地表状态）
+  - 公频聊天精确发送 pearl（含跨分片：洞穴可查地表状态；不限制触发频率）
   - 好感等级提升时自动播报（每个游戏日最多一次）
 ]]
 
 local S = i18n
-local C = BROADCASTS_PEARL
 local TASK_IDS = BROADCASTS_PEARL_TASKS
 
 local RPC_REQUEST = "PearlStatusRequest"
-local RPC_QUERY_RESULT = "PearlStatusQueryResult"
 -- 按字节计；中文待办较长时需留余量
 local STATUS_MESSAGE_MAX_LEN = 2048
 
@@ -19,16 +17,8 @@ local CHAT_TRIGGERS = {
   pearl = true,
 }
 
--- userid -> { t = GetTime(), fail = bool }
-local last_announce_by_user = {}
 local FRIEND_ANNOUNCE_CYCLE_KEY = "pearl_friend_announce_cycle"
 local last_friend_announce_cycle = nil
-
--- 跨分片查询：多人可共用同一次请求；结果只回 token，文案由 Master Announce
-local remote_waiters = {}
-local remote_request_inflight = false
-local remote_request_token = 0
-local remote_expect_token = 0
 
 local function FindPearl()
   local mbm = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.messagebottlemanager or nil
@@ -122,42 +112,6 @@ local function IsValidStatusMessage(message)
   return true
 end
 
-local function CooldownKey(userid)
-  if userid == nil or userid == "" then
-    return "_"
-  end
-  return userid
-end
-
-local function IsOnCooldown(userid)
-  local entry = last_announce_by_user[CooldownKey(userid)]
-  if entry == nil or type(entry.t) ~= "number" then
-    return false
-  end
-  local cd = entry.fail and C.FAIL_COOLDOWN_SECONDS or C.COOLDOWN_SECONDS
-  return (GetTime() - entry.t) < cd
-end
-
-local function MarkCooldown(userid, is_fail)
-  last_announce_by_user[CooldownKey(userid)] = {
-    t = GetTime(),
-    fail = is_fail and true or false,
-  }
-end
-
-local function MarkWaitersCooldown(is_fail)
-  for key, userid in pairs(remote_waiters) do
-    MarkCooldown(userid, is_fail)
-    remote_waiters[key] = nil
-  end
-end
-
-local function CancelRemoteRequest()
-  remote_request_inflight = false
-  remote_expect_token = 0
-  remote_request_token = remote_request_token + 1
-end
-
 local function HasRemotePearlShard()
   -- Pearl 在地表；通常为 master。本分片已是主分片时不必再问其它分片。
   local self_id = mod.Shard.GetSelfId()
@@ -171,8 +125,7 @@ local function HasRemotePearlShard()
   return mod.Shard.HasRemote()
 end
 
--- TheNet:Announce 全服可见，只需播一次
--- @return boolean 是否已播报
+-- TheNet:Announce 全服可见，任一主控分片播一次即可
 local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
     return false
@@ -181,75 +134,22 @@ local function BroadcastStatus(message)
   return true
 end
 
--- 跨分片查询回复：先 RPC 回 token 给请求方收尾，再 Announce（全服可见，不再传文案）
--- @return boolean 是否已播报
-local function BroadcastQueryResult(message, query_token)
-  if not IsValidStatusMessage(message) then
-    return false
+-- 洞穴：向主分片要状态；文案由 Master 直接 Announce（不回传、无 token）
+local function RequestRemoteStatus()
+  if not HasRemotePearlShard() or not mod.Shard.SendToMain(RPC_REQUEST, {}) then
+    mod.Announce(S.pearl_not_found)
   end
-  if not mod.Shard.Send(RPC_QUERY_RESULT, nil, { token = query_token or 0 }) then
-    return false
-  end
-  mod.Announce(message)
-  return true
 end
 
-local function FinishRemoteSuccess()
-  CancelRemoteRequest()
-  MarkWaitersCooldown(false)
-end
-
-local function FinishRemoteNotFound()
-  MarkWaitersCooldown(true)
-  CancelRemoteRequest()
-  mod.Announce(S.pearl_not_found)
-end
-
-local function RequestRemoteStatus(userid)
-  remote_waiters[CooldownKey(userid)] = userid
-
-  if remote_request_inflight then
-    return
-  end
-
-  if not HasRemotePearlShard() or TheWorld == nil then
-    FinishRemoteNotFound()
-    return
-  end
-
-  remote_request_inflight = true
-  remote_request_token = remote_request_token + 1
-  local token = remote_request_token
-  remote_expect_token = token
-
-  if not mod.Shard.SendToMain(RPC_REQUEST, { token = token }) then
-    FinishRemoteNotFound()
-    return
-  end
-
-  TheWorld:DoTaskInTime(C.SHARD_TIMEOUT_SECONDS, function()
-    if token ~= remote_expect_token or not remote_request_inflight then
-      return
-    end
-    FinishRemoteNotFound()
-  end)
-end
-
-local function AnnouncePearlStatusFromChat(userid)
-  if IsOnCooldown(userid) then
-    return
-  end
-
+local function AnnouncePearlStatusFromChat()
   local message = TryBuildLocalStatusMessage()
   if message ~= nil then
-    if BroadcastStatus(message) then
-      MarkCooldown(userid, false)
-    else
-      MarkCooldown(userid, true)
+    if not BroadcastStatus(message) then
+      mod.Announce(S.pearl_not_found)
     end
     return
   end
-  RequestRemoteStatus(userid)
+  RequestRemoteStatus()
 end
 
 local function GetPersistedFriendAnnounceCycle()
@@ -340,7 +240,7 @@ local function OnChatSay(guid, userid, name, prefab, message, colour, whisper, i
     return
   end
   if NormalizeChatMessage(message) ~= nil then
-    AnnouncePearlStatusFromChat(userid)
+    AnnouncePearlStatusFromChat()
   end
 end
 
@@ -354,20 +254,12 @@ Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, 
   end
 end
 
--- 仅用于跨分片查询收尾（token）；文案已由 Master 直接 Announce
-mod.Shard.On(RPC_QUERY_RESULT, function(from_shard, fields)
-  if not remote_request_inflight then
-    return
-  end
-  local token = tonumber(fields.token)
-  if token ~= nil and token ~= 0 and token == remote_expect_token then
-    FinishRemoteSuccess()
-  end
-end)
-
+-- 主分片：收到查询后本地找 Pearl 并 Announce（全服可见）
 mod.Shard.On(RPC_REQUEST, function(from_shard, fields)
   local message = TryBuildLocalStatusMessage()
   if message ~= nil then
-    BroadcastQueryResult(message, tonumber(fields.token) or 0)
+    BroadcastStatus(message)
+  else
+    mod.Announce(S.pearl_not_found)
   end
 end)
