@@ -74,22 +74,16 @@ local function GetWeatherKeys()
   return keys
 end
 
---- 当前天气整句播报文案（仅 forest/cave；分片选模板；多项用 separator 拼接）
+--- @param keys WeatherKey[]|nil
 --- @return string
-local function GetWeatherDescription()
-  local is_cave = mod.World.IsCave()
-  local is_forest = mod.World.IsForest()
-  if not is_cave and not is_forest then
-    return ""
-  end
-
+local function FormatWeatherParts(keys)
   local labels = i18n.weather
-  if type(labels) ~= "table" then
+  if type(labels) ~= "table" or type(keys) ~= "table" then
     return ""
   end
 
   local parts = {}
-  for _, key in ipairs(GetWeatherKeys()) do
+  for _, key in ipairs(keys) do
     local label = labels[key]
     if type(label) == "string" and label ~= "" then
       table.insert(parts, label)
@@ -103,19 +97,51 @@ local function GetWeatherDescription()
   if type(sep) ~= "string" then
     sep = ", "
   end
+  return table.concat(parts, sep)
+end
+
+--- @param is_cave boolean
+--- @param keys WeatherKey[]|nil
+--- @return string
+local function FormatWeatherReport(is_cave, keys)
+  local labels = i18n.weather
+  if type(labels) ~= "table" then
+    return ""
+  end
+
+  local parts = FormatWeatherParts(keys)
+  if parts == "" then
+    return ""
+  end
 
   local template = is_cave and labels.report_cave or labels.report_forest
   if type(template) ~= "string" or template == "" then
     return ""
   end
 
-  return string.format(template, table.concat(parts, sep))
+  return string.format(template, parts)
+end
+
+--- 森林 + 洞穴两句拼成一条（缺一侧则只保留有的）
+--- @param forest_keys WeatherKey[]|nil
+--- @param cave_keys WeatherKey[]|nil
+--- @return string
+local function FormatMergedWeatherReport(forest_keys, cave_keys)
+  local forest = FormatWeatherReport(false, forest_keys)
+  local cave = FormatWeatherReport(true, cave_keys)
+  if forest == "" then
+    return cave
+  end
+  if cave == "" then
+    return forest
+  end
+  return forest .. cave
 end
 
 mod.World.IsMoonstormActive = IsMoonstormActive
 mod.World.IsSandstormActive = IsSandstormActive
 mod.World.GetWeatherKeys = GetWeatherKeys
-mod.World.GetWeatherDescription = GetWeatherDescription
+mod.World.FormatMergedWeatherReport = FormatMergedWeatherReport
 
 -- 月雹
 -- 在森林世界，当裂隙（月亮）存在时，每隔 10 天将会降下一场月雹，每次持续 90 秒。
