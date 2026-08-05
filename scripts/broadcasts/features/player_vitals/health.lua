@@ -53,7 +53,7 @@ local function CheckHealth(player, percent, allow_announce)
     return
   end
 
-  local current = health.current
+  local current = health.currenthealth
   local max_health = nil
   local ok_max, max_value = pcall(function()
     if health.GetMaxWithPenalty ~= nil then
