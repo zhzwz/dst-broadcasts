@@ -43,23 +43,23 @@ local function IsAlive(inst)
   return mod.Call("mod.Entity.IsAlive(health.IsDead)", health.IsDead, health) == false
 end
 
---- 读取实体的当前数量
+--- 判断实体生命是否已贴到 minhealth（含等于；无 health 为 false）
 --- @param inst Entity|nil
---- @return number
-local function GetCount(inst)
+--- @return boolean
+local function IsAtMinHealth(inst)
   if not IsValid(inst) then
-    return 0
+    return false
   end
   --- @cast inst Entity
-  local stackable = inst.components and inst.components.stackable
-  if stackable == nil or stackable.StackSize == nil then
-    return 1
+  local health = inst.components and inst.components.health
+  if health == nil or type(health.currenthealth) ~= "number" then
+    return false
   end
-  local size = mod.Call("mod.Entity.GetCount", stackable.StackSize, stackable)
-  if type(size) == "number" and size > 0 then
-    return size
+  local minhealth = health.minhealth
+  if type(minhealth) ~= "number" then
+    minhealth = 0
   end
-  return 1
+  return health.currenthealth <= minhealth
 end
 
 --- 读取实体的显示名称
@@ -84,6 +84,6 @@ mod.Entity = {
   IsValid = IsValid,
   HasTag = HasTag,
   IsAlive = IsAlive,
-  GetCount = GetCount,
+  IsAtMinHealth = IsAtMinHealth,
   GetDisplayName = GetDisplayName,
 }

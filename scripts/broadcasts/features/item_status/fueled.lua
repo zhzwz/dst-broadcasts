@@ -4,7 +4,7 @@
 
 local C = BROADCASTS_ITEM_STATUS_CONSTANTS
 local H = BROADCASTS_ITEM_STATUS
-local PlayerOwner = mod.Player.GetOwner
+local PlayerOwner = mod.Item.GetOwner
 local S = BROADCASTS_STRINGS
 
 local function Announce(inst, owner, percent, message)

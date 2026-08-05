@@ -4,7 +4,7 @@
 ]]
 
 local H = BROADCASTS_ITEM_STATUS
-local PlayerOwner = mod.Player.GetOwner
+local PlayerOwner = mod.Item.GetOwner
 local S = BROADCASTS_STRINGS
 local LastUseWhitelist = BROADCASTS_ITEM_STATUS_LAST_USE_WHITELIST or {}
 

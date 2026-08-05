@@ -26,7 +26,7 @@ local function CollectContents(inst)
     if item == nil or not item:IsValid() or type(item.prefab) ~= "string" then
       return
     end
-    counts[item.prefab] = (counts[item.prefab] or 0) + mod.Entity.GetCount(item)
+    counts[item.prefab] = (counts[item.prefab] or 0) + mod.Item.GetCount(item)
   end
 
   if container.ForEachItem ~= nil then

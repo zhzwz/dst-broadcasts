@@ -3,13 +3,12 @@
 ]]
 
 modimport("scripts/broadcasts/lib/pick_message.lua")
-modimport("scripts/broadcasts/shared/get_character_announce_line.lua")
 
 local S = BROADCASTS_STRINGS
 local C = BROADCASTS_PLAYER_VITALS
 local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = mod.Player.GetDisplayName
-local CharacterQuote = BROADCASTS_GET_QUOTED_CHARACTER_ANNOUNCE_LINE
+local CharacterQuote = mod.Character.GetQuotedAnnounceLine
 
 local FLAG = "_dst_broadcasts_low_hunger"
 local ANNOUNCE_KEY = "ANNOUNCE_HUNGRY"

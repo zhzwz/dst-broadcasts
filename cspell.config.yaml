@@ -67,6 +67,8 @@ words:
   - mutatedbearger # 变异熊獾
   - mutateddeerclops # 变异独眼巨鹿
   - nightmarephase # 噩梦相位
+  - noanim
+  - nobroadcast
   - nothrow
   - ondeliveryprogressfn
   - overheathurtrate
@@ -84,6 +86,7 @@ words:
   - startfreezing # 开始冻结
   - startoverheating # 开始过热
   - steamworks
+  - stringutil
   - temperaturedelta # 温度组件事件
   - twinofterror # 双胞胎错乱
   - wagboss # 机器人首领

@@ -11,10 +11,14 @@
 --- @class InventoryitemComponent
 --- @field GetGrandOwner fun(self: InventoryitemComponent): Entity|nil
 
+--- @class TalkerComponent
+--- @field Say fun(self: TalkerComponent, script: string|table, time: number|nil, noanim: boolean|nil, force: boolean|nil, nobroadcast: boolean|nil, ...: any)
+
 --- @class EntityComponents
 --- @field health HealthComponent|nil
 --- @field stackable StackableComponent|nil
 --- @field inventoryitem InventoryitemComponent|nil
+--- @field talker TalkerComponent|nil
 
 --- @class Entity
 --- @field prefab string|nil

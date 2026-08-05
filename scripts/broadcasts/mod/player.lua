@@ -5,22 +5,33 @@ local function GetDisplayName(player)
   return mod.Entity.GetDisplayName(player) or "?"
 end
 
---- 取得物品归属的玩家（grand owner）
---- @param inst Entity|nil 物品实体
---- @return Entity|nil
-local function GetOwner(inst)
-  if not mod.Entity.IsValid(inst) then
+--- 玩家气泡说话
+--- @param player Entity|nil
+--- @param message string
+local function Say(player, message)
+  if not mod.Entity.HasTag(player, "player") then
     return
   end
-  --- @cast inst Entity
-  local item = inst.components and inst.components.inventoryitem
-  local owner = item and mod.Call("mod.Player.GetOwner", item.GetGrandOwner, item)
-  if mod.Entity.HasTag(owner, "player") then
-    return owner
+  --- @cast player Entity
+  if type(message) ~= "string" then
+    return
   end
+  local m = mod.Trim(message)
+  if m == "" then
+    return
+  end
+  local talker = player.components and player.components.talker
+  if talker == nil or type(talker.Say) ~= "function" then
+    return
+  end
+  local time = nil          -- nil：游戏默认时长
+  local noanim = true       -- true：不播说话动画
+  local force = true        -- true：忽略死亡/睡眠
+  local nobroadcast = false -- false：网络同步，附近客户端也能看到头顶气泡
+  mod.Call("mod.Player.Say", talker.Say, talker, m, time, noanim, force, nobroadcast)
 end
 
 mod.Player = {
   GetDisplayName = GetDisplayName,
-  GetOwner = GetOwner,
+  Say = Say,
 }

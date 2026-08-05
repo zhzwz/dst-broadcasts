@@ -12,6 +12,6 @@
 - **注释**：说明用途、参数、返回值，以及是否就地修改入参。
 - **单测**：与源文件同目录，`xxx.lua` 对应 `xxx.test.lua`；`bun run test` 会跑 `scripts/**/*.test.lua`。
 
-需要 DST API 或模组环境的代码，请放 `../shared/` 或 `../features/<name>/`，不要放进本目录。
+需要 DST API 或模组环境的代码，请放 `../mod/` 或 `../features/<name>/`，不要放进本目录。
 
 `README.md` 与 `*.test.lua` 仅供仓库使用；打包时会统一排除，不进工坊包。

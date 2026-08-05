@@ -1,7 +1,7 @@
 # features/attack_warning（袭击预警）
 
 玩法功能模块：猎犬、洞穴蠕虫、巨鹿、熊獾的倒计时预警与相关播报。
-同类功能放在 `scripts/broadcasts/features/<name>/`，与 `lib/`、`shared/` 区分。
+同类功能放在 `scripts/broadcasts/features/<name>/`，与 `lib/`、`mod/` 区分。
 
 ## 配置（默认均开启）
 
