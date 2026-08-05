@@ -23,7 +23,7 @@ local function IsEnabledHere()
 end
 
 AddSimPostInit(mod.Wrap("hounded_init", function()
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
   if not IsEnabledHere() then

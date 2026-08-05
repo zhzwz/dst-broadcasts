@@ -120,7 +120,7 @@ local function WatchFueled(inst)
 end
 
 AddComponentPostInit("fueled", mod.Wrap("item_status_fueled_init", function(self)
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
   self.inst:DoTaskInTime(0, mod.Wrap("item_status_fueled_watch", function(inst)

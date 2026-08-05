@@ -17,7 +17,7 @@ local function OnAcidRain(_, is_raining)
 end
 
 AddSimPostInit(mod.Wrap("cave_events_init", function()
-  if not mod.World.IsMaster() or not mod.World.IsCave() then
+  if not mod.World.IsServer() or not mod.World.IsCave() then
     return
   end
 

@@ -103,7 +103,7 @@ local function WatchPlayer(player)
 end
 
 AddPlayerPostInit(mod.Wrap("player_hunger_init", function(player)
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
   player:DoTaskInTime(0, mod.Wrap("player_hunger_watch", function()

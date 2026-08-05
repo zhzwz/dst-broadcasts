@@ -25,7 +25,7 @@ local function Dispatch(cycles)
 end
 
 local function EnsureStarted()
-  if started or not mod.World.IsMaster() then
+  if started or not mod.World.IsServer() then
     return
   end
   if TheWorld == nil or TheWorld.state == nil then

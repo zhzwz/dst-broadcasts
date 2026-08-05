@@ -244,7 +244,7 @@ local function AnnounceHarvest()
 end
 
 AddSimPostInit(mod.Wrap("harvest_init", function()
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
 

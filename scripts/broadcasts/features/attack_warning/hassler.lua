@@ -26,7 +26,7 @@ if #BOSSES == 0 then
 end
 
 AddSimPostInit(mod.Wrap("hassler_init", function()
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
   if mod.World.IsCave() then

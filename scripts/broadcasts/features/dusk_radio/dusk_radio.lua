@@ -12,7 +12,7 @@ local function OnAir()
 end
 
 AddSimPostInit(mod.Wrap("dusk_radio_init", function()
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
 

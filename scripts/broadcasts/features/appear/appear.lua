@@ -153,7 +153,7 @@ end
 
 local function HookAppear(prefab, boss)
   AddPrefabPostInit(prefab, mod.Wrap("appear_init:" .. prefab, function(inst)
-    if not mod.World.IsMaster() then
+    if not mod.World.IsServer() then
       return
     end
 

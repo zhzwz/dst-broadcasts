@@ -9,7 +9,7 @@ local Cross = BROADCASTS_CROSS_REAL_THRESHOLDS
 -- get_seconds: 返回剩余秒数；false 表示暂停（保留已播档位）；nil/<=0 表示无有效倒计时（清空档位）
 -- get_name: 返回袭击显示名
 local function WatchAttackWarning(get_seconds, get_name)
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
 

@@ -44,7 +44,7 @@ end
 
 if H.BREAK then
   AddPlayerPostInit(mod.Wrap("item_status_player_init", function(player)
-    if not mod.World.IsMaster() then
+    if not mod.World.IsServer() then
       return
     end
     player:DoTaskInTime(0, mod.Wrap("item_status_player_watch", function()
@@ -197,7 +197,7 @@ local function SyncFiniteUsesFlags(inst)
 end
 
 AddComponentPostInit("finiteuses", mod.Wrap("item_status_finiteuses_init", function(self)
-  if not mod.World.IsMaster() then
+  if not mod.World.IsServer() then
     return
   end
   local inst = self.inst

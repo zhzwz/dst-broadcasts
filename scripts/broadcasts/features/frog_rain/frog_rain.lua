@@ -144,7 +144,7 @@ AddComponentPostInit("frograin", function(self)
 end)
 
 AddSimPostInit(mod.Wrap("frog_rain_init", function()
-  if not mod.World.IsMaster() or mod.World.IsCave() then
+  if not mod.World.IsServer() or mod.World.IsCave() then
     return
   end
 
