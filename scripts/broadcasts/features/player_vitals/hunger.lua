@@ -2,11 +2,8 @@
   玩家饱食度过低播报（≤10 / ≤0）：随机电台短句 + 角色 ANNOUNCE_HUNGRY。
 ]]
 
-modimport("scripts/broadcasts/lib/pick_message.lua")
-
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
-local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = mod.Player.GetDisplayName
 local CharacterQuote = mod.Character.GetQuotedAnnounceLine
 
@@ -26,7 +23,7 @@ end
 
 local function AnnounceTier(player, threshold)
   local messages = type(S.player_hunger) == "table" and S.player_hunger[threshold] or nil
-  local template = PickMessage(messages)
+  local template = mod.Random(messages)
   if template == nil then
     return
   end

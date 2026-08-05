@@ -57,7 +57,7 @@ i18n = {
   acid_rain_started = "Acid rain has begun in the caves. Take cover!",
   acid_rain_ended = "The cave acid rain has ended.",
   ruins_reset = "The Ruins have reset. Creatures and resources have respawned.",
-  -- Frog rain start/end; string or string array (random if multiple)
+  -- Frog rain start/end; string array (random pick)
   -- ended: %d = frogs; ended_lunar: %d = frogs, %d = bright-eyed frogs (lunarfrog)
   frog_rain_started = {
     "Breaking weather: frogs today, heavy to severe. Secure your crops—and your legs.",
@@ -115,7 +115,7 @@ i18n = {
     "%s's mind is already broken — a feast for the shadows!",
   },
   player_low_health = "%s's health has dropped to %d/%d!",
-  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "Hear that? %s is playing percussion with their teeth.",

@@ -113,7 +113,7 @@ i18n = {
     "L'esprit de %s est déjà brisé — un festin pour les ombres !",
   },
   player_low_health = "La vie de %s est tombée à %d/%d !",
-  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "Vous entendez ? %s joue de la percussion avec ses dents.",

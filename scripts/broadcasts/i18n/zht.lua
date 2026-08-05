@@ -115,7 +115,7 @@ i18n = {
     "%s的大腦已經殘廢，那是暗影的美味！",
   },
   player_low_health = "%s的生命已降至%d/%d！",
-  -- 温度播报；cold / hot 可为字符串或字符串数组（多条时随机）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "聽見了嗎？%s用牙齒在敲打擊樂。",

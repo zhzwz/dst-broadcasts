@@ -2,11 +2,8 @@
   青蛙雨：第一只雨蛙开场播报；结束时分别统计青蛙 / 明眼青蛙。
 ]]
 
-modimport("scripts/broadcasts/lib/pick_message.lua")
-
 local S = i18n
 local C = BROADCASTS_FROG_RAIN
-local PickMessage = BROADCASTS_PICK_MESSAGE
 
 -- 读档/首帧完成前不计增，避免 OnLoad 重入 StartTracking 叠在存档计数上。
 local ready = false
@@ -47,7 +44,7 @@ local function SessionCounts(state)
 end
 
 local function AnnounceStarted()
-  local template = PickMessage(S.frog_rain_started)
+  local template = mod.Random(S.frog_rain_started)
   if template == nil then
     return
   end
@@ -56,13 +53,13 @@ end
 
 local function AnnounceEnded(frogs, lunar)
   if lunar > 0 then
-    local template = PickMessage(S.frog_rain_ended_lunar)
+    local template = mod.Random(S.frog_rain_ended_lunar)
     if template ~= nil then
       mod.Announce(string.format(template, frogs, lunar))
       return
     end
   end
-  local template = PickMessage(S.frog_rain_ended)
+  local template = mod.Random(S.frog_rain_ended)
   if template == nil then
     return
   end

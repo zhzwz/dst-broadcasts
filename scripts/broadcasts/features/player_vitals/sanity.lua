@@ -3,11 +3,8 @@
   各档各播一次；每档从多条文案中随机选一条。
 ]]
 
-modimport("scripts/broadcasts/lib/pick_message.lua")
-
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
-local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = mod.Player.GetDisplayName
 
 local FLAG = "_dst_broadcasts_low_sanity"
@@ -27,7 +24,7 @@ local function GetSanityPercent(player)
 end
 
 local function AnnounceTier(player, messages_key)
-  local message = PickMessage(S[messages_key])
+  local message = mod.Random(S[messages_key])
   if message == nil then
     return
   end

@@ -3,11 +3,8 @@
   若 mintemp / maxtemp 或伤害速率已使角色无法真正受伤（如 WX-78 加热 / 制冷电路），则跳过。
 ]]
 
-modimport("scripts/broadcasts/lib/pick_message.lua")
-
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
-local PickMessage = BROADCASTS_PICK_MESSAGE
 local PlayerName = mod.Player.GetDisplayName
 local CharacterQuote = mod.Character.GetQuotedAnnounceLine
 
@@ -140,7 +137,7 @@ end
 
 local function AnnounceTemperature(player, key)
   local messages = type(S.player_temperature) == "table" and S.player_temperature[key] or nil
-  local template = PickMessage(messages)
+  local template = mod.Random(messages)
   if template == nil then
     return
   end
