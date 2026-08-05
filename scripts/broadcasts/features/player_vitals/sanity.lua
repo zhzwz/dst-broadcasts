@@ -24,7 +24,11 @@ local function GetSanityPercent(player)
 end
 
 local function AnnounceTier(player, messages_key)
-  local message = mod.Random(S[messages_key])
+  local messages = S[messages_key]
+  if type(messages) ~= "table" then
+    return
+  end
+  local message = mod.Random(messages)
   if message == nil then
     return
   end
