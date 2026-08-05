@@ -32,7 +32,7 @@ return {
   frog_rain_label = "Chuva de sapos",
   frog_rain_hover = "Anúncio no primeiro sapo da chuva; fim com contagens separadas incl. olhos brilhantes.",
   calendar_label = "Calendário constante",
-  calendar_hover = "Toda manhã: dia constante, clima atual, dia na estação e dias até a próxima estação.",
+  calendar_hover = "Toda manhã: dia constante, dia na estação e dias até a próxima estação.",
   harvest_marbleshrub_label = "Arbustos de mármore",
   harvest_marbleshrub_hover = "Ao anoitecer, anuncia arbustos de mármore maduros neste shard.",
   harvest_beebox_label = "Colmeias",

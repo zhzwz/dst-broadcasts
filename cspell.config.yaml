@@ -50,6 +50,7 @@ words:
   - luarc
   - lunar
   - lunarfrog # 明眼青蛙
+  - lunarhail # 月雹
   - lunarrift # 月蚀裂隙
   - lureplant # 食人花
   - malbatross # 秃鹫
@@ -64,6 +65,8 @@ words:
   - modname
   - moistureceil
   - moisturedelta # 湿度组件事件
+  - moonstorm # 月亮风暴
+  - moonstorms
   - mutatedbearger # 变异熊獾
   - mutateddeerclops # 变异独眼巨鹿
   - nightmarephase # 噩梦相位

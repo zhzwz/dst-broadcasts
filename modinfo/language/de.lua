@@ -32,7 +32,7 @@ return {
   frog_rain_label = "Froschregen",
   frog_rain_hover = "Ansage beim ersten Regenfrosch; Ende mit getrennter Zählung inkl. Leuchtaugenfrösche.",
   calendar_label = "Kalender der Konstante",
-  calendar_hover = "Jeden Morgen: Tag der Konstante, aktuelles Wetter, Saisontag und Tage bis zur nächsten Saison.",
+  calendar_hover = "Jeden Morgen: Tag der Konstante, Saisontag und Tage bis zur nächsten Saison.",
   harvest_marbleshrub_label = "Marmorsträucher",
   harvest_marbleshrub_hover = "Bei Einbruch der Dämmerung reife Marmorsträucher auf diesem Shard melden.",
   harvest_beebox_label = "Bienenstöcke",

@@ -32,7 +32,7 @@ return {
   frog_rain_label = "Frog rain broadcasts",
   frog_rain_hover = "Announce when the first rain frog lands; end with separate frog and bright-eyed frog counts.",
   calendar_label = "Constant calendar",
-  calendar_hover = "Each morning: Constant day, current weather, day-in-season, and days until the next season.",
+  calendar_hover = "Each morning: Constant day, day-in-season, and days until the next season.",
   harvest_marbleshrub_label = "Marble shrubs",
   harvest_marbleshrub_hover = "At dusk, announce mature marble shrubs on this shard.",
   harvest_beebox_label = "Bee boxes",

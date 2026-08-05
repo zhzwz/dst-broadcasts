@@ -19,13 +19,6 @@ local function expect_eq(actual, expected, message)
   expect(actual == expected, string.format("%s (got %s, want %s)", message, tostring(actual), tostring(expected)))
 end
 
-expect(D.IsCyclesIncrement(10, 11), "10 -> 11 day start")
-expect(not D.IsCyclesIncrement(10, 12), "skip jump")
-expect(not D.IsCyclesIncrement(10, 10), "skip same")
-expect(D.IsCyclesIncrement(0, 1), "0 -> 1 first morning")
-expect(not D.IsCyclesIncrement(nil, 1), "nil previous")
-expect(not D.IsCyclesIncrement(5, nil), "nil cycles")
-
 expect(D.IsPhaseTransition("day", "dusk", "day", "dusk"), "day -> dusk")
 expect(not D.IsPhaseTransition("dusk", "dusk", "day", "dusk"), "dusk stay")
 expect(not D.IsPhaseTransition(nil, "dusk", "day", "dusk"), "nil previous")

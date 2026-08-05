@@ -32,7 +32,7 @@ return {
   frog_rain_label = "Deszcz żab",
   frog_rain_hover = "Zapowiedź przy pierwszej żabie deszczu; koniec z osobnym liczeniem jasnoookich.",
   calendar_label = "Kalendarz Stałej",
-  calendar_hover = "Każdego ranka: dzień Stałej, aktualna pogoda, dzień pory roku i dni do następnej pory.",
+  calendar_hover = "Każdego ranka: dzień Stałej, dzień pory roku i dni do następnej pory.",
   harvest_marbleshrub_label = "Marmurowe krzewy",
   harvest_marbleshrub_hover = "O zmierzchu ogłaszaj dojrzałe marmurowe krzewy na tym shardzie.",
   harvest_beebox_label = "Ule",

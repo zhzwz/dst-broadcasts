@@ -28,3 +28,22 @@
 --- @field IsValid fun(self: Entity): boolean
 --- @field HasTag fun(self: Entity, tag: string): boolean
 --- @field GetDisplayName fun(self: Entity): string
+
+--- @alias PrecipitationType "none" | "rain" | "snow" | "acidrain" | "lunarhail"
+
+--- TheWorld.state（worldstate.data 投影）
+--- @class WorldState
+--- @field precipitation PrecipitationType|nil
+--- @field precipitationrate number|nil
+--- @field cycles number|nil
+--- @field season string|nil
+
+--- TheWorld
+--- @class World : Entity
+--- @field state WorldState|nil
+--- @field net Entity|nil
+
+--- 降水键（互斥；无降水为 nil）
+--- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
+--- 天气键（与 i18n.weather 标签键对应；另含 report/separator 文案键）
+--- @alias WeatherKey "sunny" | PrecipitationKey | "sandstorm" | "moonstorm"

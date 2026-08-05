@@ -31,7 +31,7 @@ return {
   frog_rain_label = "개구리 비 방송",
   frog_rain_hover = "첫 비 개구리가 떨어질 때 방송; 종료 시 개구리와 밝은 눈 개구리를 따로 집계합니다.",
   calendar_label = "영원력",
-  calendar_hover = "매일 아침 영원일, 현재 날씨, 계절 일차, 다음 계절까지 남은 날을 방송합니다.",
+  calendar_hover = "매일 아침 영원일, 계절 일차, 다음 계절까지 남은 날을 방송합니다.",
   harvest_marbleshrub_label = "대리석 덤불",
   harvest_marbleshrub_hover = "황혼에 이 샤드의 성숙한 대리석 덤불을 방송합니다.",
   harvest_beebox_label = "벌통",

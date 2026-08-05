@@ -31,7 +31,7 @@ return {
   frog_rain_label = "青蛙雨播报",
   frog_rain_hover = "第一只雨蛙落地时开播；结束时分别播报青蛙与明眼青蛙数量。",
   calendar_label = "日历",
-  calendar_hover = "每天早上播报永恒日、当前天气、季节进度与距下一季节的天数。",
+  calendar_hover = "每天早上播报永恒日、季节进度与距下一季节的天数。",
   harvest_marbleshrub_label = "大理石灌木",
   harvest_marbleshrub_hover = "进入黄昏时播报本分片成熟大理石灌木数量。",
   harvest_beebox_label = "蜂箱",

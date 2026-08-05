@@ -32,7 +32,7 @@ return {
   frog_rain_label = "Pluie de grenouilles",
   frog_rain_hover = "Annonce à la première grenouille de pluie ; fin avec totaux grenouilles / yeux brillants.",
   calendar_label = "Calendrier constant",
-  calendar_hover = "Chaque matin : jour constant, météo actuelle, jour dans la saison et jours avant la saison suivante.",
+  calendar_hover = "Chaque matin : jour constant, jour dans la saison et jours avant la saison suivante.",
   harvest_marbleshrub_label = "Arbustes de marbre",
   harvest_marbleshrub_hover = "Au crépuscule, annoncer les arbustes de marbre matures de ce shard.",
   harvest_beebox_label = "Ruches",

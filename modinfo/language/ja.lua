@@ -31,7 +31,7 @@ return {
   frog_rain_label = "カエルの雨放送",
   frog_rain_hover = "最初の雨カエル着地で開始；終了時は通常と輝く目のカエルを分けて集計します。",
   calendar_label = "永遠暦",
-  calendar_hover = "毎朝、永遠日・現在の天気・季節の何日目・次の季節までの日数を放送します。",
+  calendar_hover = "毎朝、永遠日・季節の何日目・次の季節までの日数を放送します。",
   harvest_marbleshrub_label = "マーブル低木",
   harvest_marbleshrub_hover = "夕暮れ時に、このシャードの成熟したマーブル低木を報せます。",
   harvest_beebox_label = "養蜂箱",
