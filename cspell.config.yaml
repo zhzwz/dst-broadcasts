@@ -19,6 +19,7 @@ words:
   - beebox # 蜂箱
   - beequeen # 蜂后
   - cavephase # 洞穴相位
+  - colour
   - cooldown # 冷却
   - crabking # 螃蟹王
   - currenthealth
@@ -33,6 +34,7 @@ words:
   - farmland # 农田
   - finiteuses # 有限耐久
   - forumthread
+  - friendlevels
   - frograin # 青蛙雨
   - fueltype # 燃料类型
   - hassler
@@ -42,6 +44,7 @@ words:
   - inlimbo # 虚空
   - inventoryitem # 可进背包的物品组件
   - isacidraining # 是否酸雨
+  - isemote
   - ismastersim
   - israining # 降雨
   - isspring # 春季

@@ -5,4 +5,7 @@ mod.CONSTANTS = {
   LOG_PREFIX = "[Broadcasts]",
   --- 巨兽击败后伤害排行最多播报人数
   BOSS_DAMAGE_RANKING_MAX = 10,
+
+
+  RPC_NAMESPACE = 'RPC_3774915634',
 }

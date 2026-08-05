@@ -16,6 +16,7 @@ modimport("scripts/broadcasts/mod/prefab.lua")
 
 modimport("scripts/broadcasts/mod/world.lua")
 modimport("scripts/broadcasts/mod/world_weather.lua")
+modimport("scripts/broadcasts/mod/shard.lua")
 
 mod.Watch = mod.Watch or {}
 modimport("scripts/broadcasts/mod/watch_cycles.lua")

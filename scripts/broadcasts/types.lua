@@ -45,5 +45,25 @@
 
 --- 降水键（互斥；无降水为 nil）
 --- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
---- 天气键（与 i18n.weather 标签键对应；另含 report/separator 文案键）
+--- 降水键（与 i18n.weather 标签键对应；另含 report/separator 文案键）
 --- @alias WeatherKey "sunny" | PrecipitationKey | "sandstorm" | "moonstorm"
+
+--- GetShardModRPC 返回的 RPC 句柄
+--- @class ShardModRPC
+--- @field namespace string
+--- @field id any
+
+--- @param namespace string
+--- @param name string
+--- @return ShardModRPC|nil
+function GetShardModRPC(namespace, name) end
+
+--- @param id_table ShardModRPC
+--- @param target string|number|table|nil nil=所有远程分片；shard id；或 id 列表
+--- @param data string 单一字符串载荷（引擎会在 handler 前再插入 from_shard）
+function SendModRPCToShard(id_table, target, data) end
+
+--- @param namespace string
+--- @param name string
+--- @param handler fun(from_shard: string|number, data: string)
+function AddShardModRPCHandler(namespace, name, handler) end
