@@ -7,10 +7,8 @@
 --- @param flags table 已播报标记表；键为阈值，真值表示已处理过
 ---     - 当 seconds > th 时，会清除 flags[th]，以便计时器回升后可再次播报
 ---     - 新跨越的档位由调用方在确认播报成功后再写入 flags
----
---- @return lowest number|nil 本 tick 应播报的最短新跨越阈值；无则 nil
---- @return newly_crossed number[] 本 tick 全部新跨越的阈值（供调用方一次性标记）
-
+--- @return number|nil lowest 本 tick 应播报的最短新跨越阈值；无则 nil
+--- @return number[] newly_crossed 本 tick 全部新跨越的阈值（供调用方一次性标记）
 local function CrossRealThresholds(seconds, thresholds, flags)
   local lowest = nil
   local newly_crossed = {}
