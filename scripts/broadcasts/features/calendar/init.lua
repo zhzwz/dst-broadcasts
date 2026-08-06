@@ -1,8 +1,4 @@
 --- 日历入口。
---- 开关在此判断；modmain 只需 modimport 本文件。
-
-if not GetModConfigData("calendar_enabled") then
-  return
-end
+--- 永久开启；modmain 只需 modimport 本文件。
 
 modimport("scripts/broadcasts/features/calendar/calendar.lua")

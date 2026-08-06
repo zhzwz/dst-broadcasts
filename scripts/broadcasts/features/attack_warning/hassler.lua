@@ -2,26 +2,16 @@
 
 local C = BROADCASTS_ATTACK_WARNING
 
-local DEERCLOPS_ENABLED = GetModConfigData("deerclops_warning_enabled")
-local BEARGER_ENABLED = GetModConfigData("bearger_warning_enabled")
-
-local BOSSES = {}
-if DEERCLOPS_ENABLED then
-  table.insert(BOSSES, {
+local BOSSES = {
+  {
     name = i18n.bosses.deerclops,
     timer = C.DEERCLOPS_TIMER,
-  })
-end
-if BEARGER_ENABLED then
-  table.insert(BOSSES, {
+  },
+  {
     name = i18n.bosses.bearger,
     timer = C.BEARGER_TIMER,
-  })
-end
-
-if #BOSSES == 0 then
-  return
-end
+  },
+}
 
 AddSimPostInit(mod.Wrap("hassler_init", function()
   if not mod.World.IsServer() then

@@ -1,10 +1,7 @@
 --- 猎犬 / 洞穴蠕虫袭击预警（含开始播报）。
---- 按世界分片与独立配置启用。
+--- 按当前分片世界类型启用对应袭击名。
 
 local C = BROADCASTS_ATTACK_WARNING
-
-local HOUNDS_ENABLED = GetModConfigData("hounds_warning_enabled")
-local WORMS_ENABLED = GetModConfigData("depths_worms_warning_enabled")
 
 local function AttackName()
   if mod.World.IsCave() then
@@ -13,18 +10,8 @@ local function AttackName()
   return i18n.bosses.hounds
 end
 
-local function IsEnabledHere()
-  if mod.World.IsCave() then
-    return WORMS_ENABLED
-  end
-  return HOUNDS_ENABLED
-end
-
 AddSimPostInit(mod.Wrap("hounded_init", function()
   if not mod.World.IsServer() then
-    return
-  end
-  if not IsEnabledHere() then
     return
   end
   if TheWorld.components.hounded == nil then

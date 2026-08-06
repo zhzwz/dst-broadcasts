@@ -1,18 +1,8 @@
 # features/player_vitals（玩家状态）
 
-玩家饱食、理智、生命、温度、湿度播报。
+玩家饱食、理智、生命、温度、湿度播报。**永久开启**，无配置项。
 
-## 配置（默认均开启）
-
-| 键                           | 作用                             |
-| ---------------------------- | -------------------------------- |
-| `player_hunger_enabled`      | 饱食度过低（≤10 / ≤0）           |
-| `player_sanity_enabled`      | 理智过低（百分比 50% / 10%）     |
-| `player_health_enabled`      | 生命过低（≤10% 时播报当前/上限） |
-| `player_temperature_enabled` | 真正过冷 / 过热时播报            |
-| `player_moisture_enabled`    | 湿度 10/20/40/60/80 分档         |
-
-`modmain` 始终 `modimport` 本目录 `init.lua`；全部关闭时直接返回。
+`modmain` 始终 `modimport` 本目录 `init.lua`。
 
 ## 饱食档位
 
@@ -64,7 +54,7 @@
 
 | 文件                                       | 职责                              |
 | ------------------------------------------ | --------------------------------- |
-| `init.lua`                                 | 入口与按配置加载                  |
+| `init.lua`                                 | 入口与模块加载                    |
 | `constants.lua`                            | 阈值 → `BROADCASTS_PLAYER_VITALS` |
 | `hunger.lua` / `sanity.lua` / `health.lua` | 各分项监听                        |
 | `temperature.lua`                          | 过冷 / 过热播报                   |

@@ -1,5 +1,5 @@
 --- 武器（finiteuses）/ 护甲损坏时全服播报一次；
---- 白名单物品在剩余 1 次时提前提醒（由 BREAK_WARNING 开关控制）。
+--- 白名单物品在剩余 1 次时提前提醒。
 
 local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = mod.Item.GetOwner

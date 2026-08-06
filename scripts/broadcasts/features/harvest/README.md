@@ -1,17 +1,8 @@
 # features/harvest（收获）
 
-进入黄昏时按物资种类分别播报本分片待收情况。森林与洞穴各自扫描；配置只按设施种类开关。洞穴在类别后加括号标记，森林不加。
+进入黄昏时按物资种类分别播报本分片待收情况。森林与洞穴各自扫描。**永久开启**，无配置项。洞穴在类别后加括号标记，森林不加。
 
-## 配置（默认均开启）
-
-| 键                            | 界面名（zh） | 作用           |
-| ----------------------------- | ------------ | -------------- |
-| `harvest_marbleshrub_enabled` | 大理石灌木   | 成熟大理石灌木 |
-| `harvest_beebox_enabled`      | 蜂箱         | 蜂箱待收产量   |
-| `harvest_farmland_enabled`    | 农田         | 成熟农作物汇总 |
-| `harvest_dryingrack_enabled`  | 晾晒架       | 晾晒架待取成品 |
-
-`modmain` 始终 `modimport` 本目录 `init.lua`；全部关闭时直接返回。
+`modmain` 始终 `modimport` 本目录 `init.lua`。
 
 相位门闩、洞穴标记、`名称×数量` 拼接与空项跳过见 `scripts/broadcasts/lib/harvest_announce.lua`（`bun run test`）。
 

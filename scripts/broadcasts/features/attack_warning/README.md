@@ -3,22 +3,13 @@
 玩法功能模块：猎犬、洞穴蠕虫、巨鹿、熊獾的倒计时预警与相关播报。
 同类功能放在 `scripts/broadcasts/features/<name>/`，与 `lib/`、`mod/` 区分。
 
-## 配置（默认均开启）
-
-| 键                             | 作用                        |
-| ------------------------------ | --------------------------- |
-| `hounds_warning_enabled`       | 地表猎犬：倒计时 + 袭击开始 |
-| `depths_worms_warning_enabled` | 洞穴蠕虫：倒计时 + 袭击开始 |
-| `deerclops_warning_enabled`    | 巨鹿：倒计时预警            |
-| `bearger_warning_enabled`      | 熊獾：倒计时预警            |
-
-`modmain` 始终 `modimport` 本目录 `init.lua`；全部关闭时 `init` 直接返回，不加载子模块。
+**永久开启**，无配置项（猎犬/蠕虫按当前分片世界类型自动区分）。
 
 ## 文件
 
 | 文件            | 职责                                                     |
 | --------------- | -------------------------------------------------------- |
-| `init.lua`      | 入口；按配置加载子模块与 `lib/cross_real_thresholds`     |
+| `init.lua`      | 入口；加载子模块与 `lib/cross_real_thresholds`           |
 | `constants.lua` | 阈值、轮询间隔、计时器名 → `BROADCASTS_ATTACK_WARNING`   |
 | `watch.lua`     | 共用倒计时轮询与播报 → `BROADCASTS_WATCH_ATTACK_WARNING` |
 | `hounded.lua`   | 猎犬 / 蠕虫（`hounded` 组件）                            |
