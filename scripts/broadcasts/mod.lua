@@ -1,5 +1,13 @@
 mod = mod or {}
 
+--- @param value unknown
+--- @param default number?
+--- @return number
+mod.FormatNumber = function(value, default)
+  if type(value) == "number" then return value end
+  return tonumber(value) or default or 0
+end
+
 modimport("scripts/broadcasts/mod/call.lua")
 modimport("scripts/broadcasts/mod/wrap.lua")
 modimport("scripts/broadcasts/mod/trim.lua")
