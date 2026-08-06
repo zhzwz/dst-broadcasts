@@ -13,15 +13,12 @@ local function Say(player, message)
     return
   end
   --- @cast player Entity
-  if type(message) ~= "string" then
+  local talker = player.components and player.components.talker
+  if talker == nil or type(talker.Say) ~= "function" then
     return
   end
   local m = mod.Trim(message)
   if m == "" then
-    return
-  end
-  local talker = player.components and player.components.talker
-  if talker == nil or type(talker.Say) ~= "function" then
     return
   end
   local time = nil          -- nil：游戏默认时长
