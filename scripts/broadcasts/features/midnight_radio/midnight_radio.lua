@@ -1,14 +1,12 @@
---[[
-  午夜电台：黄昏进入黑夜时开播。
-  节目内容待填。
-]]
+--- 午夜电台：黄昏进入黑夜时开播。
+--- 节目内容待填。
 
 modimport("scripts/broadcasts/lib/day_slot.lua")
 
 local Slot = BROADCASTS_DAY_SLOT
 
 local function OnAir()
-  -- TODO: 午夜电台节目
+  --- TODO: 午夜电台节目
 end
 
 AddSimPostInit(mod.Wrap("midnight_radio_init", function()

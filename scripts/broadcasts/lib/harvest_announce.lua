@@ -1,6 +1,4 @@
---[[
-  收获播报纯逻辑（无 DST 依赖）：相位门闩、洞穴标记、数量拼接、空项跳过。
-]]
+--- 收获播报纯逻辑（无 DST 依赖）：相位门闩、洞穴标记、数量拼接、空项跳过。
 
 local function ShouldAnnounceOnPhase(previous, phase)
   return phase == "dusk" and previous == "day"

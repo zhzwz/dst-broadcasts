@@ -86,7 +86,7 @@ i18n = {
     "Obrigado por Sapos do Céu: %d sapos, %d convidados lunares.",
     "Precipitação encerrada. Censo: %d sapos, %d lunares. Até o ano que vem.",
   },
-  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {
       "Segmento especial: deem as boas-vindas à barriga de %s para um solo de tambor.",
@@ -103,7 +103,7 @@ i18n = {
       "%s falhou na busca por comida e não tem saída. Alguém ajuda?",
     },
   },
-  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Os olhos de %s começam a ver fantasmas que não pertencem a este mundo...",
     "Sussurros ecoam — %s ouve algo indizível.",
@@ -121,7 +121,7 @@ i18n = {
     "A mente de %s já está destruída — um banquete para as sombras!",
   },
   player_low_health = "A vida de %s caiu para %d/%d!",
-  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "Ouviram? %s está tocando percussão com os dentes.",

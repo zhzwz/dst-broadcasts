@@ -1,7 +1,5 @@
---[[
-  真正过冷 / 过热时全服播报（与游戏伤害判定一致：current < 0 / current > overheattemp）。
-  若 mintemp / maxtemp 或伤害速率已使角色无法真正受伤（如 WX-78 加热 / 制冷电路），则跳过。
-]]
+--- 真正过冷 / 过热时全服播报（与游戏伤害判定一致：current < 0 / current > overheattemp）。
+--- 若 mintemp / maxtemp 或伤害速率已使角色无法真正受伤（如 WX-78 加热 / 制冷电路），则跳过。
 
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
@@ -62,8 +60,8 @@ local function GetOverheatDamageTemp(player)
   return 70
 end
 
--- 游戏过冷判定为 current < freeze；mintemp 已不低于该值时体温无法进入过冷
--- 加热电路（WX-78）会抬高 mintemp；hurtrate ≤ 0 表示完全免疫过冷伤害
+--- 游戏过冷判定为 current < freeze；mintemp 已不低于该值时体温无法进入过冷
+--- 加热电路（WX-78）会抬高 mintemp；hurtrate ≤ 0 表示完全免疫过冷伤害
 local function CanTakeFreezeDamage(player)
   local temperature = GetTemperatureComponent(player)
   if temperature == nil then
@@ -79,8 +77,8 @@ local function CanTakeFreezeDamage(player)
   return true
 end
 
--- 游戏过热判定为 current > overheattemp；maxtemp 已不高于该值时体温无法进入过热
--- 制冷电路（WX-78）会压低 maxtemp；overheathurtrate / hurtrate ≤ 0 表示完全免疫过热伤害
+--- 游戏过热判定为 current > overheattemp；maxtemp 已不高于该值时体温无法进入过热
+--- 制冷电路（WX-78）会压低 maxtemp；overheathurtrate / hurtrate ≤ 0 表示完全免疫过热伤害
 local function CanTakeOverheatDamage(player)
   local temperature = GetTemperatureComponent(player)
   if temperature == nil then
@@ -149,7 +147,7 @@ local function AnnounceTemperature(player, key)
   mod.Announce(message)
 end
 
--- allow_announce=false 时只同步 flags（进服对齐）
+--- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckTemperature(player, current, last, allow_announce)
   if player == nil or not player:IsValid() then
     return

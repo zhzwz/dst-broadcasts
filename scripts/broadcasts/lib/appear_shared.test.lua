@@ -1,6 +1,4 @@
---[[
-  BROADCASTS_APPEAR_SHARED 单测。
-]]
+--- BROADCASTS_APPEAR_SHARED 单测。
 
 local root = arg[0]:match("^(.*)/") or "."
 dofile(root .. "/appear_shared.lua")
@@ -33,12 +31,12 @@ expect(store[key] == nil, "released")
 expect(A.TryClaim(store, key), "new wave can claim again")
 expect(not A.TryClaim(store, key), "same wave second skips")
 
--- 同「帧」连续两次 claim：第二次必失败（单线程顺序）
+--- 同「帧」连续两次 claim：第二次必失败（单线程顺序）
 local store2 = {}
 expect(A.TryClaim(store2, "g"), "a claims")
 expect(not A.TryClaim(store2, "g"), "b sees claim")
 
--- 自愈：claim 残留且场上只剩自己
+--- 自愈：claim 残留且场上只剩自己
 local store3 = { stuck = true }
 expect(A.TryClaimOrRecover(store3, "stuck", 1), "recover when alone")
 expect(store3.stuck == true, "reclaimed")

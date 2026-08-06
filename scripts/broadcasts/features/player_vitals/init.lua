@@ -1,7 +1,5 @@
---[[
-  玩家状态入口：饱食、理智、生命、温度、湿度。
-  细项开关在此判断；modmain 只需 modimport 本文件。
-]]
+--- 玩家状态入口：饱食、理智、生命、温度、湿度。
+--- 细项开关在此判断；modmain 只需 modimport 本文件。
 
 local hunger = GetModConfigData("player_hunger_enabled")
 local sanity = GetModConfigData("player_sanity_enabled")

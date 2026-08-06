@@ -1,6 +1,4 @@
---[[
-  玩家生命 ≤10% 时全服播报实际数值；仅在下降时播报，回升后可再次触发。
-]]
+--- 玩家生命 ≤10% 时全服播报实际数值；仅在下降时播报，回升后可再次触发。
 
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
@@ -109,7 +107,7 @@ local function OnHealthDelta(player, data)
   end
 
   local oldpercent = data and data.oldpercent
-  -- 旧值缺失时与 sanity 一致：按下降处理，避免漏播
+  --- 旧值缺失时与 sanity 一致：按下降处理，避免漏播
   local decreasing = type(oldpercent) ~= "number"
       or oldpercent ~= oldpercent
       or percent < oldpercent

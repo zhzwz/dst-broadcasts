@@ -1,8 +1,6 @@
---[[
-  BROADCASTS_HARVEST_ANNOUNCE 单测。
-  运行：bun run test
-  或：lua scripts/broadcasts/lib/harvest_announce.test.lua
-]]
+--- BROADCASTS_HARVEST_ANNOUNCE 单测。
+--- 运行：bun run test
+--- 或：lua scripts/broadcasts/lib/harvest_announce.test.lua
 
 local root = arg[0]:match("^(.*)/") or "."
 dofile(root .. "/harvest_announce.lua")
@@ -21,7 +19,7 @@ local function expect_eq(actual, expected, message)
   expect(actual == expected, string.format("%s (got %s, want %s)", message, tostring(actual), tostring(expected)))
 end
 
--- phase 门闩
+--- phase 门闩
 expect(H.ShouldAnnounceOnPhase("day", "dusk"), "day -> dusk announces")
 expect(not H.ShouldAnnounceOnPhase(nil, "dusk"), "nil -> dusk skips")
 expect(not H.ShouldAnnounceOnPhase("dusk", "dusk"), "dusk -> dusk skips")
@@ -29,14 +27,14 @@ expect(not H.ShouldAnnounceOnPhase("night", "dusk"), "night -> dusk skips")
 expect(not H.ShouldAnnounceOnPhase("day", "night"), "day -> night skips")
 expect(not H.ShouldAnnounceOnPhase("day", "day"), "day -> day skips")
 
--- CaveMark
+--- CaveMark
 expect_eq(H.CaveMark(false, "（洞穴）"), "", "forest -> empty mark")
 expect_eq(H.CaveMark(true, "（洞穴）"), "（洞穴）", "cave -> mark")
 expect_eq(H.CaveMark(true, nil), "", "cave with nil mark -> empty")
 expect_eq(H.CaveMark(true, 1), "", "cave with non-string mark -> empty")
 expect_eq(H.CaveMark(false, nil), "", "forest nil mark -> empty")
 
--- "%s×%d" 拼接
+--- "%s×%d" 拼接
 expect_eq(H.FormatNamedCountEntry("胡萝卜", 8), "胡萝卜×8", "named entry")
 expect_eq(H.FormatNamedCountEntry("土豆", 10.9), "土豆×10", "floors amount")
 expect_eq(H.FormatNamedCountEntry("", 1), nil, "empty name -> nil")
@@ -59,7 +57,7 @@ expect_eq(
   "nil separator defaults to comma-space"
 )
 
--- 0 / 空跳过 + 文案拼装
+--- 0 / 空跳过 + 文案拼装
 local templates = {
   marbleshrub = "大理石%s待收获：大理石灌木×%d",
   beebox = "蜂箱%s待收获：蜂蜜×%d",

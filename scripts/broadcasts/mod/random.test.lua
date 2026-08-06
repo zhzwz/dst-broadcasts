@@ -1,7 +1,5 @@
---[[
-  mod.Random 单测。
-  运行：bun run test
-]]
+--- mod.Random 单测。
+--- 运行：bun run test
 
 local root = arg[0]:match("^(.*)/") or "."
 mod = {}
@@ -22,10 +20,10 @@ local function expect_eq(actual, expected, message)
 end
 
 expect_eq(Random(nil), nil, "nil -> nil")
--- expect_eq(Random(""), nil, "string -> nil")
--- expect_eq(Random("hello"), nil, "non-empty string -> nil")
--- expect_eq(Random(42), nil, "number -> nil")
--- expect_eq(Random(false), nil, "false -> nil")
+--- expect_eq(Random(""), nil, "string -> nil")
+--- expect_eq(Random("hello"), nil, "non-empty string -> nil")
+--- expect_eq(Random(42), nil, "number -> nil")
+--- expect_eq(Random(false), nil, "false -> nil")
 expect_eq(Random({}), nil, "empty table -> nil")
 expect_eq(Random({ false }), false, "single false")
 expect_eq(Random({ "only" }), "only", "single element")

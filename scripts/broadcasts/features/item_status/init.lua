@@ -1,7 +1,5 @@
---[[
-  物品状态入口：耐久、燃料、损毁、损毁预警。
-  细项开关在此判断；modmain 只需 modimport 本文件。
-]]
+--- 物品状态入口：耐久、燃料、损毁、损毁预警。
+--- 细项开关在此判断；modmain 只需 modimport 本文件。
 
 local durability = GetModConfigData("item_durability_enabled")
 local fuel = GetModConfigData("item_fuel_enabled")

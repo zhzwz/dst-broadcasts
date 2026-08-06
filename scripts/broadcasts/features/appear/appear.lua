@@ -1,8 +1,6 @@
---[[
-  巨兽现身：实体新生成时播报（读档 / 世界生成期不播）。
-  天体英雄仅 phase1 计为现身。
-  shared 组：先 claim，全灭后再释放（允许下一波）。
-]]
+--- 巨兽现身：实体新生成时播报（读档 / 世界生成期不播）。
+--- 天体英雄仅 phase1 计为现身。
+--- shared 组：先 claim，全灭后再释放（允许下一波）。
 
 modimport("scripts/broadcasts/lib/appear_shared.lua")
 
@@ -26,7 +24,7 @@ local BOSSES = {
     test = function(inst)
       return inst.IsUnchained ~= nil and inst:IsUnchained()
     end,
-    -- 解链时原版调用 Unchain；包装后触发现身
+    --- 解链时原版调用 Unchain；包装后触发现身
     watch = function(inst, notify)
       local old = inst.Unchain
       if type(old) ~= "function" then
@@ -57,7 +55,7 @@ local BOSSES = {
     test = function(inst)
       return inst.hostile == true
     end,
-    -- 进入敌对时原版调用 ConfigureHostile
+    --- 进入敌对时原版调用 ConfigureHostile
     watch = function(inst, notify)
       local old = inst.ConfigureHostile
       if type(old) ~= "function" then
@@ -79,7 +77,7 @@ local BOSSES = {
   },
   { name = N.minotaur,                       prefabs = { "minotaur" } },
   { name = N.stalker_atrium,                 prefabs = { "stalker_atrium" } },
-  -- 天体英雄：仅第一阶段算「现身」，避免换阶段重复播报
+  --- 天体英雄：仅第一阶段算「现身」，避免换阶段重复播报
   { name = N.alterguardian_phase3,           prefabs = { "alterguardian_phase1" } },
   { name = N.alterguardian_phase4_lunarrift, prefabs = { "alterguardian_phase4_lunarrift" } },
 }
@@ -95,7 +93,7 @@ local function SharedKey(shared)
   return "_dst_broadcasts_appear_" .. shared
 end
 
--- 与 features/boss_defeat.HasLivingTwin 一致：不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
+--- 与 features/boss_defeat.HasLivingTwin 一致：不排除 INLIMBO（避免入 limbo 未 remove 时过早 Release）
 local IsAlive = mod.Entity.IsAlive
 
 local function CountLivingPrefabs(prefabs, test)
@@ -144,7 +142,7 @@ end
 local function WatchSharedRelease(inst, boss)
   local key = SharedKey(boss.shared)
   inst:ListenForEvent("onremove", mod.Wrap("appear_shared_remove:" .. boss.shared, function()
-    -- inst 任务在 onremove 后可能被清；挂到世界上延后计数
+    --- inst 任务在 onremove 后可能被清；挂到世界上延后计数
     TheWorld:DoTaskInTime(0, mod.Wrap("appear_shared_release:" .. boss.shared, function()
       Shared.ReleaseIfEmpty(TheWorld, key, CountLivingPrefabs(boss.prefabs, boss.test))
     end))
@@ -161,7 +159,7 @@ local function HookAppear(prefab, boss)
       WatchSharedRelease(inst, boss)
     end
 
-    -- 世界生成 / 读档填充期出生：不视为「现身」
+    --- 世界生成 / 读档填充期出生：不视为「现身」
     if POPULATING then
       inst._dst_broadcasts_appear_loaded = true
     end
@@ -178,7 +176,7 @@ local function HookAppear(prefab, boss)
       if not inst:IsValid() then
         return
       end
-      -- 读档 / 世界填充：跳过即时现身，但仍装 watch（Klaus 解链、瓦器人敌对等）
+      --- 读档 / 世界填充：跳过即时现身，但仍装 watch（Klaus 解链、瓦器人敌对等）
       if not inst._dst_broadcasts_appear_loaded then
         if TryAnnounce(inst, boss) then
           return

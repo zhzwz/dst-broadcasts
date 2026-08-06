@@ -1,4 +1,4 @@
--- 保存 Broadcasts 的运行状态；移除模组后不会影响存档加载。
+--- 保存 Broadcasts 的运行状态；移除模组后不会影响存档加载。
 
 local State3774915634 = Class(function(self, inst)
   self.inst = inst

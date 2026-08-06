@@ -1,7 +1,5 @@
---[[
-  袭击预警入口：猎犬、洞穴蠕虫、巨鹿、熊獾。
-  细项开关在此判断；modmain 只需 modimport 本文件。
-]]
+--- 袭击预警入口：猎犬、洞穴蠕虫、巨鹿、熊獾。
+--- 细项开关在此判断；modmain 只需 modimport 本文件。
 
 local hounds = GetModConfigData("hounds_warning_enabled")
 local worms = GetModConfigData("depths_worms_warning_enabled")

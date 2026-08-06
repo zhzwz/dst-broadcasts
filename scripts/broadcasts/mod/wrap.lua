@@ -1,4 +1,4 @@
--- 包装函数，内部走 `mod.Call`
+--- 包装函数，内部走 `mod.Call`
 --- @param tag string 写入日志的标签
 --- @param fn function 原函数
 --- @return function

@@ -1,6 +1,4 @@
---[[
-  日时段门闩（无 DST 依赖）：相位切换判定。
-]]
+--- 日时段门闩（无 DST 依赖）：相位切换判定。
 
 --- previous → phase 是否为 from → to（如 day → dusk）
 local function IsPhaseTransition(previous, phase, from_phase, to_phase)

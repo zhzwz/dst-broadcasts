@@ -1,6 +1,4 @@
---[[
-  WX-78 便携储存单元（Portable Storage Unit）配送落地播报。
-]]
+--- WX-78 便携储存单元（Portable Storage Unit）配送落地播报。
 
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 
@@ -97,7 +95,7 @@ local function HookUnit(inst)
     end
     if type(t) == "number" and type(len) == "number" and len > 0 and t >= len then
       unit[SUCCESS_FLAG] = true
-      -- 落地动画结束时原版会清掉 _sender，先记住发货玩家
+      --- 落地动画结束时原版会清掉 _sender，先记住发货玩家
       unit[SENDER_NAME_KEY] = GetSenderName(unit)
     end
   end)

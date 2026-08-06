@@ -1,7 +1,5 @@
---[[
-  dst-broadcasts：可扩展的全服播报框架。
-  新增模块：在 scripts/broadcasts/ 下添加，并在此 modimport。
-]]
+--- dst-broadcasts：可扩展的全服播报框架。
+--- 新增模块：在 scripts/broadcasts/ 下添加，并在此 modimport。
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
@@ -10,7 +8,7 @@ modimport("scripts/broadcasts/mod.lua")
 
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then
-    -- 自定义组件
+    --- 自定义组件
     inst:AddComponent("state_3774915634")
   end
 end)

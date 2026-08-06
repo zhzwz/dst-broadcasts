@@ -48,7 +48,7 @@ i18n = {
     report_cave = "洞穴世界当前天气，%s。",
     separator = "，",
   },
-  -- calendar_report: 日 / 季节 / 季内天 / 下季 / 剩余；soon: 日 / 季节 / 季内天 / 下季
+  --- calendar_report: 日 / 季节 / 季内天 / 下季 / 剩余；soon: 日 / 季节 / 季内天 / 下季
   calendar_report = "永恒%d日，%s第%d天，距离%s还有%d天。",
   calendar_report_soon = "永恒%d日，%s第%d天，即将进入%s。",
   harvest_cave_mark = "（洞穴）",
@@ -66,8 +66,8 @@ i18n = {
   acid_rain_started = "洞穴酸雨已经开始，请做好防护！",
   acid_rain_ended = "洞穴酸雨已经结束。",
   ruins_reset = "远古遗迹已经重置，生物与资源已重新生成。",
-  -- 青蛙雨开始/结束；字符串或字符串数组（多条时随机）
-  -- ended: %d = 青蛙；ended_lunar: %d = 青蛙, %d = 明眼青蛙（lunarfrog）
+  --- 青蛙雨开始/结束；字符串或字符串数组（多条时随机）
+  --- ended: %d = 青蛙；ended_lunar: %d = 青蛙, %d = 明眼青蛙（lunarfrog）
   frog_rain_started = {
     "插播一则天气预报，今日青蛙大到暴。请收好农作物，以及你的腿。",
     "绿色的雨点正在签到，请注意躲避。",
@@ -89,7 +89,7 @@ i18n = {
     "谢谢收看《蛙从天降》，本集出场青蛙%d位，明眼特邀%d位。",
     "降水结束，蛙口普查结果%d只青蛙，%d只明眼青蛙，明年见。",
   },
-  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {
       "特别节目，有请%s的肚子表演敲锣打鼓。",
@@ -106,7 +106,7 @@ i18n = {
       "觅食失败的%s走投无路，有人能帮帮忙吗？",
     },
   },
-  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "%s的眼中开始出现不属于这个世界的幻影……",
     "耳边回荡着低语，%s听到了不可名状的声音。",
@@ -124,7 +124,7 @@ i18n = {
     "%s的大脑已经残废，那是暗影的美味！",
   },
   player_low_health = "%s的生命已降至%d/%d！",
-  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "听见了吗？%s用牙齿在敲打击乐。",

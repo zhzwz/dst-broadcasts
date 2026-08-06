@@ -1,6 +1,4 @@
---[[
-  shared 现身波次（无 DST 依赖）：先 claim，全灭后再释放。
-]]
+--- shared 现身波次（无 DST 依赖）：先 claim，全灭后再释放。
 
 --- @return boolean 是否首次占位（应播报）
 local function TryClaim(store, key)

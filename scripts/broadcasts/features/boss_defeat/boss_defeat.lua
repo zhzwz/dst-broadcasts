@@ -1,6 +1,4 @@
---[[
-  巨兽击败：最终一击、伤害排行；双子/守卫塔等同组结算。
-]]
+--- 巨兽击败：最终一击、伤害排行；双子/守卫塔等同组结算。
 
 local N = i18n.bosses
 local IsAtMinHealth = mod.Entity.IsAtMinHealth
@@ -32,7 +30,7 @@ local DEATH_BOSSES = {
   malbatross = N.malbatross,
   antlion = {
     name = N.antlion,
-    -- 休眠态无 health；仅战斗中击杀会走 death
+    --- 休眠态无 health；仅战斗中击杀会走 death
     test = function(inst)
       return inst.components ~= nil and inst.components.health ~= nil
     end,
@@ -193,7 +191,7 @@ local function ResolveDamageSource(afflicter)
 end
 
 local function OnBossHealthDelta(inst, data, bucket)
-  -- 按本次造成的伤害数值累计；回血不冲减，总额可超过血条上限
+  --- 按本次造成的伤害数值累计；回血不冲减，总额可超过血条上限
   if data == nil or type(data.amount) ~= "number" or data.amount >= 0 then
     return
   end
@@ -298,21 +296,21 @@ local function IsNonlethalDefeated(inst, prefab)
   if inst.sg ~= nil and inst.sg:HasStateTag("defeated") then
     return true
   end
-  -- sharkboi 不设 defeated；贴底或已 MakeTrader 视为击败
+  --- sharkboi 不设 defeated；贴底或已 MakeTrader 视为击败
   if prefab == "sharkboi" then
     if inst.components.trader ~= nil then
       return true
     end
     return IsAtMinHealth(inst)
   end
-  -- daywalker / daywalker2：只认 defeated / SG。
-  -- 出狱疲倦阶段也会贴底并反复推 minhealth，不能用 IsAtMinHealth 旁路（会误报并锁死真击败）。
-  -- 真击败时原版 MakeDefeated 同步设 defeated；若偶发时序落后由重试承接。
+  --- daywalker / daywalker2：只认 defeated / SG。
+  --- 出狱疲倦阶段也会贴底并反复推 minhealth，不能用 IsAtMinHealth 旁路（会误报并锁死真击败）。
+  --- 真击败时原版 MakeDefeated 同步设 defeated；若偶发时序落后由重试承接。
   return false
 end
 
--- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播。
--- 每个实体只允许一条重试链；后续 minhealth 只刷新击杀 data，避免疲倦贴底叠任务。
+--- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播。
+--- 每个实体只允许一条重试链；后续 minhealth 只刷新击杀 data，避免疲倦贴底叠任务。
 local NONLETHAL_RETRY_DELAY = 0.25
 local NONLETHAL_RETRY_MAX = 12
 
@@ -402,11 +400,11 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
       return GetDamageBucket(inst)
     end)
     inst:ListenForEvent("minhealth", mod.Wrap("boss_minhealth:" .. prefab, function(_, data)
-      -- 读档 SetVal(..., "file_load") / 世界填充期会推 minhealth，但不算当场击败
+      --- 读档 SetVal(..., "file_load") / 世界填充期会推 minhealth，但不算当场击败
       if POPULATING or (data ~= nil and data.cause == "file_load") then
         return
       end
-      -- 已在轮询：只刷新击杀数据，不另开重试链
+      --- 已在轮询：只刷新击杀数据，不另开重试链
       if inst._dst_broadcasts_minhealth_retrying then
         inst._dst_broadcasts_minhealth_data = data
         return

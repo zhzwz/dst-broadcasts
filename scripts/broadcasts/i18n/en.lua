@@ -65,8 +65,8 @@ i18n = {
   acid_rain_started = "Acid rain has begun in the caves. Take cover!",
   acid_rain_ended = "The cave acid rain has ended.",
   ruins_reset = "The Ruins have reset. Creatures and resources have respawned.",
-  -- Frog rain start/end; string array (random pick)
-  -- ended: %d = frogs; ended_lunar: %d = frogs, %d = bright-eyed frogs (lunarfrog)
+  --- Frog rain start/end; string array (random pick)
+  --- ended: %d = frogs; ended_lunar: %d = frogs, %d = bright-eyed frogs (lunarfrog)
   frog_rain_started = {
     "Breaking weather: frogs today, heavy to severe. Secure your crops—and your legs.",
     "The green raindrops are checking in. Please take cover.",
@@ -88,7 +88,7 @@ i18n = {
     "Thanks for watching Frogs From Above: %d frogs, %d bright-eyed guests.",
     "Precipitation over. Census: %d frogs, %d bright-eyed. See you next year.",
   },
-  -- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
+  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名；后接 ANNOUNCE_HUNGRY
   player_hunger = {
     [10] = {
       "Special segment: please welcome %s's belly for a drum solo.",
@@ -105,7 +105,7 @@ i18n = {
       "%s failed to forage and has nowhere left to go. Can anyone help?",
     },
   },
-  -- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
+  --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "%s's eyes begin to see phantoms that don't belong to this world...",
     "Whispers echo in the air — %s hears something unspeakable.",
@@ -123,7 +123,7 @@ i18n = {
     "%s's mind is already broken — a feast for the shadows!",
   },
   player_low_health = "%s's health has dropped to %d/%d!",
-  -- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
+  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名；后接 ANNOUNCE_COLD / ANNOUNCE_HOT
   player_temperature = {
     cold = {
       "Hear that? %s is playing percussion with their teeth.",

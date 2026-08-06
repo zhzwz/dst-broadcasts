@@ -1,16 +1,14 @@
---[[
-  Pearl（寄居蟹隐士）好感与待办任务。
-
-  触发：
-  - 公频聊天精确发送 pearl（含跨分片：洞穴可查地表状态；不限制触发频率）
-  - 好感等级提升时自动播报（每个游戏日最多一次）
-]]
+--- Pearl（寄居蟹隐士）好感与待办任务。
+---
+--- 触发：
+--- - 公频聊天精确发送 pearl（含跨分片：洞穴可查地表状态；不限制触发频率）
+--- - 好感等级提升时自动播报（每个游戏日最多一次）
 
 local S = i18n
 local TASK_IDS = BROADCASTS_PEARL_TASKS
 
 local RPC_REQUEST = "PearlStatusRequest"
--- 按字节计；中文待办较长时需留余量
+--- 按字节计；中文待办较长时需留余量
 local STATUS_MESSAGE_MAX_LEN = 2048
 
 local CHAT_TRIGGERS = {
@@ -31,10 +29,10 @@ local function FindPearl()
     elseif mbm.hermitcrab ~= nil and mbm.hermitcrab:IsValid() then
       return mbm.hermitcrab
     end
-    -- 管理器未挂上实例时回退扫描，避免误报未找到
+    --- 管理器未挂上实例时回退扫描，避免误报未找到
   end
 
-  -- Pearl 只在主分片（地表）；非主分片不要扫 Ents
+  --- Pearl 只在主分片（地表）；非主分片不要扫 Ents
   local self_id = mod.Shard.GetSelfId()
   if self_id == nil then
     return nil
@@ -74,7 +72,7 @@ local function CollectPendingTasks(friendlevels)
   return pending
 end
 
--- 仅当本分片存在 Pearl 时返回文案；否则返回 nil
+--- 仅当本分片存在 Pearl 时返回文案；否则返回 nil
 local function TryBuildLocalStatusMessage()
   local pearl = FindPearl()
   if pearl == nil then
@@ -98,7 +96,7 @@ local function TryBuildLocalStatusMessage()
   return message
 end
 
--- 结构校验：允许跨分片语言配置不一致（含 x/y 好感格式即可）
+--- 结构校验：允许跨分片语言配置不一致（含 x/y 好感格式即可）
 local function IsValidStatusMessage(message)
   if type(message) ~= "string" or message == "" or #message > STATUS_MESSAGE_MAX_LEN then
     return false
@@ -113,7 +111,7 @@ local function IsValidStatusMessage(message)
 end
 
 local function HasRemotePearlShard()
-  -- Pearl 在地表；通常为 master。本分片已是主分片时不必再问其它分片。
+  --- Pearl 在地表；通常为 master。本分片已是主分片时不必再问其它分片。
   local self_id = mod.Shard.GetSelfId()
   if self_id ~= nil and mod.Shard.IsMain(self_id) then
     return false
@@ -125,7 +123,7 @@ local function HasRemotePearlShard()
   return mod.Shard.HasRemote()
 end
 
--- TheNet:Announce 全服可见，任一主控分片播一次即可
+--- TheNet:Announce 全服可见，任一主控分片播一次即可
 local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
     return false
@@ -134,7 +132,7 @@ local function BroadcastStatus(message)
   return true
 end
 
--- 洞穴：向主分片要状态；文案由 Master 直接 Announce（不回传、无 token）
+--- 洞穴：向主分片要状态；文案由 Master 直接 Announce（不回传、无 token）
 local function RequestRemoteStatus()
   if not HasRemotePearlShard() or not mod.Shard.SendToMain(RPC_REQUEST, {}) then
     mod.Announce(S.pearl_not_found)
@@ -201,7 +199,7 @@ local function WatchPearl(inst)
   if not mod.World.IsServer() then
     return
   end
-  -- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
+  --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
   inst:DoTaskInTime(0, function()
     if not inst:IsValid() then
       return
@@ -254,7 +252,7 @@ Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, 
   end
 end
 
--- 主分片：收到查询后本地找 Pearl 并 Announce（全服可见）
+--- 主分片：收到查询后本地找 Pearl 并 Announce（全服可见）
 mod.Shard.On(RPC_REQUEST, function(from_shard, fields)
   local message = TryBuildLocalStatusMessage()
   if message ~= nil then

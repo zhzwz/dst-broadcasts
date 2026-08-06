@@ -1,6 +1,4 @@
---[[
-  巨鹿 / 熊獾：倒计时预警（现身见 features/appear）。
-]]
+--- 巨鹿 / 熊獾：倒计时预警（现身见 features/appear）。
 
 local C = BROADCASTS_ATTACK_WARNING
 

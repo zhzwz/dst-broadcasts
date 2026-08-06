@@ -196,7 +196,7 @@ end
 --- @param handler fun(from_shard: string|number, fields: table<string, string>)
 local function On(name, handler)
   AddShardModRPCHandler(NAMESPACE, name, function(from_shard, data)
-    -- 无法识别本分片时丢弃，避免在身份不明时误处理
+    --- 无法识别本分片时丢弃，避免在身份不明时误处理
     if GetSelfId() == nil or IsSelf(from_shard) then
       return
     end

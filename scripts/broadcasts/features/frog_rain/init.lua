@@ -1,8 +1,6 @@
---[[
-  青蛙雨统计入口。
-  开关在此判断；关闭时仍清理未结算计数，避免再次开启后误播。
-  modmain 只需 modimport 本文件。
-]]
+--- 青蛙雨统计入口。
+--- 开关在此判断；关闭时仍清理未结算计数，避免再次开启后误播。
+--- modmain 只需 modimport 本文件。
 
 local enabled = GetModConfigData("frog_rain_enabled")
 

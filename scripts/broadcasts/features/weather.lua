@@ -4,7 +4,7 @@
 
 local WAIT = 1.5
 
--- 洞穴上报缓存（按 cycles 对齐）
+--- 洞穴上报缓存（按 cycles 对齐）
 local cave_cycles, cave_keys = nil, nil
 
 local function decode_keys(encoded)

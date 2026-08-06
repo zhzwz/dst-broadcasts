@@ -7,8 +7,8 @@ local function GetAnnounceLine(player, announce_key)
     return nil
   end
 
-  -- 优先 GetString
-  -- 游戏 stringutil 提供的查词函数，按玩家实体取角色台词（含幽灵等特例）
+  --- 优先 GetString
+  --- 游戏 stringutil 提供的查词函数，按玩家实体取角色台词（含幽灵等特例）
   if type(GetString) == "function" then
     local line = mod.Call("mod.Character.GetAnnounceLine.GetString", GetString, player, announce_key)
     if type(line) == "string" and line ~= "" and line ~= announce_key then
@@ -16,8 +16,8 @@ local function GetAnnounceLine(player, announce_key)
     end
   end
 
-  -- 回退 STRINGS.CHARACTERS
-  -- 全局本地化表，键为角色 prefab 大写（如 WILSON）或 GENERIC
+  --- 回退 STRINGS.CHARACTERS
+  --- 全局本地化表，键为角色 prefab 大写（如 WILSON）或 GENERIC
   local line = mod.Call("mod.Character.GetAnnounceLine.STRINGS", function()
     if type(STRINGS) ~= "table" or type(STRINGS.CHARACTERS) ~= "table" then
       return nil

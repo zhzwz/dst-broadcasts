@@ -1,19 +1,17 @@
---[[
-  青蛙雨：第一只雨蛙开场播报；结束时分别统计青蛙 / 明眼青蛙。
-]]
+--- 青蛙雨：第一只雨蛙开场播报；结束时分别统计青蛙 / 明眼青蛙。
 
 local S = i18n
 local C = BROADCASTS_FROG_RAIN
 
--- 读档/首帧完成前不计增，避免 OnLoad 重入 StartTracking 叠在存档计数上。
+--- 读档/首帧完成前不计增，避免 OnLoad 重入 StartTracking 叠在存档计数上。
 local ready = false
 
 local function GetState(world)
   return world.components.state_3774915634
 end
 
--- 与原版 frograin.ToggleUpdate 的开启条件一致（仅用于判断何时结算场次）。
--- 字段缺失或非数字时视为未在产蛙，避免比较抛错导致结束结算被吞。
+--- 与原版 frograin.ToggleUpdate 的开启条件一致（仅用于判断何时结算场次）。
+--- 字段缺失或非数字时视为未在产蛙，避免比较抛错导致结束结算被吞。
 local function IsFrogRainSpawning(world)
   local state = world.state
   if state == nil or not state.isspring or not state.israining then
@@ -66,7 +64,7 @@ local function AnnounceEnded(frogs, lunar)
   mod.Announce(string.format(template, frogs))
 end
 
--- 读档后已在场的雨蛙打上去重标记，避免 StartTracking 重入导致重复计数。
+--- 读档后已在场的雨蛙打上去重标记，避免 StartTracking 重入导致重复计数。
 local function MarkExistingTracked(world)
   local frograin = world.components.frograin
   if frograin == nil or type(frograin._frogs) ~= "table" then
@@ -79,7 +77,7 @@ local function MarkExistingTracked(world)
   end
 end
 
--- 开启场次；已在进行中则跳过。announce=false 用于读档对齐。
+--- 开启场次；已在进行中则跳过。announce=false 用于读档对齐。
 local function EnsureSession(world, announce)
   local state = GetState(world)
   if state == nil or state:Get(C.ACTIVE_KEY, false) then
@@ -101,7 +99,7 @@ local function CountFrog(world, target)
     return
   end
 
-  -- 先打标；读档阶段只信任存档计数，不 Increment / 不播「开始」
+  --- 先打标；读档阶段只信任存档计数，不 Increment / 不播「开始」
   target[C.COUNTED_FLAG] = true
   if POPULATING or not ready then
     return
@@ -159,8 +157,8 @@ AddSimPostInit(mod.Wrap("frog_rain_init", function()
   TheWorld:WatchWorldState("precipitationrate", on_condition)
   TheWorld:WatchWorldState("moistureceil", on_condition)
 
-  -- 读档还原世界状态时可能同步触发 WatchWorldState / StartTracking；首帧后再接受变化与计增。
-  -- ready 打开后补跑一次结束检查，避免门闩窗口内错过结算导致场次粘连。
+  --- 读档还原世界状态时可能同步触发 WatchWorldState / StartTracking；首帧后再接受变化与计增。
+  --- ready 打开后补跑一次结束检查，避免门闩窗口内错过结算导致场次粘连。
   TheWorld:DoTaskInTime(0, function()
     ready = true
     on_condition()
@@ -173,11 +171,11 @@ AddSimPostInit(mod.Wrap("frog_rain_init", function()
   end
 
   if IsFrogRainSpawning(TheWorld) and frogs + lunar > 0 then
-    -- 读档时雨仍在下且已有计数：静默恢复场次，避免重播「开始」与重复计数
+    --- 读档时雨仍在下且已有计数：静默恢复场次，避免重播「开始」与重复计数
     EnsureSession(TheWorld, false)
     MarkExistingTracked(TheWorld)
   else
-    -- 雨已停或无有效计数：丢弃未结算，避免读档瞬间误播
+    --- 雨已停或无有效计数：丢弃未结算，避免读档瞬间误播
     ClearFrogRainState(TheWorld)
   end
 end))

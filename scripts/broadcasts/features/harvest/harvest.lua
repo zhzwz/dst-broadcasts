@@ -1,6 +1,4 @@
---[[
-  收获：进入黄昏时按物资种类分别播报；洞穴在类别后加括号标记。
-]]
+--- 收获：进入黄昏时按物资种类分别播报；洞穴在类别后加括号标记。
 
 modimport("scripts/broadcasts/lib/harvest_announce.lua")
 modimport("scripts/broadcasts/lib/day_slot.lua")
@@ -248,8 +246,8 @@ AddSimPostInit(mod.Wrap("harvest_init", function()
     return
   end
 
-  -- 读档停在黄昏、或相位尚未就绪时不播；仅 day → dusk 时播报。
-  -- 森林听 phase，洞穴听 cavephase（与电台一致）。
+  --- 读档停在黄昏、或相位尚未就绪时不播；仅 day → dusk 时播报。
+  --- 森林听 phase，洞穴听 cavephase（与电台一致）。
   local key = Slot.PhaseStateKey(mod.World.IsCave())
   local prev_phase = TheWorld.state ~= nil and TheWorld.state[key] or nil
   TheWorld:WatchWorldState(key, mod.Wrap("harvest_phase", function(_, phase)

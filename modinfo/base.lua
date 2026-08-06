@@ -1,7 +1,7 @@
--- 模组元数据与配置项。界面文案：modinfo/language/*.lua
--- DST modinfo 沙箱不能加载外部文件；bun run build-modinfo 会生成根目录 modinfo.lua
--- BEGIN_MODINFO_LANGUAGES
--- name/description 等是写入 modinfo 环境的约定全局，不是漏写 local
+--- 模组元数据与配置项。界面文案：modinfo/language/*.lua
+--- DST modinfo 沙箱不能加载外部文件；bun run build-modinfo 会生成根目录 modinfo.lua
+--- BEGIN_MODINFO_LANGUAGES
+--- name/description 等是写入 modinfo 环境的约定全局，不是漏写 local
 ---@diagnostic disable: lowercase-global
 ---@class BroadcastsModinfoLang
 ---@field description string
@@ -98,7 +98,7 @@ local L = {
   enabled = "",
   disabled = "",
 }
--- END_MODINFO_LANGUAGES
+--- END_MODINFO_LANGUAGES
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"

@@ -1,8 +1,6 @@
---[[
-  跨天总线：全模组共用一次 WatchWorldState("cycles")。
-  仅在 cycles 刚好 +1 时，于下一帧回调已注册的监听。
-  新档第 1 天早上不会触发（需 0→1 才算跨天），属预期行为。
-]]
+--- 跨天总线：全模组共用一次 WatchWorldState("cycles")。
+--- 仅在 cycles 刚好 +1 时，于下一帧回调已注册的监听。
+--- 新档第 1 天早上不会触发（需 0→1 才算跨天），属预期行为。
 
 --- @type function[]
 local listeners = {}

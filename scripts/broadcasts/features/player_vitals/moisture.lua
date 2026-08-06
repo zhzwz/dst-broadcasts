@@ -1,6 +1,4 @@
---[[
-  玩家湿度 10/20/40/60/80 分档播报：模组短句 + 角色内置潮湿台词。
-]]
+--- 玩家湿度 10/20/40/60/80 分档播报：模组短句 + 角色内置潮湿台词。
 
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
@@ -42,7 +40,7 @@ local function AnnounceTier(player, threshold, announce_key)
   mod.Announce(message)
 end
 
--- allow_announce=false 时只同步 flags（进服对齐）
+--- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckMoisture(player, value, allow_announce)
   if player == nil or not player:IsValid() then
     return

@@ -1,7 +1,5 @@
---[[
-  玩家理智按百分比档位播报（约 50% / 10%）。
-  各档各播一次；每档从多条文案中随机选一条。
-]]
+--- 玩家理智按百分比档位播报（约 50% / 10%）。
+--- 各档各播一次；每档从多条文案中随机选一条。
 
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
@@ -35,7 +33,7 @@ local function AnnounceTier(player, messages_key)
   mod.Announce(string.format(message, PlayerName(player)))
 end
 
--- allow_announce=false 时只同步 flags（进服对齐）
+--- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckSanity(player, percent, allow_announce)
   if player == nil or not player:IsValid() then
     return

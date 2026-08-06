@@ -21,10 +21,10 @@ local function Say(player, message)
   if m == "" then
     return
   end
-  local time = nil          -- nil：游戏默认时长
-  local noanim = true       -- true：不播说话动画
-  local force = true        -- true：忽略死亡/睡眠
-  local nobroadcast = false -- false：网络同步，附近客户端也能看到头顶气泡
+  local time = nil          --- nil：游戏默认时长
+  local noanim = true       --- true：不播说话动画
+  local force = true        --- true：忽略死亡/睡眠
+  local nobroadcast = false --- false：网络同步，附近客户端也能看到头顶气泡
   mod.Call("mod.Player.Say", talker.Say, talker, m, time, noanim, force, nobroadcast)
 end
 

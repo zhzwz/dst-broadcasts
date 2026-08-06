@@ -1,4 +1,4 @@
--- 获取预制体的显示名称（查不到时回退为预制体字符串）
+--- 获取预制体的显示名称（查不到时回退为预制体字符串）
 --- @param prefab string|nil prefab 名（如 "deerclops"）
 --- @return string|nil
 local function GetDisplayName(prefab)

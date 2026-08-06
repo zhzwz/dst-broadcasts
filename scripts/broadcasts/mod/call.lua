@@ -1,4 +1,4 @@
--- 安全调用：pcall 执行 fn，异常关在模组内，避免拖垮主机
+--- 安全调用：pcall 执行 fn，异常关在模组内，避免拖垮主机
 --- @param tag string 写入日志的标签（如 "announce"）
 --- @param fn function 要执行的函数
 --- @param ... any 传给 fn 的参数

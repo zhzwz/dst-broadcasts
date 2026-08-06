@@ -1,8 +1,6 @@
---[[
-  BROADCASTS_CROSS_REAL_THRESHOLDS 单测。
-  运行：bun run test
-  或：lua scripts/broadcasts/lib/cross_real_thresholds.test.lua
-]]
+--- BROADCASTS_CROSS_REAL_THRESHOLDS 单测。
+--- 运行：bun run test
+--- 或：lua scripts/broadcasts/lib/cross_real_thresholds.test.lua
 
 local root = arg[0]:match("^(.*)/") or "."
 dofile(root .. "/cross_real_thresholds.lua")

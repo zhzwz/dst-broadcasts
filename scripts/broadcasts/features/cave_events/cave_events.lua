@@ -1,7 +1,5 @@
---[[
-  洞穴事件：噩梦相位、酸雨、遗迹重置、地震预警。
-  仅洞穴主机；读档首帧不播。
-]]
+--- 洞穴事件：噩梦相位、酸雨、遗迹重置、地震预警。
+--- 仅洞穴主机；读档首帧不播。
 
 local S = i18n
 
@@ -21,7 +19,7 @@ AddSimPostInit(mod.Wrap("cave_events_init", function()
     return
   end
 
-  -- 读档还原世界状态时可能同步触发 WatchWorldState；首帧后再接受变化
+  --- 读档还原世界状态时可能同步触发 WatchWorldState；首帧后再接受变化
   local ready = false
   TheWorld:DoTaskInTime(0, function()
     ready = true

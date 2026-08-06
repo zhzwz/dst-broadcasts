@@ -17,8 +17,8 @@ const MODINFO_BASE = `${MODINFO_DIR}/base.lua`
 const MODINFO_OUT = `${ROOT}/modinfo.lua`
 const LANG_DIR = `${MODINFO_DIR}/language`
 
-const BEGIN = '-- BEGIN_MODINFO_LANGUAGES'
-const END = '-- END_MODINFO_LANGUAGES'
+const BEGIN = '--- BEGIN_MODINFO_LANGUAGES'
+const END = '--- END_MODINFO_LANGUAGES'
 
 const LANG_CODES = [
   'en',

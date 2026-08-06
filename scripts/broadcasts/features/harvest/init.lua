@@ -1,7 +1,5 @@
---[[
-  收获入口：大理石灌木、蜂箱、农田、晾晒架。
-  细项开关在此判断；modmain 只需 modimport 本文件。
-]]
+--- 收获入口：大理石灌木、蜂箱、农田、晾晒架。
+--- 细项开关在此判断；modmain 只需 modimport 本文件。
 
 local marbleshrub = GetModConfigData("harvest_marbleshrub_enabled")
 local beebox = GetModConfigData("harvest_beebox_enabled")

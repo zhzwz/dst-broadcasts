@@ -1,6 +1,4 @@
---[[
-  玩家饱食度过低播报（≤10 / ≤0）：随机电台短句 + 角色 ANNOUNCE_HUNGRY。
-]]
+--- 玩家饱食度过低播报（≤10 / ≤0）：随机电台短句 + 角色 ANNOUNCE_HUNGRY。
 
 local S = i18n
 local C = BROADCASTS_PLAYER_VITALS
@@ -35,7 +33,7 @@ local function AnnounceTier(player, threshold)
   mod.Announce(message)
 end
 
--- allow_announce=false 时只同步 flags（进服对齐）
+--- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckHunger(player, current, allow_announce)
   if player == nil or not player:IsValid() then
     return

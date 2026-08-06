@@ -4,7 +4,7 @@
 local function Print(tag, content)
   local prefix = mod.CONSTANTS.LOG_PREFIX
   local tag_text = mod.Trim(tag or "?")
-  -- content 可能是任意值：先 tostring，再交给 Trim 去空白
+  --- content 可能是任意值：先 tostring，再交给 Trim 去空白
   local content_text = mod.Trim(tostring(content))
   print(string.format("%s %s: %s", prefix, tag_text, content_text))
 end

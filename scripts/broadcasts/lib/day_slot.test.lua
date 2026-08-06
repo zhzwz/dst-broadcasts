@@ -1,6 +1,4 @@
---[[
-  BROADCASTS_DAY_SLOT 单测。
-]]
+--- BROADCASTS_DAY_SLOT 单测。
 
 local root = arg[0]:match("^(.*)/") or "."
 dofile(root .. "/day_slot.lua")

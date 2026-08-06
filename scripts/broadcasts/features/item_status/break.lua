@@ -1,7 +1,5 @@
---[[
-  武器（finiteuses）/ 护甲损坏时全服播报一次；
-  白名单物品在剩余 1 次时提前提醒（由 BREAK_WARNING 开关控制）。
-]]
+--- 武器（finiteuses）/ 护甲损坏时全服播报一次；
+--- 白名单物品在剩余 1 次时提前提醒（由 BREAK_WARNING 开关控制）。
 
 local H = BROADCASTS_ITEM_STATUS
 local PlayerOwner = mod.Item.GetOwner
@@ -82,7 +80,7 @@ local function ResolveCurrentUses(uses, data)
   return math.floor(data.percent * total + 0.5)
 end
 
--- allow_announce=false：仅对齐 flag（读档/首帧），不播报
+--- allow_announce=false：仅对齐 flag（读档/首帧），不播报
 local function TryAnnounceLastUse(inst, allow_announce)
   if not H.BREAK_WARNING then
     return

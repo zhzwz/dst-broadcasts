@@ -143,7 +143,7 @@ mod.World.IsSandstormActive = IsSandstormActive
 mod.World.GetWeatherKeys = GetWeatherKeys
 mod.World.FormatMergedWeatherReport = FormatMergedWeatherReport
 
--- 月雹
--- 在森林世界，当裂隙（月亮）存在时，每隔 10 天将会降下一场月雹，每次持续 90 秒。
--- 月雹发生时，如果当前正在发生降水，将会打断正在发生的降水。
--- 月雹期间，水分值持续消耗，因此在月雹结束时不会恢复之前的降水。
+--- 月雹
+--- 在森林世界，当裂隙（月亮）存在时，每隔 10 天将会降下一场月雹，每次持续 90 秒。
+--- 月雹发生时，如果当前正在发生降水，将会打断正在发生的降水。
+--- 月雹期间，水分值持续消耗，因此在月雹结束时不会恢复之前的降水。
