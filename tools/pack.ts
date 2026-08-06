@@ -81,8 +81,12 @@ async function syncModinfoVersion(version: string) {
   }
 }
 
-/** 打包目录中排除非运行时文件：README.md（任意大小写）、*.test.lua，以及杂项。 */
+/** 打包目录中排除非运行时文件：README.md、*.test.lua、scripts/test、以及杂项。 */
 async function cleanupJunk(outDir: string) {
+  const testDir = `${outDir}/scripts/test`
+  if ((await $`test -d ${testDir}`.quiet().nothrow()).exitCode === 0) {
+    await $`rm -rf ${testDir}`.quiet()
+  }
   for await (const path of new Glob('**/*').scan({
     cwd: outDir,
     absolute: true,
