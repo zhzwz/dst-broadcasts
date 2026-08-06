@@ -25,7 +25,6 @@
       "BROADCASTS_PEARL",
       "BROADCASTS_PEARL_TASKS",
       "BROADCASTS_PLAYER_VITALS",
-      "i18n",
       "BROADCASTS_WATCH_ATTACK_WARNING",
       "ChooseTranslationTable",
       "Class",
@@ -48,6 +47,7 @@
       "TheShard",
       "TheWorld",
       "env",
+      "i18n",
       "mod",
       "modimport",
       "modname"

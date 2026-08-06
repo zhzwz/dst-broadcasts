@@ -8,7 +8,7 @@ modimport("scripts/broadcasts/mod.lua")
 
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then
-    --- 自定义组件
+    --- 加载自定义组件
     inst:AddComponent("state_3774915634")
   end
 end)
