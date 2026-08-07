@@ -89,23 +89,6 @@ i18n = {
     "Dziękujemy za Żaby z nieba: %d żab, %d gości księżycowych.",
     "Opad skończony. Spis: %d żab, %d księżycowych. Do zobaczenia za rok.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Segment specjalny: witamy brzuch %s na solówce na bębnie.",
-      "Kelner? %s chce zamówić.",
-      "Znajdź jedzenie albo znajdź śmierć — wybieraj, %s.",
-      "Promocja na dowóz: ktoś zamówi dwa mięsa i warzywo dla %s?",
-      "%s nie może przełknąć. No dalej, choć kęs.",
-    },
-    [0] = {
-      "Żołądek %s jest kompletnie pusty.",
-      "Cokolwiek — wpychajcie coś %s do ust!",
-      "Zapowiedź nekrologu? Nie — %s po prostu umiera z głodu.",
-      "Z nieznanych przyczyn %s prowadzi strajk głodowy.",
-      "%s nic nie znalazł i jest w ślepym zaułku. Ktoś pomoże?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "W oczach %s pojawiają się widma spoza tego świata...",

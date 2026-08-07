@@ -89,23 +89,6 @@ i18n = {
     "Danke für Frösche von oben: %d Frösche, %d leuchtende Gäste.",
     "Niederschlag vorbei. Zählung: %d Frösche, %d Leuchtaugen. Bis nächstes Jahr.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Sondersendung: bitte begrüßt %ss Bauch zum Trommel-Solo.",
-      "Kellner? %s möchte bestellen.",
-      "Essen finden oder den Tod finden — such dir was aus, %s.",
-      "Liefer-Angebot: bestellt jemand zwei Fleischgerichte und Gemüse für %s?",
-      "%s bringt keinen Bissen runter. Iss wenigstens einen Happen.",
-    },
-    [0] = {
-      "%ss Magen ist völlig leer.",
-      "Egal was — stopft %s sofort etwas in den Mund!",
-      "Nachruf-Vorschau? Nein — %s ist nur platt vor Hunger.",
-      "Aus unbekannten Gründen macht %s Hungerstreik.",
-      "%s hat nichts gefunden und steckt fest. Kann jemand helfen?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "In %ss Augen erscheinen Phantome, die nicht in diese Welt gehören...",

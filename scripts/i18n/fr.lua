@@ -89,23 +89,6 @@ i18n = {
     "Merci pour Grenouilles en chute libre : %d grenouilles, %d invitées lunaires.",
     "Précipitations finies. Recensement : %d grenouilles, %d lunaires. À l'année prochaine.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Segment spécial : accueillons le ventre de %s pour un solo de tambour.",
-      "Garçon ? %s est prêt à commander.",
-      "Trouver à manger ou trouver la mort — choisis, %s.",
-      "Promo livraison : quelqu'un commande deux viandes et un légume pour %s ?",
-      "%s n'arrive plus à avaler. Allez, juste une bouchée.",
-    },
-    [0] = {
-      "L'estomac de %s est complètement vide.",
-      "Peu importe quoi, fourrez quelque chose dans la bouche de %s !",
-      "Avant-goût de nécrologie ? Non — %s a juste la dalle.",
-      "Pour une raison inconnue, %s fait la grève de la faim.",
-      "%s a échoué à trouver de la nourriture et est au bout du rouleau. De l'aide ?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Des fantômes d'un autre monde apparaissent dans les yeux de %s...",

@@ -89,23 +89,6 @@ i18n = {
     "Grazie per Rane dall'alto: %d rane, %d ospiti lunari.",
     "Precipitazioni finite. Censimento: %d rane, %d lunari. All'anno prossimo.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Segmento speciale: accogliamo la pancia di %s per un assolo di tamburo.",
-      "Cameriere? %s vuole ordinare.",
-      "Trova cibo o trova la morte — scegli, %s.",
-      "Offerta delivery: qualcuno ordina due carni e una verdura per %s?",
-      "%s non riesce a inghiottire. Dai, solo un boccone.",
-    },
-    [0] = {
-      "Lo stomaco di %s è completamente vuoto.",
-      "Qualsiasi cosa, ficcate qualcosa in bocca a %s!",
-      "Anteprima necrologio? No — %s è solo affamato.",
-      "Per chissà quale motivo, %s è in sciopero della fame.",
-      "%s non ha trovato cibo ed è senza via d'uscita. Qualcuno aiuta?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Negli occhi di %s compaiono fantasmi che non appartengono a questo mondo...",

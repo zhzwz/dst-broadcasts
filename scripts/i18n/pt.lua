@@ -89,23 +89,6 @@ i18n = {
     "Obrigado por Sapos do Céu: %d sapos, %d convidados lunares.",
     "Precipitação encerrada. Censo: %d sapos, %d lunares. Até o ano que vem.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Segmento especial: deem as boas-vindas à barriga de %s para um solo de tambor.",
-      "Garçom? %s quer pedir.",
-      "Ache comida ou ache a morte — escolha, %s.",
-      "Promoção delivery: alguém pede dois pratos de carne e um vegetal para %s?",
-      "%s não consegue engolir. Vamos, só uma mordida.",
-    },
-    [0] = {
-      "O estômago de %s está completamente vazio.",
-      "Tanto faz o quê — enfiem alguma coisa na boca de %s!",
-      "Prévia de obituário? Não — %s só está morrendo de fome.",
-      "Por algum motivo, %s está em greve de fome.",
-      "%s falhou na busca por comida e não tem saída. Alguém ajuda?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Os olhos de %s começam a ver fantasmas que não pertencem a este mundo...",

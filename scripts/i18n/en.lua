@@ -91,23 +91,6 @@ i18n = {
     "Thanks for watching Frogs From Above: %d frogs, %d bright-eyed guests.",
     "Precipitation over. Census: %d frogs, %d bright-eyed. See you next year.",
   },
-  --- 饱食 ≤10 / ≤0；每档可多条随机；%s = 玩家名
-  player_hunger = {
-    [10] = {
-      "Special segment: please welcome %s's belly for a drum solo.",
-      "Waiter? %s is ready to order.",
-      "Find food or find death — pick one, %s.",
-      "Delivery deal: anyone willing to order two meats and a veggie for %s?",
-      "%s can't seem to eat. Come on, just take a bite.",
-    },
-    [0] = {
-      "%s's stomach is completely empty.",
-      "Whatever it is, shove something into %s's mouth, now!",
-      "Obituary preview? No — %s is just flat-out hungry.",
-      "For reasons unknown, %s is on a hunger strike.",
-      "%s failed to forage and has nowhere left to go. Can anyone help?",
-    },
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "%s's eyes begin to see phantoms that don't belong to this world...",
