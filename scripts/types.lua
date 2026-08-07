@@ -1,4 +1,9 @@
---- DST 类型桩（仅供注解 / LuaLS，无运行时逻辑）
+--- 类型桩（仅供注解 / LuaLS，无运行时逻辑）。
+--- 顺序：游戏 / 引擎 API → 模组内部类型。
+
+---------------------------------------------------------------------------
+--- 游戏 / 引擎 API
+---------------------------------------------------------------------------
 
 --- @param path string
 function modimport(path) end
@@ -38,6 +43,7 @@ function modimport(path) end
 --- @field ListenForEvent fun(self: Entity, event: string, fn: function, ...: any)
 --- @field entity any
 
+--- TheWorld.state.precipitation
 --- @alias PrecipitationType "none" | "rain" | "snow" | "acidrain" | "lunarhail"
 
 --- TheWorld.state（worldstate.data 投影）
@@ -51,11 +57,6 @@ function modimport(path) end
 --- @class World : Entity
 --- @field state WorldState|nil
 --- @field net Entity|nil
-
---- 降水键（互斥；无降水为 nil）
---- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
---- 降水键（与 i18n.weather 标签键对应；另含 report/separator 文案键）
---- @alias WeatherKey "sunny" | PrecipitationKey | "sandstorm" | "moonstorm"
 
 --- GetShardModRPC 返回的 RPC 句柄
 --- @class ShardModRPC
@@ -76,3 +77,13 @@ function SendModRPCToShard(id_table, target, data) end
 --- @param name string
 --- @param handler fun(from_shard: string|number, data: string)
 function AddShardModRPCHandler(namespace, name, handler) end
+
+---------------------------------------------------------------------------
+--- 模组内部类型
+---------------------------------------------------------------------------
+
+--- 天气播报降水键（互斥；无降水为 nil）
+--- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
+
+--- 天气播报键（与 i18n.weather 标签键对应）
+--- @alias WeatherKey "sunny" | PrecipitationKey | "sandstorm" | "moonstorm"
