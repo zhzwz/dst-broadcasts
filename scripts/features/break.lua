@@ -54,7 +54,7 @@ AddPlayerPostInit(core.Wrap(function(player)
   if not core.IsServer() then
     return
   end
-  core.DoTaskInTime(player, function()
+  core.SetTimeout(player, function()
     if player:IsValid() then
       WatchPlayer(player)
     end
@@ -208,7 +208,7 @@ AddComponentPostInit("finiteuses", core.Wrap(function(self)
   inst._dst_broadcasts_finiteuses_ready = false
   inst:ListenForEvent("percentusedchange", core.Wrap(OnFiniteUsesChange))
   inst:ListenForEvent("onputininventory", core.Wrap(OnPutInInventory))
-  core.DoTaskInTime(inst, function()
+  core.SetTimeout(inst, function()
     if not inst:IsValid() then
       return
     end

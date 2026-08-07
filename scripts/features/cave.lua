@@ -1,5 +1,5 @@
 --- 洞穴事件：噩梦相位、酸雨起止、远古遗迹重置、地震预警。
---- 仅洞穴主机；读档首帧不播（DoTaskInTime(0) 后再响应 WatchWorldState）。
+--- 仅洞穴主机；读档首帧不播（SetTimeout(0) 后再响应 WatchWorldState）。
 
 local S = i18n
 
@@ -21,7 +21,7 @@ AddSimPostInit(core.Wrap(function()
 
   --- 读档还原世界状态时可能同步触发 WatchWorldState；首帧后再接受变化
   local ready = false
-  core.DoTaskInTime(TheWorld, function()
+  core.SetTimeout(TheWorld, function()
     ready = true
   end, 0)
 

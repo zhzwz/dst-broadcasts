@@ -110,7 +110,8 @@ core.RandomPick = function(list)
 end
 
 
-modimport("scripts/core/DoTaskInTime.lua")
+modimport("scripts/core/SetTimeout.lua")
+modimport("scripts/core/SetInterval.lua")
 modimport("scripts/core/IsValid.lua")
 modimport("scripts/core/HasTag.lua")
 modimport("scripts/core/IsAlive.lua")

@@ -220,7 +220,7 @@ local function WatchPearl(inst)
     return
   end
   --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
-  core.DoTaskInTime(inst, function()
+  core.SetTimeout(inst, function()
     if not inst:IsValid() then
       return
     end

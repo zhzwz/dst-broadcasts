@@ -330,7 +330,7 @@ local function TryAnnounceNonlethalDefeat(inst, prefab, name, attempt)
     return
   end
   if attempt < NONLETHAL_RETRY_MAX then
-    core.DoTaskInTime(inst, function()
+    core.SetTimeout(inst, function()
       TryAnnounceNonlethalDefeat(inst, prefab, name, attempt + 1)
     end, NONLETHAL_RETRY_DELAY)
     return
@@ -408,7 +408,7 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
       end
       inst._dst_broadcasts_minhealth_retrying = true
       inst._dst_broadcasts_minhealth_data = data
-      core.DoTaskInTime(inst, function()
+      core.SetTimeout(inst, function()
         TryAnnounceNonlethalDefeat(inst, prefab, name, 1)
       end, 0)
     end))
@@ -428,7 +428,7 @@ for prefab in pairs(TWIN_PREFABS) do
       return GetSharedDamageBucket("twins_damage")
     end)
     inst:ListenForEvent("death", core.Wrap(function(_, data)
-      core.DoTaskInTime(inst, function()
+      core.SetTimeout(inst, function()
         if not HasLivingTwin() and not TheWorld._dst_broadcasts_twins_defeated then
           TheWorld._dst_broadcasts_twins_defeated = true
           AnnounceDefeat(N.twins, data, TheWorld._dst_broadcasts_twins_damage)
@@ -451,7 +451,7 @@ AddPrefabPostInit("vault_pillar_guard", core.Wrap(function(inst)
     return GetSharedDamageBucket("guard_damage")
   end)
   inst:ListenForEvent("death", core.Wrap(function(_, data)
-    core.DoTaskInTime(inst, function()
+    core.SetTimeout(inst, function()
       if not HasLivingVaultGuard() and
           not TheWorld._dst_broadcasts_guard_towers_defeated then
         TheWorld._dst_broadcasts_guard_towers_defeated = true

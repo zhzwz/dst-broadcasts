@@ -126,7 +126,7 @@ AddPlayerPostInit(core.Wrap(function(player)
   if not core.IsServer() then
     return
   end
-  core.DoTaskInTime(player, function()
+  core.SetTimeout(player, function()
     if player:IsValid() then
       WatchPlayer(player)
     end

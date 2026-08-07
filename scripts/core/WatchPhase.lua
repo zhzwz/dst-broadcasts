@@ -6,7 +6,7 @@ local NEXT_PHASE = {
 
 --- 监听昼夜相位变化（仅主机）。
 --- 森林看 phase，洞穴看 cavephase；仅 previous → 下一相位时回调。
---- 回调经 DoTaskInTime(0) 延后到本帧末，避免与同期 WatchWorldState 打架。
+--- 回调经 SetTimeout(0) 延后到本帧末，避免与同期 WatchWorldState 打架。
 --- @param fn fun(phase: string)
 core.WatchPhase = function(fn)
   AddSimPostInit(core.Wrap(function()
@@ -22,7 +22,7 @@ core.WatchPhase = function(fn)
       if previous == nil or NEXT_PHASE[previous] ~= phase then
         return
       end
-      core.DoTaskInTime(TheWorld, function()
+      core.SetTimeout(TheWorld, function()
         core.Call(fn, phase)
       end, 0)
     end))

@@ -119,7 +119,7 @@ AddComponentPostInit("fueled", core.Wrap(function(self)
   if not core.IsServer() then
     return
   end
-  core.DoTaskInTime(self.inst, function(inst)
+  core.SetTimeout(self.inst, function(inst)
     if inst:IsValid() then
       WatchFueled(inst)
     end

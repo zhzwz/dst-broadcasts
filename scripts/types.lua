@@ -40,6 +40,7 @@ function modimport(path) end
 --- @field HasTag fun(self: Entity, tag: string): boolean
 --- @field GetDisplayName fun(self: Entity): string
 --- @field DoTaskInTime fun(self: Entity, time: number, fn: function, ...: any): PeriodicTask
+--- @field DoPeriodicTask fun(self: Entity, time: number, fn: function, ...: any): PeriodicTask
 --- @field ListenForEvent fun(self: Entity, event: string, fn: function, ...: any)
 --- @field entity any
 

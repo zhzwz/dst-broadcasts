@@ -46,7 +46,7 @@ local function WatchAttackWarning(get_seconds, get_name)
     missing_duration = nil,
   }
 
-  TheWorld:DoPeriodicTask(POLL_SECONDS, core.Wrap(function()
+  core.SetInterval(TheWorld, function()
     local t = get_seconds()
     if t == false then
       return
@@ -81,7 +81,7 @@ local function WatchAttackWarning(get_seconds, get_name)
     end
     state.missing_duration = nil
     core.Announce(string.format(S.attack_time, name, duration))
-  end))
+  end, POLL_SECONDS)
 end
 
 --- 猎犬 / 洞穴蠕虫
@@ -109,7 +109,7 @@ AddSimPostInit(core.Wrap(function()
   end, HoundedAttackName)
 
   local was_attacking = nil
-  TheWorld:DoPeriodicTask(HOUNDED_ATTACK_POLL_SECONDS, core.Wrap(function()
+  core.SetInterval(TheWorld, function()
     local hounded = TheWorld.components.hounded
     if hounded == nil then
       return
@@ -123,7 +123,7 @@ AddSimPostInit(core.Wrap(function()
       core.Announce(string.format(S.attack_started, HoundedAttackName()))
     end
     was_attacking = attacking
-  end))
+  end, HOUNDED_ATTACK_POLL_SECONDS)
 end))
 
 --- 巨鹿 / 熊獾倒计时（仅森林；现身见 appear.lua）
