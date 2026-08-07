@@ -22,7 +22,11 @@ i18n = {
   item_broke = "%s의 %s가 파괴되었습니다!",
   item_last_use = "%s의 %s 사용 횟수가 1회만 남았습니다!",
   armor = "갑옷",
-  list_separator = ", ",
+  separator = {
+    comma = ", ",
+    list = ", ",
+    semicolon = "; ",
+  },
   seasons = {
     autumn = "가을",
     winter = "겨울",
@@ -45,7 +49,6 @@ i18n = {
     moonstorm = "달폭풍",
     report_forest = "숲 세계 날씨: %s.",
     report_cave = "동굴 세계 날씨: %s.",
-    separator = ", ",
   },
   calendar_report = "영원 %d일, %s %d일째, %s까지 %d일.",
   calendar_report_soon = "영원 %d일, %s %d일째, 곧 %s입니다.",

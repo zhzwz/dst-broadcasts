@@ -22,7 +22,11 @@ i18n = {
   item_broke = "%s的%s已损毁！",
   item_last_use = "%s的%s仅剩最后 1 次使用！",
   armor = "护甲",
-  list_separator = "、",
+  separator = {
+    comma = "，",
+    list = "、",
+    semicolon = "；",
+  },
   seasons = {
     autumn = "秋季",
     winter = "冬季",
@@ -45,7 +49,6 @@ i18n = {
     moonstorm = "局部地区有月亮风暴，出门请注意防护",
     report_forest = "森林世界当前天气，%s。",
     report_cave = "洞穴世界当前天气，%s。",
-    separator = "，",
   },
   --- calendar_report: 日 / 季节 / 季内天 / 下季 / 剩余；soon: 日 / 季节 / 季内天 / 下季
   calendar_report = "永恒%d日，%s第%d天，距离%s还有%d天。",

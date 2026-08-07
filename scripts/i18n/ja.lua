@@ -22,7 +22,11 @@ i18n = {
   item_broke = "%sの%sが壊れました！",
   item_last_use = "%sの%sの使用回数が残り1回です！",
   armor = "防具",
-  list_separator = "、",
+  separator = {
+    comma = "、",
+    list = "、",
+    semicolon = "；",
+  },
   seasons = {
     autumn = "秋",
     winter = "冬",
@@ -45,7 +49,6 @@ i18n = {
     moonstorm = "月の嵐",
     report_forest = "森の世界の天気：%s。",
     report_cave = "洞窟の世界の天気：%s。",
-    separator = "、",
   },
   calendar_report = "永遠%d日、%s%d日目、%sまであと%d日。",
   calendar_report_soon = "永遠%d日、%s%d日目、まもなく%s。",

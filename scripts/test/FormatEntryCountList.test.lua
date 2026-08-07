@@ -4,7 +4,7 @@
 
 local here = arg[0]:match("^(.*)/") or "."
 core = {}
-i18n = { list_separator = "、" }
+i18n = { separator = { list = "、" } }
 dofile(here .. "/../core/FormatEntryCount.lua")
 dofile(here .. "/../core/FormatEntryCountList.lua")
 
@@ -29,13 +29,6 @@ expect_eq(
 expect_eq(core.FormatEntryCountList({ ["空"] = 0 }), nil, "all zero -> nil")
 expect_eq(core.FormatEntryCountList({}), nil, "empty map -> nil")
 expect_eq(core.FormatEntryCountList(nil), nil, "nil map -> nil")
-
-i18n = nil
-expect_eq(
-  core.FormatEntryCountList({ ["a"] = 1, ["b"] = 2 }),
-  "a×1, b×2",
-  "nil i18n defaults to comma-space"
-)
 
 if failed > 0 then
   io.stderr:write(string.format("%d assertion(s) failed\n", failed))

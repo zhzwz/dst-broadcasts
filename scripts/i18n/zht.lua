@@ -22,7 +22,11 @@ i18n = {
   item_broke = "%s的%s已損毀！",
   item_last_use = "%s的%s僅剩最後 1 次使用！",
   armor = "護甲",
-  list_separator = "、",
+  separator = {
+    comma = "，",
+    list = "、",
+    semicolon = "；",
+  },
   seasons = {
     autumn = "秋季",
     winter = "冬季",
@@ -45,7 +49,6 @@ i18n = {
     moonstorm = "月風暴",
     report_forest = "森林世界當前天氣，%s。",
     report_cave = "洞穴世界當前天氣，%s。",
-    separator = "，",
   },
   calendar_report = "永恆%d日，%s第%d天，距離%s還有%d天。",
   calendar_report_soon = "永恆%d日，%s第%d天，即將進入%s。",

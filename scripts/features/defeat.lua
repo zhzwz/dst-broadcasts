@@ -232,7 +232,7 @@ local function AnnounceDamageRanking(bucket)
     return
   end
 
-  local sep = i18n.list_separator
+  local sep = i18n.separator.list
   local entry_fmt = i18n.boss_damage_entry
   local parts = {}
   for i = 1, math.min(#list, BOSS_DAMAGE_RANKING_MAX) do

@@ -1,5 +1,5 @@
 --- 将 { [display_name] = amount } 格式化为排序后的「名称×数量」列表。
---- 分隔符取 i18n.list_separator，缺省为 ", "；全空时返回 nil。
+--- 分隔符取 i18n.separator.list；全空时返回 nil。
 --- @param counts table|nil
 --- @return string|nil
 core.FormatEntryCountList = function(counts)
@@ -26,9 +26,5 @@ core.FormatEntryCountList = function(counts)
   for _, item in ipairs(list) do
     table.insert(parts, item.text)
   end
-  local separator = ", "
-  if type(i18n) == "table" and type(i18n.list_separator) == "string" then
-    separator = i18n.list_separator
-  end
-  return table.concat(parts, separator)
+  return table.concat(parts, i18n.separator.list)
 end

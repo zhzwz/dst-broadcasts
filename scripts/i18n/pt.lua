@@ -22,7 +22,11 @@ i18n = {
   item_broke = "%s: %s quebrou!",
   item_last_use = "%s: %s tem apenas 1 uso!",
   armor = "armadura",
-  list_separator = ", ",
+  separator = {
+    comma = ", ",
+    list = ", ",
+    semicolon = "; ",
+  },
   seasons = {
     autumn = "Outono",
     winter = "Inverno",
@@ -45,7 +49,6 @@ i18n = {
     moonstorm = "Tempestade lunar",
     report_forest = "Clima da floresta: %s.",
     report_cave = "Clima das cavernas: %s.",
-    separator = ", ",
   },
   calendar_report = "Dia constante %d, %s dia %d; %s em %d dias.",
   calendar_report_soon = "Dia constante %d, %s dia %d; %s começa em breve.",

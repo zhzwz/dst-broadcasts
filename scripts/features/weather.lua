@@ -95,11 +95,7 @@ local function FormatWeatherParts(keys)
     return ""
   end
 
-  local sep = labels.separator
-  if type(sep) ~= "string" then
-    sep = ", "
-  end
-  return table.concat(parts, sep)
+  return table.concat(parts, i18n.separator.comma)
 end
 
 --- @param is_cave boolean
