@@ -50,17 +50,19 @@ local function EnsureHooked()
   end
 end
 
+local function TryHook()
+  if (#server_listeners > 0 and core.IsServer()) or (#client_listeners > 0 and core.IsClient()) then
+    EnsureHooked()
+  end
+end
+
 local function EnsureSimScheduled()
   if sim_scheduled then
     return
   end
   sim_scheduled = true
   --- Sim 就绪后再按本侧是否有监听决定是否挂钩，避免客户端无谓改写 GLOBAL
-  AddSimPostInit(core.Wrap(function()
-    if (#server_listeners > 0 and core.IsServer()) or (#client_listeners > 0 and core.IsClient()) then
-      EnsureHooked()
-    end
-  end))
+  AddSimPostInit(core.Wrap(TryHook))
 end
 
 --- 监听玩家聊天（挂钩 GLOBAL.Networking_Say）。
@@ -78,5 +80,11 @@ core.ListenSay = function(side, fn)
   else
     return
   end
-  EnsureSimScheduled()
+  --- Sim 已就绪则立刻尝试挂钩（过晚注册时 AddSimPostInit 不会再跑；
+  --- 也可覆盖「先注册了错误 side」后再补对本侧监听的情况）。
+  if TheWorld ~= nil then
+    TryHook()
+  else
+    EnsureSimScheduled()
+  end
 end
