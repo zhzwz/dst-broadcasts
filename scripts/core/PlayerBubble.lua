@@ -2,7 +2,7 @@
 --- 参数顺序与 core.Announce 一致：内容在前，发言人在后。
 --- @param message string 发言内容
 --- @param player Entity|nil 发言玩家
-core.Bubble = function(message, player)
+core.PlayerBubble = function(message, player)
   local m = core.TrimString(message)
   if m == nil or m == "" then
     return

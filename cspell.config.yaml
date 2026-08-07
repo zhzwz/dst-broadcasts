@@ -38,6 +38,7 @@ words:
   - frograin # 青蛙雨
   - fueltype # 燃料类型
   - hassler
+  - healthdelta
   - hermitcrab # 寄居蟹隐士
   - hungerdelta # 饱食度组件事件
   - hurtrate
@@ -72,14 +73,17 @@ words:
   - moonstorms
   - mutatedbearger # 变异熊獾
   - mutateddeerclops # 变异独眼巨鹿
+  - newpercent
   - nightmarephase # 噩梦相位
   - noanim
   - nobroadcast
   - nothrow
+  - oldpercent
   - ondeliveryprogressfn
   - overheathurtrate
   - overheattemp # 过热温度
   - percentusedchange # 燃料组件事件：百分比变化
+  - playercolour
   - playerghost # 玩家幽灵
   - precipitationrate # 降水率
   - remainingdaysinseason

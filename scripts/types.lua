@@ -35,6 +35,8 @@ function modimport(path) end
 --- @field prefab string|nil
 --- @field components EntityComponents|nil
 --- @field GUID any
+--- @field userid string|nil
+--- @field playercolour number[]|nil
 --- @field ismastersim boolean|nil
 --- @field IsValid fun(self: Entity): boolean
 --- @field HasTag fun(self: Entity, tag: string): boolean
@@ -78,6 +80,28 @@ function SendModRPCToShard(id_table, target, data) end
 --- @param name string
 --- @param handler fun(from_shard: string|number, data: string)
 function AddShardModRPCHandler(namespace, name, handler) end
+
+--- @class ClientModRPC
+--- @field namespace string
+--- @field id any
+
+--- @param namespace string
+--- @param name string
+--- @return ClientModRPC|nil
+function GetClientModRPC(namespace, name) end
+
+--- @param id_table ClientModRPC
+--- @param clients string|string[]|nil nil=本分片所有客户端；userid；或 userid 列表
+--- @param ... any
+function SendModRPCToClient(id_table, clients, ...) end
+
+--- @param namespace string
+--- @param name string
+--- @param handler function
+function AddClientModRPCHandler(namespace, name, handler) end
+
+--- @type Entity[]|nil
+AllPlayers = nil
 
 ---------------------------------------------------------------------------
 --- 模组内部类型
