@@ -64,6 +64,18 @@ core.TrimString = function(value)
   return (s:match("^%s*(.-)%s*$"))
 end
 
+--- 将字符串转为大写（ASCII；非字母字符不变）。
+--- 先经 core.String 转换；无法转为 string 时返回 nil。
+--- @param value unknown
+--- @return string|nil
+core.UpperString = function(value)
+  local s = core.String(value)
+  if s == nil then
+    return nil
+  end
+  return string.upper(s)
+end
+
 
 --- 将值转为 number；无法转换时返回 nil。
 --- number 原样返回；string 用 tonumber 解析（失败为 nil）；其余类型为 nil。
@@ -118,4 +130,5 @@ modimport("scripts/core/IsCaveWorld.lua")
 modimport("scripts/core/IsForestWorld.lua")
 modimport("scripts/core/WatchCycles.lua")
 modimport("scripts/core/WatchPhase.lua")
+modimport("scripts/core/ListenSay.lua")
 modimport("scripts/core/Shard.lua")

@@ -29,10 +29,8 @@ local S = i18n
 local RPC_REQUEST = "PearlStatusRequest"
 --- 按字节计；中文待办较长时需留余量
 local STATUS_MESSAGE_MAX_LEN = 2048
-
-local CHAT_TRIGGERS = {
-  pearl = true,
-}
+--- 公频触发词（与 UpperString 比较）
+local CHAT_TRIGGER = "PEARL"
 
 local FRIEND_ANNOUNCE_CYCLE_KEY = "pearl_friend_announce_cycle"
 local last_friend_announce_cycle = nil
@@ -237,39 +235,14 @@ end
 
 AddPrefabPostInit("hermitcrab", WatchPearl)
 
-local function NormalizeChatMessage(message)
-  local trimmed = core.TrimString(message)
-  if trimmed == nil or trimmed == "" then
-    return nil
-  end
-  local lower = string.lower(trimmed)
-  if CHAT_TRIGGERS[lower] then
-    return lower
-  end
-  if CHAT_TRIGGERS[trimmed] then
-    return trimmed
-  end
-  return nil
-end
-
-local function OnChatSay(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-  if whisper or isemote then
+core.ListenSay("server", function(say)
+  if say.whisper or say.isemote then
     return
   end
-  if NormalizeChatMessage(message) ~= nil then
+  if core.UpperString(core.TrimString(say.message)) == CHAT_TRIGGER then
     AnnouncePearlStatusFromChat()
   end
-end
-
-local old_networking_say = Networking_Say
-Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-  if core.IsServer() then
-    core.Call(OnChatSay, guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-  end
-  if old_networking_say ~= nil then
-    return old_networking_say(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-  end
-end
+end)
 
 --- 主分片：收到查询后本地找 Pearl 并 Announce（全服可见）
 core.ReceiveDataFromShard(RPC_REQUEST, function(from_shard, fields)
