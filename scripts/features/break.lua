@@ -42,24 +42,7 @@ local function OnArmorBroke(player, data)
   AnnounceBroke(player, item_name)
 end
 
-local function WatchPlayer(player)
-  if player._dst_broadcasts_armor_broke then
-    return
-  end
-  player._dst_broadcasts_armor_broke = true
-  player:ListenForEvent("armorbroke", core.Wrap(OnArmorBroke))
-end
-
-AddPlayerPostInit(core.Wrap(function(player)
-  if not core.IsServer() then
-    return
-  end
-  core.SetTimeout(player, function()
-    if player:IsValid() then
-      WatchPlayer(player)
-    end
-  end, 0)
-end))
+core.ListenPlayer("armorbroke", OnArmorBroke)
 
 local function GetCurrentUses(uses)
   local current = uses:GetUses()

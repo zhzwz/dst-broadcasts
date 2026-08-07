@@ -146,12 +146,11 @@ local function AnnounceTemperature(player, key)
   core.Announce(string.format(template, PlayerName(player)))
   local line = core.GetAnnounceLine(ANNOUNCE_KEYS[key], player)
   if line ~= nil then
-    core.Announce(line, player)
+    core.PlayerBubble(line, player)
   end
 end
 
---- allow_announce=false 时只同步 flags（进服对齐）
-local function CheckTemperature(player, current, last, allow_announce)
+local function CheckTemperature(player, current, last)
   if player == nil or not player:IsValid() then
     return
   end
@@ -173,7 +172,7 @@ local function CheckTemperature(player, current, last, allow_announce)
   if freezing then
     if not player[FREEZE_FLAG] then
       player[FREEZE_FLAG] = true
-      if allow_announce and cooling then
+      if cooling then
         AnnounceTemperature(player, "cold")
       end
     end
@@ -184,7 +183,7 @@ local function CheckTemperature(player, current, last, allow_announce)
   if overheating then
     if not player[OVERHEAT_FLAG] then
       player[OVERHEAT_FLAG] = true
-      if allow_announce and heating then
+      if heating then
         AnnounceTemperature(player, "hot")
       end
     end
@@ -199,36 +198,7 @@ local function OnTemperatureDelta(player, data)
     return
   end
   local last = data and data.last
-  CheckTemperature(player, current, last, true)
+  CheckTemperature(player, current, last)
 end
 
-local function SyncFlags(player)
-  local current = GetTemperature(player)
-  if current ~= nil then
-    CheckTemperature(player, current, nil, false)
-  end
-end
-
-local function WatchPlayer(player)
-  if player == nil or not player:IsValid() then
-    return
-  end
-  if player._dst_broadcasts_temperature_watching then
-    return
-  end
-  player._dst_broadcasts_temperature_watching = true
-
-  player:ListenForEvent("temperaturedelta", core.Wrap(OnTemperatureDelta))
-  core.Call(SyncFlags, player)
-end
-
-AddPlayerPostInit(core.Wrap(function(player)
-  if not core.IsServer() then
-    return
-  end
-  core.SetTimeout(player, function()
-    if player:IsValid() then
-      WatchPlayer(player)
-    end
-  end, 0)
-end))
+core.ListenPlayer("temperaturedelta", OnTemperatureDelta)

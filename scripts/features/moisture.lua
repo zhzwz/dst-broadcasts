@@ -43,11 +43,10 @@ local function AnnounceTier(player, threshold, announce_key)
   core.Announce(string.format(prefix, PlayerName(player)))
   local line = core.GetAnnounceLine(announce_key, player)
   if line ~= nil then
-    core.Announce(line, player)
+    core.PlayerBubble(line, player)
   end
 end
 
---- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckMoisture(player, value, allow_announce)
   if player == nil or not player:IsValid() then
     return
@@ -102,33 +101,4 @@ local function OnMoistureDelta(player, data)
   CheckMoisture(player, value, increasing)
 end
 
-local function SyncFlags(player)
-  local value = GetMoistureValue(player)
-  if value ~= nil then
-    CheckMoisture(player, value, false)
-  end
-end
-
-local function WatchPlayer(player)
-  if player == nil or not player:IsValid() then
-    return
-  end
-  if player._dst_broadcasts_moisture_watching then
-    return
-  end
-  player._dst_broadcasts_moisture_watching = true
-
-  player:ListenForEvent("moisturedelta", core.Wrap(OnMoistureDelta))
-  core.Call(SyncFlags, player)
-end
-
-AddPlayerPostInit(core.Wrap(function(player)
-  if not core.IsServer() then
-    return
-  end
-  core.SetTimeout(player, function()
-    if player:IsValid() then
-      WatchPlayer(player)
-    end
-  end, 0)
-end))
+core.ListenPlayer("moisturedelta", OnMoistureDelta)

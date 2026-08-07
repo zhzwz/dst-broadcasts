@@ -40,7 +40,6 @@ local function AnnounceTier(player, messages_key)
   core.Announce(string.format(message, PlayerName(player)))
 end
 
---- allow_announce=false 时只同步 flags（进服对齐）
 local function CheckSanity(player, percent, allow_announce)
   if player == nil or not player:IsValid() then
     return
@@ -96,33 +95,4 @@ local function OnSanityDelta(player, data)
   CheckSanity(player, percent, decreasing)
 end
 
-local function SyncFlags(player)
-  local percent = GetSanityPercent(player)
-  if percent ~= nil then
-    CheckSanity(player, percent, false)
-  end
-end
-
-local function WatchPlayer(player)
-  if player == nil or not player:IsValid() then
-    return
-  end
-  if player._dst_broadcasts_sanity_watching then
-    return
-  end
-  player._dst_broadcasts_sanity_watching = true
-
-  player:ListenForEvent("sanitydelta", core.Wrap(OnSanityDelta))
-  core.Call(SyncFlags, player)
-end
-
-AddPlayerPostInit(core.Wrap(function(player)
-  if not core.IsServer() then
-    return
-  end
-  core.SetTimeout(player, function()
-    if player:IsValid() then
-      WatchPlayer(player)
-    end
-  end, 0)
-end))
+core.ListenPlayer("sanitydelta", OnSanityDelta)

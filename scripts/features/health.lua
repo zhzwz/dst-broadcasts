@@ -119,33 +119,4 @@ local function OnHealthDelta(player, data)
   CheckHealth(player, percent, decreasing)
 end
 
-local function SyncHealthFlags(player)
-  local percent = GetHealthPercent(player)
-  if percent ~= nil then
-    CheckHealth(player, percent, false)
-  end
-end
-
-local function WatchPlayer(player)
-  if player == nil or not player:IsValid() then
-    return
-  end
-  if player._dst_broadcasts_health_watching then
-    return
-  end
-  player._dst_broadcasts_health_watching = true
-
-  player:ListenForEvent("healthdelta", core.Wrap(OnHealthDelta))
-  core.Call(SyncHealthFlags, player)
-end
-
-AddPlayerPostInit(core.Wrap(function(player)
-  if not core.IsServer() then
-    return
-  end
-  core.SetTimeout(player, function()
-    if player:IsValid() then
-      WatchPlayer(player)
-    end
-  end, 0)
-end))
+core.ListenPlayer("healthdelta", OnHealthDelta)
