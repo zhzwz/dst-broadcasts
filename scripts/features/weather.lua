@@ -22,7 +22,7 @@ core.ListenWeather(function(event)
     return
   end
 
-  core.Announce(string.format(template, table.concat(parts, i18n.separator.comma)))
+  core.Announce(string.format(template, table.concat(parts, i18n.symbol.comma)))
 end)
 
 --- 月雹

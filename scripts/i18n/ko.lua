@@ -22,10 +22,11 @@ i18n = {
   item_broke = "%s의 %s가 파괴되었습니다!",
   item_last_use = "%s의 %s 사용 횟수가 1회만 남았습니다!",
   armor = "갑옷",
-  separator = {
+  symbol = {
     comma = ", ",
-    list = ", ",
+    enumeration = ", ",
     semicolon = "; ",
+    colon = ": ",
   },
   seasons = {
     autumn = "가을",

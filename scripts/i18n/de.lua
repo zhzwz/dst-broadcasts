@@ -22,10 +22,11 @@ i18n = {
   item_broke = "%s: %s ist kaputt!",
   item_last_use = "%s: %s hat nur noch 1 Nutzung!",
   armor = "Rüstung",
-  separator = {
+  symbol = {
     comma = ", ",
-    list = ", ",
+    enumeration = ", ",
     semicolon = "; ",
+    colon = ": ",
   },
   seasons = {
     autumn = "Herbst",

@@ -22,10 +22,11 @@ i18n = {
   item_broke = "%s的%s已損毀！",
   item_last_use = "%s的%s僅剩最後 1 次使用！",
   armor = "護甲",
-  separator = {
+  symbol = {
     comma = "，",
-    list = "、",
+    enumeration = "、",
     semicolon = "；",
+    colon = "：",
   },
   seasons = {
     autumn = "秋季",

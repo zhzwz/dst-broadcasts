@@ -106,7 +106,7 @@ local function TryBuildLocalStatusMessage()
   local message = string.format(S.pearl_status, S.pearl_name, level, max_level)
   local pending = CollectPendingTasks(friendlevels)
   if #pending > 0 then
-    message = message .. string.format(S.pearl_tasks_pending, table.concat(pending, S.separator.list))
+    message = message .. string.format(S.pearl_tasks_pending, table.concat(pending, S.symbol.enumeration))
   else
     message = message .. S.pearl_tasks_done
   end

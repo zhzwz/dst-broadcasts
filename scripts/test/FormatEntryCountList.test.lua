@@ -4,7 +4,7 @@
 
 local here = arg[0]:match("^(.*)/") or "."
 core = {}
-i18n = { separator = { list = "、" } }
+i18n = { symbol = { enumeration = "、" } }
 dofile(here .. "/../core/FormatEntryCount.lua")
 dofile(here .. "/../core/FormatEntryCountList.lua")
 
@@ -24,7 +24,7 @@ end
 expect_eq(
   core.FormatEntryCountList({ ["土豆"] = 10, ["胡萝卜"] = 8 }),
   "土豆×10、胡萝卜×8",
-  "list sorted by name with i18n separator"
+  "list sorted by name with i18n symbol.enumeration"
 )
 expect_eq(core.FormatEntryCountList({ ["空"] = 0 }), nil, "all zero -> nil")
 expect_eq(core.FormatEntryCountList({}), nil, "empty map -> nil")
