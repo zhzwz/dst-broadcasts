@@ -23,6 +23,8 @@ modimport("scripts/features/stats/temperature.lua")
 modimport("scripts/features/stats/moisture.lua")
 modimport("scripts/features/stats/krampus.lua")
 modimport("scripts/features/stats/lucky.lua")
+modimport("scripts/features/warning_common.lua")
+modimport("scripts/features/hounded.lua")
 modimport("scripts/features/warning.lua")
 
 modimport("scripts/features/frograin.lua")

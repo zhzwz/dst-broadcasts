@@ -112,11 +112,14 @@ words:
   - telestaff # 传送魔杖
   - temperaturedelta # 温度组件事件
   - threequarter
+  - timetoattack
+  - timetospawn
   - twinofterror # 双胞胎错乱
   - upvalue
   - wagboss # 机器人首领
   - warnquake # 警告地震
   - wobyrack # 圆木晾晒架
   - worktree
+  - worldsettingstimer
   - worldstate
   - yellowstaff # 唤星者魔杖
