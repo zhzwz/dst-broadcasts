@@ -24,6 +24,7 @@ i18n = {
   armor = "护甲",
   symbol = {
     comma = "，",
+    period = "。",
     enumeration = "、",
     semicolon = "；",
     colon = "：",
@@ -53,7 +54,6 @@ i18n = {
   },
   --- calendar: base + 可选换季/满月/新月提醒（≤5 天）
   calendar_base = "永恒%d日，%s第%d天",
-  calendar_stop = "。",
   calendar_moon = { full = "满月", new = "新月" },
   calendar_enter = {
     autumn = "入秋",

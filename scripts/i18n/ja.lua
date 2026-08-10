@@ -27,6 +27,7 @@ i18n = {
     enumeration = "、",
     semicolon = "；",
     colon = "：",
+    period = "。",
   },
   seasons = {
     autumn = "秋",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "洞窟の世界の天気：%s。",
   },
   calendar_base = "永遠%d日、%s%d日目",
-  calendar_stop = "。",
   calendar_moon = { full = "満月", new = "新月" },
   calendar_enter = {
     autumn = "秋",

@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Otoño",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Clima de las cuevas: %s.",
   },
   calendar_base = "Día constante %d, %s día %d",
-  calendar_stop = ".",
   calendar_moon = { full = "luna llena", new = "luna nueva" },
   calendar_enter = {
     autumn = "otoño",

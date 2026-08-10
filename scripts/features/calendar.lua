@@ -57,11 +57,6 @@ do
   end
 end
 
--- 月相周期下标（原版 clock 私有上值，拼写为三 o）
-local function GetMoonPhaseCycle(clock)
-  return core.GetUpvalue(clock.GetDebugString, "_mooomphasecycle")
-end
-
 local function DaysUntilMoonPhase(cycle, phase_id)
   local n = #MOON_PHASE_CYCLES
   for d = 0, n - 1 do
@@ -128,6 +123,7 @@ local function BuildSeasonAlert(remaining, next_key)
 end
 
 local function AnnounceCalendar()
+  -- 森林世界
   if not core.IsForestWorld() then return end
 
   local state = TheWorld.state
@@ -153,12 +149,14 @@ local function AnnounceCalendar()
 
   local clock = core.GetClockComponent()
   if clock ~= nil then
-    local moon_alert = BuildMoonAlert(GetMoonPhaseCycle(clock))
+    -- 月相周期下标（原版 clock 私有上值，拼写为三 o）
+    local moon_alert = BuildMoonAlert(core.GetUpvalue(clock.GetDebugString, "_mooomphasecycle"))
     if moon_alert ~= nil then
       table.insert(alerts, moon_alert)
     end
   end
 
+  -- 按天数排序，天数一样按类型排序，季节优先
   table.sort(alerts, function(a, b)
     if a.days ~= b.days then
       return a.days < b.days
@@ -170,11 +168,7 @@ local function AnnounceCalendar()
     table.insert(parts, alerts[i].text)
   end
 
-  local stop = i18n.calendar_stop
-  if type(stop) ~= "string" then
-    stop = ""
-  end
-  core.Announce(table.concat(parts, i18n.symbol.comma) .. stop)
+  core.Announce(table.concat(parts, i18n.symbol.comma) .. i18n.symbol.period)
 end
 
 core.WatchCycles(AnnounceCalendar)

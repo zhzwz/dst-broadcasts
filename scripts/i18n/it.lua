@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Autunno",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Meteo delle grotte: %s.",
   },
   calendar_base = "Giorno costante %d, %s giorno %d",
-  calendar_stop = ".",
   calendar_moon = { full = "luna piena", new = "luna nuova" },
   calendar_enter = {
     autumn = "autunno",

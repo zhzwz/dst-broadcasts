@@ -27,6 +27,7 @@ i18n = {
     enumeration = "、",
     semicolon = "；",
     colon = "：",
+    period = "。",
   },
   seasons = {
     autumn = "秋季",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "洞穴世界當前天氣，%s。",
   },
   calendar_base = "永恆%d日，%s第%d天",
-  calendar_stop = "。",
   calendar_moon = { full = "滿月", new = "新月" },
   calendar_enter = {
     autumn = "入秋",

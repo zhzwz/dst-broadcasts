@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Herbst",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Wetter in den Höhlen: %s.",
   },
   calendar_base = "Tag %d der Konstante, %s Tag %d",
-  calendar_stop = ".",
   calendar_moon = { full = "Vollmond", new = "Neumond" },
   calendar_enter = {
     autumn = "Herbst",

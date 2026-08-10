@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Outono",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Clima das cavernas: %s.",
   },
   calendar_base = "Dia constante %d, %s dia %d",
-  calendar_stop = ".",
   calendar_moon = { full = "lua cheia", new = "lua nova" },
   calendar_enter = {
     autumn = "outono",

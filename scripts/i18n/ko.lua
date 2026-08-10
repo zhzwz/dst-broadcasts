@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "가을",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "동굴 세계 날씨: %s.",
   },
   calendar_base = "영원 %d일, %s %d일째",
-  calendar_stop = ".",
   calendar_moon = { full = "보름달", new = "삭" },
   calendar_enter = {
     autumn = "가을",

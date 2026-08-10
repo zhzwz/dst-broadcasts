@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Осень",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Погода в пещерах: %s.",
   },
   calendar_base = "День Постоянства %d, %s день %d",
-  calendar_stop = ".",
   calendar_moon = { full = "полнолуние", new = "новолуние" },
   calendar_enter = {
     autumn = "осень",

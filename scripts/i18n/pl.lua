@@ -27,6 +27,7 @@ i18n = {
     enumeration = ", ",
     semicolon = "; ",
     colon = ": ",
+    period = ".",
   },
   seasons = {
     autumn = "Jesień",
@@ -52,7 +53,6 @@ i18n = {
     report_cave = "Pogoda w jaskiniach: %s.",
   },
   calendar_base = "Dzień Stałej %d, %s dzień %d",
-  calendar_stop = ".",
   calendar_moon = { full = "pełnia", new = "nów" },
   calendar_enter = {
     autumn = "jesień",
