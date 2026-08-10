@@ -1,7 +1,7 @@
 {
   "name": "dst-broadcasts",
   "type": "module",
-  "version": "1.8.2",
+  "version": "1.9.0",
   "private": true,
   "scripts": {
     "build-modinfo": "bun run tools/build_modinfo.ts",
