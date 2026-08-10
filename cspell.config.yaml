@@ -13,6 +13,7 @@ ignoreWords:
 
 words:
   - acidrain # 酸雨
+  - activeplayers
   - alterguardian # 天体守护者
   - armorbroke # 护甲损坏
   - bearger # 熊獾
@@ -49,9 +50,13 @@ words:
   - ismastersim
   - israining # 降雨
   - isspring # 春季
+  - kramped # 淘气值世界组件
+  - krampus # 坎普斯 / 淘气值播报
   - localplayer # 本地玩家
   - luamin
   - luarc
+  - luckuser # 幸运值组件
+  - lucky # 幸运值播报
   - lunar
   - lunarfrog # 明眼青蛙
   - lunarhail # 月雹
@@ -60,6 +65,7 @@ words:
   - malbatross # 秃鹫
   - mapdeliverable
   - marbleshrub # 大理石灌木
+  - maxhealth
   - maxtemp
   - meatracks # 晾肉架
   - minhealth
@@ -99,6 +105,7 @@ words:
   - stringutil
   - temperaturedelta # 温度组件事件
   - twinofterror # 双胞胎错乱
+  - upvalue
   - wagboss # 机器人首领
   - warnquake # 警告地震
   - wobyrack # 圆木晾晒架

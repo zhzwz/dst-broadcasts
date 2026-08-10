@@ -8,6 +8,15 @@
 --- @param path string
 function modimport(path) end
 
+--- 指定组件构造完成后回调，用于扩展或挂钩原版组件。
+--- @param classname string 组件名（如 `"luckuser"`、`"kramped"`）
+--- @param fn fun(self: table) 回调；`self` 为该组件实例
+function AddComponentPostInit(classname, fn) end
+
+--- 世界正在读档 / 填充实体时为 `true`；加载期的数值变化通常应忽略，避免误播报。
+--- @type boolean
+POPULATING = false
+
 --- @class HealthComponent
 --- @field currenthealth number|nil
 --- @field minhealth number|nil

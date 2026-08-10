@@ -106,31 +106,6 @@ i18n = {
     "La dernière lueur va s'éteindre — la conscience de %s s'efface.",
     "L'esprit de %s est déjà brisé — un festin pour les ombres !",
   },
-  player_low_health = "La vie de %s est tombée à %d/%d !",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Vous entendez ? %s joue de la percussion avec ses dents.",
-      "Bulletin météo : le froid autour de %s a l'air louche.",
-      "%s cherche un feu de camp — quelqu'un peut aider ?",
-      "Ne clignez pas des yeux — %s va bientôt geler sur place.",
-      "Flash info : %s affronte l'air froid en manches courtes.",
-    },
-    hot = {
-      "Spécial été : %s commence à fumer.",
-      "Petit conseil : %s n'est pas loin de prendre feu.",
-      "Lien direct canicule — %s, ça va ?",
-      "Secours d'urgence : laissez un couloir vers l'ombre pour %s.",
-      "Flash : %s est en train de disputer la chaleur.",
-    },
-  },
-  player_moisture = {
-    [10] = "Attention — on dirait que %s a pris quelques gouttes.",
-    [20] = "Belle tenue, %s. Tu comptais prendre un bain digne dedans ?",
-    [40] = "Si vous croisez %s, faites comme si de rien n'était. Plus très présentable.",
-    [60] = "Toujours dehors ? %s sait faire un feu… non ?",
-    [80] = "Émission spéciale rat trempé — en direct avec %s.",
-  },
   pearl_name = "Ermite grincheuse",
   pearl_status = "%s amitié %d/%d",
   pearl_tasks_pending = ". À faire : %s",

@@ -108,31 +108,6 @@ i18n = {
     "The last glimmer is about to die — %s's consciousness is fading.",
     "%s's mind is already broken — a feast for the shadows!",
   },
-  player_low_health = "%s's health has dropped to %d/%d!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Hear that? %s is playing percussion with their teeth.",
-      "Weather bulletin: the chill around %s feels off.",
-      "%s is looking for a campfire — can anyone help?",
-      "Don't blink — %s is about to freeze solid.",
-      "Breaking news: %s just picked a fight with cold air in short sleeves.",
-    },
-    hot = {
-      "Summer special: %s is starting to smoke.",
-      "Friendly tip: %s is not far from catching fire.",
-      "Heatwave live link — %s, you okay?",
-      "Emergency aid: please clear a life lane to the shade for %s.",
-      "Breaking insert: %s is arguing with the heat.",
-    },
-  },
-  player_moisture = {
-    [10] = "Heads up — %s seems to have caught a splash of something.",
-    [20] = "Nice outfit, %s. Planning a dignified bath in that?",
-    [40] = "If you see %s, pretend you don't know them. Not looking sharp.",
-    [60] = "Still wandering around? %s can make a fire… right?",
-    [80] = "Special drowned-rat broadcast — going live with %s.",
-  },
   pearl_name = "Pearl",
   pearl_status = "%s friendship %d/%d",
   pearl_tasks_pending = ". To-do: %s",

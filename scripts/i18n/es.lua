@@ -106,31 +106,6 @@ i18n = {
     "El último destello está por apagarse — la conciencia de %s se desvanece.",
     "¡La mente de %s ya está destrozada — un festín para las sombras!",
   },
-  player_low_health = "¡La vida de %s bajó a %d/%d!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "¿Lo oyen? %s está tocando percusión con los dientes.",
-      "Boletín del tiempo: el frío alrededor de %s no pinta bien.",
-      "%s busca una hoguera — ¿alguien puede ayudar?",
-      "No parpadeen: %s está a punto de congelarse del todo.",
-      "Última hora: %s se pelea con el aire frío en manga corta.",
-    },
-    hot = {
-      "Especial de verano: %s empieza a echar humo.",
-      "Aviso amable: %s no está lejos de prenderse.",
-      "Enlace en vivo por la ola de calor — %s, ¿estás bien?",
-      "Emergencia: dejen un pasillo hacia la sombra para %s.",
-      "Inserto urgente: %s está discutiendo con el calor.",
-    },
-  },
-  player_moisture = {
-    [10] = "Atención: parece que a %s le ha caído algo encima.",
-    [20] = "Bonito atuendo, %s. ¿Pensabas darte un baño digno con eso?",
-    [40] = "Si os topáis con %s, haced como si no lo conocierais. Ya no da la talla.",
-    [60] = "¿Sigues deambulando? %s sabe hacer una hoguera… ¿verdad?",
-    [80] = "Programa especial pollo mojado — conectamos en directo con %s.",
-  },
   pearl_name = "Ermitaña Cascarrabias",
   pearl_status = "%s amistad %d/%d",
   pearl_tasks_pending = ". Pendiente: %s",

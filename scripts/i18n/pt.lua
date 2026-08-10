@@ -106,31 +106,6 @@ i18n = {
     "O último brilho está prestes a se apagar — a consciência de %s se desfaz.",
     "A mente de %s já está destruída — um banquete para as sombras!",
   },
-  player_low_health = "A vida de %s caiu para %d/%d!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Ouviram? %s está tocando percussão com os dentes.",
-      "Boletim do tempo: o frio perto de %s está estranho.",
-      "%s está procurando uma fogueira — alguém pode ajudar?",
-      "Não pisquem: %s está prestes a congelar de vez.",
-      "Última hora: %s brigou com o ar frio de manga curta.",
-    },
-    hot = {
-      "Especial de verão: %s começa a fumegar.",
-      "Aviso gentil: %s não está longe de pegar fogo.",
-      "Ligação da onda de calor — %s, tudo bem?",
-      "Emergência: abram um corredor até a sombra para %s.",
-      "Inserção urgente: %s está discutindo com o calor.",
-    },
-  },
-  player_moisture = {
-    [10] = "Atenção: parece que %s levou umas gotas de alguma coisa.",
-    [20] = "Belo traje, %s. Pretendia tomar um banho digno assim?",
-    [40] = "Se toparem com %s, finjam que não conhecem. Já não está apresentável.",
-    [60] = "Ainda vagueando? %s sabe fazer uma fogueira… né?",
-    [80] = "Programa especial frango ensopado — ao vivo com %s.",
-  },
   pearl_name = "Eremita Rabugenta",
   pearl_status = "%s amizade %d/%d",
   pearl_tasks_pending = ". Pendente: %s",

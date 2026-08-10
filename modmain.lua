@@ -1,5 +1,5 @@
 --- dst-broadcasts：可扩展的全服播报框架。
---- 新增模块：在 scripts/features/ 下添加，并在此 modimport。
+--- 新增模块：在 scripts/features/ 下添加（玩家数值见 features/stats/），并在此 modimport。
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
@@ -16,12 +16,15 @@ end)
 modimport("scripts/features/weather.lua")
 modimport("scripts/features/break.lua")
 modimport("scripts/features/fueled.lua")
-modimport("scripts/features/hunger.lua")
-modimport("scripts/features/sanity.lua")
-modimport("scripts/features/health.lua")
-modimport("scripts/features/temperature.lua")
-modimport("scripts/features/moisture.lua")
+modimport("scripts/features/stats/hunger.lua")
+modimport("scripts/features/stats/sanity.lua")
+modimport("scripts/features/stats/health.lua")
+modimport("scripts/features/stats/temperature.lua")
+modimport("scripts/features/stats/moisture.lua")
+modimport("scripts/features/stats/krampus.lua")
+modimport("scripts/features/stats/lucky.lua")
 modimport("scripts/features/warning.lua")
+
 modimport("scripts/features/frograin.lua")
 modimport("scripts/features/calendar.lua")
 modimport("scripts/features/harvest.lua")

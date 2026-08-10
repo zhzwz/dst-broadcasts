@@ -106,31 +106,6 @@ i18n = {
     "L'ultimo barlume sta per spegnersi — la coscienza di %s svanisce.",
     "La mente di %s è già spezzata — una prelibatezza per le ombre!",
   },
-  player_low_health = "La vita di %s è scesa a %d/%d!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Sentite? %s suona le percussioni con i denti.",
-      "Bollettino meteo: il freddo intorno a %s non convince.",
-      "%s cerca un falò — qualcuno può aiutare?",
-      "Non sbattere le palpebre: %s sta per congelarsi sul posto.",
-      "Flash: %s sfida l'aria fredda in maglietta.",
-    },
-    hot = {
-      "Speciale estate: %s inizia a fumare.",
-      "Avviso gentile: %s non è lontano dall'incendiarsi.",
-      "Collegamento ondata di caldo — %s, tutto bene?",
-      "Emergenza: liberate un corridoio verso l'ombra per %s.",
-      "Inserto urgente: %s sta litigando con il caldo.",
-    },
-  },
-  player_moisture = {
-    [10] = "Attenzione: sembra che a %s sia finito addosso qualcosa.",
-    [20] = "Bel vestito, %s. Pensavi di fare un bagno dignitoso così?",
-    [40] = "Se incontrate %s, fate finta di non conoscerlo. Non è più presentabile.",
-    [60] = "Ancora in giro? %s sa fare un falò… vero?",
-    [80] = "Speciale pollo bagnato — colleghiamo in diretta %s.",
-  },
   pearl_name = "Eremita Burbera",
   pearl_status = "%s amicizia %d/%d",
   pearl_tasks_pending = ". Da fare: %s",

@@ -106,31 +106,6 @@ i18n = {
     "Der letzte Funken erlischt bald — %ss Bewusstsein schwindet.",
     "%ss Geist ist schon gebrochen — ein Festmahl für die Schatten!",
   },
-  player_low_health = "Die Gesundheit von %s ist auf %d/%d gesunken!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Hört ihr das? %s spielt Percussion mit den Zähnen.",
-      "Wetterbericht: Die Kälte um %s fühlt sich seltsam an.",
-      "%s sucht ein Lagerfeuer — kann jemand helfen?",
-      "Nicht blinzeln — %s friert gleich fest.",
-      "Eilmeldung: %s legt sich im T-Shirt mit der Kälte an.",
-    },
-    hot = {
-      "Sommerspecial: %s fängt an zu qualmen.",
-      "Freundlicher Hinweis: %s ist nicht weit vom Brennen entfernt.",
-      "Hitzewellen-Schaltung — %s, alles okay?",
-      "Notfallhilfe: bitte macht %s eine Spur in den Schatten frei.",
-      "Eil-Einschub: %s streitet gerade mit der Hitze.",
-    },
-  },
-  player_moisture = {
-    [10] = "Achtung — %s scheint etwas abbekommen zu haben.",
-    [20] = "Schöner Aufzug, %s. Planst du darin ein würdevolles Bad?",
-    [40] = "Wenn ihr %s seht, tut so, als kenntet ihr sie nicht. Sieht nicht mehr fein aus.",
-    [60] = "Immer noch unterwegs? %s kann doch ein Feuer machen… oder?",
-    [80] = "Sondersendung nasse Katze — wir schalten live zu %s.",
-  },
   pearl_name = "Mürrische Eremitin",
   pearl_status = "%s Freundschaft %d/%d",
   pearl_tasks_pending = ". Offen: %s",

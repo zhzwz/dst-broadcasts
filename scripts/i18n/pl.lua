@@ -106,31 +106,6 @@ i18n = {
     "Ostatni blask zaraz zgaśnie — świadomość %s zanika.",
     "Umysł %s jest już złamany — uczta dla cieni!",
   },
-  player_low_health = "Życie %s spadło do %d/%d!",
-  --- 温度播报；cold / hot 为字符串数组（随机取一条）；%s = 玩家名
-  player_temperature = {
-    cold = {
-      "Słyszycie? %s gra na perkusji zębami.",
-      "Komunikat pogodowy: chłód wokół %s wygląda nieciekawie.",
-      "%s szuka ogniska — ktoś pomoże?",
-      "Nie mrugajcie: %s zaraz zamarznie na amen.",
-      "Flash: %s w krótkim rękawku walczy z zimnym powietrzem.",
-    },
-    hot = {
-      "Lato specjalnie: %s zaczyna dymić.",
-      "Przyjazna wskazówka: %s niedaleko do zapalenia się.",
-      "Połączenie z falą upałów — %s, wszystko w porządku?",
-      "Nagły wypadek: zróbcie %s przejście do cienia.",
-      "Pilny wtręt: %s kłóci się z upałem.",
-    },
-  },
-  player_moisture = {
-    [10] = "Uwaga — wygląda na to, że %s coś na siebie złapał.",
-    [20] = "Ładny strój, %s. Zamierzasz w tym wziąć dostojną kąpiel?",
-    [40] = "Jak zobaczycie %s, udawajcie, że nie znacie. Już nie wygląda serio.",
-    [60] = "Nadal się włóczysz? %s umie rozpalić ognisko… prawda?",
-    [80] = "Specjalny program mokrego kurczaka — łączymy się na żywo z %s.",
-  },
   pearl_name = "Zrzędliwa Pustelnica",
   pearl_status = "%s przyjaźń %d/%d",
   pearl_tasks_pending = ". Do zrobienia: %s",
