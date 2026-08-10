@@ -8,6 +8,12 @@ i18n = {
     [10] = "10 segundos",
     [5] = "5 segundos",
   },
+  time = {
+    sep = " ",
+    seconds = "%d segundos",
+    minutes = "%d minutos",
+    hours = "%d horas",
+  },
   attack_time = "Ameaça a caminho: %s em %s. Preparem-se!",
   attack_started = "Ataque: %s!",
   boss_appeared = "%s apareceu!",

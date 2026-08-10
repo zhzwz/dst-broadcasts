@@ -8,6 +8,12 @@ i18n = {
     [10] = "10秒",
     [5] = "5秒",
   },
+  time = {
+    sep = "",
+    seconds = "%d秒",
+    minutes = "%d分鐘",
+    hours = "%d小時",
+  },
   attack_time = "距離%s來襲還有%s，請做好準備！",
   attack_started = "%s來襲！",
   boss_appeared = "%s已現身！",

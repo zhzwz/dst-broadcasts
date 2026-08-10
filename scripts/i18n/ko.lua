@@ -8,6 +8,12 @@ i18n = {
     [10] = "10초",
     [5] = "5초",
   },
+  time = {
+    sep = "",
+    seconds = "%d초",
+    minutes = "%d분",
+    hours = "%d시간",
+  },
   attack_time = "%s 습격까지 %s 남았습니다. 준비하세요!",
   attack_started = "%s 습격!",
   boss_appeared = "%s가 나타났습니다!",
