@@ -77,6 +77,7 @@ words:
   - moisturedelta # 湿度组件事件
   - moonstorm # 月亮风暴
   - moonstorms
+  - mooomphasecycle # 原版 clock 月相周期上值（三 o 拼写）
   - mutatedbearger # 变异熊獾
   - mutateddeerclops # 变异独眼巨鹿
   - newpercent
@@ -104,6 +105,7 @@ words:
   - steamworks
   - stringutil
   - temperaturedelta # 温度组件事件
+  - threequarter
   - twinofterror # 双胞胎错乱
   - upvalue
   - wagboss # 机器人首领
