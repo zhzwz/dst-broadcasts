@@ -3,27 +3,6 @@
 
 local INTERVAL = 5
 
---- 从 kramped.OnUpdate 上值取出私有表 `_activeplayers`。
-local function GetActivePlayers(kramped)
-  if type(kramped.OnUpdate) ~= "function" then
-    core.Print("krampus: OnUpdate is not a function")
-    return nil
-  end
-
-  local i = 1
-  while true do
-    local upname, value = debug.getupvalue(kramped.OnUpdate, i)
-    if upname == nil then
-      core.Print("krampus: _activeplayers upvalue not found")
-      return nil
-    end
-    if upname == "_activeplayers" then
-      return value
-    end
-    i = i + 1
-  end
-end
-
 local function Announce(player, actions, threshold)
   -- 取显示名；拿不到则不公告
   local name = core.GetDisplayName(player)
@@ -46,7 +25,7 @@ AddComponentPostInit("kramped", core.Wrap(function(self)
   -- 仅服务端
   if not core.IsServer() then return end
 
-  local activeplayers = GetActivePlayers(self)
+  local activeplayers = core.GetUpvalue(self.OnUpdate, "_activeplayers")
   if activeplayers == nil then return end
 
   -- 弱键缓存：上次淘气值；玩家实体回收后自动失效

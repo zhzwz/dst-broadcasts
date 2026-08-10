@@ -92,6 +92,19 @@ core.Number = function(value)
   return nil
 end
 
+--- 将值转为整数（四舍五入）；无效时返回 defaultValue（可省略，即为 nil）。
+--- 经 core.Number 转换；拒绝 NaN / ±inf。
+--- @param value unknown
+--- @param defaultValue number|nil
+--- @return number|nil
+core.Integer = function(value, defaultValue)
+  local n = core.Number(value)
+  if n == nil or n ~= n or n == math.huge or n == -math.huge then
+    return defaultValue
+  end
+  return math.floor(n + 0.5)
+end
+
 --- 从数组（ipairs）中随机取一项；非表或空数组返回 nil。
 --- @param list table|nil
 --- @return any
@@ -117,12 +130,14 @@ modimport("scripts/core/HasTag.lua")
 modimport("scripts/core/IsAlive.lua")
 modimport("scripts/core/IsAtMinHealth.lua")
 modimport("scripts/core/GetDisplayName.lua")
+modimport("scripts/core/GetUpvalue.lua")
 modimport("scripts/core/GetPrefabDisplayName.lua")
 modimport("scripts/core/GetOwner.lua")
 modimport("scripts/core/GetCount.lua")
 modimport("scripts/core/FormatEntryCount.lua")
 modimport("scripts/core/FormatEntryCountList.lua")
 modimport("scripts/core/GetAnnounceLine.lua")
+modimport("scripts/core/GetClockComponent.lua")
 modimport("scripts/core/PlayerBubble.lua")
 modimport("scripts/core/PlayerSay.lua")
 modimport("scripts/core/Announce.lua")
