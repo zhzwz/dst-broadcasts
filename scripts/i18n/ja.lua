@@ -19,9 +19,12 @@ i18n = {
   boss_damage_other = "その他",
   item_low_durability = "%sの%sの耐久値が残り%d%%です。早めに修理しましょう！",
   item_low_fuel = "%sの%sの燃料が残り%d%%です。早めに補充しましょう！",
-  item_broke = "%sの%sが壊れました！",
-  item_last_use = "%sの%sの使用回数が残り1回です！",
-  armor = "防具",
+  broke = {
+    player = "%sの%sが壊れました！",
+    without_player = "%sが壊れました！",
+    player_last_use = "%sの%sが壊れそうです！",
+    without_player_last_use = "%sが壊れそうです！",
+  },
   symbol = {
     comma = "、",
     enumeration = "、",

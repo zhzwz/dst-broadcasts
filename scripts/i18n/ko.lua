@@ -19,9 +19,12 @@ i18n = {
   boss_damage_other = "기타",
   item_low_durability = "%s의 %s 내구도가 %d%%만 남았습니다. 빨리 수선하세요!",
   item_low_fuel = "%s의 %s 연료가 %d%%만 남았습니다. 빨리 보충하세요!",
-  item_broke = "%s의 %s가 파괴되었습니다!",
-  item_last_use = "%s의 %s 사용 횟수가 1회만 남았습니다!",
-  armor = "갑옷",
+  broke = {
+    player = "%s의 %s가 파괴되었습니다!",
+    without_player = "%s가 파괴되었습니다!",
+    player_last_use = "%s의 %s가 곧 파괴됩니다!",
+    without_player_last_use = "%s가 곧 파괴됩니다!",
+  },
   symbol = {
     comma = ", ",
     enumeration = ", ",

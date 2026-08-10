@@ -14,7 +14,7 @@ AddPrefabPostInit("world", function(inst)
 end)
 
 modimport("scripts/features/weather.lua")
-modimport("scripts/features/break.lua")
+modimport("scripts/features/broke.lua")
 modimport("scripts/features/fueled.lua")
 modimport("scripts/features/stats/hunger.lua")
 modimport("scripts/features/stats/sanity.lua")

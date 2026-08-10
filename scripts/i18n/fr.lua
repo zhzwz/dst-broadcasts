@@ -19,9 +19,12 @@ i18n = {
   boss_damage_other = "Autre",
   item_low_durability = "%s : %s n'a plus que %d%% de durabilité. Réparez vite !",
   item_low_fuel = "%s : %s n'a plus que %d%% de carburant. Rechargez vite !",
-  item_broke = "%s : %s est détruit !",
-  item_last_use = "%s : %s n'a plus qu'1 utilisation !",
-  armor = "armure",
+  broke = {
+    player = "%s : %s est détruit !",
+    without_player = "%s est détruit !",
+    player_last_use = "%s : %s est sur le point d'être détruit !",
+    without_player_last_use = "%s est sur le point d'être détruit !",
+  },
   symbol = {
     comma = ", ",
     enumeration = ", ",

@@ -19,9 +19,12 @@ i18n = {
   boss_damage_other = "其他",
   item_low_durability = "%s的%s耐久僅剩%d%%，請及時縫補！",
   item_low_fuel = "%s的%s燃料僅剩%d%%，請及時補充！",
-  item_broke = "%s的%s已損毀！",
-  item_last_use = "%s的%s僅剩最後 1 次使用！",
-  armor = "護甲",
+  broke = {
+    player = "%s的%s已損毀！",
+    without_player = "%s已損毀！",
+    player_last_use = "%s的%s快要損毀了！",
+    without_player_last_use = "%s快要損毀了！",
+  },
   symbol = {
     comma = "，",
     enumeration = "、",

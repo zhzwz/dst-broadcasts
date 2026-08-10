@@ -19,9 +19,12 @@ i18n = {
   boss_damage_other = "Прочее",
   item_low_durability = "%s: прочность %s всего %d%%. Почините скорее!",
   item_low_fuel = "%s: топливо %s всего %d%%. Заправьте скорее!",
-  item_broke = "%s: %s сломан!",
-  item_last_use = "%s: у %s осталось только 1 использование!",
-  armor = "броня",
+  broke = {
+    player = "%s: %s сломан!",
+    without_player = "%s сломан!",
+    player_last_use = "%s: %s скоро сломается!",
+    without_player_last_use = "%s скоро сломается!",
+  },
   symbol = {
     comma = ", ",
     enumeration = ", ",

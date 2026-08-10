@@ -38,6 +38,8 @@ words:
   - friendlevels
   - frograin # 青蛙雨
   - fueltype # 燃料类型
+  - greenamulet # 建造护符
+  - greenstaff # 解构魔杖
   - hassler
   - healthdelta
   - hermitcrab # 寄居蟹隐士
@@ -87,8 +89,11 @@ words:
   - nothrow
   - oldpercent
   - ondeliveryprogressfn
+  - opalstaff # 唤月者魔杖
+  - orangestaff # 懒人魔杖
   - overheathurtrate
   - overheattemp # 过热温度
+  - panflute # 排箫
   - percentusedchange # 燃料组件事件：百分比变化
   - playercolour
   - playerghost # 玩家幽灵
@@ -104,6 +109,7 @@ words:
   - startoverheating # 开始过热
   - steamworks
   - stringutil
+  - telestaff # 传送魔杖
   - temperaturedelta # 温度组件事件
   - threequarter
   - twinofterror # 双胞胎错乱
@@ -113,3 +119,4 @@ words:
   - wobyrack # 圆木晾晒架
   - worktree
   - worldstate
+  - yellowstaff # 唤星者魔杖
