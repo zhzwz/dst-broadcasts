@@ -3,8 +3,10 @@
   "type": "module",
   "version": "1.9.0",
   "private": true,
+  "packageManager": "bun@1.3.14",
   "scripts": {
-    "build-modinfo": "bun run tools/build_modinfo.ts",
+    "preinstall": "npx only-allow bun",
+    "dev": "bun run tools/build_modinfo.ts",
     "pack": "bun run tools/release.ts --pack-only",
     "release": "bun run tools/release.ts",
     "test": "bun run tools/run_lua_tests.ts"

@@ -20,7 +20,7 @@
 ```sh
 bun install
 # 生成 modinfo.lua
-bun run build-modinfo
+bun run dev
 # 打包发布
 bun run release
 ```
