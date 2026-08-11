@@ -56,7 +56,7 @@ end)
 
 --- finiteuses：实体加上该组件后挂 percentusedchange。
 AddComponentPostInit("finiteuses", core.Wrap(function(self)
-  if not core.IsServer() then return end
+  if not core.World.IsServerSide() then return end
   self.inst:ListenForEvent("percentusedchange", core.Wrap(function(inst, data)
     if POPULATING then return end
     local uses = inst.components.finiteuses

@@ -34,7 +34,7 @@ end
 
 AddComponentPostInit("luckuser", core.Wrap(function(self)
   -- 仅服务端
-  if not core.IsServer() then return end
+  if not core.World.IsServerSide() then return end
   -- 挂钩增减幸运源，数值变化时公告
   self.SetLuckSource = WrapOnLuckChange(self.SetLuckSource)
   self.RemoveLuckSource = WrapOnLuckChange(self.RemoveLuckSource)

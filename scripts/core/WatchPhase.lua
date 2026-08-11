@@ -10,7 +10,7 @@ local NEXT_PHASE = {
 --- @param fn fun(phase: string)
 core.WatchPhase = function(fn)
   AddSimPostInit(core.Wrap(function()
-    if not core.IsServer() then
+    if not core.World.IsServerSide() then
       return
     end
     local key = core.World.IsCave() and "cavephase" or "phase"

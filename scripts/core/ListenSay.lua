@@ -17,8 +17,8 @@ local function EnsureHooked()
   local previous_say = GLOBAL.Networking_Say
   --- 必须写 GLOBAL：模组 env 的赋值不会覆盖游戏实际调用的全局
   GLOBAL.Networking_Say = function(guid, userid, name, prefab, message, colour, whisper, isemote, user_vanity)
-    local on_server = core.IsServer()
-    local on_client = core.IsClient()
+    local on_server = core.World.IsServerSide()
+    local on_client = core.World.IsClientSide()
     local run_server = on_server and #server_listeners > 0
     local run_client = on_client and #client_listeners > 0
     if run_server or run_client then
@@ -51,7 +51,7 @@ local function EnsureHooked()
 end
 
 local function TryHook()
-  if (#server_listeners > 0 and core.IsServer()) or (#client_listeners > 0 and core.IsClient()) then
+  if (#server_listeners > 0 and core.World.IsServerSide()) or (#client_listeners > 0 and core.World.IsClientSide()) then
     EnsureHooked()
   end
 end

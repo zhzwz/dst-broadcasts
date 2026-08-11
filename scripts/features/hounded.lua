@@ -15,7 +15,7 @@ local function GetName()
 end
 
 AddSimPostInit(core.Wrap(function()
-  if not core.IsServer() then return end
+  if not core.World.IsServerSide() then return end
   if TheWorld.components.hounded == nil then return end
   local attacking = false
   local time_cache = math.huge

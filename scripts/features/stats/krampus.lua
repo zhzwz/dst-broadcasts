@@ -23,7 +23,7 @@ end
 
 AddComponentPostInit("kramped", core.Wrap(function(self)
   -- 仅服务端
-  if not core.IsServer() then return end
+  if not core.World.IsServerSide() then return end
 
   local activeplayers = core.GetUpvalue(self.OnUpdate, "_activeplayers")
   if activeplayers == nil then return end

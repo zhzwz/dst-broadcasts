@@ -183,7 +183,7 @@ end
 
 local function HookAppear(prefab, boss)
   AddPrefabPostInit(prefab, core.Wrap(function(inst)
-    if not core.IsServer() then
+    if not core.World.IsServerSide() then
       return
     end
 

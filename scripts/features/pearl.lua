@@ -216,7 +216,7 @@ local function OnFriendLevelChanged(inst)
 end
 
 local function WatchPearl(inst)
-  if not core.IsServer() then
+  if not core.World.IsServerSide() then
     return
   end
   --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报

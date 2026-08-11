@@ -11,7 +11,7 @@ core.ListenPlayer = function(event, fn)
     return
   end
   AddPlayerPostInit(core.Wrap(function(player)
-    if not core.IsServer() then
+    if not core.World.IsServerSide() then
       return
     end
     for i = 1, #listeners do

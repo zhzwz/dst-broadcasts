@@ -4,7 +4,7 @@
 --- @param fn fun(cycles: number)
 core.WatchCycles = function(fn)
   AddSimPostInit(core.Wrap(function()
-    if not core.IsServer() then
+    if not core.World.IsServerSide() then
       return
     end
     --- 会话开始时记下的已是当前 cycles（读档/回档为重建世界）

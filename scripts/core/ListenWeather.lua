@@ -107,7 +107,7 @@ local function NotifyListeners()
 end
 
 local function StartPolling()
-  if not core.IsServer() or TheWorld == nil then
+  if not core.World.IsServerSide() or TheWorld == nil then
     return
   end
   local keys0 = BuildWeatherSnapshot()

@@ -116,7 +116,7 @@ local function WatchFueled(inst)
 end
 
 AddComponentPostInit("fueled", core.Wrap(function(self)
-  if not core.IsServer() then
+  if not core.World.IsServerSide() then
     return
   end
   core.SetTimeout(self.inst, function(inst)
