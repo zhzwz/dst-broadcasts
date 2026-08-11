@@ -22,18 +22,18 @@ core.WatchAttackWarning = function(key, get_seconds)
     local name = core.GetPrefabDisplayName(key)
     if name == nil then return end
 
-    local old = cache[key]
-    cache[key] = new
+    local seconds_previous = cache[key]
 
     --- 越过的最低档（一次跳多档只公告最短那档）
     local crossed = nil
     for _, d in ipairs(THRESHOLDS) do
-      if new <= d and d < old then
+      if new <= d and d < seconds_previous then
         if crossed == nil or d < crossed then
           crossed = d
         end
       end
     end
+    cache[key] = new
     if crossed == nil then return end
 
     local duration = i18n.durations[crossed]

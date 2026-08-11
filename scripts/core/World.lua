@@ -51,17 +51,17 @@ local function ListenCycles(side, callback)
   AddSimPostInit(core.Wrap(function()
     if not IsCorrectSide(side) then return end
     --- 会话开始时记下的已是当前 cycles（读档/回档为重建世界）；cycles 从 0 起
-    local cycles_prev = core.Number(TheWorld.state.cycles) or 0
+    local cycles_previous = core.Number(TheWorld.state.cycles) or 0
     TheWorld:WatchWorldState("cycles", core.Wrap(function(_, cycles)
       local cycles_new = core.Number(cycles) or 0
-      local prev = cycles_prev
-      cycles_prev = cycles_new
       --- 本局内非连续跳变不触发
-      if prev + 1 ~= cycles_new then return end
-      --- 延后到本帧末，避免与同期 WatchWorldState 打架
-      TheWorld:DoTaskInTime(0, core.Wrap(function()
-        callback(cycles_new)
-      end))
+      if cycles_previous + 1 == cycles_new then
+        --- 延后到本帧末，避免与同期 WatchWorldState 打架
+        TheWorld:DoTaskInTime(0, core.Wrap(function()
+          callback(cycles_new)
+        end))
+      end
+      cycles_previous = cycles_new
     end))
   end))
 end
@@ -77,14 +77,14 @@ local function ListenPhase(side, callback)
     --- 森林看 phase，洞穴看 cavephase
     local key = IsCave() and "cavephase" or "phase"
     --- 会话开始时记下的已是当前相位（读档/回档为重建世界）
-    local phase_prev = TheWorld.state ~= nil and TheWorld.state[key] or nil
+    local phase_previous = TheWorld.state ~= nil and TheWorld.state[key] or nil
     TheWorld:WatchWorldState(key, core.Wrap(function(_, phase)
-      local prev = phase_prev
-      phase_prev = phase
-      --- 仅 prev → 下一相位时回调
-      if prev == nil or NEXT_PHASE[prev] ~= phase then return end
-      --- 延后到本帧末，避免与同期 WatchWorldState 打架
-      TheWorld:DoTaskInTime(0, core.Wrap(function() callback(phase) end))
+      --- 仅 phase_previous → 下一相位时回调
+      if phase_previous ~= nil and NEXT_PHASE[phase_previous] == phase then
+        --- 延后到本帧末，避免与同期 WatchWorldState 打架
+        TheWorld:DoTaskInTime(0, core.Wrap(function() callback(phase) end))
+      end
+      phase_previous = phase
     end))
   end))
 end

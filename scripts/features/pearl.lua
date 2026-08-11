@@ -195,24 +195,17 @@ local function OnFriendLevelChanged(inst)
     return
   end
   local level = friendlevels:GetLevel() or 0
-  local prev = inst._broadcasts_pearl_level
+  local level_previous = inst._broadcasts_pearl_level
+  if level_previous ~= nil and level > level_previous then
+    local cycles = TheWorld.state ~= nil and TheWorld.state.cycles or nil
+    if type(cycles) == "number" and GetPersistedFriendAnnounceCycle() ~= cycles then
+      local message = TryBuildLocalStatusMessage()
+      if message ~= nil and BroadcastStatus(message) then
+        SetPersistedFriendAnnounceCycle(cycles)
+      end
+    end
+  end
   inst._broadcasts_pearl_level = level
-  if prev == nil or level <= prev then
-    return
-  end
-
-  local cycles = TheWorld.state ~= nil and TheWorld.state.cycles or nil
-  if type(cycles) ~= "number" then
-    return
-  end
-  if GetPersistedFriendAnnounceCycle() == cycles then
-    return
-  end
-
-  local message = TryBuildLocalStatusMessage()
-  if message ~= nil and BroadcastStatus(message) then
-    SetPersistedFriendAnnounceCycle(cycles)
-  end
 end
 
 local function WatchPearl(inst)

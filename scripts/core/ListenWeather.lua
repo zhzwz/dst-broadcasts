@@ -9,7 +9,7 @@ local INTERVAL_SECONDS = 5
 local listeners = {}
 local scheduled = false
 local ready = false
-local last_signature = nil
+local signature_previous = nil
 
 local function GetPrecipitationRateKey(rate)
   if type(rate) == "number" then
@@ -69,10 +69,10 @@ local function NotifyListeners()
   end
   local keys, precipitation, precipitationrate = BuildWeatherSnapshot()
   local signature = KeysSignature(keys)
-  if signature == last_signature then
+  if signature == signature_previous then
     return
   end
-  last_signature = signature
+  signature_previous = signature
   local event = {
     keys = keys,
     precipitation = precipitation,
@@ -88,12 +88,12 @@ local function StartPolling()
     return
   end
   local keys0 = BuildWeatherSnapshot()
-  last_signature = KeysSignature(keys0)
+  signature_previous = KeysSignature(keys0)
   TheWorld:DoPeriodicTask(INTERVAL_SECONDS, core.Wrap(NotifyListeners))
   --- 首帧后再接受变化，避免读档瞬间误播
   TheWorld:DoTaskInTime(0, core.Wrap(function()
     local keys = BuildWeatherSnapshot()
-    last_signature = KeysSignature(keys)
+    signature_previous = KeysSignature(keys)
     ready = true
   end))
 end
