@@ -45,7 +45,9 @@
     ]
   },
   "workspace": {
-    "library": [],
+    "library": [
+      "dst.d.lua"
+    ],
     "ignoreDir": [
       "node_modules",
       "broadcasts-"
