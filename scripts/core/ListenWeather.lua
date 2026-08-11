@@ -79,7 +79,7 @@ local function NotifyListeners()
     precipitationrate = precipitationrate,
   }
   for i = 1, #listeners do
-    core.Call(listeners[i], event)
+    listeners[i](event)
   end
 end
 
@@ -111,6 +111,7 @@ local function EnsureScheduled()
   end
 end
 
+--- 注册天气变化监听（仅主机轮询）。
 --- @param fn fun(event: ListenWeatherEvent)
 core.ListenWeather = function(fn)
   if type(fn) ~= "function" then

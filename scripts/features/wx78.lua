@@ -31,9 +31,7 @@ local function CollectContents(inst)
   end
 
   if container.ForEachItem ~= nil then
-    core.Call(function()
-      container:ForEachItem(consider)
-    end)
+    container:ForEachItem(consider)
   elseif type(container.slots) == "table" then
     for _, item in pairs(container.slots) do
       consider(item)

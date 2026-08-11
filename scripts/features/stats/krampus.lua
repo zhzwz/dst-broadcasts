@@ -44,7 +44,7 @@ AddComponentPostInit("kramped", core.Wrap(function(self)
         actions_cache[player] = actions
         -- 首次同步（cached 为 nil）不公告，之后变动才公告
         if cached ~= nil then
-          core.Call(Announce, player, actions, data.threshold)
+          Announce(player, actions, data.threshold)
         end
       end
     end
