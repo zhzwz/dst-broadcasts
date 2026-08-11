@@ -22,6 +22,24 @@ function AddSimPostInit(fn) end
 --- @type boolean
 POPULATING = false
 
+--- 官方风暴类型枚举（`constants.lua`）；`ms_stormchanged` 的 `stormtype` 用此值。
+--- @class StormTypes
+--- @field NONE integer
+--- @field SANDSTORM integer
+--- @field MOONSTORM integer
+
+--- @type StormTypes
+STORM_TYPES = {
+  NONE = 0,
+  SANDSTORM = 1,
+  MOONSTORM = 2,
+}
+
+--- `TheWorld` 事件 `ms_stormchanged` 的 data。
+--- @class MsStormChangedData
+--- @field stormtype integer
+--- @field setting boolean
+
 --- @class HealthComponent
 --- @field currenthealth number|nil
 --- @field minhealth number|nil

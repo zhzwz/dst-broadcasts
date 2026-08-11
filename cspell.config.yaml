@@ -111,6 +111,8 @@ words:
   - startoverheating # 开始过热
   - steamapps # dir
   - steamworks
+  - stormchanged
+  - stormtype
   - stringutil
   - telestaff # 传送魔杖
   - temperaturedelta # 温度组件事件

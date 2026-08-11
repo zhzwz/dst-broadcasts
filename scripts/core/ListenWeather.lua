@@ -11,29 +11,6 @@ local scheduled = false
 local ready = false
 local last_signature = nil
 
-local function IsMoonstormActive()
-  if TheWorld == nil or TheWorld.net == nil or TheWorld.net.components == nil then
-    return false
-  end
-  local moonstorms = TheWorld.net.components.moonstorms
-  if moonstorms == nil or type(moonstorms.GetMoonstormNodes) ~= "function" then
-    return false
-  end
-  local nodes = core.Call(moonstorms.GetMoonstormNodes, moonstorms)
-  return type(nodes) == "table" and next(nodes) ~= nil
-end
-
-local function IsSandstormActive()
-  if TheWorld == nil or TheWorld.components == nil then
-    return false
-  end
-  local sandstorms = TheWorld.components.sandstorms
-  if sandstorms == nil or type(sandstorms.IsSandstormActive) ~= "function" then
-    return false
-  end
-  return core.Call(sandstorms.IsSandstormActive, sandstorms) == true
-end
-
 local function GetPrecipitationRateKey(rate)
   if type(rate) == "number" then
     if rate <= 0.25 then
@@ -69,10 +46,10 @@ local function BuildWeatherSnapshot()
       table.insert(keys, "sunny")
     end
   end
-  if IsSandstormActive() then
+  if core.World.IsSandstormActive() then
     table.insert(keys, "sandstorm")
   end
-  if IsMoonstormActive() then
+  if core.World.IsMoonstormActive() then
     table.insert(keys, "moonstorm")
   end
   if #keys == 0 then
