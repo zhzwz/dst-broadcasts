@@ -141,5 +141,5 @@ AllPlayers = nil
 --- 天气播报降水键（互斥；无降水为 nil）
 --- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
 
---- 天气播报键（与 i18n.weather 标签键对应）
---- @alias WeatherKey "sunny" | PrecipitationKey | "sandstorm" | "moonstorm"
+--- 天气播报键（与 i18n.weather 降水相关标签对应）
+--- @alias WeatherKey "sunny" | PrecipitationKey

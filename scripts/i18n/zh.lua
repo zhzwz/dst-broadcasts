@@ -58,8 +58,7 @@ i18n = {
     lunarhail = "月雹",
     sandstorm = "局部地区有沙尘暴，出门请注意防护",
     moonstorm = "局部地区有月亮风暴，出门请注意防护",
-    report_forest = "森林世界当前天气，%s。",
-    report_cave = "洞穴世界当前天气，%s。",
+    report = "%s当前天气，%s。",
   },
   --- calendar: base + 可选换季/满月/新月提醒（≤5 天）
   calendar_base = "永恒%d日，%s第%d天",

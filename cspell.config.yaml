@@ -12,6 +12,10 @@ ignoreWords:
   - zhzwz
 
 words:
+  - CAVEWORLD
+  - CUSTOMIZATIONSCREEN
+  - FORESTWORLD
+  - SERVERCREATIONSCREEN
   - acidrain # 酸雨
   - activeplayers
   - alterguardian # 天体守护者

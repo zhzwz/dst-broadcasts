@@ -1,29 +1,136 @@
---- 天气播报：ListenWeather 编码变化时原地播报（非每天早上）。
+--- 天气播报：降水类型 / 雨雪档位变化时播报（仅主机）。
+--- 不含沙尘暴、月亮风暴、酸雨（酸雨见 cave.lua）；读档首帧不播；同帧多事件合并为一句。
 
-core.ListenWeather(function(event)
-  local labels = i18n.weather
-  local parts = {}
-  for _, key in ipairs(event.keys) do
-    local label = labels[key]
-    if label ~= nil and label ~= "" then
-      table.insert(parts, label)
+local labels = i18n.weather
+
+local TEXT_FOREST_WORLD = STRINGS.UI.SERVERCREATIONSCREEN.FORESTWORLD
+local TEXT_CAVE_WORLD = STRINGS.UI.SERVERCREATIONSCREEN.CAVEWORLD
+local TEXT_LUNARHAIL = STRINGS.UI.CUSTOMIZATIONSCREEN.LUNARHAIL_FREQUENCY
+
+local ready = false
+local precipitation = "none"
+local rate = 0
+local signature_previous = nil
+local announce_scheduled = false
+
+--- 雨雪强度档位：light / normal / heavy / storm。
+local function GetPrecipitationRateKey(value)
+  if type(value) == "number" then
+    if value <= 0.25 then
+      return "light"
+    elseif value >= 0.75 then
+      return "storm"
+    elseif value >= 0.5 then
+      return "heavy"
     end
   end
-  if #parts == 0 then
+  return "normal"
+end
+
+--- @return string
+local function GetPrecipitationKey()
+  if precipitation == "acidrain" then
+    return "acidrain"
+  elseif precipitation == "lunarhail" then
+    return "lunarhail"
+  elseif precipitation == "snow" then
+    return "snow_" .. GetPrecipitationRateKey(rate)
+  elseif precipitation == "rain" then
+    return "rain_" .. GetPrecipitationRateKey(rate)
+  end
+  return "sunny"
+end
+
+--- @param key string
+--- @return string|nil
+local function GetPrecipitationLabel(key)
+  if key == "lunarhail" then
+    return TEXT_LUNARHAIL or labels.lunarhail
+  end
+  local label = labels[key]
+  if type(label) == "string" and label ~= "" then
+    return label
+  end
+  return nil
+end
+
+local function AnnounceWeather()
+  if not ready then
+    return
+  end
+  local signature = GetPrecipitationKey()
+  if signature == signature_previous then
+    return
+  end
+  signature_previous = signature
+  --- 酸雨不播（洞穴由 cave 功能单独播报）
+  if signature == "acidrain" then
     return
   end
 
-  local template
+  local precip_label = GetPrecipitationLabel(signature)
+  if precip_label == nil then
+    return
+  end
+
+  local world_name
   if core.World.IsCave() then
-    template = labels.report_cave
+    world_name = TEXT_CAVE_WORLD
   elseif core.World.IsForest() then
-    template = labels.report_forest
+    world_name = TEXT_FOREST_WORLD
   else
     return
   end
+  local template = labels.report
+  if type(world_name) ~= "string" or world_name == "" then
+    return
+  end
+  if type(template) ~= "string" or template == "" then
+    return
+  end
 
-  core.Announce(string.format(template, table.concat(parts, i18n.symbol.comma)))
+  core.Announce(string.format(template, world_name, precip_label))
+end
+
+local function ScheduleAnnounce()
+  if announce_scheduled or TheWorld == nil then
+    return
+  end
+  announce_scheduled = true
+  TheWorld:DoTaskInTime(0, core.Wrap(function()
+    announce_scheduled = false
+    AnnounceWeather()
+  end))
+end
+
+core.World.ListenPrecipitation("server", function(value)
+  precipitation = value or "none"
+  ScheduleAnnounce()
 end)
+
+core.World.ListenPrecipitationRate("server", function(value)
+  rate = type(value) == "number" and value or 0
+  --- 仅雨/雪的档位变化会影响文案
+  if precipitation == "rain" or precipitation == "snow" then
+    ScheduleAnnounce()
+  end
+end)
+
+AddSimPostInit(core.Wrap(function()
+  if not core.World.IsServerSide() then
+    return
+  end
+  --- 读档首帧只对齐快照，不播报（避免空服白播）
+  TheWorld:DoTaskInTime(0, core.Wrap(function()
+    local state = TheWorld.state
+    if state ~= nil then
+      precipitation = state.precipitation or "none"
+      rate = type(state.precipitationrate) == "number" and state.precipitationrate or 0
+    end
+    signature_previous = GetPrecipitationKey()
+    ready = true
+  end))
+end))
 
 --- 月雹
 --- 在森林世界，当裂隙（月亮）存在时，每隔 10 天将会降下一场月雹，每次持续 90 秒。
