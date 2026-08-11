@@ -8,9 +8,9 @@
 
 - 游戏官方脚本位于：`~/Library/Application Support/Steam/steamapps/common/Don't Starve Together/dontstarve_steam.app/Contents/data/databundles/scripts.zip`，在编写模组代码时，可以读取官方的脚本信息。
 
-- 编写函数注释时，函数顶部的说明只一行，其他详细的说明可以写在函数内部执行的各处。
+- 写函数注释时，函数顶部的说明有且仅有一行，参数说明一行一个，其他更细的说明可以写在函数内部执行的各处。
 
-- `core.Wrap` 内部已经有一层 `Call`，不要使用 `core.Call` 重复再包一层。
+- `core.Wrap` 已内置 `core.Call`，若非必要，不要 `core.Call` 再包一层。
 
 - 如果需要记录某个变量，稍后用于与更新的值对比，应该使用 `_previous` 后缀，并且在相应的逻辑执行完之后，执行记录。示例：
 
