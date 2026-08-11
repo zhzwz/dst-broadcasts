@@ -21,7 +21,7 @@ core.ListenPlayer("sanitydelta", function(player, data)
       local current = string.format("%.0f", sanity.current)
       local max = string.format("%.0f", sanity.max)
       local percent = string.format("%.2f", new * 100)
-      core.Announce(string.format("[%s] INSANITY: %s/%s (%s%%)", name, current, max, percent))
+      DST_SERVER_SEND(string.format("[%s] INSANITY: %s/%s (%s%%)", name, current, max, percent))
     end
   end
 
@@ -31,7 +31,7 @@ core.ListenPlayer("sanitydelta", function(player, data)
       local current = string.format("%.0f", sanity.current)
       local max = string.format("%.0f", sanity.max)
       local percent = string.format("%.2f", new * 100)
-      core.Announce(string.format("[%s] ENLIGHTENMENT: %s/%s (%s%%)", name, current, max, percent))
+      DST_SERVER_SEND(string.format("[%s] ENLIGHTENMENT: %s/%s (%s%%)", name, current, max, percent))
     end
   end
 end)

@@ -15,10 +15,10 @@ local function Announce(player, actions, threshold)
 
   -- 有阈值时公告当前/阈值，否则只公告当前值
   if threshold ~= nil then
-    core.Announce(string.format("[%s] KRAMPUS: %s/%s", name, actions, threshold))
+    DST_SERVER_SEND(string.format("[%s] KRAMPUS: %s/%s", name, actions, threshold))
     return
   end
-  core.Announce(string.format("[%s] KRAMPUS: %s", name, actions))
+  DST_SERVER_SEND(string.format("[%s] KRAMPUS: %s", name, actions))
 end
 
 AddComponentPostInit("kramped", core.Wrap(function(self)

@@ -145,7 +145,7 @@ local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
     return false
   end
-  core.Announce(message)
+  DST_SERVER_SEND(message)
   return true
 end
 
@@ -155,7 +155,7 @@ local function RequestRemoteStatus()
   if not HasRemotePearlShard()
       or main_id == nil
       or not core.SendDataToShard(RPC_REQUEST, main_id, {}) then
-    core.Announce(S.pearl_not_found)
+    DST_SERVER_SEND(S.pearl_not_found)
   end
 end
 
@@ -163,7 +163,7 @@ local function AnnouncePearlStatusFromChat()
   local message = TryBuildLocalStatusMessage()
   if message ~= nil then
     if not BroadcastStatus(message) then
-      core.Announce(S.pearl_not_found)
+      DST_SERVER_SEND(S.pearl_not_found)
     end
     return
   end
@@ -243,6 +243,6 @@ core.ReceiveDataFromShard(RPC_REQUEST, function(from_shard, fields)
   if message ~= nil then
     BroadcastStatus(message)
   else
-    core.Announce(S.pearl_not_found)
+    DST_SERVER_SEND(S.pearl_not_found)
   end
 end)

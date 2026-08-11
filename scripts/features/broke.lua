@@ -43,9 +43,9 @@ local function Announce(player, item, value)
   end
 
   if player_name ~= nil then
-    core.Announce(string.format(with_player, player_name, item_name))
+    DST_SERVER_SEND(string.format(with_player, player_name, item_name))
   else
-    core.Announce(string.format(without_player, item_name))
+    DST_SERVER_SEND(string.format(without_player, item_name))
   end
 end
 

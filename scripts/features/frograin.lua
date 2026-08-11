@@ -55,14 +55,14 @@ local function AnnounceStarted()
   if template == nil then
     return
   end
-  core.Announce(template)
+  DST_SERVER_SEND(template)
 end
 
 local function AnnounceEnded(frogs, lunar)
   if lunar > 0 then
     local template = core.RandomPick(S.frog_rain_ended_lunar)
     if template ~= nil then
-      core.Announce(string.format(template, frogs, lunar))
+      DST_SERVER_SEND(string.format(template, frogs, lunar))
       return
     end
   end
@@ -70,7 +70,7 @@ local function AnnounceEnded(frogs, lunar)
   if template == nil then
     return
   end
-  core.Announce(string.format(template, frogs))
+  DST_SERVER_SEND(string.format(template, frogs))
 end
 
 --- 读档后已在场的雨蛙打上去重标记，避免 StartTracking 重入导致重复计数。

@@ -166,7 +166,7 @@ local function TryAnnounce(inst, boss)
   inst._dst_broadcasts_appear_announced = true
   local template = S.boss_appeared
   if type(template) == "string" and template ~= "" and type(boss.name) == "string" then
-    core.Announce(string.format(template, boss.name))
+    DST_SERVER_SEND(string.format(template, boss.name))
   end
   return true
 end

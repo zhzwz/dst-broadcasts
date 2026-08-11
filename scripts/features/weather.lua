@@ -89,7 +89,7 @@ local function AnnounceWeather()
     return
   end
 
-  core.Announce(string.format(template, world_name, precip_label))
+  DST_SERVER_SEND(string.format(template, world_name, precip_label))
 end
 
 local function ScheduleAnnounce()

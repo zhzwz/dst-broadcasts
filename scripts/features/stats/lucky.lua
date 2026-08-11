@@ -14,7 +14,7 @@ local function Announce(self, luck)
   -- 非幽灵
   if player:HasTag("playerghost") then return end
 
-  core.Announce(string.format("[%s] LUCKY: %.0f", name, luck))
+  DST_SERVER_SEND(string.format("[%s] LUCKY: %.0f", name, luck))
 end
 
 local function WrapOnLuckChange(original)

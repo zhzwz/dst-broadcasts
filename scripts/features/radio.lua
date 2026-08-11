@@ -4,11 +4,11 @@
 
 --- @alias RadioSlot "morning" | "dusk" | "midnight"
 
---- 公告入口。后续在此请求大模型，拿到文案后 core.Announce。
+--- 公告入口。后续在此请求大模型，拿到文案后 DST_SERVER_SEND。
 --- @param slot RadioSlot
 local function OnAir(slot)
   --- TODO: 对接大模型服务，按 slot 生成系统频道节目并公告
-  --- core.Announce(message)
+  --- DST_SERVER_SEND(message)
 end
 
 --- 早间：每个游戏日开始（cycles 恰 +1）

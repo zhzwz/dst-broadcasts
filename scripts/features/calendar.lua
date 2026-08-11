@@ -168,7 +168,7 @@ local function AnnounceCalendar()
     table.insert(parts, alerts[i].text)
   end
 
-  core.Announce(table.concat(parts, i18n.symbol.comma) .. i18n.symbol.period)
+  DST_SERVER_SEND(table.concat(parts, i18n.symbol.comma) .. i18n.symbol.period)
 end
 
 core.World.ListenCycles("server", AnnounceCalendar)

@@ -20,6 +20,6 @@ core.ListenPlayer("healthdelta", function(player, data)
     local current = string.format("%.0f", health.currenthealth)
     local max = string.format("%.0f", health.maxhealth)
     local percent = string.format("%.2f", new * 100)
-    core.Announce(string.format("[%s] HEALTH: %s/%s (%s%%)", name, current, max, percent))
+    DST_SERVER_SEND(string.format("[%s] HEALTH: %s/%s (%s%%)", name, current, max, percent))
   end
 end)

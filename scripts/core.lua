@@ -134,7 +134,6 @@ modimport("scripts/core/GetAnnounceLine.lua")
 modimport("scripts/core/GetClockComponent.lua")
 modimport("scripts/core/PlayerBubble.lua")
 modimport("scripts/core/PlayerSay.lua")
-modimport("scripts/core/Announce.lua")
 core.World = {}
 modimport("scripts/core/World.lua")
 modimport("scripts/core/ListenSay.lua")

@@ -27,10 +27,10 @@ core.ListenPlayer("moisturedelta", function(player, data)
   end
   if announce_key == nil then return end
 
-  core.Announce(string.format("[%s] MOISTURE: %.0f", name, new))
+  DST_SERVER_SEND(string.format("[%s] MOISTURE: %.0f", name, new))
 
   -- 角色特殊发言
   local line = core.GetAnnounceLine(announce_key, player)
   if line == nil then return end
-  core.Announce(name .. i18n.symbol.colon .. line)
+  DST_SERVER_SEND(name .. i18n.symbol.colon .. line)
 end)

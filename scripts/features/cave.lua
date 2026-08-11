@@ -6,12 +6,12 @@ local S = i18n
 local function OnNightmarePhase(_, phase)
   local message = S.nightmare_phases[phase]
   if message ~= nil then
-    core.Announce(message)
+    DST_SERVER_SEND(message)
   end
 end
 
 local function OnAcidRain(_, is_raining)
-  core.Announce(is_raining and S.acid_rain_started or S.acid_rain_ended)
+  DST_SERVER_SEND(is_raining and S.acid_rain_started or S.acid_rain_ended)
 end
 
 AddSimPostInit(core.Wrap(function()
@@ -36,12 +36,12 @@ AddSimPostInit(core.Wrap(function()
     end
   end))
   TheWorld:ListenForEvent("resetruins", core.Wrap(function()
-    core.Announce(S.ruins_reset)
+    DST_SERVER_SEND(S.ruins_reset)
   end))
 
   if TheWorld.net ~= nil and TheWorld.net.components.quaker ~= nil then
     TheWorld.net:ListenForEvent("warnquake", core.Wrap(function()
-      core.Announce(S.quake_warning)
+      DST_SERVER_SEND(S.quake_warning)
     end))
   end
 end))

@@ -250,7 +250,7 @@ local function AnnounceHarvest()
   })
 
   for _, line in ipairs(lines) do
-    core.Announce(line)
+    DST_SERVER_SEND(line)
   end
 end
 

@@ -20,11 +20,11 @@ core.ListenPlayer("hungerdelta", function(player, data)
     local current = string.format("%.0f", hunger.current)
     local max = string.format("%.0f", hunger.max)
     local percent = string.format("%.2f", new * 100)
-    core.Announce(string.format("[%s] HUNGER: %s/%s (%s%%)", name, current, max, percent))
+    DST_SERVER_SEND(string.format("[%s] HUNGER: %s/%s (%s%%)", name, current, max, percent))
 
     -- 角色特殊发言
     local line = core.GetAnnounceLine("ANNOUNCE_HUNGRY", player)
     if line == nil then return end
-    core.Announce(name .. i18n.symbol.colon .. line)
+    DST_SERVER_SEND(name .. i18n.symbol.colon .. line)
   end
 end)

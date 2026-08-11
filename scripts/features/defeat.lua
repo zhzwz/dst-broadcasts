@@ -240,7 +240,7 @@ local function AnnounceDamageRanking(bucket)
     table.insert(parts, string.format(entry_fmt, entry.name, math.floor(entry.damage + 0.5)))
   end
 
-  core.Announce(string.format(i18n.boss_damage_ranking, table.concat(parts, sep)))
+  DST_SERVER_SEND(string.format(i18n.boss_damage_ranking, table.concat(parts, sep)))
 end
 
 local function AnnounceDefeat(name, data, damage_bucket)
@@ -248,13 +248,13 @@ local function AnnounceDefeat(name, data, damage_bucket)
   local cause = data ~= nil and data.cause or nil
   local _, killer = ResolveDamageSource(afflicter)
   if afflicter == nil or not afflicter:IsValid() then
-    core.Announce(string.format(i18n.boss_defeated, name))
+    DST_SERVER_SEND(string.format(i18n.boss_defeated, name))
   else
     local weapon = GetWeaponName(cause, afflicter)
     if weapon ~= nil then
-      core.Announce(string.format(i18n.boss_defeated_by_weapon, name, killer, weapon))
+      DST_SERVER_SEND(string.format(i18n.boss_defeated_by_weapon, name, killer, weapon))
     else
-      core.Announce(string.format(i18n.boss_defeated_by, name, killer))
+      DST_SERVER_SEND(string.format(i18n.boss_defeated_by, name, killer))
     end
   end
   AnnounceDamageRanking(damage_bucket)

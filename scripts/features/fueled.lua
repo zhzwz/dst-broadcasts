@@ -15,7 +15,7 @@ local function Announce(inst, owner, percent, message)
   local owner_name = core.GetDisplayName(owner) or "?"
   local pct = math.floor(percent * 100 + 0.5)
 
-  core.Announce(string.format(
+  DST_SERVER_SEND(string.format(
     message,
     owner_name,
     item_name,

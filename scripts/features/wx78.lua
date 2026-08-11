@@ -80,7 +80,7 @@ local function AnnounceLanded(inst)
     return
   end
   local who = sender .. GetUnitName(inst)
-  core.Announce(string.format(S.portable_storage_landed, who, contents))
+  DST_SERVER_SEND(string.format(S.portable_storage_landed, who, contents))
 end
 
 local function HookUnit(inst)

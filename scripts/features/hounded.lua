@@ -24,7 +24,7 @@ AddSimPostInit(core.Wrap(function()
     if TheWorld.components.hounded:GetAttacking() == true then
       time_cache = math.huge
       if attacking == false then
-        core.Announce(string.format(i18n.attack_started, GetName()))
+        DST_SERVER_SEND(string.format(i18n.attack_started, GetName()))
       end
       attacking = true
       return
@@ -35,7 +35,7 @@ AddSimPostInit(core.Wrap(function()
     local t = TheWorld.components.hounded:GetTimeToAttack()
     for _, duration in ipairs(THRESHOLDS) do
       if t <= duration and duration < time_cache then
-        core.Announce(string.format(i18n.attack_time, GetName(), core.GetTimeDescription(t)))
+        DST_SERVER_SEND(string.format(i18n.attack_time, GetName(), core.GetTimeDescription(t)))
         time_cache = t
         return
       end

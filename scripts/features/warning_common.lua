@@ -42,7 +42,7 @@ core.WatchAttackWarning = function(key, get_seconds)
       return
     end
 
-    core.Announce(string.format(i18n.attack_time, name, duration))
+    DST_SERVER_SEND(string.format(i18n.attack_time, name, duration))
   end))
 end
 
