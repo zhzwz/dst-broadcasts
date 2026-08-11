@@ -139,5 +139,4 @@ core.World = {}
 modimport("scripts/core/World.lua")
 modimport("scripts/core/ListenSay.lua")
 modimport("scripts/core/ListenPlayer.lua")
-modimport("scripts/core/ListenWeather.lua")
 modimport("scripts/core/Shard.lua")
