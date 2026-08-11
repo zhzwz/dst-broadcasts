@@ -155,7 +155,7 @@ AddComponentPostInit("frograin", function(self)
 end)
 
 AddSimPostInit(core.Wrap(function()
-  if not core.IsServer() or core.IsCaveWorld() then
+  if not core.IsServer() or core.World.IsCave() then
     return
   end
 

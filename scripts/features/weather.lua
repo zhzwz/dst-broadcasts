@@ -14,9 +14,9 @@ core.ListenWeather(function(event)
   end
 
   local template
-  if core.IsCaveWorld() then
+  if core.World.IsCave() then
     template = labels.report_cave
-  elseif core.IsForestWorld() then
+  elseif core.World.IsForest() then
     template = labels.report_forest
   else
     return

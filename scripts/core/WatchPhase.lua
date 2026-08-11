@@ -13,7 +13,7 @@ core.WatchPhase = function(fn)
     if not core.IsServer() then
       return
     end
-    local key = core.IsCaveWorld() and "cavephase" or "phase"
+    local key = core.World.IsCave() and "cavephase" or "phase"
     --- 会话开始时记下的已是当前相位（读档/回档为重建世界）
     local phase_old = TheWorld.state ~= nil and TheWorld.state[key] or nil
     TheWorld:WatchWorldState(key, core.Wrap(function(_, phase)

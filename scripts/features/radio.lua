@@ -13,7 +13,7 @@ end
 
 --- 早间：每个游戏日开始（cycles 恰 +1）
 core.WatchCycles(function()
-  if not core.IsForestWorld() then
+  if not core.World.IsForest() then
     return
   end
   OnAir("morning")
@@ -21,7 +21,7 @@ end)
 
 --- 黄昏 / 午夜：day→dusk / dusk→night（由 WatchPhase 过滤顺序跳转）
 core.WatchPhase(function(phase)
-  if not core.IsForestWorld() then
+  if not core.World.IsForest() then
     return
   end
   if phase == "dusk" then

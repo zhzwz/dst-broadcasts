@@ -15,7 +15,7 @@ local function OnAcidRain(_, is_raining)
 end
 
 AddSimPostInit(core.Wrap(function()
-  if not core.IsServer() or not core.IsCaveWorld() then
+  if not core.IsServer() or not core.World.IsCave() then
     return
   end
 

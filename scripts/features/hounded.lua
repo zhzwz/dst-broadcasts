@@ -3,16 +3,20 @@
 
 local THRESHOLDS = { 480, 240, 120, 60, 30, 10, 5 }
 
+--- 洞穴为蠕虫群；其余（含森林）为猎犬群。
 local function GetName()
-  if core.IsForestWorld() then
+  if core.World.IsForest() then
     return core.GetPrefabDisplayName("hound")
-  elseif core.IsCaveWorld() then
+  end
+  if core.World.IsCave() then
     return core.GetPrefabDisplayName("worm")
   end
+  return ""
 end
 
 AddSimPostInit(core.Wrap(function()
   if not core.IsServer() then return end
+  if TheWorld.components.hounded == nil then return end
   local attacking = false
   local time_cache = math.huge
   core.SetInterval(TheWorld, function()
@@ -29,10 +33,9 @@ AddSimPostInit(core.Wrap(function()
 
     --- 来袭倒计时公告
     local t = TheWorld.components.hounded:GetTimeToAttack()
-    local description = core.GetTimeDescription(t)
     for _, duration in ipairs(THRESHOLDS) do
       if t <= duration and duration < time_cache then
-        core.Announce(string.format(i18n.attack_time, GetName(), description))
+        core.Announce(string.format(i18n.attack_time, GetName(), core.GetTimeDescription(t)))
         time_cache = t
         return
       end

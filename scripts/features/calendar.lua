@@ -124,7 +124,7 @@ end
 
 local function AnnounceCalendar()
   -- 森林世界
-  if not core.IsForestWorld() then return end
+  if not core.World.IsForest() then return end
 
   local state = TheWorld.state
   if state == nil then return end

@@ -220,7 +220,7 @@ end
 
 local function BuildAnnounceLines(data)
   local mark = ""
-  if core.IsCaveWorld() and type(S.harvest_cave_mark) == "string" then
+  if core.World.IsCave() and type(S.harvest_cave_mark) == "string" then
     mark = S.harvest_cave_mark
   end
 

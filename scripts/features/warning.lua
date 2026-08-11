@@ -3,7 +3,7 @@
 
 AddSimPostInit(core.Wrap(function()
   if not core.IsServer() then return end
-  if not core.IsForestWorld() then return end
+  if not core.World.IsForest() then return end
   --- 巨鹿
   core.WatchWorldSettingsTimer("deerclops", "deerclops_timetoattack")
   --- 熊獾
