@@ -1,4 +1,10 @@
 i18n = {
+  started = "has started",
+  ended = "has ended",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 minutes",
     [240] = "4 minutes",
@@ -90,29 +96,6 @@ i18n = {
   acid_rain_started = "Acid rain has begun in the caves. Take cover!",
   acid_rain_ended = "The cave acid rain has ended.",
   ruins_reset = "The Ruins have reset. Creatures and resources have respawned.",
-  --- Frog rain start/end; string array (random pick)
-  --- ended: %d = frogs; ended_lunar: %d = frogs, %d = bright-eyed frogs (lunarfrog)
-  frog_rain_started = {
-    "Breaking weather: frogs today, heavy to severe. Secure your crops—and your legs.",
-    "The green raindrops are checking in. Please take cover.",
-    "Friendly reminder: roads are slick, and frogs are hopping.",
-    "Special forecast: frog rain is on the air. Don't look up with your mouth open.",
-    "Thump-thump-thump—that's not a drumbeat, that's frogs touching down.",
-  },
-  frog_rain_ended = {
-    "And that's a wrap on this frog rain: %d in total.",
-    "Whose pot could possibly hold %d frogs?",
-    "Who lost these %d frogs? Please claim them soon.",
-    "Thanks for watching Frogs From Above—%d special guests this episode.",
-    "Precipitation over. Frog census: %d. See you next year.",
-  },
-  frog_rain_ended_lunar = {
-    "And that's a wrap: %d frogs, %d bright-eyed frogs.",
-    "Whose pot could hold %d frogs and %d bright-eyed frogs?",
-    "Lost and found: %d frogs, %d bright-eyed frogs. Please claim soon.",
-    "Thanks for watching Frogs From Above: %d frogs, %d bright-eyed guests.",
-    "Precipitation over. Census: %d frogs, %d bright-eyed. See you next year.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "%s's eyes begin to see phantoms that don't belong to this world...",

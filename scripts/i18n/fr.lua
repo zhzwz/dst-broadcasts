@@ -1,4 +1,10 @@
 i18n = {
+  started = "a commencé",
+  ended = "est terminée",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 minutes",
     [240] = "4 minutes",
@@ -90,27 +96,6 @@ i18n = {
   acid_rain_started = "La pluie acide a commencé dans les caves. Protégez-vous !",
   acid_rain_ended = "La pluie acide des caves est terminée.",
   ruins_reset = "Les Ruines se sont réinitialisées. Créatures et ressources ont réapparu.",
-  frog_rain_started = {
-    "Bulletin météo : aujourd'hui, grenouilles de fortes à violentes. Rangez les cultures—et vos jambes.",
-    "Les gouttes vertes pointent. Pensez à vous mettre à l'abri.",
-    "Rappel amical : routes glissantes, grenouilles qui sautillent.",
-    "Météo spéciale : la pluie de grenouilles est à l'antenne. Ne levez pas la tête bouche ouverte.",
-    "Poumpoum-poum—ce n'est pas un tambour, ce sont les grenouilles qui atterrissent.",
-  },
-  frog_rain_ended = {
-    "Cette pluie de grenouilles s'achève : %d au total.",
-    "Dans quelle marmite pourrait-on caser %d grenouilles ?",
-    "À qui sont ces %d grenouilles perdues ? Merci de les réclamer vite.",
-    "Merci d'avoir regardé Grenouilles en chute libre—%d invités ce numéro.",
-    "Précipitations terminées. Recensement des grenouilles : %d. À l'année prochaine.",
-  },
-  frog_rain_ended_lunar = {
-    "Fin de la pluie : %d grenouilles, %d grenouilles aux yeux brillants.",
-    "Quelle marmite pour %d grenouilles et %d aux yeux brillants ?",
-    "Objets trouvés : %d grenouilles, %d aux yeux brillants. À récupérer.",
-    "Merci pour Grenouilles en chute libre : %d grenouilles, %d invitées lunaires.",
-    "Précipitations finies. Recensement : %d grenouilles, %d lunaires. À l'année prochaine.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Des fantômes d'un autre monde apparaissent dans les yeux de %s...",

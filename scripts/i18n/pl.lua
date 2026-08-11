@@ -1,4 +1,10 @@
 i18n = {
+  started = "się zaczął",
+  ended = "się skończył",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 minut",
     [240] = "4 minuty",
@@ -90,27 +96,6 @@ i18n = {
   acid_rain_started = "W jaskiniach zaczął padać kwaśny deszcz. Brońcie się!",
   acid_rain_ended = "Kwaśny deszcz w jaskiniach się skończył.",
   ruins_reset = "Ruiny zostały zresetowane. Stworzenia i zasoby odrodziły się.",
-  frog_rain_started = {
-    "Komunikat pogodowy: dziś żaby od silnych do ulewnych. Chrońcie plony—i nogi.",
-    "Zielone krople się zameldowały. Uważajcie i uchylajcie się.",
-    "Przypomnienie: drogi śliskie, żaby skaczą.",
-    "Prognoza specjalna: deszcz żab na antenie. Nie patrzcie w górę z otwartymi ustami.",
-    "Bum-bum-bum—to nie bębny, to żabki lądują.",
-  },
-  frog_rain_ended = {
-    "Ten deszcz żab dobiegł końca: łącznie %d.",
-    "Do czyjego garnka zmieści się %d żab?",
-    "Czyje to %d zagubionych żab? Prosimy szybko odebrać.",
-    "Dziękujemy za Żaby z nieba—%d gości w tym odcinku.",
-    "Opad skończony. Spis żab: %d. Do zobaczenia za rok.",
-  },
-  frog_rain_ended_lunar = {
-    "Deszcz zakończony: %d żab, %d żab o jasnych oczach.",
-    "Do czyjego garnka wejdzie %d żab i %d o jasnych oczach?",
-    "Biuro rzeczy znalezionych: %d żab, %d o jasnych oczach.",
-    "Dziękujemy za Żaby z nieba: %d żab, %d gości księżycowych.",
-    "Opad skończony. Spis: %d żab, %d księżycowych. Do zobaczenia za rok.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "W oczach %s pojawiają się widma spoza tego świata...",

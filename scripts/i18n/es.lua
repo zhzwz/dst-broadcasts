@@ -1,4 +1,10 @@
 i18n = {
+  started = "ha comenzado",
+  ended = "ha terminado",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 minutos",
     [240] = "4 minutos",
@@ -90,27 +96,6 @@ i18n = {
   acid_rain_started = "Ha comenzado la lluvia ácida en las cuevas. ¡Protéjanse!",
   acid_rain_ended = "La lluvia ácida de las cuevas ha terminado.",
   ruins_reset = "Las Ruinas se han reiniciado. Criaturas y recursos han reaparecido.",
-  frog_rain_started = {
-    "Boletín del tiempo: hoy ranas de fuertes a torrenciales. Guarden las cose—y las piernas.",
-    "Las gotas verdes están haciendo check-in. Cuidado y apártense.",
-    "Recordatorio amable: caminos resbaladizos, ranas saltando.",
-    "Pronóstico especial: lluvia de ranas al aire. No miren arriba con la boca abierta.",
-    "Tum-tum-tum—no es un redoble, son ranitas aterrizando.",
-  },
-  frog_rain_ended = {
-    "Esta lluvia de ranas cierra con %d en total.",
-    "¿En qué olla cabrían %d ranas?",
-    "¿De quién son estas %d ranas perdidas? Reclámenlas pronto.",
-    "Gracias por ver Ranas desde arriba—%d invitados en este episodio.",
-    "Precipitación terminada. Censo de ranas: %d. Hasta el año que viene.",
-  },
-  frog_rain_ended_lunar = {
-    "Lluvia cerrada: %d ranas, %d ranas de ojos brillantes.",
-    "¿En qué olla cabrían %d ranas y %d de ojos brillantes?",
-    "Objetos perdidos: %d ranas, %d de ojos brillantes. Reclámenlas.",
-    "Gracias por Ranas desde arriba: %d ranas, %d invitadas lunares.",
-    "Precipitación terminada. Censo: %d ranas, %d lunares. Hasta el año que viene.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Los ojos de %s empiezan a ver fantasmas que no pertenecen a este mundo...",

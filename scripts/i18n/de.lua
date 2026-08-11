@@ -1,4 +1,10 @@
 i18n = {
+  started = "hat begonnen",
+  ended = "ist vorbei",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 Minuten",
     [240] = "4 Minuten",
@@ -90,27 +96,6 @@ i18n = {
   acid_rain_started = "Säureregen hat in den Höhlen begonnen. Schützt euch!",
   acid_rain_ended = "Der Höhlen-Säureregen ist vorbei.",
   ruins_reset = "Die Ruinen wurden zurückgesetzt. Kreaturen und Ressourcen sind neu entstanden.",
-  frog_rain_started = {
-    "Einschub Wetterbericht: heute Frösche, stark bis heftig. Ernten sichern—und eure Beine.",
-    "Die grünen Tropfen checken ein. Bitte ausweichen.",
-    "Freundliche Erinnerung: Straßen sind rutschig, Frösche hüpfen.",
-    "Sonderwetter: Froschregen ist on air. Nicht mit offenem Mund nach oben schauen.",
-    "Rumms-rumms—das ist kein Trommeln, das sind Frösche beim Landen.",
-  },
-  frog_rain_ended = {
-    "Dieser Froschregen ist vorbei: insgesamt %d.",
-    "In wessen Topf passen schon %d Frösche?",
-    "Wem gehören diese %d verlorenen Frösche? Bitte bald abholen.",
-    "Danke fürs Einschalten bei Frösche von oben—%d Gäste in dieser Folge.",
-    "Niederschlag vorbei. Froschzählung: %d. Bis nächstes Jahr.",
-  },
-  frog_rain_ended_lunar = {
-    "Froschregen vorbei: %d Frösche, %d Leuchtaugenfrösche.",
-    "In wessen Topf passen %d Frösche und %d Leuchtaugenfrösche?",
-    "Fundsachen: %d Frösche, %d Leuchtaugenfrösche. Bitte abholen.",
-    "Danke für Frösche von oben: %d Frösche, %d leuchtende Gäste.",
-    "Niederschlag vorbei. Zählung: %d Frösche, %d Leuchtaugen. Bis nächstes Jahr.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "In %ss Augen erscheinen Phantome, die nicht in diese Welt gehören...",

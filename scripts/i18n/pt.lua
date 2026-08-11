@@ -1,4 +1,10 @@
 i18n = {
+  started = "começou",
+  ended = "terminou",
+  exclamation = "!",
+  times = "×",
+  separator = " ",
+
   durations = {
     [480] = "8 minutos",
     [240] = "4 minutos",
@@ -90,27 +96,6 @@ i18n = {
   acid_rain_started = "A chuva ácida começou nas cavernas. Protejam-se!",
   acid_rain_ended = "A chuva ácida das cavernas terminou.",
   ruins_reset = "As Ruínas foram reiniciadas. Criaturas e recursos reapareceram.",
-  frog_rain_started = {
-    "Boletim do tempo: hoje sapos de forte a torrencial. Guardem as plantações—e as pernas.",
-    "As gotas verdes estão fazendo check-in. Cuidado e desviem.",
-    "Lembrete carinhoso: estradas escorregadias, sapos pulando.",
-    "Previsão especial: chuva de sapos no ar. Não olhem para cima de boca aberta.",
-    "Tum-tum-tum—não é tambor, são sapinhos pousando.",
-  },
-  frog_rain_ended = {
-    "Esta chuva de sapos encerra com %d no total.",
-    "Em que panela caberiam %d sapos?",
-    "De quem são estes %d sapos perdidos? Reclamem logo.",
-    "Obrigado por assistir Sapos do Céu—%d convidados neste episódio.",
-    "Precipitação encerrada. Censo de sapos: %d. Até o ano que vem.",
-  },
-  frog_rain_ended_lunar = {
-    "Chuva encerrada: %d sapos, %d sapos de olhos brilhantes.",
-    "Em que panela caberiam %d sapos e %d de olhos brilhantes?",
-    "Achados e perdidos: %d sapos, %d de olhos brilhantes. Reclamem.",
-    "Obrigado por Sapos do Céu: %d sapos, %d convidados lunares.",
-    "Precipitação encerrada. Censo: %d sapos, %d lunares. Até o ano que vem.",
-  },
   --- 理智 ≤50% / ≤10%；每档可多条，运行时随机一条；%s = 玩家名
   player_low_sanity_50 = {
     "Os olhos de %s começam a ver fantasmas que não pertencem a este mundo...",
