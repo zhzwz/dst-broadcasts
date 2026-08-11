@@ -65,6 +65,7 @@ TheWorld = nil
 --- @class TalkerComponent
 --- @field Say fun(self: TalkerComponent, script: string|table, time: number|nil, noanim: boolean|nil, force: boolean|nil, nobroadcast: boolean|nil, ...: any)
 
+--- 若干常见组件的字段类型（`Entity.components` 仍为动态表）。
 --- @class EntityComponents
 --- @field health HealthComponent|nil
 --- @field stackable StackableComponent|nil
@@ -76,7 +77,7 @@ TheWorld = nil
 
 --- @class Entity
 --- @field prefab string|nil
---- @field components EntityComponents|nil
+--- @field components table<string, any>|nil
 --- @field GUID any
 --- @field userid string|nil
 --- @field playercolour number[]|nil
@@ -84,6 +85,7 @@ TheWorld = nil
 --- @field IsValid fun(self: Entity): boolean
 --- @field HasTag fun(self: Entity, tag: string): boolean
 --- @field GetDisplayName fun(self: Entity): string
+--- @field AddComponent fun(self: Entity, name: string): any
 --- @field DoTaskInTime fun(self: Entity, time: number, fn: function, ...: any): PeriodicTask
 --- @field DoPeriodicTask fun(self: Entity, time: number, fn: function, ...: any): PeriodicTask
 --- @field ListenForEvent fun(self: Entity, event: string, fn: function, ...: any)

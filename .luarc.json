@@ -22,9 +22,11 @@
       "GLOBAL",
       "GetClientModRPC",
       "GetModConfigData",
+      "GetPlayerStateComponent",
       "GetShardModRPC",
       "GetString",
       "GetTime",
+      "GetWorldStateComponent",
       "Networking_Say",
       "POPULATING",
       "SHARDID",
@@ -45,9 +47,7 @@
     ]
   },
   "workspace": {
-    "library": [
-      "dst.d.lua"
-    ],
+    "library": [],
     "ignoreDir": [
       "node_modules",
       "broadcasts-"

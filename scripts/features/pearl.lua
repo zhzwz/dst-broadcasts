@@ -174,7 +174,7 @@ local function GetPersistedFriendAnnounceCycle()
   if last_friend_announce_cycle ~= nil then
     return last_friend_announce_cycle
   end
-  local state = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.state_3774915634 or nil
+  local state = GetWorldStateComponent()
   if state ~= nil then
     last_friend_announce_cycle = state:Get(FRIEND_ANNOUNCE_CYCLE_KEY)
   end
@@ -183,7 +183,7 @@ end
 
 local function SetPersistedFriendAnnounceCycle(cycles)
   last_friend_announce_cycle = cycles
-  local state = TheWorld ~= nil and TheWorld.components ~= nil and TheWorld.components.state_3774915634 or nil
+  local state = GetWorldStateComponent()
   if state ~= nil then
     state:Set(FRIEND_ANNOUNCE_CYCLE_KEY, cycles)
   end

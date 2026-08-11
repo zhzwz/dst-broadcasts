@@ -19,10 +19,6 @@ local COUNTED_FLAG = "_dst_broadcasts_frog_counted"
 --- 读档/首帧完成前不计增，避免 OnLoad 重入 StartTracking 叠在存档计数上。
 local ready = false
 
-local function GetState(world)
-  return world.components.state_3774915634
-end
-
 --- 与原版 frograin.ToggleUpdate 开启条件一致（用于判断何时结算场次）。
 local function IsFrogRainSpawning(world)
   local state = world.state
@@ -39,7 +35,7 @@ local function IsFrogRainSpawning(world)
 end
 
 local function ClearFrogRainState(world)
-  local state = GetState(world)
+  local state = GetWorldStateComponent(world)
   if state == nil then
     return
   end
@@ -92,7 +88,7 @@ end
 
 --- 开启场次；已在进行中则跳过。announce=false 用于读档对齐。
 local function EnsureSession(world, announce)
-  local state = GetState(world)
+  local state = GetWorldStateComponent(world)
   if state == nil or state:Get(ACTIVE_KEY, false) then
     return
   end
@@ -112,7 +108,7 @@ local function CountFrog(world, target)
     return
   end
 
-  --- 先打标；读档阶段只信任存档计数，不 Increment / 不公告「开始」
+  --- 先打标；读档阶段只信任存档计数，不计增 / 不公告「开始」
   target[COUNTED_FLAG] = true
   if POPULATING or not ready then
     return
@@ -120,20 +116,20 @@ local function CountFrog(world, target)
 
   EnsureSession(world, true)
 
-  local state = GetState(world)
+  local state = GetWorldStateComponent(world)
   if state == nil then
     return
   end
 
   if prefab == LUNAR_FROG_PREFAB then
-    state:Increment(LUNAR_COUNT_KEY)
+    state:Set(LUNAR_COUNT_KEY, (state:Get(LUNAR_COUNT_KEY, 0) or 0) + 1)
   else
-    state:Increment(COUNT_KEY)
+    state:Set(COUNT_KEY, (state:Get(COUNT_KEY, 0) or 0) + 1)
   end
 end
 
 local function FinishFrogRain(world)
-  local state = GetState(world)
+  local state = GetWorldStateComponent(world)
   if state == nil or not state:Get(ACTIVE_KEY, false) then
     return
   end
@@ -177,7 +173,7 @@ AddSimPostInit(core.Wrap(function()
     on_condition()
   end))
 
-  local state = GetState(TheWorld)
+  local state = GetWorldStateComponent(TheWorld)
   local frogs, lunar = 0, 0
   if state ~= nil then
     frogs, lunar = SessionCounts(state)

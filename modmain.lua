@@ -3,15 +3,21 @@
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })
 
-modimport("scripts/core.lua")
-modimport("scripts/i18n.lua")
-
 AddPrefabPostInit("world", function(inst)
   if inst.ismastersim then
-    --- 加载自定义组件
-    inst:AddComponent("state_3774915634")
+    inst:AddComponent("world_state_3774915634")
   end
 end)
+
+AddPlayerPostInit(function(inst)
+  if TheWorld ~= nil and TheWorld.ismastersim then
+    inst:AddComponent("player_state_3774915634")
+  end
+end)
+
+modimport("scripts/state.lua")
+modimport("scripts/core.lua")
+modimport("scripts/i18n.lua")
 
 modimport("scripts/features/weather.lua")
 modimport("scripts/features/broke.lua")
