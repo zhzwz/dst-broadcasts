@@ -103,6 +103,7 @@ words:
   - percentusedchange # 燃料组件事件：百分比变化
   - playercolour
   - playerghost # 玩家幽灵
+  - postinit
   - precipitationrate # 降水率
   - remainingdaysinseason
   - resetruins # 重置遗迹

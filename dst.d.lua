@@ -121,8 +121,11 @@ STORM_TYPES = {
 --- @class WorldState
 --- @field precipitation PrecipitationType|nil
 --- @field precipitationrate number|nil
+--- @field moistureceil number|nil
 --- @field cycles number|nil
 --- @field season string|nil
+--- @field isspring boolean|nil
+--- @field israining boolean|nil
 
 --- TheWorld
 --- @class World : Entity

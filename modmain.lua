@@ -15,8 +15,11 @@ AddPlayerPostInit(function(inst)
   end
 end)
 
-modimport("scripts/state.lua")
+modimport("scripts/constants.lua")
 modimport("scripts/dst/DST_SERVER_SEND.lua")
+modimport("scripts/dst/DST_HOOK.lua")
+
+modimport("scripts/state.lua")
 modimport("scripts/core.lua")
 modimport("scripts/i18n.lua")
 

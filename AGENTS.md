@@ -16,7 +16,7 @@
 
 - `dst.d.lua` 仅为对照官方 API 的 LuaLS 类型桩：内容以官方脚本为准，禁止为迁就模组而改动。
 
-- `scripts/dst/` 只放对游戏 API 的通用封装，须与本模组业务无关，其他模组亦可直接复用。
+- `scripts/dst/` 只放对游戏 API 的通用封装，须与本模组业务无关，其他模组亦可直接复用；除官方 API 外不得依赖其他函数。
 
 - `core.Wrap` 已内置 `core.Call`，若非必要，不要 `core.Call` 再包一层。
 
@@ -28,6 +28,22 @@ if (value ~= value_previous) then
   --- ...
 end
 value_previous = value
+```
+
+- 若在原函数之后追加逻辑，优先 `DST_HOOK`；需手写拦截时，原函数用 `_Original` 后缀。示例：
+
+```lua
+DST_HOOK(self, "StartTracking", function(component, target)
+  -- ...
+end)
+```
+
+- 若防御性返回的代码很简短，那么优先写作单行。示例：
+
+```lua
+if target == nil then return end
+if condition then return false end
+if count == nil then return 0 end
 ```
 
 ## 默认翻译
