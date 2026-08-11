@@ -24,8 +24,10 @@ words:
   - cooldown # 冷却
   - crabking # 螃蟹王
   - currenthealth
+  - databundles
   - daywalker # 日行者
   - deerclops # 独眼巨鹿
+  - dontstarve
   - dryinginfo # 晾晒信息
   - dryingrack # 晾晒架
   - drytime # 晾晒时间
@@ -107,6 +109,7 @@ words:
   - stackable # 可堆叠物品组件
   - startfreezing # 开始冻结
   - startoverheating # 开始过热
+  - steamapps # dir
   - steamworks
   - stringutil
   - telestaff # 传送魔杖
