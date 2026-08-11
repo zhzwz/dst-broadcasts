@@ -32,7 +32,7 @@ AddComponentPostInit("kramped", core.Wrap(function(self)
   local actions_cache = setmetatable({}, { __mode = "k" })
 
   -- 每 INTERVAL 秒轮询淘气值变化
-  core.SetInterval(self.inst, function()
+  self.inst:DoPeriodicTask(INTERVAL, core.Wrap(function()
     -- 读档填充期不公告
     if POPULATING then return end
 
@@ -48,5 +48,5 @@ AddComponentPostInit("kramped", core.Wrap(function(self)
         end
       end
     end
-  end, INTERVAL)
+  end))
 end))

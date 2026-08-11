@@ -112,13 +112,13 @@ local function StartPolling()
   end
   local keys0 = BuildWeatherSnapshot()
   last_signature = KeysSignature(keys0)
-  core.SetInterval(TheWorld, NotifyListeners, INTERVAL_SECONDS)
+  TheWorld:DoPeriodicTask(INTERVAL_SECONDS, core.Wrap(NotifyListeners))
   --- 首帧后再接受变化，避免读档瞬间误播
-  core.SetTimeout(TheWorld, function()
+  TheWorld:DoTaskInTime(0, core.Wrap(function()
     local keys = BuildWeatherSnapshot()
     last_signature = KeysSignature(keys)
     ready = true
-  end, 0)
+  end))
 end
 
 local function EnsureScheduled()

@@ -11,7 +11,7 @@ core.ATTACK_WARNING_POLL_SECONDS = 1
 --- get_seconds: 剩余秒数；false=暂停（保留 cache）；nil/<=0=重置为 HUGE
 core.WatchAttackWarning = function(key, get_seconds)
   if not core.World.IsServerSide() then return end
-  core.SetInterval(TheWorld, function()
+  TheWorld:DoPeriodicTask(core.ATTACK_WARNING_POLL_SECONDS, core.Wrap(function()
     local new = get_seconds()
     if new == false then return end
     if type(new) ~= "number" or new ~= new or new <= 0 then
@@ -43,7 +43,7 @@ core.WatchAttackWarning = function(key, get_seconds)
     end
 
     core.Announce(string.format(i18n.attack_time, name, duration))
-  end, core.ATTACK_WARNING_POLL_SECONDS)
+  end))
 end
 
 --- 世界设置定时器倒计时（巨鹿 / 熊獾等）

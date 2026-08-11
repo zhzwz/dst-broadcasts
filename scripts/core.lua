@@ -123,8 +123,6 @@ core.RandomPick = function(list)
 end
 
 
-modimport("scripts/core/SetTimeout.lua")
-modimport("scripts/core/SetInterval.lua")
 modimport("scripts/core/IsValid.lua")
 modimport("scripts/core/HasTag.lua")
 modimport("scripts/core/IsAlive.lua")
@@ -143,8 +141,6 @@ modimport("scripts/core/PlayerBubble.lua")
 modimport("scripts/core/PlayerSay.lua")
 modimport("scripts/core/Announce.lua")
 modimport("scripts/core/World.lua")
-modimport("scripts/core/WatchCycles.lua")
-modimport("scripts/core/WatchPhase.lua")
 modimport("scripts/core/ListenSay.lua")
 modimport("scripts/core/ListenPlayer.lua")
 modimport("scripts/core/ListenWeather.lua")

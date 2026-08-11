@@ -175,9 +175,9 @@ local function WatchSharedRelease(inst, boss)
   local key = SharedKey(boss.shared)
   inst:ListenForEvent("onremove", core.Wrap(function()
     --- inst 任务在 onremove 后可能被清；挂到世界上延后计数
-    core.SetTimeout(TheWorld, function()
+    TheWorld:DoTaskInTime(0, core.Wrap(function()
       ReleaseIfEmpty(TheWorld, key, CountLivingPrefabs(boss.prefabs, boss.test))
-    end, 0)
+    end))
   end))
 end
 
@@ -204,7 +204,7 @@ local function HookAppear(prefab, boss)
       end
     end
 
-    core.SetTimeout(inst, function()
+    inst:DoTaskInTime(0, core.Wrap(function()
       if not inst:IsValid() then
         return
       end
@@ -219,7 +219,7 @@ local function HookAppear(prefab, boss)
           TryAnnounce(inst, boss)
         end))
       end
-    end, 0)
+    end))
   end))
 end
 

@@ -255,7 +255,7 @@ local function AnnounceHarvest()
 end
 
 --- day→dusk 时播报
-core.WatchPhase(function(phase)
+core.World.ListenPhase("server", function(phase)
   if phase ~= "dusk" then
     return
   end

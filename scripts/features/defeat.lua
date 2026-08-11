@@ -330,9 +330,9 @@ local function TryAnnounceNonlethalDefeat(inst, prefab, name, attempt)
     return
   end
   if attempt < NONLETHAL_RETRY_MAX then
-    core.SetTimeout(inst, function()
+    inst:DoTaskInTime(NONLETHAL_RETRY_DELAY, core.Wrap(function()
       TryAnnounceNonlethalDefeat(inst, prefab, name, attempt + 1)
-    end, NONLETHAL_RETRY_DELAY)
+    end))
     return
   end
   ClearNonlethalRetry(inst)
@@ -408,9 +408,9 @@ for prefab, name in pairs(NONLETHAL_BOSSES) do
       end
       inst._dst_broadcasts_minhealth_retrying = true
       inst._dst_broadcasts_minhealth_data = data
-      core.SetTimeout(inst, function()
+      inst:DoTaskInTime(0, core.Wrap(function()
         TryAnnounceNonlethalDefeat(inst, prefab, name, 1)
-      end, 0)
+      end))
     end))
   end))
 end
@@ -428,13 +428,13 @@ for prefab in pairs(TWIN_PREFABS) do
       return GetSharedDamageBucket("twins_damage")
     end)
     inst:ListenForEvent("death", core.Wrap(function(_, data)
-      core.SetTimeout(inst, function()
+      inst:DoTaskInTime(0, core.Wrap(function()
         if not HasLivingTwin() and not TheWorld._dst_broadcasts_twins_defeated then
           TheWorld._dst_broadcasts_twins_defeated = true
           AnnounceDefeat(N.twins, data, TheWorld._dst_broadcasts_twins_damage)
           ClearSharedDamageBucket("twins_damage")
         end
-      end, 0)
+      end))
     end))
   end))
 end
@@ -451,13 +451,13 @@ AddPrefabPostInit("vault_pillar_guard", core.Wrap(function(inst)
     return GetSharedDamageBucket("guard_damage")
   end)
   inst:ListenForEvent("death", core.Wrap(function(_, data)
-    core.SetTimeout(inst, function()
+    inst:DoTaskInTime(0, core.Wrap(function()
       if not HasLivingVaultGuard() and
           not TheWorld._dst_broadcasts_guard_towers_defeated then
         TheWorld._dst_broadcasts_guard_towers_defeated = true
         AnnounceDefeat(N.vault_pillar_guard, data, TheWorld._dst_broadcasts_guard_damage)
         ClearSharedDamageBucket("guard_damage")
       end
-    end, 0)
+    end))
   end))
 end))

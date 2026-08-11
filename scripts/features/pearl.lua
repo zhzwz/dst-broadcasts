@@ -220,7 +220,7 @@ local function WatchPearl(inst)
     return
   end
   --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
-  core.SetTimeout(inst, function()
+  inst:DoTaskInTime(0, core.Wrap(function()
     if not inst:IsValid() then
       return
     end
@@ -230,7 +230,7 @@ local function WatchPearl(inst)
     end
     inst._broadcasts_pearl_level = friendlevels:GetLevel() or 0
     inst:ListenForEvent("friend_level_changed", core.Wrap(OnFriendLevelChanged))
-  end, 0)
+  end))
 end
 
 AddPrefabPostInit("hermitcrab", WatchPearl)

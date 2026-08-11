@@ -19,7 +19,7 @@ AddSimPostInit(core.Wrap(function()
   if TheWorld.components.hounded == nil then return end
   local attacking = false
   local time_cache = math.huge
-  core.SetInterval(TheWorld, function()
+  TheWorld:DoPeriodicTask(1, core.Wrap(function()
     --- 来袭公告，读档触发
     if TheWorld.components.hounded:GetAttacking() == true then
       time_cache = math.huge
@@ -41,5 +41,5 @@ AddSimPostInit(core.Wrap(function()
       end
     end
     time_cache = t
-  end, 1)
+  end))
 end))

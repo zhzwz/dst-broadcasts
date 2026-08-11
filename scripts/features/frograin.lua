@@ -1,7 +1,7 @@
 --- 青蛙雨：第一只雨蛙落地时开场播报；结束时分别统计青蛙 / 明眼青蛙。
 --- 仅地表主机；洞穴跳过。
 --- 开始看 StartTracking 首次计入 frog / lunarfrog（非天气条件）；结束看原版产蛙条件不再满足。
---- 读档：POPULATING / 首帧前只打标不计增；SetTimeout(0) 后再响应计增与结算。
+--- 读档：POPULATING / 首帧前只打标不计增；DoTaskInTime(0) 后再响应计增与结算。
 
 local S = i18n
 
@@ -172,10 +172,10 @@ AddSimPostInit(core.Wrap(function()
 
   --- 读档还原世界状态时可能同步触发 WatchWorldState / StartTracking；首帧后再接受变化与计增。
   --- ready 打开后补跑一次结束检查，避免门闩窗口内错过结算导致场次粘连。
-  core.SetTimeout(TheWorld, function()
+  TheWorld:DoTaskInTime(0, core.Wrap(function()
     ready = true
     on_condition()
-  end, 0)
+  end))
 
   local state = GetState(TheWorld)
   local frogs, lunar = 0, 0

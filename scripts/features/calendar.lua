@@ -171,4 +171,4 @@ local function AnnounceCalendar()
   core.Announce(table.concat(parts, i18n.symbol.comma) .. i18n.symbol.period)
 end
 
-core.WatchCycles(AnnounceCalendar)
+core.World.ListenCycles("server", AnnounceCalendar)
