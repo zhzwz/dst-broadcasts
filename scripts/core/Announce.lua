@@ -1,5 +1,4 @@
 --- 全服系统公告（左下角公屏；森林/洞穴均可见）。
---- `TheNet:Announce(message, entity, flag, category)` 为引擎网络层 API。
 --- @param message string 公告正文
 --- @param source Entity|nil 发言来源；nil 为系统；玩家实体时关联其 entity
 core.Announce = function(message, source)
@@ -16,5 +15,6 @@ core.Announce = function(message, source)
     flag = true
   end
 
+  --- 引擎：TheNet:Announce(message, entity, flag, category)
   core.Call(TheNet.Announce, TheNet, m, ent, flag, nil)
 end

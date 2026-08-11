@@ -160,9 +160,8 @@ local function Unpack(data)
 end
 
 --- 发送字段表（内部自动打包）；失败返回 false。
---- target 为 nil 时表示所有远程分片（仅在明确需要广播时传入）。
 --- @param name string
---- @param target string|number|nil
+--- @param target string|number|nil nil 表示所有远程分片（仅明确需要广播时传入）
 --- @param fields table<string, string|number|boolean|string[]|nil>
 --- @return boolean
 core.SendDataToShard = function(name, target, fields)

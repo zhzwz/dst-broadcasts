@@ -14,8 +14,7 @@ function modimport(path) end
 function AddComponentPostInit(classname, fn) end
 
 --- 模拟（Sim）就绪后回调一次；世界、`TheWorld` 等已可用。
---- 若注册时 Sim 已初始化完毕，回调不会再执行（需自行立刻跑逻辑，见 ListenWeather / ListenSay）。
---- @param fn fun() 回调
+--- @param fn fun() 回调；若注册时 Sim 已就绪则不会再执行（需自行立刻跑逻辑）
 function AddSimPostInit(fn) end
 
 --- 世界正在读档 / 填充实体时为 `true`；加载期的数值变化通常应忽略，避免误播报。

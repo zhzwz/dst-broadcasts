@@ -38,8 +38,7 @@ core.Wrap = function(fn)
 end
 
 --- 将值转为 string；无法转换时返回 nil。
---- string 原样返回；number / boolean 用 tostring；其余类型为 nil。
---- @param value unknown
+--- @param value unknown string 原样；number / boolean 用 tostring；其余为 nil
 --- @return string|nil
 core.String = function(value)
   local t = type(value)
@@ -53,8 +52,7 @@ core.String = function(value)
 end
 
 --- 移除字符串首尾空白。
---- 先经 core.String 转换；无法转为 string 时返回 nil。
---- @param value unknown
+--- @param value unknown 先经 core.String；无法转换时返回 nil
 --- @return string|nil
 core.TrimString = function(value)
   local s = core.String(value)
@@ -65,8 +63,7 @@ core.TrimString = function(value)
 end
 
 --- 将字符串转为大写（ASCII；非字母字符不变）。
---- 先经 core.String 转换；无法转为 string 时返回 nil。
---- @param value unknown
+--- @param value unknown 先经 core.String；无法转换时返回 nil
 --- @return string|nil
 core.UpperString = function(value)
   local s = core.String(value)
@@ -78,8 +75,7 @@ end
 
 
 --- 将值转为 number；无法转换时返回 nil。
---- number 原样返回；string 用 tonumber 解析（失败为 nil）；其余类型为 nil。
---- @param value unknown
+--- @param value unknown number 原样；string 用 tonumber；其余为 nil
 --- @return number|nil
 core.Number = function(value)
   local t = type(value)
@@ -92,10 +88,9 @@ core.Number = function(value)
   return nil
 end
 
---- 将值转为整数（四舍五入）；无效时返回 defaultValue（可省略，即为 nil）。
---- 经 core.Number 转换；拒绝 NaN / ±inf。
---- @param value unknown
---- @param defaultValue number|nil
+--- 将值转为整数（四舍五入）；无效时返回 defaultValue。
+--- @param value unknown 经 core.Number；拒绝 NaN / ±inf
+--- @param defaultValue number|nil 可省略（即为 nil）
 --- @return number|nil
 core.Integer = function(value, defaultValue)
   local n = core.Number(value)

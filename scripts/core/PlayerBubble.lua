@@ -1,6 +1,5 @@
 --- 玩家头顶气泡发言（「吹泡泡」；网络同步，附近客户端可见）。
---- 参数顺序与 core.Announce 一致：内容在前，发言人在后。
---- @param message string 发言内容
+--- @param message string 发言内容（与 Announce 相同：内容在前）
 --- @param player Entity|nil 发言玩家
 core.PlayerBubble = function(message, player)
   local m = core.TrimString(message)

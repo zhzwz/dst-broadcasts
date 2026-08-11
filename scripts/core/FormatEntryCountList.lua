@@ -1,7 +1,6 @@
 --- 将 { [display_name] = amount } 格式化为排序后的「名称×数量」列表。
---- 分隔符取 i18n.symbol.enumeration；全空时返回 nil。
 --- @param counts table|nil
---- @return string|nil
+--- @return string|nil 全空时为 nil
 core.FormatEntryCountList = function(counts)
   if type(counts) ~= "table" then
     return nil
@@ -26,5 +25,6 @@ core.FormatEntryCountList = function(counts)
   for _, item in ipairs(list) do
     table.insert(parts, item.text)
   end
+  --- 分隔符取 i18n.symbol.enumeration
   return table.concat(parts, i18n.symbol.enumeration)
 end

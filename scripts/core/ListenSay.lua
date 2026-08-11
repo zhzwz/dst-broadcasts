@@ -66,8 +66,7 @@ local function EnsureSimScheduled()
 end
 
 --- 监听玩家聊天（挂钩 GLOBAL.Networking_Say）。
---- side 为 "server" 时仅主机回调并挂钩；"client" 时仅客户端。
---- @param side ListenSaySide
+--- @param side ListenSaySide "server" 仅主机；"client" 仅客户端
 --- @param fn fun(say: ListenSayEvent)
 core.ListenSay = function(side, fn)
   if type(fn) ~= "function" then

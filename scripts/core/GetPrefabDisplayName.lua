@@ -1,6 +1,5 @@
---- 获取预制体显示名称（查 STRINGS.NAMES；查不到时回退为 prefab 字符串）。
---- prefab 非非空 string 时返回 nil。
---- @param prefab string|nil prefab 名（如 "deerclops"）
+--- 获取预制体显示名称（查 STRINGS.NAMES；查不到时回退为 prefab）。
+--- @param prefab string|nil 非空 prefab 名（如 "deerclops"）；否则返回 nil
 --- @return string|nil
 core.GetPrefabDisplayName = function(prefab)
   if type(prefab) ~= "string" or prefab == "" then

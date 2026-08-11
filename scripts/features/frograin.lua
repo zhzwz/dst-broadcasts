@@ -23,8 +23,7 @@ local function GetState(world)
   return world.components.state_3774915634
 end
 
---- 与原版 frograin.ToggleUpdate 的开启条件一致（仅用于判断何时结算场次）。
---- 字段缺失或非数字时视为未在产蛙，避免比较抛错导致结束结算被吞。
+--- 与原版 frograin.ToggleUpdate 开启条件一致（用于判断何时结算场次）。
 local function IsFrogRainSpawning(world)
   local state = world.state
   if state == nil or not state.isspring or not state.israining then
@@ -32,6 +31,7 @@ local function IsFrogRainSpawning(world)
   end
   local rate = state.precipitationrate
   local ceil = state.moistureceil
+  --- 字段缺失或非数字视为未在产蛙，避免比较抛错吞掉结束结算
   if type(rate) ~= "number" or rate ~= rate or type(ceil) ~= "number" or ceil ~= ceil then
     return false
   end
