@@ -1,6 +1,6 @@
 [h1]Broadcasts｜永恒电台[/h1]
 
-为《饥荒联机版》服务器提供及时、清晰的世界事件播报。
+为《饥荒联机版》服务器提供及时、清晰的世界事件公告。
 Timely and clear world event announcements for Don't Starve Together servers.
 
 [b]纯服务端模组[/b]，客户端无需订阅，可随时安装或卸载。
@@ -9,35 +9,35 @@ Timely and clear world event announcements for Don't Starve Together servers.
 [h2]功能｜Features[/h2]
 
 [h3]永恒早报｜The Constant Daily[/h3]
-每天开始时播报世界日期、季节、天气、近期事件与存活巨兽；并汇总成熟大理石灌木、待收蜂蜜、成熟农作物，以及晾晒架上已晒好待取的物品。
+每天开始时公告世界日期、季节、天气、近期事件与存活巨兽；并汇总成熟大理石灌木、待收蜂蜜、成熟农作物，以及晾晒架上已晒好待取的物品。
 Reports the world day, season, weather, upcoming events, and living bosses each morning; also summarizes mature marble shrubs, harvestable honey, mature farm plants, and finished drying-rack goods.
 
 [h3]袭击预警｜Attack Warnings[/h3]
-在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点播报。
+在猎犬、洞穴蠕虫、巨鹿、熊獾来袭前的多个时间节点公告。
 Provides countdown warnings for Hound, Depths Worm, Deerclops, and Bearger attacks.
 
 [h3]世界事件｜World Events[/h3]
-播报地表与洞穴的重要动态，包括季节与天气趋势、青蛙雨、噩梦循环、洞穴地震、酸雨及远古遗迹重置。
+公告地表与洞穴的重要动态，包括季节与天气趋势、青蛙雨、噩梦循环、洞穴地震、酸雨及远古遗迹重置。
 Announces major surface and cave events, including seasonal and weather trends, frog rain, nightmare cycles, earthquakes, acid rain, and Ruins resets.
 
 [h3]物品状态｜Item Status[/h3]
-播报低耐久、低燃料、武器/护甲损毁，以及白名单物品剩余 1 次使用时的预警。
+公告低耐久、低燃料、武器/护甲损毁，以及白名单物品剩余 1 次使用时的预警。
 Announces low durability, low fuel, weapon/armor breaks, and a warning when whitelisted items have 1 use left.
 
 [h3]玩家状态｜Player Status[/h3]
-任意玩家的饱食度或理智降至 10 时播报一次，降至 0 时再播报一次；生命值降至 20% 与 10% 时各播报一次（显示当前百分比）；开始过冷或过热时立即播报。
+任意玩家的饱食度或理智降至 10 时公告一次，降至 0 时再公告一次；生命值降至 20% 与 10% 时各公告一次（显示当前百分比）；开始过冷或过热时立即公告。
 Announces once when a player's hunger or sanity drops to 10, and again at 0. Announces health drops at 20% and 10% with the current percentage. Also announces when a player starts freezing or overheating.
 
 [h3]Pearl｜寄居蟹隐士[/h3]
-永久开启。公频聊天发送 pearl，播报好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动播报一次）。
+永久开启。公频聊天发送 pearl，公告好感与未完成任务（洞穴可查地表；好感提升每个游戏日最多自动公告一次）。
 Always on. Say pearl in chat to announce friendship and unfinished tasks (works from caves; auto at most once per game day on friendship gain).
 
 [h3]便携储存单元｜Portable Storage Unit[/h3]
-WX-78 便携储存单元配送落地时，播报玩家名、单元名称与内容物。
+WX-78 便携储存单元配送落地时，公告玩家名、单元名称与内容物。
 Announces the player, unit name, and cargo when a WX-78 Portable Storage Unit lands after a successful delivery.
 
 [h3]巨兽动态｜Boss Updates[/h3]
-巨兽现身或被击败时立即向当前分片的所有玩家播报；击败时附带最终一击与按实际伤害量排序的伤害排行。
+巨兽现身或被击败时立即向当前分片的所有玩家公告；击败时附带最终一击与按实际伤害量排序的伤害排行。
 Notifies all players on the current shard when a boss appears or is defeated, including the finishing blow and a damage ranking by actual HP dealt.
 当前支持：巨鹿、晶体巨鹿、熊獾、装甲熊獾、龙蝇、蜂王、毒菌蟾蜍、悲惨的毒菌蟾蜍、麋鹿鹅、克劳斯、邪天翁、蚁狮、帝王蟹、恐怖之眼、双子魔眼、梦魇疯猪、拾荒疯猪、大霜鲨、巨大洞穴蠕虫、启迪战争瓦器人、远古守卫塔、远古守护者、远古织影者、天体英雄、天体后裔。
 Currently supported: Deerclops, Crystal Deerclops, Bearger, Armored Bearger, Dragonfly, Bee Queen, Toadstool, Misery Toadstool, Moose/Goose, Klaus, Malbatross, Antlion, Crab King, Eye of Terror, Twins of Terror, Nightmare Werepig, Scrappy Werepig, Frostjaw, Great Depths Worm, Enlightened W.A.R.B.O.T., Ancient Guard Towers, Ancient Guardian, Ancient Fuelweaver, Celestial Champion, Celestial Scion.

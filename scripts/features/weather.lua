@@ -1,5 +1,5 @@
---- 天气播报：降水类型 / 雨雪档位变化时播报（仅主机）。
---- 不含沙尘暴、月亮风暴、酸雨（酸雨见 cave.lua）；读档首帧不播；同帧多事件合并为一句。
+--- 天气公告：降水类型 / 雨雪档位变化时公告（仅主机）。
+--- 不含沙尘暴、月亮风暴、酸雨（酸雨见 cave.lua）；读档首帧不公告；同帧多事件合并为一句。
 
 local labels = i18n.weather
 
@@ -63,7 +63,7 @@ local function AnnounceWeather()
     return
   end
   signature_previous = signature
-  --- 酸雨不播（洞穴由 cave 功能单独播报）
+  --- 酸雨不公告（洞穴由 cave 功能单独公告）
   if signature == "acidrain" then
     return
   end
@@ -120,7 +120,7 @@ AddSimPostInit(core.Wrap(function()
   if not core.World.IsServerSide() then
     return
   end
-  --- 读档首帧只对齐快照，不播报（避免空服白播）
+  --- 读档首帧只对齐快照，不公告（避免空服白公告）
   TheWorld:DoTaskInTime(0, core.Wrap(function()
     local state = TheWorld.state
     if state ~= nil then

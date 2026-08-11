@@ -1,5 +1,5 @@
 --- 洞穴事件：噩梦相位、酸雨起止、远古遗迹重置、地震预警。
---- 仅洞穴主机；读档首帧不播（DoTaskInTime(0) 后再响应 WatchWorldState）。
+--- 仅洞穴主机；读档首帧不公告（DoTaskInTime(0) 后再响应 WatchWorldState）。
 
 local S = i18n
 

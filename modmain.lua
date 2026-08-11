@@ -1,4 +1,4 @@
---- dst-broadcasts：可扩展的全服播报框架。
+--- dst-broadcasts：可扩展的全服公告框架。
 --- 新增模块：在 scripts/features/ 下添加（玩家数值见 features/stats/），并在此 modimport。
 
 GLOBAL.setmetatable(env, { __index = function(_, k) return GLOBAL.rawget(GLOBAL, k) end })

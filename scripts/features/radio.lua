@@ -1,13 +1,13 @@
---- 电台：按时段在系统频道开播（后续对接大模型生成节目文案）。
+--- 电台：按时段在系统频道公告（后续对接大模型生成节目文案）。
 --- 时段：morning（cycles +1）/ dusk（day→dusk）/ midnight（dusk→night）。
 --- 仅森林主机，避免洞穴分片重复请求与重复 Announce。
 
 --- @alias RadioSlot "morning" | "dusk" | "midnight"
 
---- 开播入口。后续在此请求大模型，拿到文案后 core.Announce。
+--- 公告入口。后续在此请求大模型，拿到文案后 core.Announce。
 --- @param slot RadioSlot
 local function OnAir(slot)
-  --- TODO: 对接大模型服务，按 slot 生成系统频道节目并播报
+  --- TODO: 对接大模型服务，按 slot 生成系统频道节目并公告
   --- core.Announce(message)
 end
 

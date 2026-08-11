@@ -1,11 +1,11 @@
---- 巨兽现身：实体新生成时播报（仅主机）。
---- 读档 / POPULATING 填充期出生不播；天体英雄仅 phase1 计为现身。
---- shared 组（双子魔眼 / 远古守卫塔）：先 claim 播一次，全灭后再释放（允许下一波）。
---- 克劳斯包装 Unchain、瓦器人包装 ConfigureHostile，状态就绪后再播。
+--- 巨兽现身：实体新生成时公告（仅主机）。
+--- 读档 / POPULATING 填充期出生不公告；天体英雄仅 phase1 计为现身。
+--- shared 组（双子魔眼 / 远古守卫塔）：先 claim 公告一次，全灭后再释放（允许下一波）。
+--- 克劳斯包装 Unchain、瓦器人包装 ConfigureHostile，状态就绪后再公告。
 
 --- shared 现身波次：先 claim，全灭后再释放。
 
---- @return boolean 是否首次占位（应播报）
+--- @return boolean 是否首次占位（应公告）
 local function TryClaim(store, key)
   if store[key] then
     return false
@@ -14,7 +14,7 @@ local function TryClaim(store, key)
   return true
 end
 
---- living_count == 0 时清除占位，允许下一波再播
+--- living_count == 0 时清除占位，允许下一波再公告
 --- @return boolean 是否已释放
 local function ReleaseIfEmpty(store, key, living_count)
   if living_count == 0 then
@@ -25,7 +25,7 @@ local function ReleaseIfEmpty(store, key, living_count)
 end
 
 --- 正常 TryClaim；失败且 living_count <= 1 时视为残留 claim，清掉再占一次（自愈）
---- @return boolean 是否应播报
+--- @return boolean 是否应公告
 local function TryClaimOrRecover(store, key, living_count)
   if TryClaim(store, key) then
     return true
@@ -109,7 +109,7 @@ local BOSSES = {
   },
   { name = N.minotaur,                       prefabs = { "minotaur" } },
   { name = N.stalker_atrium,                 prefabs = { "stalker_atrium" } },
-  --- 天体英雄：仅第一阶段算「现身」，避免换阶段重复播报
+  --- 天体英雄：仅第一阶段算「现身」，避免换阶段重复公告
   { name = N.alterguardian_phase3,           prefabs = { "alterguardian_phase1" } },
   { name = N.alterguardian_phase4_lunarrift, prefabs = { "alterguardian_phase4_lunarrift" } },
 }

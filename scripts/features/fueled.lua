@@ -1,12 +1,12 @@
---- 可缝补（FUELTYPE.USAGE）耐久与可补燃料（非 USAGE）的多档全服播报。
---- 仅主机；读档首帧对齐 flag 不播；无主不钉 flag，进背包时补检；每档下降越过各播一次。
+--- 可缝补（FUELTYPE.USAGE）耐久与可补燃料（非 USAGE）的多档全服公告。
+--- 仅主机；读档首帧对齐 flag 不公告；无主不钉 flag，进背包时补检；每档下降越过各公告一次。
 
 local PlayerOwner = core.GetOwner
 local S = i18n
 
---- 可缝补物品耐久播报阈值（百分比）
+--- 可缝补物品耐久公告阈值（百分比）
 local DURABILITY_THRESHOLDS = { 20, 10, 5, 4, 3, 2, 1 }
---- 可补充燃料物品播报阈值（百分比）
+--- 可补充燃料物品公告阈值（百分比）
 local FUEL_THRESHOLDS = { 30, 20, 10 }
 
 local function Announce(inst, owner, percent, message)
@@ -23,7 +23,7 @@ local function Announce(inst, owner, percent, message)
   ))
 end
 
---- 检查燃料百分比档位；新跨越的每一档各播一次。
+--- 检查燃料百分比档位；新跨越的每一档各公告一次。
 local function CheckThresholds(inst, owner, percent, thresholds, flag_key, message, allow_announce)
   local pct = percent * 100
   local flags = inst[flag_key]
@@ -35,7 +35,7 @@ local function CheckThresholds(inst, owner, percent, thresholds, flag_key, messa
   for _, t in ipairs(thresholds) do
     if pct <= t then
       if not flags[t] then
-        --- allow_announce=false：读档对齐可钉 flag；无主且允许播报时不钉，等进背包再检
+        --- allow_announce=false：读档对齐可钉 flag；无主且允许公告时不钉，等进背包再检
         if not allow_announce then
           flags[t] = true
         elseif owner ~= nil then

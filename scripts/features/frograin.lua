@@ -1,4 +1,4 @@
---- 青蛙雨：第一只雨蛙落地时开场播报；结束时分别统计青蛙 / 明眼青蛙。
+--- 青蛙雨：第一只雨蛙落地时开场公告；结束时分别统计青蛙 / 明眼青蛙。
 --- 仅地表主机；洞穴跳过。
 --- 开始看 StartTracking 首次计入 frog / lunarfrog（非天气条件）；结束看原版产蛙条件不再满足。
 --- 读档：POPULATING / 首帧前只打标不计增；DoTaskInTime(0) 后再响应计增与结算。
@@ -112,7 +112,7 @@ local function CountFrog(world, target)
     return
   end
 
-  --- 先打标；读档阶段只信任存档计数，不 Increment / 不播「开始」
+  --- 先打标；读档阶段只信任存档计数，不 Increment / 不公告「开始」
   target[COUNTED_FLAG] = true
   if POPULATING or not ready then
     return
@@ -184,11 +184,11 @@ AddSimPostInit(core.Wrap(function()
   end
 
   if IsFrogRainSpawning(TheWorld) and frogs + lunar > 0 then
-    --- 读档时雨仍在下且已有计数：静默恢复场次，避免重播「开始」与重复计数
+    --- 读档时雨仍在下且已有计数：静默恢复场次，避免再次公告「开始」与重复计数
     EnsureSession(TheWorld, false)
     MarkExistingTracked(TheWorld)
   else
-    --- 雨已停或无有效计数：丢弃未结算，避免读档瞬间误播
+    --- 雨已停或无有效计数：丢弃未结算，避免读档瞬间误公告
     ClearFrogRainState(TheWorld)
   end
 end))

@@ -1,11 +1,11 @@
---- 巨兽击败：最终一击与伤害排行；双子魔眼 / 远古守卫塔等整组清场后播一次。
+--- 巨兽击败：最终一击与伤害排行；双子魔眼 / 远古守卫塔等整组清场后公告一次。
 --- 仅主机；普通死亡 / 非致死贴底（蚁狮、鲨鱼人等）均可能结算。
---- 伤害按实际扣血累计；排行最多播报 BOSS_DAMAGE_RANKING_MAX 人。
+--- 伤害按实际扣血累计；排行最多公告 BOSS_DAMAGE_RANKING_MAX 人。
 
 local N = i18n.bosses
 local IsAtMinHealth = core.IsAtMinHealth
 
---- 伤害排行最多播报人数
+--- 伤害排行最多公告人数
 local BOSS_DAMAGE_RANKING_MAX = 10
 
 local function GetEntityName(inst)
@@ -306,7 +306,7 @@ local function IsNonlethalDefeated(inst, prefab)
   return false
 end
 
---- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏播。
+--- 真击败时原版偶发时序落后；约 3s 内轮询终态，避免过短窗口漏公告。
 --- 每个实体只允许一条重试链；后续 minhealth 只刷新击杀 data，避免疲倦贴底叠任务。
 local NONLETHAL_RETRY_DELAY = 0.25
 local NONLETHAL_RETRY_MAX = 12

@@ -1,5 +1,5 @@
 --- Pearl（寄居蟹隐士）好感与待办任务。
---- 触发：公频精确发送 pearl（洞穴可跨片查地表，不限频率）；好感提升自动播报（每个游戏日最多一次）。
+--- 触发：公频精确发送 pearl（洞穴可跨片查地表，不限频率）；好感提升自动公告（每个游戏日最多一次）。
 --- 跨片查询由主分片直接 Announce，无 token / 超时收尾。
 
 --- spell:ignore autum
@@ -140,7 +140,7 @@ local function HasRemotePearlShard()
   return core.HasRemoteShard()
 end
 
---- TheNet:Announce 全服可见，任一主控分片播一次即可
+--- TheNet:Announce 全服可见，任一主控分片公告一次即可
 local function BroadcastStatus(message)
   if not IsValidStatusMessage(message) then
     return false
@@ -212,7 +212,7 @@ local function WatchPearl(inst)
   if not core.World.IsServerSide() then
     return
   end
-  --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误播报
+  --- 延后到 OnLoad 之后再挂监听，避免读档时 friend_level_changed 误公告
   inst:DoTaskInTime(0, core.Wrap(function()
     if not inst:IsValid() then
       return

@@ -17,7 +17,7 @@ function AddComponentPostInit(classname, fn) end
 --- @param fn fun() 回调；若注册时 Sim 已就绪则不会再执行（需自行立刻跑逻辑）
 function AddSimPostInit(fn) end
 
---- 世界正在读档 / 填充实体时为 `true`；加载期的数值变化通常应忽略，避免误播报。
+--- 世界正在读档 / 填充实体时为 `true`；加载期的数值变化通常应忽略，避免误公告。
 --- @type boolean
 POPULATING = false
 
@@ -138,8 +138,8 @@ AllPlayers = nil
 --- 模组内部类型
 ---------------------------------------------------------------------------
 
---- 天气播报降水键（互斥；无降水为 nil）
+--- 天气公告降水键（互斥；无降水为 nil）
 --- @alias PrecipitationKey "acidrain" | "lunarhail" | "rain_light" | "rain_normal" | "rain_heavy" | "rain_storm" | "snow_light" | "snow_normal" | "snow_heavy" | "snow_storm"
 
---- 天气播报键（与 i18n.weather 降水相关标签对应）
+--- 天气公告键（与 i18n.weather 降水相关标签对应）
 --- @alias WeatherKey "sunny" | PrecipitationKey

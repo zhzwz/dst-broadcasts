@@ -1,5 +1,5 @@
---- 收获：进入黄昏时按物资种类分别播报本分片待收（大理石灌木 / 蜂箱 / 农田 / 晾晒架）。
---- 仅主机；day→dusk 时播报（森林 / 洞穴各自扫描）；洞穴类别后加括号标记。
+--- 收获：进入黄昏时按物资种类分别公告本分片待收（大理石灌木 / 蜂箱 / 农田 / 晾晒架）。
+--- 仅主机；day→dusk 时公告（森林 / 洞穴各自扫描）；洞穴类别后加括号标记。
 --- 数量为 0 或列表为空时跳过；每种物资单独 Announce。
 
 local S = i18n
@@ -254,7 +254,7 @@ local function AnnounceHarvest()
   end
 end
 
---- day→dusk 时播报
+--- day→dusk 时公告
 core.World.ListenPhase("server", function(phase)
   if phase ~= "dusk" then
     return
