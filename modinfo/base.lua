@@ -18,7 +18,7 @@ local L = {
 name = "Broadcasts"
 description = L.description
 author = "zhzwz"
-version = "1.9.0"
+version = "1.10.0"
 
 forumthread = ""
 
